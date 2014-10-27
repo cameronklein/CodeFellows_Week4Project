@@ -19,15 +19,16 @@ class MultiPeer: UIViewController, MCSessionDelegate, MCNearbyServiceAdvertiserD
   let XXServiceType = "xx-servicetype"
   
   override func viewDidLoad() {
+    println("Multipeer View Controller Loaded")
     super.viewDidLoad()
     
-    peerID =  MCPeerID(displayName: UIDevice.currentDevice().name)
+    peerID  = MCPeerID(displayName: UIDevice.currentDevice().name)
     session = MCSession(peer: peerID)
     
     self.session.delegate = self
     
     assistant = MCAdvertiserAssistant(serviceType: XXServiceType, discoveryInfo: nil, session: session)
-    assistant.start()
+    //assistant.start()
     
   }
   
@@ -74,7 +75,7 @@ class MultiPeer: UIViewController, MCSessionDelegate, MCNearbyServiceAdvertiserD
   }
   
   @IBAction func didPressButton(sender: AnyObject) {
-    println("Did Press Button")
+    println("Started Advertising")
     
     advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: XXServiceType)
     advertiser.delegate = self
@@ -83,7 +84,7 @@ class MultiPeer: UIViewController, MCSessionDelegate, MCNearbyServiceAdvertiserD
   }
   
   @IBAction func didPressBrowsingButton(sender: AnyObject) {
-    
+    println("Started Browsing")
     browser = MCNearbyServiceBrowser(peer: peerID, serviceType: XXServiceType)
     browser.delegate = self
     let browserVC = MCBrowserViewController(browser: browser, session: session)

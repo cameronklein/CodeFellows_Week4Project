@@ -15,7 +15,33 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OB8-Fv-RfI">
+                                <rect key="frame" x="243" y="92" width="114" height="30"/>
+                                <state key="normal" title="Start Advertising">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EMr-dh-tKl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJv-QN-ppG">
+                                <rect key="frame" x="249" y="194" width="102" height="30"/>
+                                <state key="normal" title="Start Browsing">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressBrowsingButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ab1-87-Hu6"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OB8-Fv-RfI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="72" id="9Of-MI-els"/>
+                            <constraint firstAttribute="centerX" secondItem="WJv-QN-ppG" secondAttribute="centerX" id="C9c-x4-Ibw"/>
+                            <constraint firstAttribute="centerX" secondItem="OB8-Fv-RfI" secondAttribute="centerX" id="QgY-b5-ETZ"/>
+                            <constraint firstItem="WJv-QN-ppG" firstAttribute="top" secondItem="OB8-Fv-RfI" secondAttribute="bottom" constant="72" id="c1Q-LI-cdi"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
