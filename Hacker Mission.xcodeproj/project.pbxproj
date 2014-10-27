@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16C784AE19FEC9FF008421CC /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C784AC19FEC9FF008421CC /* PlayerCell.swift */; };
+		16C784AF19FEC9FF008421CC /* PlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16C784AD19FEC9FF008421CC /* PlayerCell.xib */; };
+		16C784B319FECE5F008421CC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C784B219FECE5F008421CC /* HomeViewController.swift */; };
 		7E46DF2119FEB359009215E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF2019FEB359009215E3 /* AppDelegate.swift */; };
 		7E46DF2319FEB359009215E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF2219FEB359009215E3 /* ViewController.swift */; };
 		7E46DF2619FEB359009215E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E46DF2419FEB359009215E3 /* Main.storyboard */; };
@@ -26,6 +29,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		16C784AC19FEC9FF008421CC /* PlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
+		16C784AD19FEC9FF008421CC /* PlayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerCell.xib; sourceTree = "<group>"; };
+		16C784B019FECD0E008421CC /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
+		16C784B119FECD4F008421CC /* typicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = typicons.ttf; sourceTree = "<group>"; };
+		16C784B219FECE5F008421CC /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7E46DF1B19FEB359009215E3 /* Hacker Mission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hacker Mission.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E46DF1F19FEB359009215E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E46DF2019FEB359009215E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +64,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16C784A919FEC2A7008421CC /* View Layer */ = {
+			isa = PBXGroup;
+			children = (
+				7E46DF2419FEB359009215E3 /* Main.storyboard */,
+				7E46DF2919FEB359009215E3 /* LaunchScreen.xib */,
+				16C784AC19FEC9FF008421CC /* PlayerCell.swift */,
+				16C784AD19FEC9FF008421CC /* PlayerCell.xib */,
+			);
+			name = "View Layer";
+			sourceTree = "<group>";
+		};
+		16C784AA19FEC2E5008421CC /* Controller Layer */ = {
+			isa = PBXGroup;
+			children = (
+				7E46DF2019FEB359009215E3 /* AppDelegate.swift */,
+				7E46DF2219FEB359009215E3 /* ViewController.swift */,
+				16C784B219FECE5F008421CC /* HomeViewController.swift */,
+			);
+			name = "Controller Layer";
+			sourceTree = "<group>";
+		};
+		16C784AB19FEC2F5008421CC /* Model Layer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Model Layer";
+			sourceTree = "<group>";
+		};
 		7E46DF1219FEB359009215E3 = {
 			isa = PBXGroup;
 			children = (
@@ -77,11 +113,9 @@
 		7E46DF1D19FEB359009215E3 /* Hacker Mission */ = {
 			isa = PBXGroup;
 			children = (
-				7E46DF2019FEB359009215E3 /* AppDelegate.swift */,
-				7E46DF2219FEB359009215E3 /* ViewController.swift */,
-				7E46DF2419FEB359009215E3 /* Main.storyboard */,
-				7E46DF2719FEB359009215E3 /* Images.xcassets */,
-				7E46DF2919FEB359009215E3 /* LaunchScreen.xib */,
+				16C784AA19FEC2E5008421CC /* Controller Layer */,
+				16C784A919FEC2A7008421CC /* View Layer */,
+				16C784AB19FEC2F5008421CC /* Model Layer */,
 				7E46DF1E19FEB359009215E3 /* Supporting Files */,
 			);
 			path = "Hacker Mission";
@@ -90,6 +124,9 @@
 		7E46DF1E19FEB359009215E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				16C784B119FECD4F008421CC /* typicons.ttf */,
+				16C784B019FECD0E008421CC /* fontawesome-webfont.ttf */,
+				7E46DF2719FEB359009215E3 /* Images.xcassets */,
 				7E46DF1F19FEB359009215E3 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -192,6 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16C784AF19FEC9FF008421CC /* PlayerCell.xib in Resources */,
 				7E46DF2619FEB359009215E3 /* Main.storyboard in Resources */,
 				7E46DF2B19FEB359009215E3 /* LaunchScreen.xib in Resources */,
 				7E46DF2819FEB359009215E3 /* Images.xcassets in Resources */,
@@ -212,8 +250,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16C784AE19FEC9FF008421CC /* PlayerCell.swift in Sources */,
 				7E46DF2319FEB359009215E3 /* ViewController.swift in Sources */,
 				7E46DF2119FEB359009215E3 /* AppDelegate.swift in Sources */,
+				16C784B319FECE5F008421CC /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +447,7 @@
 				7E46DF3C19FEB359009215E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7E46DF3D19FEB359009215E3 /* Build configuration list for PBXNativeTarget "Hacker MissionTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +456,7 @@
 				7E46DF3F19FEB359009215E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
