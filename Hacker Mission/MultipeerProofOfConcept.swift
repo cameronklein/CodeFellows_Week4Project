@@ -23,12 +23,17 @@ class MultiPeer: UIViewController, MCSessionDelegate, MCNearbyServiceAdvertiserD
     super.viewDidLoad()
     
     peerID  = MCPeerID(displayName: UIDevice.currentDevice().name)
-    session = MCSession(peer: peerID)
+    self.session = MCSession(peer: peerID)
     
     self.session.delegate = self
     
     assistant = MCAdvertiserAssistant(serviceType: XXServiceType, discoveryInfo: nil, session: session)
     //assistant.start()
+    
+    advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: XXServiceType)
+    advertiser.delegate = self
+    browser = MCNearbyServiceBrowser(peer: peerID, serviceType: XXServiceType)
+    browser.delegate = self
     
   }
   
@@ -49,7 +54,12 @@ class MultiPeer: UIViewController, MCSessionDelegate, MCNearbyServiceAdvertiserD
   }
   
   func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
-    println("Changed State")
+    
+    if state == MCSessionState.Connected {
+      println("Peer Connected")
+    } else if state == MCSessionState.NotConnected {
+      println("Peer Stopped Connecting")
+    }
   }
   
   func advertiser(advertiser: MCNearbyServiceAdvertiser!, didReceiveInvitationFromPeer peerID: MCPeerID!, withContext context: NSData!, invitationHandler: ((Bool, MCSession!) -> Void)!) {
@@ -76,18 +86,13 @@ class MultiPeer: UIViewController, MCSessionDelegate, MCNearbyServiceAdvertiserD
   
   @IBAction func didPressButton(sender: AnyObject) {
     println("Started Advertising")
-    
-    advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: XXServiceType)
-    advertiser.delegate = self
     advertiser.startAdvertisingPeer()
-    
   }
   
   @IBAction func didPressBrowsingButton(sender: AnyObject) {
     println("Started Browsing")
-    browser = MCNearbyServiceBrowser(peer: peerID, serviceType: XXServiceType)
-    browser.delegate = self
-    let browserVC = MCBrowserViewController(browser: browser, session: session)
+    
+    //let browserVC = MCBrowserViewController(browser: browser, session: session)
     //self.presentViewController(browserVC, animated: true, completion: nil)
     browser.startBrowsingForPeers()
   }
