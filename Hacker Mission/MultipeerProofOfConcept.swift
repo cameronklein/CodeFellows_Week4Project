@@ -34,16 +34,22 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   }
   
   // MARK: - MCSessionDelegate Methods
-  
-  func session(session: MCSession!, didFinishReceivingResourceWithName resourceName: String!, fromPeer peerID: MCPeerID!, atURL localURL: NSURL!, withError error: NSError!) {
-    println("Got Resource")
-  }
-  
+
   func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
     println("Received Data!")
     let text = NSString(data: data, encoding: NSUTF8StringEncoding)
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
 
+    }
+  }
+  
+  func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
+    if state == MCSessionState.Connected {
+      println("Peer Connected")
+    } else if state == MCSessionState.NotConnected {
+      println("Peer Stopped Connecting")
+    } else if state == MCSessionState.Connecting {
+      println("Peer Connecting")
     }
   }
   
@@ -55,14 +61,8 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     println("Started Receiving Resource")
   }
   
-  func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
-    if state == MCSessionState.Connected {
-      println("Peer Connected")
-    } else if state == MCSessionState.NotConnected {
-      println("Peer Stopped Connecting")
-    } else if state == MCSessionState.Connecting {
-      println("Peer Connecting")
-    }
+  func session(session: MCSession!, didFinishReceivingResourceWithName resourceName: String!, fromPeer peerID: MCPeerID!, atURL localURL: NSURL!, withError error: NSError!) {
+    println("Got Resource")
   }
   
   // MARK: - MCNearbyServiceAdvertiserDelegate Methods
