@@ -8,12 +8,17 @@
 
 import MultipeerConnectivity
 
+protocol MultiPeerDelegate {
+  func handleEvent(GameEvent)
+}
+
 class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate {
   
   var peerID      : MCPeerID!
   var session     : MCSession!
   var advertiser  : MCNearbyServiceAdvertiser!
   var browser     : MCNearbyServiceBrowser!
+  var delegate    : MultiPeerDelegate!
   
   let MyServiceType = "cf-hacker"
   
@@ -95,6 +100,24 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   
   func startAdvertising() {
     advertiser.startAdvertisingPeer()
+  }
+  
+  func stopBrowsing() {
+    browser.stopBrowsingForPeers()
+  }
+  
+  func stopAdvertising() {
+    advertiser.stopAdvertisingPeer()
+  }
+  
+  func askForPlayers() {
+    
+  }
+  
+  func sendEventToPeers(event : GameEvent) {
+    let data = NSKeyedArchiver.archivedDataWithRootObject(event.rawValue)
+    var error : NSError?
+    session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
   }
   
 }

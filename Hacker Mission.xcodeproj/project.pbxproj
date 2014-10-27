@@ -13,7 +13,8 @@
 		7E46DF2819FEB359009215E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E46DF2719FEB359009215E3 /* Images.xcassets */; };
 		7E46DF2B19FEB359009215E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E46DF2919FEB359009215E3 /* LaunchScreen.xib */; };
 		7E46DF3719FEB359009215E3 /* Hacker_MissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF3619FEB359009215E3 /* Hacker_MissionTests.swift */; };
-		7E46DF4119FEBC2A009215E3 /* MultipeerProofOfConcept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4019FEBC2A009215E3 /* MultipeerProofOfConcept.swift */; };
+		7E46DF4119FEBC2A009215E3 /* MultipeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4019FEBC2A009215E3 /* MultipeerController.swift */; };
+		7E46DF4519FEE814009215E3 /* LeadGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4419FEE814009215E3 /* LeadGameController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +38,8 @@
 		7E46DF3019FEB359009215E3 /* Hacker MissionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hacker MissionTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E46DF3519FEB359009215E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E46DF3619FEB359009215E3 /* Hacker_MissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hacker_MissionTests.swift; sourceTree = "<group>"; };
-		7E46DF4019FEBC2A009215E3 /* MultipeerProofOfConcept.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerProofOfConcept.swift; sourceTree = "<group>"; };
+		7E46DF4019FEBC2A009215E3 /* MultipeerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerController.swift; sourceTree = "<group>"; };
+		7E46DF4419FEE814009215E3 /* LeadGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadGameController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +83,8 @@
 			children = (
 				7E46DF2019FEB359009215E3 /* AppDelegate.swift */,
 				7E46DF2219FEB359009215E3 /* ViewController.swift */,
-				7E46DF4019FEBC2A009215E3 /* MultipeerProofOfConcept.swift */,
+				7E46DF4019FEBC2A009215E3 /* MultipeerController.swift */,
+				7E46DF4419FEE814009215E3 /* LeadGameController.swift */,
 				7E46DF2419FEB359009215E3 /* Main.storyboard */,
 				7E46DF2719FEB359009215E3 /* Images.xcassets */,
 				7E46DF2919FEB359009215E3 /* LaunchScreen.xib */,
@@ -217,7 +220,8 @@
 			files = (
 				7E46DF2319FEB359009215E3 /* ViewController.swift in Sources */,
 				7E46DF2119FEB359009215E3 /* AppDelegate.swift in Sources */,
-				7E46DF4119FEBC2A009215E3 /* MultipeerProofOfConcept.swift in Sources */,
+				7E46DF4119FEBC2A009215E3 /* MultipeerController.swift in Sources */,
+				7E46DF4519FEE814009215E3 /* LeadGameController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
