@@ -7,6 +7,7 @@
 //
 
 import MultipeerConnectivity
+import Foundation
 
 protocol MultiPeerDelegate {
   func handleEvent(GameEvent)
@@ -36,13 +37,22 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     
     browser = MCNearbyServiceBrowser(peer: peerID, serviceType: MyServiceType)
     browser.delegate = self
+    
   }
   
   // MARK: - MCSessionDelegate Methods
 
   func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
     println("Received Data!")
-    let text = NSString(data: data, encoding: NSUTF8StringEncoding)
+    
+    if let receivedData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? String {
+      if let event = GameEvent(rawValue: receivedData) {
+        delegate.handleEvent(event)
+      }
+      
+    }
+    
+    
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
 
     }

@@ -102,3 +102,4 @@ enum GameEvent : String {
   case RevealVote       = "GameEventRevealVote"
   case End              = "GameEventEnd"
 }
+
