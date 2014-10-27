@@ -10,6 +10,8 @@
 		16C784AE19FEC9FF008421CC /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C784AC19FEC9FF008421CC /* PlayerCell.swift */; };
 		16C784AF19FEC9FF008421CC /* PlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16C784AD19FEC9FF008421CC /* PlayerCell.xib */; };
 		16C784B319FECE5F008421CC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C784B219FECE5F008421CC /* HomeViewController.swift */; };
+		16C784B819FEF5F3008421CC /* mission_connector.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B719FEF5F3008421CC /* mission_connector.pdf */; };
+		16C784BA19FF09C6008421CC /* 1095222_34734740.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B919FF09C6008421CC /* 1095222_34734740.jpg */; };
 		7E46DF2119FEB359009215E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF2019FEB359009215E3 /* AppDelegate.swift */; };
 		7E46DF2319FEB359009215E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF2219FEB359009215E3 /* ViewController.swift */; };
 		7E46DF2619FEB359009215E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E46DF2419FEB359009215E3 /* Main.storyboard */; };
@@ -34,6 +36,11 @@
 		16C784B019FECD0E008421CC /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		16C784B119FECD4F008421CC /* typicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = typicons.ttf; sourceTree = "<group>"; };
 		16C784B219FECE5F008421CC /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		16C784B419FEE99F008421CC /* TYPEWRON.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = TYPEWRON.TTF; sourceTree = "<group>"; };
+		16C784B519FEE9C1008421CC /* MKStencilsansBlack.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MKStencilsansBlack.ttf; sourceTree = "<group>"; };
+		16C784B619FEE9DA008421CC /* BOYCOTT_.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = BOYCOTT_.TTF; sourceTree = "<group>"; };
+		16C784B719FEF5F3008421CC /* mission_connector.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = mission_connector.pdf; sourceTree = "<group>"; };
+		16C784B919FF09C6008421CC /* 1095222_34734740.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1095222_34734740.jpg; sourceTree = "<group>"; };
 		7E46DF1B19FEB359009215E3 /* Hacker Mission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hacker Mission.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E46DF1F19FEB359009215E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E46DF2019FEB359009215E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,8 +131,13 @@
 		7E46DF1E19FEB359009215E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				16C784B719FEF5F3008421CC /* mission_connector.pdf */,
 				16C784B119FECD4F008421CC /* typicons.ttf */,
 				16C784B019FECD0E008421CC /* fontawesome-webfont.ttf */,
+				16C784B519FEE9C1008421CC /* MKStencilsansBlack.ttf */,
+				16C784B919FF09C6008421CC /* 1095222_34734740.jpg */,
+				16C784B419FEE99F008421CC /* TYPEWRON.TTF */,
+				16C784B619FEE9DA008421CC /* BOYCOTT_.TTF */,
 				7E46DF2719FEB359009215E3 /* Images.xcassets */,
 				7E46DF1F19FEB359009215E3 /* Info.plist */,
 			);
@@ -229,8 +241,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16C784B819FEF5F3008421CC /* mission_connector.pdf in Resources */,
 				16C784AF19FEC9FF008421CC /* PlayerCell.xib in Resources */,
 				7E46DF2619FEB359009215E3 /* Main.storyboard in Resources */,
+				16C784BA19FF09C6008421CC /* 1095222_34734740.jpg in Resources */,
 				7E46DF2B19FEB359009215E3 /* LaunchScreen.xib in Resources */,
 				7E46DF2819FEB359009215E3 /* Images.xcassets in Resources */,
 			);

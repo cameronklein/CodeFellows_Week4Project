@@ -12,6 +12,21 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 {
     //MARK: - Outlets and Properties
     
+    @IBOutlet weak var gameNameLabel: UILabel!
+    @IBOutlet weak var playersCollectionView: UICollectionView!
+    
+    @IBOutlet weak var mission1ImageView: UIImageView!
+    @IBOutlet weak var mission1To2TransitionImageView: NSLayoutConstraint!
+    @IBOutlet weak var mission2ImageView: UIImageView!
+    @IBOutlet weak var mission2To3TransitionImageView: UIImageView!
+    @IBOutlet weak var mission3ImageView: UIImageView!
+    @IBOutlet weak var mission3To4TransitionImageView: UIImageView!
+    @IBOutlet weak var mission4ImageView: UIImageView!
+    @IBOutlet weak var mission4To5TransitionImageView: UIImageView!
+    @IBOutlet weak var mission5ImageView: UIImageView!
+    
+    //var PlayersForGame = [PlayerForGame]?
+    
     //MARK: - View Methods
     
     override func viewDidLoad()
