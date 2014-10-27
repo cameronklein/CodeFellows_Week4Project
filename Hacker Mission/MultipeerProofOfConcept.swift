@@ -46,6 +46,8 @@ class MultiPeer: UIViewController, MCSessionDelegate, MCNearbyServiceAdvertiserD
   
   func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
     println("Received Data!")
+    let text = NSString(data: data, encoding: NSUTF8StringEncoding)
+    textField.text = text
   }
   
   func session(session: MCSession!, didReceiveStream stream: NSInputStream!, withName streamName: String!, fromPeer peerID: MCPeerID!) {
@@ -92,8 +94,6 @@ class MultiPeer: UIViewController, MCSessionDelegate, MCNearbyServiceAdvertiserD
     
   }
   
-
-  
   @IBAction func didPressButton(sender: AnyObject) {
     println("Started Advertising")
     advertiser.startAdvertisingPeer()
@@ -123,7 +123,12 @@ class MultiPeer: UIViewController, MCSessionDelegate, MCNearbyServiceAdvertiserD
   func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {
     println("Lost peer!")
   }
+  
   @IBAction func shootToPeers(sender: AnyObject) {
+    let text = textField.text
+    let data = text.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+    var error : NSError?
+    session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
     
   }
   
