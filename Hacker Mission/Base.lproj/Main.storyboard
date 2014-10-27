@@ -34,15 +34,50 @@
                                     <action selector="didPressBrowsingButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ab1-87-Hu6"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyj-2u-43B">
+                                <rect key="frame" x="279" y="268" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hZt-PL-iVT">
+                                <rect key="frame" x="252" y="315" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fS9-dh-r5b">
+                                <rect key="frame" x="249" y="353" width="103" height="30"/>
+                                <state key="normal" title="Shoot to Peers">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shootToPeers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="olM-7L-icY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Lyj-2u-43B" firstAttribute="top" secondItem="WJv-QN-ppG" secondAttribute="bottom" constant="44" id="1qA-3d-1cK"/>
                             <constraint firstItem="OB8-Fv-RfI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="72" id="9Of-MI-els"/>
                             <constraint firstAttribute="centerX" secondItem="WJv-QN-ppG" secondAttribute="centerX" id="C9c-x4-Ibw"/>
+                            <constraint firstItem="fS9-dh-r5b" firstAttribute="top" secondItem="hZt-PL-iVT" secondAttribute="bottom" constant="8" id="Ohy-Ui-Ah1"/>
                             <constraint firstAttribute="centerX" secondItem="OB8-Fv-RfI" secondAttribute="centerX" id="QgY-b5-ETZ"/>
+                            <constraint firstAttribute="centerX" secondItem="fS9-dh-r5b" secondAttribute="centerX" id="QtC-B5-FB4"/>
+                            <constraint firstItem="hZt-PL-iVT" firstAttribute="top" secondItem="Lyj-2u-43B" secondAttribute="bottom" constant="26" id="T0S-En-JTL"/>
                             <constraint firstItem="WJv-QN-ppG" firstAttribute="top" secondItem="OB8-Fv-RfI" secondAttribute="bottom" constant="72" id="c1Q-LI-cdi"/>
+                            <constraint firstItem="fS9-dh-r5b" firstAttribute="centerX" secondItem="hZt-PL-iVT" secondAttribute="centerX" id="d6I-h0-pIO"/>
+                            <constraint firstAttribute="centerX" secondItem="Lyj-2u-43B" secondAttribute="centerX" id="rtO-AF-XIP"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="d6I-h0-pIO"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="label" destination="Lyj-2u-43B" id="GND-Da-vHF"/>
+                        <outlet property="textField" destination="hZt-PL-iVT" id="Kgi-le-UH3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

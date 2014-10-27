@@ -11,20 +11,23 @@ import MultipeerConnectivity
 
 class MultiPeer: UIViewController, MCSessionDelegate, MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate, MCBrowserViewControllerDelegate {
   
+  @IBOutlet weak var label: UILabel!
+  @IBOutlet weak var textField: UITextField!
+  
   var peerID      : MCPeerID!
   var session     : MCSession!
   var advertiser  : MCNearbyServiceAdvertiser!
   var browser     : MCNearbyServiceBrowser!
   var assistant   : MCAdvertiserAssistant!
   let XXServiceType = "xx-servicetype"
+  var connectedPeers = [MCPeerID]()
   
   override func viewDidLoad() {
     println("Multipeer View Controller Loaded")
     super.viewDidLoad()
     
     peerID  = MCPeerID(displayName: UIDevice.currentDevice().name)
-    self.session = MCSession(peer: peerID)
-    
+    self.session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.None)
     self.session.delegate = self
     
     assistant = MCAdvertiserAssistant(serviceType: XXServiceType, discoveryInfo: nil, session: session)
@@ -54,35 +57,42 @@ class MultiPeer: UIViewController, MCSessionDelegate, MCNearbyServiceAdvertiserD
   }
   
   func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
-    
     if state == MCSessionState.Connected {
       println("Peer Connected")
+      label.text = session.connectedPeers.count.description
     } else if state == MCSessionState.NotConnected {
       println("Peer Stopped Connecting")
+      label.text = session.connectedPeers.count.description
+    } else if state == MCSessionState.Connecting {
+      println("Peer Connecting")
+      label.text = session.connectedPeers.count.description
     }
   }
   
   func advertiser(advertiser: MCNearbyServiceAdvertiser!, didReceiveInvitationFromPeer peerID: MCPeerID!, withContext context: NSData!, invitationHandler: ((Bool, MCSession!) -> Void)!) {
+    session = MCSession(peer: self.peerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.None)
+    session.delegate = self
     
     println("Got an invitation")
     var didAccept = false
-    let alert = UIAlertController(title: "You have been invited by \(peerID)", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+    let alert = UIAlertController(title: "Invitation Received!", message: "You have been invited by \(peerID)", preferredStyle: UIAlertControllerStyle.ActionSheet)
     let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action) -> Void in
-      didAccept = true
+      invitationHandler(true, self.session)
     }
-    let no = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel) { (action) -> Void in
+    let no = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (action) -> Void in
+      invitationHandler(false, self.session)
       alert.dismissViewControllerAnimated(true, completion: nil)
     }
     alert.addAction(ok)
     alert.addAction(no)
     self.presentViewController(alert, animated: true, completion: nil)
     
-    let session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.None)
-    session.delegate = self
+    println(didAccept)
     
-    invitationHandler(didAccept, session)
     
   }
+  
+
   
   @IBAction func didPressButton(sender: AnyObject) {
     println("Started Advertising")
@@ -112,6 +122,9 @@ class MultiPeer: UIViewController, MCSessionDelegate, MCNearbyServiceAdvertiserD
   
   func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {
     println("Lost peer!")
+  }
+  @IBAction func shootToPeers(sender: AnyObject) {
+    
   }
   
 }
