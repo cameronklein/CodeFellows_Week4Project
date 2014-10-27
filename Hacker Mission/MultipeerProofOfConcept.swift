@@ -88,7 +88,7 @@ class MultiPeer: UIViewController, MCSessionDelegate, MCNearbyServiceAdvertiserD
     browser = MCNearbyServiceBrowser(peer: peerID, serviceType: XXServiceType)
     browser.delegate = self
     let browserVC = MCBrowserViewController(browser: browser, session: session)
-    self.presentViewController(browserVC, animated: true, completion: nil)
+    //self.presentViewController(browserVC, animated: true, completion: nil)
     browser.startBrowsingForPeers()
   }
   
@@ -101,7 +101,8 @@ class MultiPeer: UIViewController, MCSessionDelegate, MCNearbyServiceAdvertiserD
   }
   
   func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
-    println("Found peer!")
+    println("Found peer with id \(peerID)")
+    browser.invitePeer(peerID, toSession: session, withContext: nil, timeout: 0)
   }
   
   func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {
