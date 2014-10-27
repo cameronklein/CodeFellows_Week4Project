@@ -124,7 +124,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     
   }
   
-  func sendEventToPeers(event : GameEvent) {
+  func sendEventToPeers(game: Game, event : GameEvent) {
     let data = NSKeyedArchiver.archivedDataWithRootObject(event.rawValue)
     var error : NSError?
     session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)

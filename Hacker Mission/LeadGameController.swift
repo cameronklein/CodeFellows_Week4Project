@@ -28,43 +28,75 @@ class LeadGameController : MultiPeerDelegate {
   }
 
   func assignRoles(){
-    //Takes in an array of players, and assigns their roles.
+    let players = game.players as [Player]
+    let numberOfPlayers = players.count
+    var numberOfAgents = 2
+    switch numberOfPlayers {
+    case 7, 8, 9:
+      numberOfAgents = 3
+    case 10:
+      numberOfAgents = 4
+    default:
+      numberOfAgents = 2
+    }
+    var currentAgents = 0
     
+    while currentAgents < numberOfAgents {
+      let i = arc4random_uniform(numberOfPlayers)
+      if players[i].isAgent == false {
+        players[i].isAgent = true
+        currentAgents++
+      }
+    }
+    let j = arc4random_uniform(numberOfPlayers)
+    players[j].isLeader = true
   }
   
   func revealCharacters() {
     //Sends information on who is on what team (Hackers and Goverment Agents) to devices.  Only Goverment Agents see who the other Goverment Agents are
-    multipeerController.sendEventToPeers(GameEvent.RevealCharacters)
-    
+    game.currentGameState = GameEvent.RevealCharacters
+    multipeerController.sendEventToPeers(game: game)
   }
   
-  func assignLeader() {
+  func changeLeader() {
     //Assigns a leader for current mission and itterates through all players, per games rules, and gives them a chance to be leader.
-    
+    game.leaderIndex++
+    if game.leaderIndex = game.players.count {
+      game.leaderIndex = 0
+    }
   }
   
   func startMission() {
     //Calculates how many hackers will go on a mission, and how many failures it requires for the mission to fail
+    game.currentGameState = GameEvent.MissionStart
+    multipeerController.sendEventToPeers(game:game)
     
   }
   
   func tellLeaderToNominatePlayers() {
     //Leader nominates the appropriate number of hackers to go on the mission
+    game.currentGameState = GameEvent.NominatePlayers
+    multipeerController.sendEventToPeers(game:game)
     
   }
   
   func revealNominations() {
     //Leader locks in their nominated team for the mission
+    game.currentGameState = GameEvent.RevealNominations
+    multipeerController.sendEventToPeers(game:game)
     
   }
   
   func tellPlayersToVote() {
     //All players vote to approve or reject the nominated team for the mission
-    
+    game.currentGameState = GameEvent.BeginVote
+    multipeerController.sendEventToPeers(game:game)
   }
   
   func revealVotes() {
     //Displays all players votes to approve/reject the mission
+    game.currentGameState = GameEvent.RevealVote
+    multipeerController.sendEventToPeers(game:game)
     
   }
   
@@ -75,6 +107,8 @@ class LeadGameController : MultiPeerDelegate {
   
   func tellPlayersToDetermineMissionOutcome() {
     //Nominated hackers vote if the mission will Succeed or Fail
+    game.currentGameState = GameEvent.BeginMissionOutcome
+    multipeerController.sendEventToPeers(game:game)
     
   }
   
@@ -85,7 +119,9 @@ class LeadGameController : MultiPeerDelegate {
     
   func revealMissionOutcome() {
     //Reveals if the mission is successful or fails
-    }
+    game.currentGameState = GameEvent.RevealMissionOutcome
+    multipeerController.sendEventToPeers(game:game)
+  }
   
   func endMission() {
     //Memorialize mission information, call updateScore, reset mission timer
@@ -117,10 +153,16 @@ class LeadGameController : MultiPeerDelegate {
 }
 
 enum GameEvent : String {
-  case Start            = "GameEventStart"
-  case RevealCharacters = "GameEventRevealCharacters"
-  case Vote             = "GameEventVote"
-  case RevealVote       = "GameEventRevealVote"
-  case End              = "GameEventEnd"
+  case Start                = "GameEventStart"
+  case RevealCharacters     = "GameEventRevealCharacters"
+  case NominatePlayers      = "GameEventNominatePlayers"
+  case RevealNominations    = "GameEventRevealNominations"
+  case MissionStart         = "GameEventMissionStart"
+  case Vote                 = "GameEventVote"
+  case RevealVote           = "GameEventRevealVote"
+  case BeginVote            = "GameEventBeginVote"
+  case BeginMissionOutcome  = "GameEventBeginMissionOutcome"
+  case RevealMissionOutcome = "GameEventRevealOutcome"
+  case End                  = "GameEventEnd"
 }
 
