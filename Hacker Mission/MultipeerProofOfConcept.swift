@@ -23,7 +23,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     
     peerID  = MCPeerID(displayName: UIDevice.currentDevice().name)
     
-    session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.None)
+    session = MCSession(peer: self.peerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.None)
     session.delegate = self
     
     advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: MyServiceType)
@@ -32,6 +32,8 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     browser = MCNearbyServiceBrowser(peer: peerID, serviceType: MyServiceType)
     browser.delegate = self
   }
+  
+  // MARK: - MCSessionDelegate Methods
   
   func session(session: MCSession!, didFinishReceivingResourceWithName resourceName: String!, fromPeer peerID: MCPeerID!, atURL localURL: NSURL!, withError error: NSError!) {
     println("Got Resource")
@@ -63,20 +65,36 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     }
   }
   
+  // MARK: - MCNearbyServiceAdvertiserDelegate Methods
+  
   func advertiser(advertiser: MCNearbyServiceAdvertiser!, didReceiveInvitationFromPeer peerID: MCPeerID!, withContext context: NSData!, invitationHandler: ((Bool, MCSession!) -> Void)!) {
-    session = MCSession(peer: self.peerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.None)
-    session.delegate = self
+    
     println("Got an invitation")
     invitationHandler(true, self.session)
+    
   }
+  
+  // MARK: - MCNearbyServiceBrowserDelegate Methods
   
   func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
     println("Found peer with id \(peerID)")
+    
     browser.invitePeer(peerID, toSession: session, withContext: nil, timeout: 0)
+    
   }
   
   func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {
     println("Lost peer!")
+  }
+  
+  // MARK: - Helper Methods
+  
+  func startBrowsing() {
+    browser.startBrowsingForPeers()
+  }
+  
+  func startAdvertising() {
+    advertiser.startAdvertisingPeer()
   }
   
 }
