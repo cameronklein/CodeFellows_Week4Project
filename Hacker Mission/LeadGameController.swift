@@ -146,7 +146,7 @@ class LeadGameController : MultiPeerDelegate {
   
   // MARK - Multipeer Delegate Methods
   
-  func handleEvents(event : GameEvent) {
+  func handleEvent(event : GameEvent) {
     
   }
   
