@@ -47,7 +47,10 @@ class MultiPeer: UIViewController, MCSessionDelegate, MCNearbyServiceAdvertiserD
   func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
     println("Received Data!")
     let text = NSString(data: data, encoding: NSUTF8StringEncoding)
-    textField.text = text
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.textField.text = text
+    }
+    
   }
   
   func session(session: MCSession!, didReceiveStream stream: NSInputStream!, withName streamName: String!, fromPeer peerID: MCPeerID!) {
@@ -69,6 +72,10 @@ class MultiPeer: UIViewController, MCSessionDelegate, MCNearbyServiceAdvertiserD
       println("Peer Connecting")
       label.text = session.connectedPeers.count.description
     }
+  }
+  
+  override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    textField.resignFirstResponder()
   }
   
   func advertiser(advertiser: MCNearbyServiceAdvertiser!, didReceiveInvitationFromPeer peerID: MCPeerID!, withContext context: NSData!, invitationHandler: ((Bool, MCSession!) -> Void)!) {

@@ -40,8 +40,11 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hZt-PL-iVT">
-                                <rect key="frame" x="252" y="315" width="97" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hZt-PL-iVT">
+                                <rect key="frame" x="225" y="315" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="p4e-2S-9CA"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -58,6 +61,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Lyj-2u-43B" firstAttribute="top" secondItem="WJv-QN-ppG" secondAttribute="bottom" constant="44" id="1qA-3d-1cK"/>
+                            <constraint firstAttribute="centerX" secondItem="hZt-PL-iVT" secondAttribute="centerX" id="4e3-ud-Zjp"/>
                             <constraint firstItem="OB8-Fv-RfI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="72" id="9Of-MI-els"/>
                             <constraint firstAttribute="centerX" secondItem="WJv-QN-ppG" secondAttribute="centerX" id="C9c-x4-Ibw"/>
                             <constraint firstItem="fS9-dh-r5b" firstAttribute="top" secondItem="hZt-PL-iVT" secondAttribute="bottom" constant="8" id="Ohy-Ui-Ah1"/>
