@@ -17,11 +17,10 @@ class LaunchViewController: UIViewController {
   @IBOutlet weak var startButton: UIButton!
   @IBOutlet weak var hostButton: UIButton!
   @IBOutlet weak var joinButton: UIButton!
-  @IBOutlet weak var spinningWhee: UIActivityIndicatorView!
+  @IBOutlet weak var spinningWheel: UIActivityIndicatorView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
-      
       
 
     // Do any additional setup after loading the view.
@@ -45,7 +44,7 @@ class LaunchViewController: UIViewController {
   @IBAction func joinGameButtonPressed(sender: AnyObject) {
     joinButton.hidden = true
     hostButton.hidden = true
-    self.spinningWhee.startAnimating()
+    self.spinningWheel.startAnimating()
     followerController = GameController()
     multipeerController.startAdvertising()
     
@@ -55,6 +54,10 @@ class LaunchViewController: UIViewController {
     println("Going to start game!")
     
   }
-  
+    
+    func updateConnectedPeersLabel (number: Int) -> Void
+    {
+        self.peersLabel.text = "[" + number.description + " Peers Connected..]"
+    }
   
 }

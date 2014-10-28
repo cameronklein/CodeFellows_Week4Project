@@ -96,11 +96,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         return cell
     }
     
-    //MARK: Actions
-    func updateVoteResults ()
-    {
-        //TODO: Add a label that alerts users that votes are in.
-        self.playersCollectionView.reloadData()
+    func voteOnProposedTeam(nominatedPlayers : [Player])
+    {//Display the nominated team to all users and get a vote of Approve or Reject back
+        let nominationVC = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
+        let nominationView = nominationVC.view
+        nominationVC.nominatedPlayersAray = nominatedPlayers
+        nominationView.frame = self.view.frame
+        self.addChildViewController(nominationVC)
+        self.view.addSubview(nominationView)
     }
 
     //MARK: - One line, because we probably won't use this.
