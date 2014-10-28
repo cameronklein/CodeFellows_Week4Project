@@ -25,7 +25,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var missionView: UIView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     
-    var playersForGame : [PlayerForGame]?
+    var players : [Player]?
     //var currentMission : Mission?
     //TODO: Figure out where to pull a user's vote status from.
     
@@ -53,20 +53,20 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return self.playersForGame!.count
+        return self.players!.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PLAYER", forIndexPath: indexPath) as PlayerCell
-        let playerForGame = self.playersForGame?[indexPath.row]
+        let player = self.players?[indexPath.row]
 
-        cell.imageView.image = playerForGame?.playerImage
-        cell.username.text = playerForGame?.playerName
+        cell.imageView.image = player?.playerImage
+        cell.username.text = player?.playerName
         
-        if playerForGame.currentVote != nil
+        if player.currentVote != nil
         {
-            if playerForGame.currentVote
+            if player.currentVote
             {
                 cell.approvesMission.alpha = 0
                 cell.approvesMission.hidden = false
