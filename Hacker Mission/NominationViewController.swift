@@ -15,12 +15,11 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
   
     var nominatedPlayersArray : [Player]!
     
-    override func viewDidAppear(animated: Bool)
-    {
-        var playerNames : NSString
-        for player in nominatedPlayersArray
-        {
-            playerNames = playerNames + " " + player.name
+    override func viewDidAppear(animated: Bool) {
+        var playerNames = NSString()
+        for player in nominatedPlayersAray {
+            var playerStaged = player as Player
+            playerNames = playerNames + " " + playerStaged.playerName
         }
         nominatedPlayers.text = playerNames
     }
