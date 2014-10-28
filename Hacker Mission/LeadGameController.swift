@@ -12,7 +12,7 @@ import Foundation
 class LeadGameController : MultiPeerDelegate {
   
   var multipeerController : MultiPeerController = MultiPeerController()
-  var game : Game!
+  var game : GameSession!
   
   init() {
     
@@ -24,11 +24,11 @@ class LeadGameController : MultiPeerDelegate {
   
   func startGame() {
     multipeerController.stopBrowsing()
-    self.game = Game()
+    self.game = GameSession()
   }
 
   func assignRoles(){
-    let players = game.players as [Player]
+    let players = game.playerList as [PlayerForGame]
     let numberOfPlayers = players.count
     var numberOfAgents = 2
     switch numberOfPlayers {
@@ -42,9 +42,9 @@ class LeadGameController : MultiPeerDelegate {
     var currentAgents = 0
     
     while currentAgents < numberOfAgents {
-      let i = arc4random_uniform(numberOfPlayers)
-      if players[i].isAgent == false {
-        players[i].isAgent = true
+      let i = arc4random_uniform(UInt32(numberOfPlayers))
+      if players[i].playerRole == .Agent {
+        players[i].playerType = .Agent
         currentAgents++
       }
     }
@@ -143,7 +143,6 @@ class LeadGameController : MultiPeerDelegate {
     
   }
   
-  
   // MARK - Multipeer Delegate Methods
   
   func handleEvent(event : GameEvent) {
@@ -151,18 +150,3 @@ class LeadGameController : MultiPeerDelegate {
   }
   
 }
-
-enum GameEvent : String {
-  case Start                = "GameEventStart"
-  case RevealCharacters     = "GameEventRevealCharacters"
-  case NominatePlayers      = "GameEventNominatePlayers"
-  case RevealNominations    = "GameEventRevealNominations"
-  case MissionStart         = "GameEventMissionStart"
-  case Vote                 = "GameEventVote"
-  case RevealVote           = "GameEventRevealVote"
-  case BeginVote            = "GameEventBeginVote"
-  case BeginMissionOutcome  = "GameEventBeginMissionOutcome"
-  case RevealMissionOutcome = "GameEventRevealOutcome"
-  case End                  = "GameEventEnd"
-}
-
