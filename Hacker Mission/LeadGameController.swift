@@ -8,13 +8,15 @@
 
 
 import Foundation
+import UIKit
 
 class LeadGameController : MultiPeerDelegate {
   
   var multipeerController : MultiPeerController = MultiPeerController()
   var game : GameSession!
   var currentVotes = [Bool]()
-    var usersForGame : NSMutableArray?
+  var usersForGame : NSMutableArray?
+  var peerCount : Int = 0
 
   init() {
     
@@ -216,5 +218,12 @@ class LeadGameController : MultiPeerDelegate {
     func handleEvent(event: GameEvent) {
         println("Something went wrong")
     }
+  
+  func updatePeerCount(count : Int) {
+    self.peerCount = count
+    if let root = UIApplication.sharedApplication().keyWindow?.rootViewController as? LaunchViewController {
+      root.updateConnectedPeersLabel(count)
+    }
+  }
   
 }
