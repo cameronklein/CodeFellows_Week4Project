@@ -165,7 +165,6 @@
                             <constraint firstItem="8CR-C6-ZKL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="pkW-n2-TXf"/>
                             <constraint firstAttribute="centerX" secondItem="o7P-p7-Sfa" secondAttribute="centerX" id="uPY-Cz-fj8"/>
                         </constraints>
-                        <variation key="heightClass=regular-widthClass=compact"/>
                     </view>
                     <connections>
                         <outlet property="gameNameLabel" destination="k1m-Yd-cud" id="ji0-Zp-Og8"/>
