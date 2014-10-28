@@ -56,7 +56,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     
     // Is slave controller getting info from master controller
     if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
-      delegate.handleEvent(gameData.currentGameState)
+      delegate.handleEvent(gameData.currentGameState!)
     }
     
     // Is master controller getting info from slave controller
@@ -135,8 +135,8 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     
   }
   
-  func sendEventToPeers(game: GameSession, event : GameEvent) {
-    let data = NSKeyedArchiver.archivedDataWithRootObject(event.rawValue)
+  func sendEventToPeers(game: GameSession) {
+    let data = NSKeyedArchiver.archivedDataWithRootObject(game.currentGameState!.rawValue)
     var error : NSError?
     session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
   }
@@ -146,6 +146,9 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     let data = NSJSONSerialization.dataWithJSONObject(dictionary, options: nil, error: &error)
     session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
   }
+
+
+
 }
 
 

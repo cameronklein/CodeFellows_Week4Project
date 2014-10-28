@@ -12,9 +12,9 @@ class GameSession {
 
     var players : NSMutableArray // Array of Player
     var missions : NSMutableArray // Array of Mission
-    var leader : Int? // Get from players.objectAtIndex(Int)
+    var leader : Player? // Get from players.objectAtIndex(Int)
     var currentMission : Int? // Get from missions.objectAtIndex(Int)
-    var currentGameState  : GameEvent
+    var currentGameState  : GameEvent?
 
 
 
@@ -25,7 +25,7 @@ class GameSession {
     }
 
 
-    func populateMissionList () -> NSMutableArray {
+    class func populateMissionList() -> NSMutableArray {
         var missionList : NSMutableArray?
         for item in 1...5 {
             var missionFor : Mission
@@ -37,7 +37,7 @@ class GameSession {
 
     }
 
-    func createGameSessionID(advertisorPlayer: Player) -> NSInteger {
+    class func createGameSessionID(advertisorPlayer: Player) -> NSInteger {
         let playerName = advertisorPlayer.playerName as NSString!
         let idGen = NSInteger(arc4random_uniform(999999))
         let playerForHash : NSString = playerName + String(idGen)

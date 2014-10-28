@@ -13,8 +13,9 @@ class LeadGameController : MultiPeerDelegate {
   
   var multipeerController : MultiPeerController = MultiPeerController()
   var game : GameSession!
-  var currentVotes : [Bool]
-  
+  var currentVotes = [Bool]()
+    var usersForGame : NSMutableArray?
+
   init() {
     
   }
@@ -22,15 +23,29 @@ class LeadGameController : MultiPeerDelegate {
   func startLookingForPlayers() {
     multipeerController.startBrowsing()
   }
-  
+
   func startGame() {
     multipeerController.stopBrowsing()
-    self.game = GameSession()
+    var players = NSMutableArray()
+
+    if self.usersForGame == nil {
+        println("nil value for users for game, should be initialized")
+    }
+
+    for user in self.usersForGame! {
+        
+        var playerFor = Player.makePlayerDictionaryForGameSession(user as UserInfo)
+        var player = Player(playerDictionary: playerFor)
+        players.addObject(player)
+    }
+    var missions = GameSession.populateMissionList() as NSMutableArray // Temporary methid until we have a pool of individualized missions
+
+    self.game = GameSession(players: players, missions: missions)
   }
 
   func assignRoles(){
-    
-    let players = game.playerList as [PlayerForGame]
+
+    let players = game.players as NSArray
     let numberOfPlayers = players.count
     var numberOfAgents = 2
     switch numberOfPlayers {
@@ -44,67 +59,77 @@ class LeadGameController : MultiPeerDelegate {
     var currentAgents = 0
     
     while currentAgents < numberOfAgents {
-      let i = arc4random_uniform(UInt32(numberOfPlayers))
-      if players[i].playerRole != PlayerType.Agent {
-        players[i].playerType = PlayerType.Agent
+      let i = Int(arc4random_uniform(UInt32(numberOfPlayers)))
+        let player = players[i] as Player
+      if player.playerRole != PlayerType.Agent {
+        player.playerRole = PlayerType.Agent
         currentAgents++
       }
     }
-    let j = arc4random_uniform(numberOfPlayers)
-    players[j].isLeader = true
+    let j = Int(arc4random_uniform(UInt32(numberOfPlayers)))
+    var player = players[j] as Player
+    player.isLeader = true
+    game.leader = player
     self.revealCharacters()
   }
   
   func revealCharacters() {
     //Sends information on who is on what team (Hackers and Goverment Agents) to devices.  Only Goverment Agents see who the other Goverment Agents are
     game.currentGameState = GameEvent.RevealCharacters
-    multipeerController.sendEventToPeers(game: game)
+    multipeerController.sendEventToPeers(game)
   }
-  
+
   func changeLeader() {
     //Assigns a leader for current mission and itterates through all players, per games rules, and gives them a chance to be leader.
-    game.leaderIndex++
-    if game.leaderIndex = game.players.count {
-      game.leaderIndex = 0
+    var leaderIndex = game.players.indexOfObject(game.leader!)
+    if leaderIndex == game.players.count {
+      leaderIndex = 0
+    } else {
+        leaderIndex = leaderIndex + 1
     }
+    let player = game.players[leaderIndex] as Player
+    game.leader = player
+    player.isLeader = true
   }
-  
+
   func startMission() {
     //Calculates how many hackers will go on a mission, and how many failures it requires for the mission to fail
     game.currentGameState = GameEvent.MissionStart
-    multipeerController.sendEventToPeers(game:game)
+    multipeerController.sendEventToPeers(game)
     
   }
   
   func tellLeaderToNominatePlayers() {
     //Leader nominates the appropriate number of hackers to go on the mission
     game.currentGameState = GameEvent.NominatePlayers
-    multipeerController.sendEventToPeers(game:game)
+    multipeerController.sendEventToPeers(game)
     
   }
   
   func revealNominations() {
     //Leader locks in their nominated team for the mission
     game.currentGameState = GameEvent.RevealNominations
-    multipeerController.sendEventToPeers(game:game)
+    multipeerController.sendEventToPeers(game)
     
   }
   
   func tellPlayersToVote() {
     //All players vote to approve or reject the nominated team for the mission
     game.currentGameState = GameEvent.BeginVote
-    multipeerController.sendEventToPeers(game:game)
+    multipeerController.sendEventToPeers(game)
   }
   
   func tabulateVotes(dictionary: NSMutableDictionary) {
     
     //Calculates if the mission is approved or rejected
     
-    let peerID = event["peerID"] as String
+    let peerID = dictionary["peerID"] as String
+    let vote = dictionary["votes"] as Bool
     currentVotes.append(vote)
     for player in game.players {
-      if player.peerID = peerID{
-        player.currentVote = vote
+        let playerStaged = player as Player
+      if playerStaged.peerID == peerID {
+        playerStaged.currentVote = vote
       }
     }
     
@@ -119,7 +144,8 @@ class LeadGameController : MultiPeerDelegate {
         }
       }
       if rejected > approved {
-        game.missionList[currentMission].rejectedTeamCount++
+        let mission = game.missions[game.currentMission!] as Mission
+        mission.rejectedTeamsCount =  mission.rejectedTeamsCount! + 1
       }
     }
     self.revealVotes()
@@ -128,14 +154,14 @@ class LeadGameController : MultiPeerDelegate {
   func revealVotes() {
     //Displays all players votes to approve/reject the mission
     game.currentGameState = GameEvent.RevealVote
-    multipeerController.sendEventToPeers(game:game)
+    multipeerController.sendEventToPeers(game)
     
   }
   
   func tellPlayersToDetermineMissionOutcome() {
     //Nominated hackers vote if the mission will Succeed or Fail
     game.currentGameState = GameEvent.BeginMissionOutcome
-    multipeerController.sendEventToPeers(game:game)
+    multipeerController.sendEventToPeers(game)
     
   }
   
@@ -147,7 +173,7 @@ class LeadGameController : MultiPeerDelegate {
   func revealMissionOutcome() {
     //Reveals if the mission is successful or fails
     game.currentGameState = GameEvent.RevealMissionOutcome
-    multipeerController.sendEventToPeers(game:game)
+    multipeerController.sendEventToPeers(game)
   }
   
   func endMission() {
@@ -163,7 +189,7 @@ class LeadGameController : MultiPeerDelegate {
   func endGame() {
     //Calls revealTeamsAtEndGame, displays who won the game
     game.currentGameState = GameEvent.End
-    multipeerController.sendEventToPeers(game:game)
+    multipeerController.sendEventToPeers(game)
   }
   
   func revealTeamsAtEndGame() {
@@ -181,6 +207,14 @@ class LeadGameController : MultiPeerDelegate {
     if let vote = event["missionOutcome"] as? Bool {
       self.tabulateVotes(event)
     }
+    if let user = event["user"] as? UserInfo {
+        user.userPeerID = event["peerID"] as? NSString
+        self.usersForGame?.addObject(user)
+    }
   }
+
+    func handleEvent(event: GameEvent) {
+        println("Something went wrong")
+    }
   
 }
