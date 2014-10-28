@@ -119,6 +119,10 @@
 		16C784AA19FEC2E5008421CC /* Controller Layer */ = {
 			isa = PBXGroup;
 			children = (
+				70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */,
+				705BB12519FFFB9500584A5B /* MultipeerController.swift */,
+				705BB11D19FFFB5C00584A5B /* LeadGameController.swift */,
+				7E46DF2019FEB359009215E3 /* AppDelegate.swift */,
 				7E46DF2219FEB359009215E3 /* ViewController.swift */,
 				7E46DF4419FEE814009215E3 /* LeadGameController.swift */,
 				7E46DF4619FF126A009215E3 /* GameController.swift */,
@@ -133,6 +137,10 @@
 		16C784AB19FEC2F5008421CC /* Model Layer */ = {
 			isa = PBXGroup;
 			children = (
+				705BB12719FFFC2900584A5B /* PlayerForGame.swift */,
+				705BB12119FFFB8000584A5B /* MissionAproved.swift */,
+				705BB12219FFFB8000584A5B /* MissionPotential.swift */,
+				705BB11F19FFFB6B00584A5B /* Mission.swift */,
 				7E46DF4A19FF336E009215E3 /* GameSession.swift */,
 				7E46DF4819FF130A009215E3 /* GameEvent.swift */,
 				7E46DF4B19FF336E009215E3 /* PlayerForGame.swift */,
@@ -312,6 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				705BB12319FFFB8000584A5B /* MissionAproved.swift in Sources */,
 				7E46DF5219FF336E009215E3 /* Mission.swift in Sources */,
 				16C784AE19FEC9FF008421CC /* PlayerCell.swift in Sources */,
 				705BB12019FFFB6B00584A5B /* Mission.swift in Sources */,
@@ -325,6 +334,7 @@
 				7E46DF4919FF130A009215E3 /* GameEvent.swift in Sources */,
 				7E46DF5519FF336E009215E3 /* Player.swift in Sources */,
 				7E46DF2119FEB359009215E3 /* AppDelegate.swift in Sources */,
+				705BB11C19FFFB4A00584A5B /* GameSession.swift in Sources */,
 				16C784B319FECE5F008421CC /* HomeViewController.swift in Sources */,
 				7E46DF4719FF126A009215E3 /* GameController.swift in Sources */,
 				7E46DF5419FF336E009215E3 /* MissionPotential.swift in Sources */,
