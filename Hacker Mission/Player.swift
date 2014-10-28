@@ -18,10 +18,12 @@ class Player {
 
     var playerName : NSString 
     var playerID : NSString
+    var peerID : NSString
     var playerImage : UIImage
     var playerRole : PlayerType
     var isNominated =  false
     var isLeader = false
+    var currentVote : Bool?
 
 
     init(playerDictionary: NSMutableDictionary) {
@@ -31,18 +33,19 @@ class Player {
         self.playerRole =  PlayerType(rawValue: playerDictionary["playerType"] as Int)!
         self.playerDictionary = playerDictionary
         self.playerImage = playerDictionary["playerImage"] as UIImage!
+        self.peerID = playerDictionary["peerID"] as NSString!
     }
 
 
-    func makePlayerDictionaryForGameSession (userInfo: UserInfo, gameSessionID: NSInteger, playerType: PlayerType) -> NSMutableDictionary {
+    class func makePlayerDictionaryForGameSession (userInfo: UserInfo) -> NSMutableDictionary {
         var userInfo = userInfo
         var playerDictionary : NSDictionary?
         playerDictionary?.setValue(userInfo.userName, forKey: "playerName")
         playerDictionary?.setValue(userInfo.userID, forKey: "playerID")
+        playerDictionary?.setValue(userInfo.userPeerID, forKey: "peerID")
         var imageFor = userInfo.userImage?.imageAsset as NSData!
         playerDictionary?.setValue(imageFor, forKey: "playerImage")
-        playerDictionary?.setValue(gameSessionID, forKey: "gameSessionID")
-        playerDictionary?.setValue(playerType.rawValue, forKey: "playerType")
+//        playerDictionary?.setValue(playerType.rawValue, forKey: "playerType")
 
         return playerDictionary as NSMutableDictionary!
     }

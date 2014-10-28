@@ -16,9 +16,10 @@ class NominationVoteViewController: UIViewController {
     var nominatedPlayersAray : [Player]!
     
     override func viewDidAppear(animated: Bool) {
-        var playerNames : NSString
+        var playerNames = NSString()
         for player in nominatedPlayersAray {
-            playerNames = playerNames + " " + player.name
+            var playerStaged = player as Player
+            playerNames = playerNames + " " + playerStaged.playerName
         }
         nominatedPlayers.text = playerNames
     }

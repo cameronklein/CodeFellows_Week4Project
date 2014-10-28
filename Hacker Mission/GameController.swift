@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GameController : MultiPeerDelegate {
+class GameController : NSObject, MultiPeerDelegate {
   
   var game : GameSession!
   var homeVC : HomeViewController!
@@ -36,6 +36,8 @@ class GameController : MultiPeerDelegate {
       self.revealMissionOutcome()
     case .End:
       self.endGame()
+    default:
+        println("Unknown")
     }
   }
   
@@ -49,14 +51,14 @@ class GameController : MultiPeerDelegate {
   
   func revealCharacters() {
     //At start of game reveal what role you are in the game
-    self.homeVC.revealCharacters(game.playerList)
-    
+//    self.homeVC.revealCharacters(game.playerList)
+
   }
   
   func nominatePlayers() {
     //Leader nominates their team of players
-    self.homeVC.nominatePlayersForMission(game.missionList[currentMissionIndex])
-    
+//    self.homeVC.nominatePlayersForMission(game.missionList[currentMissionIndex])
+
   }
   
   func revealNominations() {
@@ -69,28 +71,33 @@ class GameController : MultiPeerDelegate {
   
   func vote() {
     //Vote on proposed team
-    self.homeVC.voteOnProposedTeam(game.missionList[currentMissionIndex].nominatedPlayers)
+//    self.homeVC.voteOnProposedTeam()
   }
   
   func revealVotes() {
     //reveal everyone's vote on the proposed team
-    self.homeVC.revealVotes(game.missionList[currentMissionIndex].voteResults)
+//    self.homeVC.revealVotes()
   }
   
   
   func beginMissionOutcome() {
     //Nominated players on mission vote to succeed or fail the mission
-    self.homeVC.voteOnMissionSuccess(game.missionList[currentMissionIndex].nominatedPlayers)
-    
+//    self.homeVC.voteOnMissionSuccess()
+
   }
   
   func revealMissionOutcome() {
     //revealing the success/fail votes
-    self.homeVC.revealMissionOutcome(game.missionList[currentMissionIndex].missionResults
+//    self.homeVC.revealMissionOutcome()
   }
   
   func endGame() {
     
   }
-  
+
+    func handleEvent(event: NSMutableDictionary) {
+        println("Two")
+    }
+
+
 }
