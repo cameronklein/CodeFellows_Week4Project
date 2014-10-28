@@ -8,8 +8,14 @@
 
 import UIKit
 
-class PlayerCell: UICollectionViewCell {
-
+class PlayerCell: UICollectionViewCell
+{
+    //MARK: Outlets
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var username: UILabel!
+    @IBOutlet weak var approvesMission: UILabel!
+    @IBOutlet weak var rejectsMission: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

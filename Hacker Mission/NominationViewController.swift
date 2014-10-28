@@ -8,12 +8,12 @@
 
 import UIKit
 
-class NominationVoteViewController: UIViewController {
+class NominationVoteViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate
+{
+    @IBOutlet weak var nominatedPlayerViewContoller : UICollectionView!
+    var multiPeerController : MultiPeerController = MultiPeerController.sharedInstance
   
-  var multiPeerController : MultiPeerController = MultiPeerController.sharedInstance
-  
-    @IBOutlet weak var nominatedPlayers : UILabel!
-    var nominatedPlayersAray : [Player]!
+    var nominatedPlayersArray : [Player]!
     
     override func viewDidAppear(animated: Bool) {
         var playerNames = NSString()
@@ -24,12 +24,13 @@ class NominationVoteViewController: UIViewController {
         nominatedPlayers.text = playerNames
     }
     
-    @IBAction func approveNominatedTeam (sender: AnyObject){
+    @IBAction func approveNominatedTeam (sender: AnyObject)
+    {
       multiPeerController.sendInfoToMainBrain(["vote" : true])
-      
     }
     
-    @IBAction func rejectNominatedTeam (sender: AnyObject){
+    @IBAction func rejectNominatedTeam (sender: AnyObject)
+    {
       multiPeerController.sendInfoToMainBrain(["vote" : false])
     }
     

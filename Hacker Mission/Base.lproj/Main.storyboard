@@ -6,7 +6,122 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="MKStencilsansBlack.ttf">
+            <string>MKStencilsansBlack</string>
+            <string>MKStencilsansBlack</string>
+        </mutableArray>
+        <mutableArray key="TYPEWRON.TTF">
+            <string>Typewrong</string>
+            <string>Typewrong</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
+        <!--Launch View Controller-->
+        <scene sceneID="2xv-jF-dYj">
+            <objects>
+                <viewController id="B2m-a2-ZUT" customClass="LaunchViewController" customModule="Hacker_Mission" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mt0-82-dOi"/>
+                        <viewControllerLayoutGuide type="bottom" id="fKb-iI-2cd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rwS-3Z-jzj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qma-9f-JgQ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                <subviews>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Peers Connected...]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P14-56-dqD">
+                                        <rect key="frame" x="221" y="177" width="158.5" height="19"/>
+                                        <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPf-6S-DwA">
+                                        <rect key="frame" x="235" y="212" width="130" height="29"/>
+                                        <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="15"/>
+                                        <state key="normal" title="&lt;&lt;START GAME&gt;&gt;">
+                                            <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="startGameButtonPressed:" destination="B2m-a2-ZUT" eventType="touchUpInside" id="Wlx-W7-7vM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJT-k5-bx7">
+                                        <rect key="frame" x="176" y="131" width="247" height="38"/>
+                                        <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="25"/>
+                                        <state key="normal" title="HOST NEW GAME">
+                                            <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="hostGameButtonPressed:" destination="B2m-a2-ZUT" eventType="touchUpInside" id="uVB-ul-vro"/>
+                                        </connections>
+                                    </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Nr6-3m-elK">
+                                        <rect key="frame" x="386" y="168" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="gJT-k5-bx7" secondAttribute="centerY" id="0ME-bH-Z8o"/>
+                                    <constraint firstItem="gJT-k5-bx7" firstAttribute="trailing" secondItem="Nr6-3m-elK" secondAttribute="trailing" id="1X7-cl-WCi"/>
+                                    <constraint firstItem="P14-56-dqD" firstAttribute="top" secondItem="gJT-k5-bx7" secondAttribute="bottom" constant="8" id="2Ri-3U-Jzi"/>
+                                    <constraint firstAttribute="centerX" secondItem="gJT-k5-bx7" secondAttribute="centerX" id="A2M-Xx-I48"/>
+                                    <constraint firstItem="PPf-6S-DwA" firstAttribute="top" secondItem="P14-56-dqD" secondAttribute="bottom" constant="16" id="CY7-0a-DEB"/>
+                                    <constraint firstItem="gJT-k5-bx7" firstAttribute="centerX" secondItem="PPf-6S-DwA" secondAttribute="centerX" id="E0j-qf-GMv"/>
+                                    <constraint firstItem="P14-56-dqD" firstAttribute="centerX" secondItem="gJT-k5-bx7" secondAttribute="centerX" id="Kg2-wh-oCK"/>
+                                    <constraint firstItem="P14-56-dqD" firstAttribute="centerY" secondItem="Nr6-3m-elK" secondAttribute="centerY" constant="-0.5" id="vy8-pE-rxJ"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QEC-Oj-vsj">
+                                <rect key="frame" x="0.0" y="300" width="600" height="300"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c69-h1-LK6">
+                                        <rect key="frame" x="219" y="131" width="162" height="38"/>
+                                        <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="25"/>
+                                        <state key="normal" title="JOIN GAME">
+                                            <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="joinGameButtonPressed:" destination="B2m-a2-ZUT" eventType="touchUpInside" id="reG-18-jVM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="c69-h1-LK6" secondAttribute="centerX" id="6CT-4U-sao"/>
+                                    <constraint firstAttribute="centerY" secondItem="c69-h1-LK6" secondAttribute="centerY" id="fDM-g7-Qpx"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="qma-9f-JgQ" secondAttribute="trailing" constant="-16" id="3GX-2g-owK"/>
+                            <constraint firstItem="qma-9f-JgQ" firstAttribute="height" secondItem="rwS-3Z-jzj" secondAttribute="height" multiplier="0.5" id="4eo-4w-gqn"/>
+                            <constraint firstItem="qma-9f-JgQ" firstAttribute="leading" secondItem="rwS-3Z-jzj" secondAttribute="leadingMargin" constant="-16" id="6nk-zg-hfP"/>
+                            <constraint firstItem="QEC-Oj-vsj" firstAttribute="height" secondItem="rwS-3Z-jzj" secondAttribute="height" multiplier="0.5" id="CB0-CN-7sS"/>
+                            <constraint firstItem="QEC-Oj-vsj" firstAttribute="leading" secondItem="rwS-3Z-jzj" secondAttribute="leadingMargin" constant="-16" id="LFU-Q2-Nma"/>
+                            <constraint firstItem="qma-9f-JgQ" firstAttribute="top" secondItem="rwS-3Z-jzj" secondAttribute="topMargin" id="UNe-dy-88f"/>
+                            <constraint firstItem="fKb-iI-2cd" firstAttribute="top" secondItem="QEC-Oj-vsj" secondAttribute="bottom" id="d4Q-l9-HtB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QEC-Oj-vsj" secondAttribute="trailing" constant="-16" id="lnT-Tz-boH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="hostButton" destination="gJT-k5-bx7" id="7em-mQ-L9q"/>
+                        <outlet property="joinButton" destination="c69-h1-LK6" id="JMS-y9-KpR"/>
+                        <outlet property="peersLabel" destination="P14-56-dqD" id="vmh-7Y-zZq"/>
+                        <outlet property="spinningWheel" destination="Nr6-3m-elK" id="paX-bz-ems"/>
+                        <outlet property="startButton" destination="PPf-6S-DwA" id="Mgc-vv-flW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m36-AE-PQO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-290" y="345"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -25,7 +140,7 @@
                                 <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1095222_34734740.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="o7P-p7-Sfa">
+                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="matrix_code1.gif" translatesAutoresizingMaskIntoConstraints="NO" id="o7P-p7-Sfa">
                                 <rect key="frame" x="0.0" y="81" width="600" height="487"/>
                             </imageView>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.80000000000000004" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8CR-C6-ZKL">
@@ -167,16 +282,19 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundImageView" destination="o7P-p7-Sfa" id="liG-8r-Yuj"/>
                         <outlet property="gameNameLabel" destination="k1m-Yd-cud" id="ji0-Zp-Og8"/>
                         <outlet property="mission1ImageView" destination="4wM-5k-Cs2" id="wDH-XM-hGb"/>
                         <outlet property="mission1To2TransitionImageView" destination="pc3-ME-ajL" id="0HA-hF-AGJ"/>
                         <outlet property="mission2ImageView" destination="3Jr-GY-ybQ" id="EVr-0Q-h6U"/>
                         <outlet property="mission2To3TransitionImageView" destination="my3-L5-I3P" id="q16-1Z-WzV"/>
                         <outlet property="mission3ImageView" destination="82h-Xd-0Am" id="sF7-bk-E0J"/>
+                        <outlet property="mission3To4TransitionImageView" destination="cnb-Gl-K7n" id="LNV-y9-Qfe"/>
                         <outlet property="mission4ImageView" destination="xwe-Mb-djr" id="kXY-15-SPQ"/>
                         <outlet property="mission4To5TransitionImageView" destination="OUc-hz-2BE" id="4Gg-N0-ThN"/>
                         <outlet property="mission5ImageView" destination="H9O-Bx-ofA" id="adz-V1-l8s"/>
-                        <outlet property="playersCollectionView" destination="8CR-C6-ZKL" id="zgV-dH-bFo"/>
+                        <outlet property="missionView" destination="juq-1B-11K" id="QHX-R1-5sr"/>
+                        <outlet property="playersCollectionView" destination="8CR-C6-ZKL" id="Ghw-cH-a1j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -185,7 +303,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1095222_34734740.jpg" width="1024" height="768"/>
+        <image name="matrix_code1.gif" width="1024" height="756"/>
         <image name="mission_connector" width="229" height="42"/>
         <image name="mission_open" width="151" height="151"/>
     </resources>
