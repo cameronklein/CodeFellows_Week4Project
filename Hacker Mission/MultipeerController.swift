@@ -45,11 +45,8 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
     println("Received Data!")
     
-    if let receivedData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? String {
-      if let event = GameEvent(rawValue: receivedData) {
-        delegate.handleEvent(event)
-      }
-      
+    if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
+      delegate.handleEvent(gameData.currentGameState)
     }
     
     

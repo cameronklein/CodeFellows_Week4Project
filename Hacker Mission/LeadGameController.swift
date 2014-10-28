@@ -135,7 +135,8 @@ class LeadGameController : MultiPeerDelegate {
   
   func endGame() {
     //Calls revealTeamsAtEndGame, displays who won the game
-    
+    game.currentGameState = GameEvent.End
+    multipeerController.sendEventToPeers(game:game)
   }
   
   func revealTeamsAtEndGame() {
