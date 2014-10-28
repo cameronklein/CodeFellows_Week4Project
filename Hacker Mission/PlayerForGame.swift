@@ -29,7 +29,7 @@ class PlayerForGame {
         var playerDictionary = playerDictionary as NSMutableDictionary
         self.playerName = playerDictionary["playerName"] as NSString!
         self.playerID = playerDictionary["playerID"] as NSString!
-        self.playerRole = playerDictionary["playerType"] as PlayerForGame.playerType!
+        self.playerRole = playerDictionary["playerType"] as PlayerForGame.playerType
         self.gameSessionID = playerDictionary["gameSession"] as NSInteger!
         self.playerDictionary = playerDictionary
         self.playerImage = playerDictionary["playerImage"] as UIImage!
