@@ -35,7 +35,9 @@
 		7E46DF5319FF336E009215E3 /* MissionAproved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4D19FF336E009215E3 /* MissionAproved.swift */; };
 		7E46DF5419FF336E009215E3 /* MissionPotential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4E19FF336E009215E3 /* MissionPotential.swift */; };
 		7E46DF5519FF336E009215E3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4F19FF336E009215E3 /* Player.swift */; };
-		7E9BE66B19FFFF1D00E21794 /* CharacterRevealController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9BE66A19FFFF1D00E21794 /* CharacterRevealController.swift */; };
+		7E9BE66B19FFFF1D00E21794 /* NominationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9BE66A19FFFF1D00E21794 /* NominationViewController.swift */; };
+		7E9BE66F1A0001EC00E21794 /* NominationVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E9BE66E1A0001EC00E21794 /* NominationVoteView.xib */; };
+		7E9BE6711A00045400E21794 /* MissionOutcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E9BE6701A00045400E21794 /* MissionOutcomeView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +88,9 @@
 		7E46DF4D19FF336E009215E3 /* MissionAproved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionAproved.swift; sourceTree = "<group>"; };
 		7E46DF4E19FF336E009215E3 /* MissionPotential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionPotential.swift; sourceTree = "<group>"; };
 		7E46DF4F19FF336E009215E3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		7E9BE66A19FFFF1D00E21794 /* CharacterRevealController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterRevealController.swift; sourceTree = "<group>"; };
+		7E9BE66A19FFFF1D00E21794 /* NominationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NominationViewController.swift; sourceTree = "<group>"; };
+		7E9BE66E1A0001EC00E21794 /* NominationVoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NominationVoteView.xib; path = ../NominationVoteView.xib; sourceTree = "<group>"; };
+		7E9BE6701A00045400E21794 /* MissionOutcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MissionOutcomeView.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,13 +126,13 @@
 				70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */,
 				705BB12519FFFB9500584A5B /* MultipeerController.swift */,
 				705BB11D19FFFB5C00584A5B /* LeadGameController.swift */,
-				7E46DF2019FEB359009215E3 /* AppDelegate.swift */,
 				7E46DF2219FEB359009215E3 /* ViewController.swift */,
 				7E46DF4419FEE814009215E3 /* LeadGameController.swift */,
 				7E46DF4619FF126A009215E3 /* GameController.swift */,
-				7E9BE66A19FFFF1D00E21794 /* CharacterRevealController.swift */,
+				7E9BE66A19FFFF1D00E21794 /* NominationViewController.swift */,
+				7E9BE66E1A0001EC00E21794 /* NominationVoteView.xib */,
+				7E9BE6701A00045400E21794 /* MissionOutcomeView.xib */,
 				7E46DF4019FEBC2A009215E3 /* MultipeerController.swift */,
-				16C784B219FECE5F008421CC /* HomeViewController.swift */,
 				7E46DF2019FEB359009215E3 /* AppDelegate.swift */,
 			);
 			name = "Controller Layer";
@@ -297,10 +301,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E9BE6711A00045400E21794 /* MissionOutcomeView.xib in Resources */,
 				16C784B819FEF5F3008421CC /* mission_connector.pdf in Resources */,
 				16C784AF19FEC9FF008421CC /* PlayerCell.xib in Resources */,
 				7E46DF2619FEB359009215E3 /* Main.storyboard in Resources */,
 				16C784BA19FF09C6008421CC /* 1095222_34734740.jpg in Resources */,
+				7E9BE66F1A0001EC00E21794 /* NominationVoteView.xib in Resources */,
 				7E46DF2B19FEB359009215E3 /* LaunchScreen.xib in Resources */,
 				7E46DF2819FEB359009215E3 /* Images.xcassets in Resources */,
 			);
@@ -330,12 +336,11 @@
 				705BB12419FFFB8000584A5B /* MissionPotential.swift in Sources */,
 				70CAA5D419FFFC7F00D5BDC1 /* HomeViewController.swift in Sources */,
 				7E46DF2319FEB359009215E3 /* ViewController.swift in Sources */,
-				7E9BE66B19FFFF1D00E21794 /* CharacterRevealController.swift in Sources */,
+				7E9BE66B19FFFF1D00E21794 /* NominationViewController.swift in Sources */,
 				7E46DF4919FF130A009215E3 /* GameEvent.swift in Sources */,
 				7E46DF5519FF336E009215E3 /* Player.swift in Sources */,
 				7E46DF2119FEB359009215E3 /* AppDelegate.swift in Sources */,
 				705BB11C19FFFB4A00584A5B /* GameSession.swift in Sources */,
-				16C784B319FECE5F008421CC /* HomeViewController.swift in Sources */,
 				7E46DF4719FF126A009215E3 /* GameController.swift in Sources */,
 				7E46DF5419FF336E009215E3 /* MissionPotential.swift in Sources */,
 				7E46DF4119FEBC2A009215E3 /* MultipeerController.swift in Sources */,

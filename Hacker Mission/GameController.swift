@@ -11,6 +11,7 @@ import Foundation
 class GameController : MultiPeerDelegate {
   
   var game : GameSession!
+  var homeVC : HomeViewController!
   
   func handleEvent(event: GameEvent) {
     switch event{
