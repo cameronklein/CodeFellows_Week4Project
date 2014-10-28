@@ -125,6 +125,12 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     var error : NSError?
     session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
   }
+  
+  func sendInfoToMainBrain(dictionary: NSDictionary) {
+    var error : NSError?
+    let data = NSJSONSerialization.dataWithJSONObject(dictionary, options: nil, error: &error)
+    session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
+  }
 }
 
 

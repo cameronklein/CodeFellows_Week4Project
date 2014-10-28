@@ -22,6 +22,7 @@ class NominationVoteViewController: UIViewController {
     }
     
     @IBAction func approveNominatedTeam (sender: AnyObject){
+      
         
     }
     
