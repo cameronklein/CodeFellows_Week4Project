@@ -12,6 +12,11 @@ class Mission {
     var missionDictionary : NSMutableDictionary
     var missionName : NSString
     var missionDescription : NSString?
+    var success = false
+    var playersNeeded : NSInteger?
+    var failThreshold : NSInteger?
+    var rejectedTeamsCount : NSInteger?
+    var nominatedPlayers : NSMutableArray?
 
     init(missionDictionary: NSMutableDictionary) {
         var missionDictionary = missionDictionary
@@ -19,5 +24,13 @@ class Mission {
         self.missionDictionary = missionDictionary as NSMutableDictionary!
     }
 
+    convenience init () {
 
-}
+        var missionDictionary : NSMutableDictionary!
+        missionDictionary?.setValue("Test Mission", forKey: "missionName")
+
+        self.init (missionDictionary: missionDictionary as NSMutableDictionary!)
+    }
+
+
+} // End

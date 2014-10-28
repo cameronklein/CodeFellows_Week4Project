@@ -8,6 +8,10 @@
 
 import UIKit
 
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//                   Deprecated
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 class ApprovedTeam {
     var missionName : NSString
     var missionDescription : NSString?
