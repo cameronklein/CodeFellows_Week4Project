@@ -11,6 +11,7 @@ import MultipeerConnectivity
 protocol MultiPeerDelegate {
   func handleEvent(event : GameEvent)
   func handleEvent(event : NSMutableDictionary)
+  func updatePeerCount(Int)
 }
 
 class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate {
@@ -72,6 +73,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
     if state == MCSessionState.Connected {
       println("Peer Connected")
+      self.delegate.updatePeerCount(session.connectedPeers.count)
     } else if state == MCSessionState.NotConnected {
       println("Peer Stopped Connecting")
     } else if state == MCSessionState.Connecting {
