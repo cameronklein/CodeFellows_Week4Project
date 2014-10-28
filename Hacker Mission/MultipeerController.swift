@@ -7,7 +7,6 @@
 //
 
 import MultipeerConnectivity
-import Foundation
 
 protocol MultiPeerDelegate {
   func handleEvent(event : GameEvent)
@@ -25,6 +24,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   
   override init() {
     super.init()
+    
     println("Multipeer Controller Loaded")
     
     peerID  = MCPeerID(displayName: UIDevice.currentDevice().name)
@@ -49,9 +49,8 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       delegate.handleEvent(gameData.currentGameState)
     }
     
-    
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-
+      
     }
   }
   
@@ -81,7 +80,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   
   func advertiser(advertiser: MCNearbyServiceAdvertiser!, didReceiveInvitationFromPeer peerID: MCPeerID!, withContext context: NSData!, invitationHandler: ((Bool, MCSession!) -> Void)!) {
     
-    println("Got an invitation")
+    println("Got an invitation and auto-accepting.")
     invitationHandler(true, self.session)
     
   }

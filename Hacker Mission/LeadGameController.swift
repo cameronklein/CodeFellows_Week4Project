@@ -28,6 +28,7 @@ class LeadGameController : MultiPeerDelegate {
   }
 
   func assignRoles(){
+    
     let players = game.playerList as [PlayerForGame]
     let numberOfPlayers = players.count
     var numberOfAgents = 2
@@ -43,8 +44,8 @@ class LeadGameController : MultiPeerDelegate {
     
     while currentAgents < numberOfAgents {
       let i = arc4random_uniform(UInt32(numberOfPlayers))
-      if players[i].playerRole != .Agent {
-        players[i].playerType = .Agent
+      if players[i].playerRole != PlayerType.Agent {
+        players[i].playerType = PlayerType.Agent
         currentAgents++
       }
     }
@@ -93,15 +94,15 @@ class LeadGameController : MultiPeerDelegate {
     multipeerController.sendEventToPeers(game:game)
   }
   
+  func tabulateVotes() {
+    //Calculates if the mission is approved or rejected
+    
+  }
+  
   func revealVotes() {
     //Displays all players votes to approve/reject the mission
     game.currentGameState = GameEvent.RevealVote
     multipeerController.sendEventToPeers(game:game)
-    
-  }
-  
-  func tabulateVotes() {
-    //Calculates if the mission is approved or rejected
     
   }
   
