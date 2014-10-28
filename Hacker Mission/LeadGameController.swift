@@ -19,7 +19,7 @@ class LeadGameController : MultiPeerDelegate {
   var peerCount : Int = 0
 
   init() {
-    
+    multipeerController.delegate = self
   }
   
   func startLookingForPlayers() {
