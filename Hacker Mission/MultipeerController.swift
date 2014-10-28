@@ -10,9 +10,17 @@ import MultipeerConnectivity
 
 protocol MultiPeerDelegate {
   func handleEvent(event : GameEvent)
+  func handleEvent(event : NSMutableDictionary)
 }
 
 class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate {
+  
+  class var sharedInstance : MultiPeerController {
+    struct Static {
+      static let instance : MultiPeerController = MultiPeerController()
+    }
+    return Static.instance
+  }
   
   var peerID      : MCPeerID!
   var session     : MCSession!
@@ -21,6 +29,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   var delegate    : MultiPeerDelegate!
   
   let MyServiceType = "cf-hacker"
+  
   
   override init() {
     super.init()
@@ -45,13 +54,19 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
     println("Received Data!")
     
+    // Is slave controller getting info from master controller
     if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
       delegate.handleEvent(gameData.currentGameState)
     }
     
-    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-      
+    // Is master controller getting info from slave controller
+    var error : NSError?
+    if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSMutableDictionary {
+      println("Found Dictionary")
+      jsonDict["peerID"] = peerID.description
+      delegate.handleEvent(jsonDict)
     }
+    
   }
   
   func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {

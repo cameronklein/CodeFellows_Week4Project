@@ -147,7 +147,11 @@ class LeadGameController : MultiPeerDelegate {
   
   // MARK - Multipeer Delegate Methods
   
-  func handleEvent(event : GameEvent) {
+  func handleEvent(event: NSMutableDictionary) {
+    
+    if let vote = event["vote"] as? Bool {
+      game.missionList[game.currentMission]
+    }
     
   }
   

@@ -10,6 +10,8 @@ import UIKit
 
 class NominationVoteViewController: UIViewController {
   
+  var multiPeerController : MultiPeerController = MultiPeerController.sharedInstance
+  
     @IBOutlet weak var nominatedPlayers : UILabel!
     var nominatedPlayersAray : [Player]!
     
@@ -22,12 +24,12 @@ class NominationVoteViewController: UIViewController {
     }
     
     @IBAction func approveNominatedTeam (sender: AnyObject){
+      multiPeerController.sendInfoToMainBrain(["vote" : true])
       
-        
     }
     
     @IBAction func rejectNominatedTeam (sender: AnyObject){
-        
+      multiPeerController.sendInfoToMainBrain(["vote" : false])
     }
     
     
