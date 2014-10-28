@@ -128,6 +128,9 @@
 		7E46DF1D19FEB359009215E3 /* Hacker Mission */ = {
 			isa = PBXGroup;
 			children = (
+				16C784AA19FEC2E5008421CC /* Controller Layer */,
+				16C784A919FEC2A7008421CC /* View Layer */,
+				16C784AB19FEC2F5008421CC /* Model Layer */,
 				439DEC6219FEC6F800ACA353 /* Model */,
 				7E46DF2019FEB359009215E3 /* AppDelegate.swift */,
 				7E46DF2219FEB359009215E3 /* ViewController.swift */,
@@ -285,6 +288,7 @@
 				7E46DF4919FF130A009215E3 /* GameEvent.swift in Sources */,
 				439DEC6419FEC7F100ACA353 /* PlayerForGame.swift in Sources */,
 				7E46DF2119FEB359009215E3 /* AppDelegate.swift in Sources */,
+				16C784B319FECE5F008421CC /* HomeViewController.swift in Sources */,
 				7E46DF4719FF126A009215E3 /* GameController.swift in Sources */,
 				7E46DF4119FEBC2A009215E3 /* MultipeerController.swift in Sources */,
 				7E46DF4519FEE814009215E3 /* LeadGameController.swift in Sources */,

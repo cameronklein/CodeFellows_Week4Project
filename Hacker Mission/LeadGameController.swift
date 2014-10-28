@@ -43,7 +43,7 @@ class LeadGameController : MultiPeerDelegate {
     
     while currentAgents < numberOfAgents {
       let i = arc4random_uniform(UInt32(numberOfPlayers))
-      if players[i].playerRole == .Agent {
+      if players[i].playerRole != .Agent {
         players[i].playerType = .Agent
         currentAgents++
       }
