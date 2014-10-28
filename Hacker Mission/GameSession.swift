@@ -10,10 +10,9 @@ import UIKit
 
 class GameSession {
 
-    var gameSessionID : NSInteger
-    var playerList : [PlayerForGame]
-    var missionList : [Mission]
-
-
+    var gameSessionID     : NSInteger!
+    var playerList        : [PlayerForGame]!
+    var missionList       : [Mission]!
+    var currentGameState  : GameEvent
 
 }
