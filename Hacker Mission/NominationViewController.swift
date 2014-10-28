@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CharacterRevealController: UIViewController {
+class NominationVoteViewController: UIViewController {
   
   
   
