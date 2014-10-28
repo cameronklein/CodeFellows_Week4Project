@@ -99,5 +99,8 @@ class GameController : NSObject, MultiPeerDelegate {
         println("Two")
     }
 
+  func updatePeerCount(count : Int) {
+    println("Hello!")
+  }
 
 }
