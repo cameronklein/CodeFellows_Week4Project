@@ -12,6 +12,7 @@ class UserInfo {
     var userName : NSString
     var userID : NSInteger
     var userImage : UIImage?
+    var userPeerID : NSString?
 
     init(userName: NSString) {
         self.userName = userName as NSString!

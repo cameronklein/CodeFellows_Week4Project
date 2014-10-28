@@ -9,11 +9,13 @@
 import UIKit
 
 class Mission {
-    var missionDictionary : NSMutableDictionary
-    var missionName : NSString
-    var missionDescription : NSString?
-    var success = false
-    var playersNeeded : NSInteger?
+//
+
+    var missionDictionary : NSMutableDictionary // May not be needed, we may have to fold things into a dictionary.
+    var missionName : NSString // Name for the mission. Eventually we want a selection of them with names and descriptions.
+    var missionDescription : NSString? // Description. Eventually we want a selection of them with names and descriptions.
+    var success : Bool? // Whether the mission was a success. UI tests for nil if incomplete
+    var playersNeeded : NSInteger? //
     var failThreshold : NSInteger?
     var rejectedTeamsCount : NSInteger?
     var nominatedPlayers : NSMutableArray?

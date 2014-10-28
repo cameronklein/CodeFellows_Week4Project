@@ -8,11 +8,9 @@
             <connections>
                 <outlet property="hostButton" destination="Rh2-ZS-bfw" id="iGB-JR-Bcg"/>
                 <outlet property="joinButton" destination="jXE-ON-grT" id="sOC-iT-xY8"/>
-                <outlet property="joinGameButtonPressed" destination="jXE-ON-grT" id="6nh-gd-gqT"/>
                 <outlet property="peersLabel" destination="81z-6P-QNN" id="ivX-g7-3Uf"/>
                 <outlet property="spinningWhee" destination="1xz-e9-Eml" id="b0z-2f-8V4"/>
                 <outlet property="startButton" destination="qa9-sN-ryQ" id="qh1-EV-9hp"/>
-                <outlet property="startGameButtonPressed" destination="qa9-sN-ryQ" id="z0w-1K-56Z"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
