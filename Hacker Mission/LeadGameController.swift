@@ -13,6 +13,7 @@ class LeadGameController : MultiPeerDelegate {
   
   var multipeerController : MultiPeerController = MultiPeerController()
   var game : GameSession!
+  var currentVotes : [Bool]
   
   init() {
     
@@ -51,6 +52,7 @@ class LeadGameController : MultiPeerDelegate {
     }
     let j = arc4random_uniform(numberOfPlayers)
     players[j].isLeader = true
+    self.revealCharacters()
   }
   
   func revealCharacters() {
@@ -94,9 +96,33 @@ class LeadGameController : MultiPeerDelegate {
     multipeerController.sendEventToPeers(game:game)
   }
   
-  func tabulateVotes() {
+  func tabulateVotes(dictionary: NSMutableDictionary) {
+    
     //Calculates if the mission is approved or rejected
     
+    let peerID = event["peerID"] as String
+    currentVotes.append(vote)
+    for player in game.players {
+      if player.peerID = peerID{
+        player.currentVote = vote
+      }
+    }
+    
+    if currentVotes.count == game.players.count {
+      var approved = 0
+      var rejected = 0
+      for vote in currentVotes {
+        if vote {
+          approved = approved + 1
+        } else {
+          rejected = rejected + 1
+        }
+      }
+      if rejected > approved {
+        game.missionList[currentMission].rejectedTeamCount++
+      }
+    }
+    self.revealVotes()
   }
   
   func revealVotes() {
@@ -150,9 +176,11 @@ class LeadGameController : MultiPeerDelegate {
   func handleEvent(event: NSMutableDictionary) {
     
     if let vote = event["vote"] as? Bool {
-      game.missionList[game.currentMission]
+      self.tabulateVotes(event)
     }
-    
+    if let vote = event["missionOutcome"] as? Bool {
+      self.tabulateVotes(event)
+    }
   }
   
 }

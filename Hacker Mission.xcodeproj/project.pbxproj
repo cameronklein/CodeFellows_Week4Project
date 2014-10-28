@@ -17,13 +17,8 @@
 		43CEB92F19FF41BE007CF4A5 /* ProposedTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CEB92919FF41BE007CF4A5 /* ProposedTeam.swift */; };
 		43CEB93019FF41BE007CF4A5 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CEB92A19FF41BE007CF4A5 /* UserInfo.swift */; };
 		43CEB93119FF41BE007CF4A5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CEB92B19FF41BE007CF4A5 /* Player.swift */; };
-		705BB11C19FFFB4A00584A5B /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BB11B19FFFB4A00584A5B /* GameSession.swift */; };
-		705BB11E19FFFB5C00584A5B /* LeadGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BB11D19FFFB5C00584A5B /* LeadGameController.swift */; };
 		705BB12019FFFB6B00584A5B /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BB11F19FFFB6B00584A5B /* Mission.swift */; };
-		705BB12319FFFB8000584A5B /* MissionAproved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BB12119FFFB8000584A5B /* MissionAproved.swift */; };
-		705BB12419FFFB8000584A5B /* MissionPotential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BB12219FFFB8000584A5B /* MissionPotential.swift */; };
 		705BB12619FFFB9500584A5B /* MultipeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BB12519FFFB9500584A5B /* MultipeerController.swift */; };
-		705BB12819FFFC2900584A5B /* PlayerForGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BB12719FFFC2900584A5B /* PlayerForGame.swift */; };
 		70CAA5D419FFFC7F00D5BDC1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */; };
 		7E46DF2119FEB359009215E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF2019FEB359009215E3 /* AppDelegate.swift */; };
 		7E46DF2319FEB359009215E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF2219FEB359009215E3 /* ViewController.swift */; };
@@ -67,13 +62,8 @@
 		43CEB92919FF41BE007CF4A5 /* ProposedTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedTeam.swift; sourceTree = "<group>"; };
 		43CEB92A19FF41BE007CF4A5 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		43CEB92B19FF41BE007CF4A5 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		705BB11B19FFFB4A00584A5B /* GameSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
-		705BB11D19FFFB5C00584A5B /* LeadGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadGameController.swift; sourceTree = "<group>"; };
 		705BB11F19FFFB6B00584A5B /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
-		705BB12119FFFB8000584A5B /* MissionAproved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionAproved.swift; sourceTree = "<group>"; };
-		705BB12219FFFB8000584A5B /* MissionPotential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionPotential.swift; sourceTree = "<group>"; };
 		705BB12519FFFB9500584A5B /* MultipeerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerController.swift; sourceTree = "<group>"; };
-		705BB12719FFFC2900584A5B /* PlayerForGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerForGame.swift; sourceTree = "<group>"; };
 		70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7E46DF1B19FEB359009215E3 /* Hacker Mission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hacker Mission.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E46DF1F19FEB359009215E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -147,9 +137,6 @@
 				43CEB92919FF41BE007CF4A5 /* ProposedTeam.swift */,
 				43CEB92A19FF41BE007CF4A5 /* UserInfo.swift */,
 				43CEB92B19FF41BE007CF4A5 /* Player.swift */,
-				705BB12719FFFC2900584A5B /* PlayerForGame.swift */,
-				705BB12119FFFB8000584A5B /* MissionAproved.swift */,
-				705BB12219FFFB8000584A5B /* MissionPotential.swift */,
 				705BB11F19FFFB6B00584A5B /* Mission.swift */,
 				7E46DF4A19FF336E009215E3 /* GameSession.swift */,
 				7E46DF4819FF130A009215E3 /* GameEvent.swift */,
@@ -328,12 +315,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				43CEB92D19FF41BE007CF4A5 /* Mission.swift in Sources */,
-				705BB12319FFFB8000584A5B /* MissionAproved.swift in Sources */,
 				16C784AE19FEC9FF008421CC /* PlayerCell.swift in Sources */,
 				705BB12019FFFB6B00584A5B /* Mission.swift in Sources */,
-				705BB12819FFFC2900584A5B /* PlayerForGame.swift in Sources */,
 				705BB12619FFFB9500584A5B /* MultipeerController.swift in Sources */,
-				705BB12419FFFB8000584A5B /* MissionPotential.swift in Sources */,
 				70CAA5D419FFFC7F00D5BDC1 /* HomeViewController.swift in Sources */,
 				7E46DF2319FEB359009215E3 /* ViewController.swift in Sources */,
 				43CEB92F19FF41BE007CF4A5 /* ProposedTeam.swift in Sources */,
@@ -342,7 +326,6 @@
 				43CEB92E19FF41BE007CF4A5 /* ApprovedTeam.swift in Sources */,
 				43CEB93019FF41BE007CF4A5 /* UserInfo.swift in Sources */,
 				43CEB93119FF41BE007CF4A5 /* Player.swift in Sources */,
-				16C784B319FECE5F008421CC /* HomeViewController.swift in Sources */,
 				7E9BE66B19FFFF1D00E21794 /* NominationViewController.swift in Sources */,
 				7E46DF4919FF130A009215E3 /* GameEvent.swift in Sources */,
 				7E46DF5519FF336E009215E3 /* Player.swift in Sources */,

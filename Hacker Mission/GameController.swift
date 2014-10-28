@@ -82,7 +82,6 @@ class GameController : MultiPeerDelegate {
   func revealMissionOutcome() {
     //revealing the success/fail votes
     self.homeVC.revealMissionOutcome(game.missionList[currentMissionIndex].missionResults
-
   }
   
   func endGame() {
