@@ -29,8 +29,6 @@ class GameController : MultiPeerDelegate {
       self.vote()
     case .RevealVote:
       self.revealVotes()
-    case .BeginVote:
-      self.beginVote()
     case .BeginMissionOutcome:
       self.beginMissionOutcome()
     case .RevealMissionOutcome:
@@ -45,10 +43,14 @@ class GameController : MultiPeerDelegate {
   }
   
   func revealCharacters() {
+    //At start of game reveal what role you are in the game
+    self.homeVC.revealCharacters(game.playerList)
     
   }
   
   func nominatePlayers() {
+    //Leader nominates their team of players
+    self.homeVC.nominatePlayersForMission(game.missionList[currentMissionIndex])
     
   }
   
@@ -61,23 +63,26 @@ class GameController : MultiPeerDelegate {
   }
   
   func vote() {
-    
+    //Vote on proposed team
+    self.homeVC.voteOnProposedTeam(game.missionList[currentMissionIndex].nominatedPlayers)
   }
   
   func revealVotes() {
-    
+    //reveal everyone's vote on the proposed team
+    self.homeVC.revealVotes(game.missionList[currentMissionIndex].voteResults)
   }
   
-  func beginVote() {
-    
-  }
   
   func beginMissionOutcome() {
+    //Nominated players on mission vote to succeed or fail the mission
+    self.homeVC.voteOnMissionSuccess(game.missionList[currentMissionIndex].nominatedPlayers)
     
   }
   
   func revealMissionOutcome() {
-    
+    //revealing the success/fail votes
+    self.homeVC.revealMissionOutcome(game.missionList[currentMissionIndex].missionResults
+
   }
   
   func endGame() {
