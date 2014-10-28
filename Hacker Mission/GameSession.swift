@@ -10,19 +10,13 @@ import UIKit
 
 class GameSession {
 
-<<<<<<< HEAD
     var players : NSMutableArray // Array of Player
     var missions : NSMutableArray // Array of Mission
     var leader : Int? // Get from players.objectAtIndex(Int)
     var currentMission : Int? // Get from missions.objectAtIndex(Int)
-
-
-=======
-    var gameSessionID     : NSInteger!
-    var playerList        : [PlayerForGame]!
-    var missionList       : [Mission]!
     var currentGameState  : GameEvent
->>>>>>> master
+
+
 
     init (players: NSMutableArray, missions: NSMutableArray) {
         self.players = players
@@ -51,6 +45,6 @@ class GameSession {
 
         return gameIDHash as NSInteger!
     }
-
-
+    
+    
 } // End
