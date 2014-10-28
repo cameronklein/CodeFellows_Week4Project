@@ -11,8 +11,8 @@
 		16C784AF19FEC9FF008421CC /* PlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16C784AD19FEC9FF008421CC /* PlayerCell.xib */; };
 		16C784B819FEF5F3008421CC /* mission_connector.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B719FEF5F3008421CC /* mission_connector.pdf */; };
 		16C784BA19FF09C6008421CC /* 1095222_34734740.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B919FF09C6008421CC /* 1095222_34734740.jpg */; };
-		43CEB92C19FF41BE007CF4A5 /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CEB92619FF41BE007CF4A5 /* GameSession.swift */; };
-		43CEB92D19FF41BE007CF4A5 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CEB92719FF41BE007CF4A5 /* Mission.swift */; };
+		436546751A00299C0060B865 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436546741A00299C0060B865 /* AppDelegate.swift */; };
+		4372ECB21A0024A200907EFA /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4372ECB11A0024A200907EFA /* Mission.swift */; };
 		43CEB92E19FF41BE007CF4A5 /* ApprovedTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CEB92819FF41BE007CF4A5 /* ApprovedTeam.swift */; };
 		43CEB92F19FF41BE007CF4A5 /* ProposedTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CEB92919FF41BE007CF4A5 /* ProposedTeam.swift */; };
 		43CEB93019FF41BE007CF4A5 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CEB92A19FF41BE007CF4A5 /* UserInfo.swift */; };
@@ -23,6 +23,8 @@
 		7E423DF91A0027560015CC8D /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E423DF71A0027560015CC8D /* LaunchViewController.swift */; };
 		7E423DFA1A0027560015CC8D /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E423DF81A0027560015CC8D /* LaunchViewController.xib */; };
 		7E46DF2119FEB359009215E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF2019FEB359009215E3 /* AppDelegate.swift */; };
+		705BB11E19FFFB5C00584A5B /* LeadGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BB11D19FFFB5C00584A5B /* LeadGameController.swift */; };
+		70CAA5D419FFFC7F00D5BDC1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */; };
 		7E46DF2319FEB359009215E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF2219FEB359009215E3 /* ViewController.swift */; };
 		7E46DF2619FEB359009215E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E46DF2419FEB359009215E3 /* Main.storyboard */; };
 		7E46DF2819FEB359009215E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E46DF2719FEB359009215E3 /* Images.xcassets */; };
@@ -33,6 +35,10 @@
 		7E46DF4919FF130A009215E3 /* GameEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4819FF130A009215E3 /* GameEvent.swift */; };
 		7E46DF5019FF336E009215E3 /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4A19FF336E009215E3 /* GameSession.swift */; };
 		7E46DF5519FF336E009215E3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4F19FF336E009215E3 /* Player.swift */; };
+		7E46DF4119FEBC2A009215E3 /* MultipeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4019FEBC2A009215E3 /* MultipeerController.swift */; };
+		7E46DF4719FF126A009215E3 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4619FF126A009215E3 /* GameController.swift */; };
+		7E46DF4919FF130A009215E3 /* GameEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4819FF130A009215E3 /* GameEvent.swift */; };
+		7E46DF5019FF336E009215E3 /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4A19FF336E009215E3 /* GameSession.swift */; };
 		7E9BE66B19FFFF1D00E21794 /* NominationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9BE66A19FFFF1D00E21794 /* NominationViewController.swift */; };
 		7E9BE66F1A0001EC00E21794 /* NominationVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E9BE66E1A0001EC00E21794 /* NominationVoteView.xib */; };
 		7E9BE6711A00045400E21794 /* MissionOutcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E9BE6701A00045400E21794 /* MissionOutcomeView.xib */; };
@@ -58,20 +64,20 @@
 		16C784B619FEE9DA008421CC /* BOYCOTT_.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = BOYCOTT_.TTF; sourceTree = "<group>"; };
 		16C784B719FEF5F3008421CC /* mission_connector.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = mission_connector.pdf; sourceTree = "<group>"; };
 		16C784B919FF09C6008421CC /* 1095222_34734740.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1095222_34734740.jpg; sourceTree = "<group>"; };
-		43CEB92619FF41BE007CF4A5 /* GameSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
-		43CEB92719FF41BE007CF4A5 /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		436546741A00299C0060B865 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4372ECB11A0024A200907EFA /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		43CEB92819FF41BE007CF4A5 /* ApprovedTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovedTeam.swift; sourceTree = "<group>"; };
 		43CEB92919FF41BE007CF4A5 /* ProposedTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedTeam.swift; sourceTree = "<group>"; };
 		43CEB92A19FF41BE007CF4A5 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		43CEB92B19FF41BE007CF4A5 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		705BB11F19FFFB6B00584A5B /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		705BB12519FFFB9500584A5B /* MultipeerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerController.swift; sourceTree = "<group>"; };
+		705BB11D19FFFB5C00584A5B /* LeadGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadGameController.swift; sourceTree = "<group>"; };
 		70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7E423DF71A0027560015CC8D /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		7E423DF81A0027560015CC8D /* LaunchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchViewController.xib; sourceTree = "<group>"; };
 		7E46DF1B19FEB359009215E3 /* Hacker Mission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hacker Mission.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E46DF1F19FEB359009215E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7E46DF2019FEB359009215E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E46DF2219FEB359009215E3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7E46DF2519FEB359009215E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7E46DF2719FEB359009215E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -84,6 +90,10 @@
 		7E46DF4819FF130A009215E3 /* GameEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEvent.swift; sourceTree = "<group>"; };
 		7E46DF4A19FF336E009215E3 /* GameSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
 		7E46DF4F19FF336E009215E3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		7E46DF4019FEBC2A009215E3 /* MultipeerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerController.swift; sourceTree = "<group>"; };
+		7E46DF4619FF126A009215E3 /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
+		7E46DF4819FF130A009215E3 /* GameEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEvent.swift; sourceTree = "<group>"; };
+		7E46DF4A19FF336E009215E3 /* GameSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
 		7E9BE66A19FFFF1D00E21794 /* NominationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NominationViewController.swift; sourceTree = "<group>"; };
 		7E9BE66E1A0001EC00E21794 /* NominationVoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NominationVoteView.xib; path = ../NominationVoteView.xib; sourceTree = "<group>"; };
 		7E9BE6701A00045400E21794 /* MissionOutcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MissionOutcomeView.xib; sourceTree = SOURCE_ROOT; };
@@ -119,17 +129,21 @@
 		16C784AA19FEC2E5008421CC /* Controller Layer */ = {
 			isa = PBXGroup;
 			children = (
+				436546741A00299C0060B865 /* AppDelegate.swift */,
 				70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */,
 				705BB12519FFFB9500584A5B /* MultipeerController.swift */,
 				7E46DF2219FEB359009215E3 /* ViewController.swift */,
 				7E46DF4419FEE814009215E3 /* LeadGameController.swift */,
 				7E423DF71A0027560015CC8D /* LaunchViewController.swift */,
 				7E423DF81A0027560015CC8D /* LaunchViewController.xib */,
+				705BB11D19FFFB5C00584A5B /* LeadGameController.swift */,
+				7E46DF2219FEB359009215E3 /* ViewController.swift */,
 				7E46DF4619FF126A009215E3 /* GameController.swift */,
 				7E9BE66A19FFFF1D00E21794 /* NominationViewController.swift */,
 				7E9BE66E1A0001EC00E21794 /* NominationVoteView.xib */,
 				7E9BE6701A00045400E21794 /* MissionOutcomeView.xib */,
 				7E46DF2019FEB359009215E3 /* AppDelegate.swift */,
+				7E46DF4019FEBC2A009215E3 /* MultipeerController.swift */,
 			);
 			name = "Controller Layer";
 			sourceTree = "<group>";
@@ -137,8 +151,7 @@
 		16C784AB19FEC2F5008421CC /* Model Layer */ = {
 			isa = PBXGroup;
 			children = (
-				43CEB92619FF41BE007CF4A5 /* GameSession.swift */,
-				43CEB92719FF41BE007CF4A5 /* Mission.swift */,
+				4372ECB11A0024A200907EFA /* Mission.swift */,
 				43CEB92819FF41BE007CF4A5 /* ApprovedTeam.swift */,
 				43CEB92919FF41BE007CF4A5 /* ProposedTeam.swift */,
 				43CEB92A19FF41BE007CF4A5 /* UserInfo.swift */,
@@ -147,6 +160,8 @@
 				7E46DF4A19FF336E009215E3 /* GameSession.swift */,
 				7E46DF4819FF130A009215E3 /* GameEvent.swift */,
 				7E46DF4F19FF336E009215E3 /* Player.swift */,
+				7E46DF4A19FF336E009215E3 /* GameSession.swift */,
+				7E46DF4819FF130A009215E3 /* GameEvent.swift */,
 			);
 			name = "Model Layer";
 			sourceTree = "<group>";
@@ -325,22 +340,27 @@
 				16C784AE19FEC9FF008421CC /* PlayerCell.swift in Sources */,
 				705BB12019FFFB6B00584A5B /* Mission.swift in Sources */,
 				705BB12619FFFB9500584A5B /* MultipeerController.swift in Sources */,
+				16C784AE19FEC9FF008421CC /* PlayerCell.swift in Sources */,
+				705BB11E19FFFB5C00584A5B /* LeadGameController.swift in Sources */,
 				70CAA5D419FFFC7F00D5BDC1 /* HomeViewController.swift in Sources */,
+				436546751A00299C0060B865 /* AppDelegate.swift in Sources */,
 				7E46DF2319FEB359009215E3 /* ViewController.swift in Sources */,
 				43CEB92F19FF41BE007CF4A5 /* ProposedTeam.swift in Sources */,
-				43CEB92C19FF41BE007CF4A5 /* GameSession.swift in Sources */,
-				7E46DF2119FEB359009215E3 /* AppDelegate.swift in Sources */,
 				43CEB92E19FF41BE007CF4A5 /* ApprovedTeam.swift in Sources */,
 				43CEB93019FF41BE007CF4A5 /* UserInfo.swift in Sources */,
 				7E423DF91A0027560015CC8D /* LaunchViewController.swift in Sources */,
 				43CEB93119FF41BE007CF4A5 /* Player.swift in Sources */,
 				7E9BE66B19FFFF1D00E21794 /* NominationViewController.swift in Sources */,
+				4372ECB21A0024A200907EFA /* Mission.swift in Sources */,
 				7E46DF4919FF130A009215E3 /* GameEvent.swift in Sources */,
 				7E46DF5519FF336E009215E3 /* Player.swift in Sources */,
 				7E46DF2119FEB359009215E3 /* AppDelegate.swift in Sources */,
 				7E46DF4719FF126A009215E3 /* GameController.swift in Sources */,
 				7E46DF5019FF336E009215E3 /* GameSession.swift in Sources */,
 				7E46DF4519FEE814009215E3 /* LeadGameController.swift in Sources */,
+				7E46DF4719FF126A009215E3 /* GameController.swift in Sources */,
+				7E46DF4119FEBC2A009215E3 /* MultipeerController.swift in Sources */,
+				7E46DF5019FF336E009215E3 /* GameSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
