@@ -14,6 +14,11 @@ class GameController : NSObject, MultiPeerDelegate {
   var homeVC : HomeViewController!
   var multipeerController = MultiPeerController.sharedInstance
   
+  override init(){
+    super.init()
+    multipeerController.delegate = self
+  }
+  
   func handleEvent(event: GameEvent) {
     switch event{
     case .Start:
