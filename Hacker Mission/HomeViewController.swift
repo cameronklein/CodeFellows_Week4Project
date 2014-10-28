@@ -64,9 +64,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         cell.imageView.image = player?.playerImage
         cell.username.text = player?.playerName
         
-        if player.currentVote != nil
+        if player?.currentVote != nil
         {
-            if player.currentVote
+            if (player?.currentVote == true)
             {
                 cell.approvesMission.alpha = 0
                 cell.approvesMission.hidden = false
@@ -100,7 +100,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     {//Display the nominated team to all users and get a vote of Approve or Reject back
         let nominationVC = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
         let nominationView = nominationVC.view
-        nominationVC.nominatedPlayersAray = nominatedPlayers
+        nominationVC.nominatedPlayersArray = nominatedPlayers
         nominationView.frame = self.view.frame
         self.addChildViewController(nominationVC)
         self.view.addSubview(nominationView)

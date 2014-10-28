@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NominationVoteViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate
+class NominationVoteViewController: UIViewController//, UICollectionViewDataSource, UICollectionViewDelegate
 {
     @IBOutlet weak var nominatedPlayerViewContoller : UICollectionView!
     var multiPeerController : MultiPeerController = MultiPeerController.sharedInstance
@@ -17,11 +17,10 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
     
     override func viewDidAppear(animated: Bool) {
         var playerNames = NSString()
-        for player in nominatedPlayersAray {
+        for player in nominatedPlayersArray {
             var playerStaged = player as Player
             playerNames = playerNames + " " + playerStaged.playerName
         }
-        nominatedPlayers.text = playerNames
     }
     
     @IBAction func approveNominatedTeam (sender: AnyObject)
