@@ -12,7 +12,8 @@ import Foundation
 class LeadGameController : MultiPeerDelegate {
   
   var multipeerController : MultiPeerController = MultiPeerController()
-  var game : Game!
+  var game : GameSession!
+  var currentVotes : [Bool]
   
   init() {
     
@@ -24,11 +25,12 @@ class LeadGameController : MultiPeerDelegate {
   
   func startGame() {
     multipeerController.stopBrowsing()
-    self.game = Game()
+    self.game = GameSession()
   }
 
   func assignRoles(){
-    let players = game.players as [Player]
+    
+    let players = game.playerList as [PlayerForGame]
     let numberOfPlayers = players.count
     var numberOfAgents = 2
     switch numberOfPlayers {
@@ -42,14 +44,15 @@ class LeadGameController : MultiPeerDelegate {
     var currentAgents = 0
     
     while currentAgents < numberOfAgents {
-      let i = arc4random_uniform(numberOfPlayers)
-      if players[i].isAgent == false {
-        players[i].isAgent = true
+      let i = arc4random_uniform(UInt32(numberOfPlayers))
+      if players[i].playerRole != PlayerType.Agent {
+        players[i].playerType = PlayerType.Agent
         currentAgents++
       }
     }
     let j = arc4random_uniform(numberOfPlayers)
     players[j].isLeader = true
+    self.revealCharacters()
   }
   
   func revealCharacters() {
@@ -93,15 +96,39 @@ class LeadGameController : MultiPeerDelegate {
     multipeerController.sendEventToPeers(game:game)
   }
   
+  func tabulateVotes(dictionary: NSMutableDictionary) {
+    
+    //Calculates if the mission is approved or rejected
+    
+    let peerID = event["peerID"] as String
+    currentVotes.append(vote)
+    for player in game.players {
+      if player.peerID = peerID{
+        player.currentVote = vote
+      }
+    }
+    
+    if currentVotes.count == game.players.count {
+      var approved = 0
+      var rejected = 0
+      for vote in currentVotes {
+        if vote {
+          approved = approved + 1
+        } else {
+          rejected = rejected + 1
+        }
+      }
+      if rejected > approved {
+        game.missionList[currentMission].rejectedTeamCount++
+      }
+    }
+    self.revealVotes()
+  }
+  
   func revealVotes() {
     //Displays all players votes to approve/reject the mission
     game.currentGameState = GameEvent.RevealVote
     multipeerController.sendEventToPeers(game:game)
-    
-  }
-  
-  func tabulateVotes() {
-    //Calculates if the mission is approved or rejected
     
   }
   
@@ -135,7 +162,8 @@ class LeadGameController : MultiPeerDelegate {
   
   func endGame() {
     //Calls revealTeamsAtEndGame, displays who won the game
-    
+    game.currentGameState = GameEvent.End
+    multipeerController.sendEventToPeers(game:game)
   }
   
   func revealTeamsAtEndGame() {
@@ -143,26 +171,16 @@ class LeadGameController : MultiPeerDelegate {
     
   }
   
-  
   // MARK - Multipeer Delegate Methods
   
-  func handleEvent(event : GameEvent) {
+  func handleEvent(event: NSMutableDictionary) {
     
+    if let vote = event["vote"] as? Bool {
+      self.tabulateVotes(event)
+    }
+    if let vote = event["missionOutcome"] as? Bool {
+      self.tabulateVotes(event)
+    }
   }
   
 }
-
-enum GameEvent : String {
-  case Start                = "GameEventStart"
-  case RevealCharacters     = "GameEventRevealCharacters"
-  case NominatePlayers      = "GameEventNominatePlayers"
-  case RevealNominations    = "GameEventRevealNominations"
-  case MissionStart         = "GameEventMissionStart"
-  case Vote                 = "GameEventVote"
-  case RevealVote           = "GameEventRevealVote"
-  case BeginVote            = "GameEventBeginVote"
-  case BeginMissionOutcome  = "GameEventBeginMissionOutcome"
-  case RevealMissionOutcome = "GameEventRevealOutcome"
-  case End                  = "GameEventEnd"
-}
-
