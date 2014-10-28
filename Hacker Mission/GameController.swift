@@ -10,7 +10,7 @@ import Foundation
 
 class GameController : MultiPeerDelegate {
   
-  var game : GameSession
+  var game : GameSession!
   
   func handleEvent(event: GameEvent) {
     switch event{

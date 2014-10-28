@@ -28,6 +28,7 @@
 		7E46DF5319FF336E009215E3 /* MissionAproved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4D19FF336E009215E3 /* MissionAproved.swift */; };
 		7E46DF5419FF336E009215E3 /* MissionPotential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4E19FF336E009215E3 /* MissionPotential.swift */; };
 		7E46DF5519FF336E009215E3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4F19FF336E009215E3 /* Player.swift */; };
+		7E9BE66B19FFFF1D00E21794 /* CharacterRevealController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9BE66A19FFFF1D00E21794 /* CharacterRevealController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		7E46DF4D19FF336E009215E3 /* MissionAproved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionAproved.swift; sourceTree = "<group>"; };
 		7E46DF4E19FF336E009215E3 /* MissionPotential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionPotential.swift; sourceTree = "<group>"; };
 		7E46DF4F19FF336E009215E3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		7E9BE66A19FFFF1D00E21794 /* CharacterRevealController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterRevealController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				7E46DF2219FEB359009215E3 /* ViewController.swift */,
 				7E46DF4419FEE814009215E3 /* LeadGameController.swift */,
 				7E46DF4619FF126A009215E3 /* GameController.swift */,
+				7E9BE66A19FFFF1D00E21794 /* CharacterRevealController.swift */,
 				7E46DF4019FEBC2A009215E3 /* MultipeerController.swift */,
 				16C784B219FECE5F008421CC /* HomeViewController.swift */,
 				7E46DF2019FEB359009215E3 /* AppDelegate.swift */,
@@ -297,6 +300,7 @@
 				7E46DF5219FF336E009215E3 /* Mission.swift in Sources */,
 				16C784AE19FEC9FF008421CC /* PlayerCell.swift in Sources */,
 				7E46DF2319FEB359009215E3 /* ViewController.swift in Sources */,
+				7E9BE66B19FFFF1D00E21794 /* CharacterRevealController.swift in Sources */,
 				7E46DF4919FF130A009215E3 /* GameEvent.swift in Sources */,
 				7E46DF5519FF336E009215E3 /* Player.swift in Sources */,
 				7E46DF2119FEB359009215E3 /* AppDelegate.swift in Sources */,
