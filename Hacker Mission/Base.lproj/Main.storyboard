@@ -25,7 +25,7 @@
                                 <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1095222_34734740.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="o7P-p7-Sfa">
+                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="matrix_code1.gif" translatesAutoresizingMaskIntoConstraints="NO" id="o7P-p7-Sfa">
                                 <rect key="frame" x="0.0" y="81" width="600" height="487"/>
                             </imageView>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.80000000000000004" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8CR-C6-ZKL">
@@ -167,16 +167,19 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundImageView" destination="o7P-p7-Sfa" id="liG-8r-Yuj"/>
                         <outlet property="gameNameLabel" destination="k1m-Yd-cud" id="ji0-Zp-Og8"/>
                         <outlet property="mission1ImageView" destination="4wM-5k-Cs2" id="wDH-XM-hGb"/>
                         <outlet property="mission1To2TransitionImageView" destination="pc3-ME-ajL" id="0HA-hF-AGJ"/>
                         <outlet property="mission2ImageView" destination="3Jr-GY-ybQ" id="EVr-0Q-h6U"/>
                         <outlet property="mission2To3TransitionImageView" destination="my3-L5-I3P" id="q16-1Z-WzV"/>
                         <outlet property="mission3ImageView" destination="82h-Xd-0Am" id="sF7-bk-E0J"/>
+                        <outlet property="mission3To4TransitionImageView" destination="cnb-Gl-K7n" id="LNV-y9-Qfe"/>
                         <outlet property="mission4ImageView" destination="xwe-Mb-djr" id="kXY-15-SPQ"/>
                         <outlet property="mission4To5TransitionImageView" destination="OUc-hz-2BE" id="4Gg-N0-ThN"/>
                         <outlet property="mission5ImageView" destination="H9O-Bx-ofA" id="adz-V1-l8s"/>
-                        <outlet property="playersCollectionView" destination="8CR-C6-ZKL" id="zgV-dH-bFo"/>
+                        <outlet property="missionView" destination="juq-1B-11K" id="QHX-R1-5sr"/>
+                        <outlet property="playersCollectionView" destination="8CR-C6-ZKL" id="Ghw-cH-a1j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -185,7 +188,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1095222_34734740.jpg" width="1024" height="768"/>
+        <image name="matrix_code1.gif" width="1024" height="756"/>
         <image name="mission_connector" width="229" height="42"/>
         <image name="mission_open" width="151" height="151"/>
     </resources>
