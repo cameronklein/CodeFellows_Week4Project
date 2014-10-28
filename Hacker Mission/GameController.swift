@@ -12,6 +12,7 @@ class GameController : MultiPeerDelegate {
   
   var game : GameSession!
   var homeVC : HomeViewController!
+  var multipeerController = MultiPeerController.sharedInstance
   
   func handleEvent(event: GameEvent) {
     switch event{
@@ -36,6 +37,10 @@ class GameController : MultiPeerDelegate {
     case .End:
       self.endGame()
     }
+  }
+  
+  func startLookingForGame(){
+    multipeerController.startAdvertising()
   }
   
   func gameStart() {

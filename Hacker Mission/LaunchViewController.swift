@@ -10,7 +10,8 @@ import UIKit
 
 class LaunchViewController: UIViewController {
   
-  var multipeerController = MultiPeerController.sharedInstance
+  var masterController : LeadGameController?
+  var followerController : GameController?
 
   @IBOutlet weak var peersLabel: UILabel!
   @IBOutlet weak var startButton: UIButton!
@@ -36,7 +37,8 @@ class LaunchViewController: UIViewController {
     peersLabel.hidden = false
     joinButton.hidden = true
     hostButton.hidden = true
-    multipeerController.startBrowsing()
+    masterController = LeadGameController()
+    masterController?.startLookingForPlayers()
     
   }
 
@@ -44,11 +46,13 @@ class LaunchViewController: UIViewController {
     joinButton.hidden = true
     hostButton.hidden = true
     self.spinningWhee.startAnimating()
+    followerController = GameController()
     multipeerController.startAdvertising()
     
   }
   
   @IBAction func startGameButtonPressed(sender: AnyObject) {
+    println("Going to start game!")
     
   }
   
