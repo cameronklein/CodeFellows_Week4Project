@@ -9,9 +9,16 @@
 /* Begin PBXBuildFile section */
 		16C784AE19FEC9FF008421CC /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C784AC19FEC9FF008421CC /* PlayerCell.swift */; };
 		16C784AF19FEC9FF008421CC /* PlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16C784AD19FEC9FF008421CC /* PlayerCell.xib */; };
-		16C784B319FECE5F008421CC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C784B219FECE5F008421CC /* HomeViewController.swift */; };
 		16C784B819FEF5F3008421CC /* mission_connector.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B719FEF5F3008421CC /* mission_connector.pdf */; };
 		16C784BA19FF09C6008421CC /* 1095222_34734740.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B919FF09C6008421CC /* 1095222_34734740.jpg */; };
+		705BB11C19FFFB4A00584A5B /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BB11B19FFFB4A00584A5B /* GameSession.swift */; };
+		705BB11E19FFFB5C00584A5B /* LeadGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BB11D19FFFB5C00584A5B /* LeadGameController.swift */; };
+		705BB12019FFFB6B00584A5B /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BB11F19FFFB6B00584A5B /* Mission.swift */; };
+		705BB12319FFFB8000584A5B /* MissionAproved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BB12119FFFB8000584A5B /* MissionAproved.swift */; };
+		705BB12419FFFB8000584A5B /* MissionPotential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BB12219FFFB8000584A5B /* MissionPotential.swift */; };
+		705BB12619FFFB9500584A5B /* MultipeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BB12519FFFB9500584A5B /* MultipeerController.swift */; };
+		705BB12819FFFC2900584A5B /* PlayerForGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BB12719FFFC2900584A5B /* PlayerForGame.swift */; };
+		70CAA5D419FFFC7F00D5BDC1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */; };
 		7E46DF2119FEB359009215E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF2019FEB359009215E3 /* AppDelegate.swift */; };
 		7E46DF2319FEB359009215E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF2219FEB359009215E3 /* ViewController.swift */; };
 		7E46DF2619FEB359009215E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E46DF2419FEB359009215E3 /* Main.storyboard */; };
@@ -46,12 +53,19 @@
 		16C784AD19FEC9FF008421CC /* PlayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerCell.xib; sourceTree = "<group>"; };
 		16C784B019FECD0E008421CC /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		16C784B119FECD4F008421CC /* typicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = typicons.ttf; sourceTree = "<group>"; };
-		16C784B219FECE5F008421CC /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		16C784B419FEE99F008421CC /* TYPEWRON.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = TYPEWRON.TTF; sourceTree = "<group>"; };
 		16C784B519FEE9C1008421CC /* MKStencilsansBlack.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MKStencilsansBlack.ttf; sourceTree = "<group>"; };
 		16C784B619FEE9DA008421CC /* BOYCOTT_.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = BOYCOTT_.TTF; sourceTree = "<group>"; };
 		16C784B719FEF5F3008421CC /* mission_connector.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = mission_connector.pdf; sourceTree = "<group>"; };
 		16C784B919FF09C6008421CC /* 1095222_34734740.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1095222_34734740.jpg; sourceTree = "<group>"; };
+		705BB11B19FFFB4A00584A5B /* GameSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
+		705BB11D19FFFB5C00584A5B /* LeadGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadGameController.swift; sourceTree = "<group>"; };
+		705BB11F19FFFB6B00584A5B /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		705BB12119FFFB8000584A5B /* MissionAproved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionAproved.swift; sourceTree = "<group>"; };
+		705BB12219FFFB8000584A5B /* MissionPotential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionPotential.swift; sourceTree = "<group>"; };
+		705BB12519FFFB9500584A5B /* MultipeerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerController.swift; sourceTree = "<group>"; };
+		705BB12719FFFC2900584A5B /* PlayerForGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerForGame.swift; sourceTree = "<group>"; };
+		70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7E46DF1B19FEB359009215E3 /* Hacker Mission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hacker Mission.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E46DF1F19FEB359009215E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E46DF2019FEB359009215E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +165,7 @@
 		7E46DF1D19FEB359009215E3 /* Hacker Mission */ = {
 			isa = PBXGroup;
 			children = (
+				705BB11B19FFFB4A00584A5B /* GameSession.swift */,
 				16C784AA19FEC2E5008421CC /* Controller Layer */,
 				16C784A919FEC2A7008421CC /* View Layer */,
 				16C784AB19FEC2F5008421CC /* Model Layer */,
@@ -299,6 +314,12 @@
 			files = (
 				7E46DF5219FF336E009215E3 /* Mission.swift in Sources */,
 				16C784AE19FEC9FF008421CC /* PlayerCell.swift in Sources */,
+				705BB12019FFFB6B00584A5B /* Mission.swift in Sources */,
+				705BB12819FFFC2900584A5B /* PlayerForGame.swift in Sources */,
+				705BB11E19FFFB5C00584A5B /* LeadGameController.swift in Sources */,
+				705BB12619FFFB9500584A5B /* MultipeerController.swift in Sources */,
+				705BB12419FFFB8000584A5B /* MissionPotential.swift in Sources */,
+				70CAA5D419FFFC7F00D5BDC1 /* HomeViewController.swift in Sources */,
 				7E46DF2319FEB359009215E3 /* ViewController.swift in Sources */,
 				7E9BE66B19FFFF1D00E21794 /* CharacterRevealController.swift in Sources */,
 				7E46DF4919FF130A009215E3 /* GameEvent.swift in Sources */,
