@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16AA3ADC1A00596700646943 /* TYPEWRON.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B419FEE99F008421CC /* TYPEWRON.ttf */; };
+		16AA3ADD1A00596A00646943 /* BOYCOTT_.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B619FEE9DA008421CC /* BOYCOTT_.ttf */; };
+		16AA3ADE1A00596F00646943 /* MKStencilsansBlack.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B519FEE9C1008421CC /* MKStencilsansBlack.ttf */; };
+		16AA3ADF1A0059C600646943 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E46DF1F19FEB359009215E3 /* Info.plist */; };
 		16C007381A000C7000231A17 /* infinite_field_bw.gif in Resources */ = {isa = PBXBuildFile; fileRef = 16C007341A000C7000231A17 /* infinite_field_bw.gif */; };
 		16C007391A000C7000231A17 /* infinite_wormhole.gif in Resources */ = {isa = PBXBuildFile; fileRef = 16C007351A000C7000231A17 /* infinite_wormhole.gif */; };
 		16C0073A1A000C7000231A17 /* matrix_code1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 16C007361A000C7000231A17 /* matrix_code1.gif */; };
@@ -61,9 +65,9 @@
 		16C784AD19FEC9FF008421CC /* PlayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerCell.xib; sourceTree = "<group>"; };
 		16C784B019FECD0E008421CC /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		16C784B119FECD4F008421CC /* typicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = typicons.ttf; sourceTree = "<group>"; };
-		16C784B419FEE99F008421CC /* TYPEWRON.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = TYPEWRON.TTF; sourceTree = "<group>"; };
+		16C784B419FEE99F008421CC /* TYPEWRON.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TYPEWRON.ttf; sourceTree = "<group>"; };
 		16C784B519FEE9C1008421CC /* MKStencilsansBlack.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MKStencilsansBlack.ttf; sourceTree = "<group>"; };
-		16C784B619FEE9DA008421CC /* BOYCOTT_.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = BOYCOTT_.TTF; sourceTree = "<group>"; };
+		16C784B619FEE9DA008421CC /* BOYCOTT_.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BOYCOTT_.ttf; sourceTree = "<group>"; };
 		16C784B719FEF5F3008421CC /* mission_connector.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = mission_connector.pdf; sourceTree = "<group>"; };
 		16C784B919FF09C6008421CC /* 1095222_34734740.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1095222_34734740.jpg; sourceTree = "<group>"; };
 		436546741A00299C0060B865 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -200,8 +204,8 @@
 				16C784B019FECD0E008421CC /* fontawesome-webfont.ttf */,
 				16C784B519FEE9C1008421CC /* MKStencilsansBlack.ttf */,
 				16C784B919FF09C6008421CC /* 1095222_34734740.jpg */,
-				16C784B419FEE99F008421CC /* TYPEWRON.TTF */,
-				16C784B619FEE9DA008421CC /* BOYCOTT_.TTF */,
+				16C784B419FEE99F008421CC /* TYPEWRON.ttf */,
+				16C784B619FEE9DA008421CC /* BOYCOTT_.ttf */,
 				7E46DF1F19FEB359009215E3 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -304,6 +308,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16AA3ADC1A00596700646943 /* TYPEWRON.ttf in Resources */,
 				7E9BE6711A00045400E21794 /* MissionOutcomeView.xib in Resources */,
 				16C784B819FEF5F3008421CC /* mission_connector.pdf in Resources */,
 				16C0073A1A000C7000231A17 /* matrix_code1.gif in Resources */,
@@ -313,9 +318,12 @@
 				16C007391A000C7000231A17 /* infinite_wormhole.gif in Resources */,
 				16C784BA19FF09C6008421CC /* 1095222_34734740.jpg in Resources */,
 				7E9BE66F1A0001EC00E21794 /* NominationVoteView.xib in Resources */,
+				16AA3ADF1A0059C600646943 /* Info.plist in Resources */,
 				7E46DF2B19FEB359009215E3 /* LaunchScreen.xib in Resources */,
 				7E46DF2819FEB359009215E3 /* Images.xcassets in Resources */,
 				16C007381A000C7000231A17 /* infinite_field_bw.gif in Resources */,
+				16AA3ADD1A00596A00646943 /* BOYCOTT_.ttf in Resources */,
+				16AA3ADE1A00596F00646943 /* MKStencilsansBlack.ttf in Resources */,
 				16C0073B1A000C7000231A17 /* wireframe_planet.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -4,8 +4,8 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>BOYCOTT_.TTF</string>
-		<string>TYPEWRON.TTF</string>
+		<string>BOYCOTT_.ttf</string>
+		<string>TYPEWRON.ttf</string>
 		<string>MKStencilsansBlack.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
