@@ -13,9 +13,11 @@ class GameController : MultiPeerDelegate {
   var game : GameSession!
   var homeVC : HomeViewController!
   var multipeerController = MultiPeerController.sharedInstance
+  var myUserInfo = UserInfo(userName: "Teddy Roosevelt")
   
   init(){
     multipeerController.delegate = self
+
   }
   
   func handleEvent(event: GameEvent) {

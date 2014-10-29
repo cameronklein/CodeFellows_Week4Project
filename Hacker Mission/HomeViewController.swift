@@ -26,7 +26,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var backgroundImageView: UIImageView!
     
     var players : [Player]?
-  var user : Player?
+    var user : Player?
     //var currentMission : Mission?
     //TODO: Figure out where to pull a user's vote status from.
     
