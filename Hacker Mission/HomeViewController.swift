@@ -26,6 +26,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var backgroundImageView: UIImageView!
     
     var players : [Player]?
+    var user : Player?
     //var currentMission : Mission?
     //TODO: Figure out where to pull a user's vote status from.
     
@@ -95,16 +96,47 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         return cell
     }
-    
-    func voteOnProposedTeam(nominatedPlayers : [Player])
-    {//Display the nominated team to all users and get a vote of Approve or Reject back
-        let nominationVC = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
-        let nominationView = nominationVC.view
-        nominationVC.nominatedPlayersArray = nominatedPlayers
-        nominationView.frame = self.view.frame
-        self.addChildViewController(nominationVC)
-        self.view.addSubview(nominationView)
-    }
+  
+//  func nominatePlayers(game : GameSession) {
+//    let vc = NominationViewController(nibName: "NominationView", bundle: NSBundle.mainBundle())
+//    vc.view.frame = self.view.frame
+//    self.addChildViewController(vc)
+//    self.view.addSubview(vc.view)
+//  }
+//  
+//  func voteOnProposedTeam(game: GameSession)
+//  {//Display the nominated team to all users and get a vote of Approve or Reject back
+//    let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
+//    vc.game = game
+//    vc.view.frame = self.playerCollectionView.frame
+//    self.addChildViewController(vc)
+//    self.view.addSubview(vc.view)
+//  }
+//  
+//  func revealVotes(game : GameSession) {
+//   self.playersCollectionView.reloadData()
+//  }
+//
+//  func startMission(game : GameSession) {
+//    let vc = MissionStartViewController(nibName: "MissionStartView", bundle: NSBundle.mainBundle())
+//    vc.view.frame = self.view.frame
+//    self.addChildViewController(vc)
+//    self.view.addSubview(vc.view)
+//  }
+//  
+//  func voteOnMissionSuccess(game: GameSession) {
+//    let vc = MissionVoteViewController(nibName: "MissionVoteView", bundle: NSBundle.mainBundle())
+//    vc.view.frame = self.view.frame
+//    self.addChildViewController(vc)
+//    self.view.addSubview(vc.view)
+//  }
+//  
+//  func revealMissionOutcome(game : GameSession) {
+//    let vc = RevealViewController(nibName: "RevealView", bundle: NSBundle.mainBundle())
+//    vc.view.frame = self.view.frame
+//    self.addChildViewController(vc)
+//    self.view.addSubview(vc.view)
+//  }
 
     //MARK: - One line, because we probably won't use this.
     override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}

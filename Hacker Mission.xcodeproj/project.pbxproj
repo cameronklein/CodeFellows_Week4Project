@@ -11,7 +11,6 @@
 		16AA3ADC1A00596700646943 /* TYPEWRON.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B419FEE99F008421CC /* TYPEWRON.ttf */; };
 		16AA3ADD1A00596A00646943 /* BOYCOTT_.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B619FEE9DA008421CC /* BOYCOTT_.ttf */; };
 		16AA3ADE1A00596F00646943 /* MKStencilsansBlack.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B519FEE9C1008421CC /* MKStencilsansBlack.ttf */; };
-		16AA3ADF1A0059C600646943 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E46DF1F19FEB359009215E3 /* Info.plist */; };
 		16C007381A000C7000231A17 /* infinite_field_bw.gif in Resources */ = {isa = PBXBuildFile; fileRef = 16C007341A000C7000231A17 /* infinite_field_bw.gif */; };
 		16C007391A000C7000231A17 /* infinite_wormhole.gif in Resources */ = {isa = PBXBuildFile; fileRef = 16C007351A000C7000231A17 /* infinite_wormhole.gif */; };
 		16C0073A1A000C7000231A17 /* matrix_code1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 16C007361A000C7000231A17 /* matrix_code1.gif */; };
@@ -319,7 +318,6 @@
 				16C007391A000C7000231A17 /* infinite_wormhole.gif in Resources */,
 				16C784BA19FF09C6008421CC /* 1095222_34734740.jpg in Resources */,
 				7E9BE66F1A0001EC00E21794 /* NominationVoteView.xib in Resources */,
-				16AA3ADF1A0059C600646943 /* Info.plist in Resources */,
 				7E46DF2B19FEB359009215E3 /* LaunchScreen.xib in Resources */,
 				7E46DF2819FEB359009215E3 /* Images.xcassets in Resources */,
 				16C007381A000C7000231A17 /* infinite_field_bw.gif in Resources */,
