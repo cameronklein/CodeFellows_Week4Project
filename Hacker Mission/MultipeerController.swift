@@ -55,16 +55,16 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
     println("Received Data!")
     
-    // Is slave controller getting info from master controller
+    // Slave controller getting info from master controller
     if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
       delegate.handleEvent(gameData.currentGameState!)
     }
     
-    // Is master controller getting info from slave controller
+    // Master controller getting info from slave controller
     var error : NSError?
     if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSMutableDictionary {
       println("Found Dictionary")
-      jsonDict["peerID"] = peerID.description
+      jsonDict["peerID"] = peerID.displayName
       delegate.handleEvent(jsonDict)
     }
     
@@ -72,7 +72,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   // TODO: Send User Info
   func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
     if state == MCSessionState.Connected {
-      println("Peer Connected")
+      println("\(peerID.displayName) Connected")
       self.delegate.updatePeerCount(session.connectedPeers.count)
     } else if state == MCSessionState.NotConnected {
       println("Peer Stopped Connecting")
@@ -104,7 +104,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   // MARK: - MCNearbyServiceBrowserDelegate Methods
   
   func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
-    println("Found peer with id \(peerID)")
+    println("Found peer with id \(peerID.displayName)")
     
     browser.invitePeer(peerID, toSession: session, withContext: nil, timeout: 0)
     

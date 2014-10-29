@@ -12,7 +12,7 @@ class LaunchViewController: UIViewController {
   
   var masterController    : LeadGameController?
   var followerController  : GameController?
-  var multiPeerController = MultiPeerController.sharedInstance
+  //var multiPeerController = MultiPeerController.sharedInstance
 
   @IBOutlet weak var peersLabel: UILabel!
   @IBOutlet weak var startButton: UIButton!
@@ -45,7 +45,7 @@ class LaunchViewController: UIViewController {
     hostButton.hidden = true
     self.spinningWheel.startAnimating()
     followerController = GameController()
-    multiPeerController.startAdvertising()
+    followerController?.startLookingForGame()
     
   }
   

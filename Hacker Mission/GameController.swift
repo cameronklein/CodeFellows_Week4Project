@@ -19,6 +19,7 @@ class GameController : MultiPeerDelegate {
   }
   
   func handleEvent(event: GameEvent) {
+    println("Received \(event.rawValue) even from Main Brain. Woot.")
     switch event{
     case .Start:
       self.gameStart()
