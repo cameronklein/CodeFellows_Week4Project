@@ -74,7 +74,5 @@ class LaunchViewController: UIViewController {
         
     
     }
-    
-    
   
 }

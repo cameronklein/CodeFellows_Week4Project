@@ -97,6 +97,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         return cell
     }
   
+
+  
 //  func nominatePlayers(game : GameSession) {
 //    let vc = NominationViewController(nibName: "NominationView", bundle: NSBundle.mainBundle())
 //    vc.view.frame = self.view.frame
@@ -104,15 +106,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //    self.view.addSubview(vc.view)
 //  }
 //  
-//  func voteOnProposedTeam(game: GameSession)
-//  {//Display the nominated team to all users and get a vote of Approve or Reject back
-//    let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
-//    vc.game = game
-//    vc.view.frame = self.playerCollectionView.frame
-//    self.addChildViewController(vc)
-//    self.view.addSubview(vc.view)
-//  }
-//  
+  func voteOnProposedTeam(game: GameSession)
+  {//Display the nominated team to all users and get a vote of Approve or Reject back
+    let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
+    vc.game = game
+    vc.view.frame = self.playersCollectionView.frame
+    self.addChildViewController(vc)
+    self.view.addSubview(vc.view)
+  }
+//
 //  func revealVotes(game : GameSession) {
 //   self.playersCollectionView.reloadData()
 //  }
@@ -125,12 +127,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //  }
 //  
 //  func voteOnMissionSuccess(game: GameSession) {
-//    let vc = MissionVoteViewController(nibName: "MissionVoteView", bundle: NSBundle.mainBundle())
+//    let vc = MissionVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
 //    vc.view.frame = self.view.frame
 //    self.addChildViewController(vc)
 //    self.view.addSubview(vc.view)
 //  }
-//  
+//
 //  func revealMissionOutcome(game : GameSession) {
 //    let vc = RevealViewController(nibName: "RevealView", bundle: NSBundle.mainBundle())
 //    vc.view.frame = self.view.frame

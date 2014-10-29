@@ -68,6 +68,7 @@ class GameController : MultiPeerDelegate {
         homeVC.user = player as Player
       }
     }
+    self.homeVC.startGame()
   }
   
   func revealCharacters() {
