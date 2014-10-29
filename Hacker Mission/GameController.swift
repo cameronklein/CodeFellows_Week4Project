@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
 class GameController : NSObject, MultiPeerDelegate {
   
   var game : GameSession!
   var homeVC : HomeViewController!
   var multipeerController = MultiPeerController.sharedInstance
+  var peerCount : Int = 0
   
   override init(){
     super.init()
@@ -104,8 +106,12 @@ class GameController : NSObject, MultiPeerDelegate {
         println("Two")
     }
 
-  func updatePeerCount(count : Int) {
-    println("Hello!")
-  }
+
+    func updatePeerCount(count : Int) {
+        self.peerCount = count
+        if let root = UIApplication.sharedApplication().keyWindow?.rootViewController as? LaunchViewController {
+            root.updateConnectedPeersLabel(count)
+        }
+    }
 
 }
