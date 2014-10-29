@@ -16,6 +16,8 @@ class PlayerCell: UICollectionViewCell
     @IBOutlet weak var approvesMission: UILabel!
     @IBOutlet weak var rejectsMission: UILabel!
     
+    var isSelected : Bool = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
