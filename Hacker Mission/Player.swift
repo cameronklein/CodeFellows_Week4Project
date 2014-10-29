@@ -73,11 +73,7 @@ class Player : NSObject, NSCoding {
         playerDictionary.setObject(userInfo.userName, forKey: "playerName")
         playerDictionary.setObject(userInfo.userID, forKey: "playerID")
         playerDictionary.setObject(userInfo.userPeerID!, forKey: "peerID")
-        if userInfo.userImage != nil {
-          playerDictionary.setObject(userInfo.userImage!, forKey: "playerImage")
-        } else {
-          playerDictionary.setObject(UIImage(named: "AtSymbol")!, forKey: "playerImage")
-      }
+        playerDictionary.setObject(userInfo.userImage, forKey: "playerImage")
         return playerDictionary as NSMutableDictionary
     }
 

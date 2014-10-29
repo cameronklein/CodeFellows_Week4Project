@@ -21,7 +21,7 @@ class GameController : MultiPeerDelegate {
   
   init(){
     multipeerController.delegate = self
-    myUserInfo = UserInfo(userName: "Teddy Roosevelt")
+    myUserInfo = UserInfo(userName: "Teddy Roosevelt", userImage: UIImage(named: "AtSymbol")!)
     myUserInfo.userPeerID = "myID234234234"
     myUserInfo.userImage = UIImage(named: "AtSymbol")!
   }
@@ -57,7 +57,7 @@ class GameController : MultiPeerDelegate {
   }
   
   func startLookingForGame(){
-    self.userInfo = UserInfo(userName: "Follower")
+    self.userInfo = UserInfo(userName: "Follower", userImage: UIImage(named: "AtSymbol")!)
     multipeerController.userInfo = self.userInfo
     multipeerController.startAdvertising()
   }
