@@ -120,6 +120,8 @@
 		16C784A919FEC2A7008421CC /* View Layer */ = {
 			isa = PBXGroup;
 			children = (
+				7E46DF2919FEB359009215E3 /* LaunchScreen.xib */,
+				7E46DF2419FEB359009215E3 /* Main.storyboard */,
 				16C784AC19FEC9FF008421CC /* PlayerCell.swift */,
 				16C784AD19FEC9FF008421CC /* PlayerCell.xib */,
 				439DEC6919FEF7A400ACA353 /* GameSession.swift */,
@@ -140,6 +142,7 @@
 				7E9BE66A19FFFF1D00E21794 /* NominationViewController.swift */,
 				7E9BE66E1A0001EC00E21794 /* NominationVoteView.xib */,
 				7E9BE6701A00045400E21794 /* MissionOutcomeView.xib */,
+				7E46DF2219FEB359009215E3 /* ViewController.swift */,
 			);
 			name = "Controller Layer";
 			sourceTree = "<group>";
@@ -183,10 +186,6 @@
 				16C784AA19FEC2E5008421CC /* Controller Layer */,
 				16C784A919FEC2A7008421CC /* View Layer */,
 				16C784AB19FEC2F5008421CC /* Model Layer */,
-				7E46DF2219FEB359009215E3 /* ViewController.swift */,
-				7E46DF2419FEB359009215E3 /* Main.storyboard */,
-				7E46DF2719FEB359009215E3 /* Images.xcassets */,
-				7E46DF2919FEB359009215E3 /* LaunchScreen.xib */,
 				7E46DF1E19FEB359009215E3 /* Supporting Files */,
 			);
 			path = "Hacker Mission";
@@ -195,6 +194,7 @@
 		7E46DF1E19FEB359009215E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7E46DF2719FEB359009215E3 /* Images.xcassets */,
 				16C007341A000C7000231A17 /* infinite_field_bw.gif */,
 				16C007351A000C7000231A17 /* infinite_wormhole.gif */,
 				16C007361A000C7000231A17 /* matrix_code1.gif */,
