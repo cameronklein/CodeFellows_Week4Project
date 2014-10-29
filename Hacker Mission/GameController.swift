@@ -7,12 +7,15 @@
 //
 
 import Foundation
+import UIKit
 
 class GameController : MultiPeerDelegate {
   
   var game : GameSession!
   var homeVC : HomeViewController!
   var multipeerController = MultiPeerController.sharedInstance
+  var peerCount : Int = 0
+    var userInfo : UserInfo?
   var myUserInfo = UserInfo(userName: "Teddy Roosevelt")
   
   init(){
@@ -49,11 +52,15 @@ class GameController : MultiPeerDelegate {
   }
   
   func startLookingForGame(){
+    self.userInfo = UserInfo(userName: "Follower")
+    multipeerController.userInfo = self.userInfo
     multipeerController.startAdvertising()
   }
   
   func gameStart() {
     multipeerController.stopAdvertising()
+    sendUserInfo()
+    
     // TODO: Intro Animation?
     let players = game.players
     for player in players {
@@ -108,8 +115,16 @@ class GameController : MultiPeerDelegate {
     println("Two")
   }
 
-  func updatePeerCount(count : Int) {
-    println("Hello!")
-  }
+
+    func updatePeerCount(count : Int) {
+        self.peerCount = count
+        if let root = UIApplication.sharedApplication().keyWindow?.rootViewController as? LaunchViewController {
+            root.updateConnectedPeersLabel(count)
+        }
+        sendUserInfo()
+    }
+    func sendUserInfo () {
+     multipeerController.sendUserInfoToLeadController(userInfo!)
+    }
 
 }

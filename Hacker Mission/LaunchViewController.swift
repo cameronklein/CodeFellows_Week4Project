@@ -31,7 +31,7 @@ class LaunchViewController: UIViewController {
   }
 
   @IBAction func hostGameButtonPressed(sender: AnyObject) {
-    startButton.hidden = false
+    startButton.hidden = true
     peersLabel.hidden = false
     joinButton.hidden = true
     hostButton.hidden = true
@@ -50,12 +50,31 @@ class LaunchViewController: UIViewController {
   }
   
   @IBAction func startGameButtonPressed(sender: AnyObject) {
-    masterController!.startGame()
+    println("Going to start game!")
+    masterController?.startGame()
   }
     
     func updateConnectedPeersLabel (number: Int) -> Void
     {
+        println("updating Peers Label to \(number)")
         self.peersLabel.text = "[" + number.description + " Peers Connected..]"
+        if (number > 0) {
+            println("Yep, number is greater then 0")
+            println(self.spinningWheel.isAnimating())
+            if (self.spinningWheel.isAnimating()){
+                self.spinningWheel.stopAnimating()
+                self.peersLabel.hidden = false
+            }
+        }
+        if (number > 0) {
+            if (self.masterController != nil) {
+                self.startButton.hidden = false
+            }
+        }
+        
+    
     }
+    
+    
   
 }
