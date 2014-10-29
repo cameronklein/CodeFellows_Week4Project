@@ -57,6 +57,8 @@ class GameController : MultiPeerDelegate {
   
   func gameStart() {
     multipeerController.stopAdvertising()
+    sendUserInfo()
+    
     // TODO: Intro Animation?
   }
   
@@ -117,8 +119,8 @@ class GameController : MultiPeerDelegate {
         if let root = UIApplication.sharedApplication().keyWindow?.rootViewController as? LaunchViewController {
             root.updateConnectedPeersLabel(count)
         }
+        sendUserInfo()
     }
-    
     func sendUserInfo () {
      multipeerController.sendUserInfoToLeadController(userInfo!)
     }

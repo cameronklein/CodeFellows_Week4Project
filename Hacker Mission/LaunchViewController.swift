@@ -56,12 +56,8 @@ class LaunchViewController: UIViewController {
     
     func updateConnectedPeersLabel (number: Int) -> Void
     {
-        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-            
-        
         println("updating Peers Label to \(number)")
         self.peersLabel.text = "[" + number.description + " Peers Connected..]"
-        //viewDidLoad()
         if (number > 0) {
             println("Yep, number is greater then 0")
             println(self.spinningWheel.isAnimating())
@@ -75,7 +71,7 @@ class LaunchViewController: UIViewController {
                 self.startButton.hidden = false
             }
         }
-        }
+        
     
     }
     
