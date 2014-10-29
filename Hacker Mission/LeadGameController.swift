@@ -15,6 +15,7 @@ class LeadGameController : MultiPeerDelegate {
   var multipeerController : MultiPeerController = MultiPeerController()
   var game : GameSession!
   var currentVotes = [Bool]()
+  var currentMissionOutcomeVotes = [String]()
   var usersForGame = [UserInfo]()
   var peerCount : Int = 0
 
@@ -201,7 +202,30 @@ class LeadGameController : MultiPeerDelegate {
   func tabulateMissionOutcome(forPlayer playerID : String, andOutcome outcome: String) {
     //Calculate if the mission will succeed or fail, based on mission criteria
     
+    println("Mission outcome vote received from \(playerID)")
+    currentMissionOutcomeVotes.append(outcome)
+    let currentMission = game.missions[game.currentMission!] as Mission
+    if currentMissionOutcomeVotes.count == currentMission.playersNeeded {
+      var succeed = 0
+      var fail = 0
+      for vote in currentMissionOutcomeVotes {
+        if vote == "succeed" {
+          succeed = succeed + 1
+        } else if vote == "fail" {
+          fail = fail + 1
+        }
+      }
+      if fail >= currentMission.failThreshold {
+        println("Mission Failed!!!")
+        currentMission.success = false
+      } else {
+        println("Mission Succeeded!!!")
+        currentMission.success = true
+      }
+      revealMissionOutcome()
+      }
   }
+  
     
   func revealMissionOutcome() {
     //Reveals if the mission is successful or fails
@@ -212,7 +236,9 @@ class LeadGameController : MultiPeerDelegate {
   
   func endMission() {
     //Memorialize mission information, call updateScore, reset mission timer
-    
+    var currentMission = game.missions[game.currentMission!] as Mission
+    println("Updating mission number index.")
+    game.currentMission = game.currentMission! + 1
   }
   
   func updateScore() {
