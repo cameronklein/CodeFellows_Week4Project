@@ -18,14 +18,17 @@ class LeadGameController : MultiPeerDelegate {
   var usersForGame = [UserInfo]()
   var peerCount : Int = 0
   var userInfo : UserInfo?
+  var launchVC : LaunchViewController!
 
   init() {
     multipeerController.delegate = self
   }
   
   func startLookingForPlayers() {
-    self.userInfo = UserInfo(userName: "Boss Man")
-    multipeerController.userInfo = self.userInfo
+    myUserInfo = UserInfo(userName: "Boss Man")
+    myUserInfo.userPeerID = "myID234234234"
+    myUserInfo.userImage = UIImage(named: "questionMark")!
+    multipeerController.userInfo = self.myUserInfo
     multipeerController.startBrowsing()
   }
 
@@ -58,12 +61,14 @@ class LeadGameController : MultiPeerDelegate {
 //    }
     println("\(players.count) players created from provided user information.")
     var missions = GameSession.populateMissionList() as NSMutableArray // Temporary method until we have a pool of individualized missions
+    println("Created \(missions.count) missions.")
     
     self.game = GameSession(players: NSMutableArray(array:players), missions: missions)
     if self.game != nil {
       println("Game Created. We are ready for launch.")
       assignRoles()
     }
+    self.launchVC.gameStart()
     }
 
   func assignRoles(){
@@ -99,6 +104,10 @@ class LeadGameController : MultiPeerDelegate {
     game.leader = player
     
     println("Assigned \(player.playerName) as initial leader.")
+    println("Sending *Game Start* event to peers.")
+    game.currentGameState = GameEvent.Start
+    multipeerController.sendEventToPeers(game)
+    
     
     self.revealCharacters()
   }
@@ -290,7 +299,7 @@ class LeadGameController : MultiPeerDelegate {
     }
   }
 
-    func handleEvent(event: GameEvent) {
+    func handleEvent(event: GameSession) {
         println("Something went wrong. This should not be called.")
     }
   

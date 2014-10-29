@@ -9,7 +9,7 @@
 import MultipeerConnectivity
 
 protocol MultiPeerDelegate {
-  func handleEvent(event : GameEvent)
+  func handleEvent(event : GameSession)
   func handleEvent(event : NSMutableDictionary)
   func updatePeerCount(Int)
 }
@@ -61,7 +61,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     var error : NSError?
     // Slave controller getting info from master controller
     if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
-      delegate.handleEvent(gameData.currentGameState!)
+      delegate.handleEvent(gameData)
     }
     else if let userData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary{
         
@@ -158,9 +158,12 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   }
   
   func sendEventToPeers(game: GameSession) {
-    let data = NSKeyedArchiver.archivedDataWithRootObject(game.currentGameState!.rawValue)
+    let data = NSKeyedArchiver.archivedDataWithRootObject(game)
     var error : NSError?
     session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
+    if error != nil {
+      println(error!.description)
+    }
   }
   
   func sendInfoToMainBrain(dictionary: NSDictionary) {
