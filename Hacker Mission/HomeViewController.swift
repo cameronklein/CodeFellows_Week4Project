@@ -26,6 +26,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var backgroundImageView: UIImageView!
     
     var players : [Player]?
+    var user : Player?
     //var currentMission : Mission?
     //TODO: Figure out where to pull a user's vote status from.
     
@@ -34,6 +35,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        self.playersCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
         
         //round corners on players collection view
         self.playersCollectionView.layer.cornerRadius = self.playersCollectionView.frame.size.width / 16
@@ -101,9 +104,19 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         let nominationVC = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
         let nominationView = nominationVC.view
         nominationVC.nominatedPlayersArray = nominatedPlayers
-        nominationView.frame = self.view.frame
+        nominationView.frame = self.playersCollectionView.frame
         self.addChildViewController(nominationVC)
         self.view.addSubview(nominationView)
+    }
+    
+    func revealCharacters(game : GameSession)
+    {
+        let vc = RevealViewController(nibName: "RevealView", bundle: NSBundle.mainBundle())
+        vc.view.frame = self.playersCollectionView.frame
+        vc.game = game
+        vc.user = user
+        self.addChildViewController(vc)
+        self.view.addSubview(vc.view)
     }
 
     //MARK: - One line, because we probably won't use this.
