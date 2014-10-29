@@ -218,9 +218,11 @@ class LeadGameController : MultiPeerDelegate {
       if fail >= currentMission.failThreshold {
         println("Mission Failed!!!")
         currentMission.success = false
+        game.failedMissionCount = game.failedMissionCount + 1
       } else {
         println("Mission Succeeded!!!")
         currentMission.success = true
+        game.passedMissionCount = game.passedMissionCount + 1
       }
       revealMissionOutcome()
       }
