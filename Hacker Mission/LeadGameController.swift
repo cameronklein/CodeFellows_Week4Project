@@ -34,11 +34,7 @@ class LeadGameController : MultiPeerDelegate {
     println("Start Game Called on Master View Controller")
     
     multipeerController.stopBrowsing()
-    self.usersForGame = multipeerController.getPlayersForGame()
     var players = NSMutableArray()
-    if self.usersForGame == nil {
-        println("nil value for users for game, should be initialized")
-    }
 
       for user in usersForGame {
         
@@ -46,23 +42,17 @@ class LeadGameController : MultiPeerDelegate {
           var player = Player(playerDictionary: playerFor)
           players.addObject(player)
       }
-    }
     
 //    var players = usersForGame.map { (UserInfo) -> U in
 //      return Player(Player.makePlayerDictionaryForGameSession(UserInfo))
 //    }
-    
     println("\(players.count) players created from provided user information.")
-    
-    
     var missions = GameSession.populateMissionList() as NSMutableArray // Temporary method until we have a pool of individualized missions
-
     self.game = GameSession(players: players, missions: missions)
     if self.game != nil {
-      println("Game Created. We are ready for launch.")
+      println("Game Created. We are ready to start.")
     }
-    
-  }
+    }
 
   func assignRoles(){
     println("Beginning to assign player roles for \(game.players.count) players.")

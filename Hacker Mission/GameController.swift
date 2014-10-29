@@ -118,5 +118,9 @@ class GameController : MultiPeerDelegate {
             root.updateConnectedPeersLabel(count)
         }
     }
+    
+    func sendUserInfo () {
+     multipeerController.sendUserInfoToLeadController(userInfo!)
+    }
 
 }
