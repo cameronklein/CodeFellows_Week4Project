@@ -5,7 +5,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="TYPEWRON.TTF">
+        <mutableArray key="TYPEWRON.ttf">
             <string>Typewrong</string>
             <string>Typewrong</string>
             <string>Typewrong</string>
@@ -32,15 +32,21 @@
                                 <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <variation key="widthClass=compact" misplaced="YES">
+                                <rect key="frame" x="337" y="548" width="43" height="30"/>
+                            </variation>
                             <connections>
                                 <action selector="rejectNominatedTeam:" destination="-1" eventType="touchUpInside" id="eF1-RS-cHl"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nominated Characters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07w-Wb-B2L">
-                            <rect key="frame" x="171" y="34" width="258" height="17.5"/>
+                            <rect key="frame" x="171" y="34" width="258" height="18"/>
                             <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="17"/>
                             <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
+                            <variation key="widthClass=compact" misplaced="YES">
+                                <rect key="frame" x="114.5" y="32" width="172" height="20"/>
+                            </variation>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WUG-e6-lk3" userLabel="I">
                             <rect key="frame" x="30" y="548" width="85" height="28"/>
@@ -49,6 +55,9 @@
                                 <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <variation key="widthClass=compact" misplaced="YES">
+                                <rect key="frame" x="20" y="548" width="57" height="30"/>
+                            </variation>
                             <connections>
                                 <action selector="approveNominatedTeam:" destination="-1" eventType="touchUpInside" id="hg2-J3-fQa"/>
                             </connections>

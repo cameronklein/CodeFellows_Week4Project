@@ -28,8 +28,8 @@ class Mission : NSObject {
 
     convenience override init () {
 
-        var missionDictionary : NSMutableDictionary!
-        missionDictionary?.setValue("Test Mission", forKey: "missionName")
+        var missionDictionary = NSMutableDictionary()
+        missionDictionary.setValue("Test Mission", forKey: "missionName")
 
         self.init (missionDictionary: missionDictionary as NSMutableDictionary!)
     }

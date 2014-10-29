@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		164EDA901A015008005F7452 /* CharacterCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164EDA8E1A015008005F7452 /* CharacterCreationViewController.swift */; };
 		16AA3ADC1A00596700646943 /* TYPEWRON.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B419FEE99F008421CC /* TYPEWRON.ttf */; };
 		16AA3ADD1A00596A00646943 /* BOYCOTT_.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B619FEE9DA008421CC /* BOYCOTT_.ttf */; };
 		16AA3ADE1A00596F00646943 /* MKStencilsansBlack.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B519FEE9C1008421CC /* MKStencilsansBlack.ttf */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		164EDA8E1A015008005F7452 /* CharacterCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterCreationViewController.swift; sourceTree = "<group>"; };
 		16C007341A000C7000231A17 /* infinite_field_bw.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = infinite_field_bw.gif; sourceTree = "<group>"; };
 		16C007351A000C7000231A17 /* infinite_wormhole.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = infinite_wormhole.gif; sourceTree = "<group>"; };
 		16C007361A000C7000231A17 /* matrix_code1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = matrix_code1.gif; sourceTree = "<group>"; };
@@ -120,9 +122,13 @@
 		16C784A919FEC2A7008421CC /* View Layer */ = {
 			isa = PBXGroup;
 			children = (
-				16C784AC19FEC9FF008421CC /* PlayerCell.swift */,
+				7E46DF2919FEB359009215E3 /* LaunchScreen.xib */,
+				7E46DF2419FEB359009215E3 /* Main.storyboard */,
+				7E9BE6701A00045400E21794 /* MissionOutcomeView.xib */,
+				7E9BE66E1A0001EC00E21794 /* NominationVoteView.xib */,
+				7E423DF81A0027560015CC8D /* LaunchViewController.xib */,
 				16C784AD19FEC9FF008421CC /* PlayerCell.xib */,
-				439DEC6919FEF7A400ACA353 /* GameSession.swift */,
+				16C784AC19FEC9FF008421CC /* PlayerCell.swift */,
 			);
 			name = "View Layer";
 			sourceTree = "<group>";
@@ -130,15 +136,15 @@
 		16C784AA19FEC2E5008421CC /* Controller Layer */ = {
 			isa = PBXGroup;
 			children = (
+				7E46DF4019FEBC2A009215E3 /* MultipeerController.swift */,
 				436546741A00299C0060B865 /* AppDelegate.swift */,
 				70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */,
 				705BB11D19FFFB5C00584A5B /* LeadGameController.swift */,
 				7E423DF71A0027560015CC8D /* LaunchViewController.swift */,
-				7E423DF81A0027560015CC8D /* LaunchViewController.xib */,
 				7E46DF4619FF126A009215E3 /* GameController.swift */,
 				7E9BE66A19FFFF1D00E21794 /* NominationViewController.swift */,
-				7E9BE66E1A0001EC00E21794 /* NominationVoteView.xib */,
-				7E9BE6701A00045400E21794 /* MissionOutcomeView.xib */,
+				7E46DF2219FEB359009215E3 /* ViewController.swift */,
+				164EDA8E1A015008005F7452 /* CharacterCreationViewController.swift */,
 			);
 			name = "Controller Layer";
 			sourceTree = "<group>";
@@ -146,6 +152,7 @@
 		16C784AB19FEC2F5008421CC /* Model Layer */ = {
 			isa = PBXGroup;
 			children = (
+				439DEC6919FEF7A400ACA353 /* GameSession.swift */,
 				16C0073C1A000FBA00231A17 /* UIClassExtensions.swift */,
 				4372ECB11A0024A200907EFA /* Mission.swift */,
 				43CEB92819FF41BE007CF4A5 /* ApprovedTeam.swift */,
@@ -182,11 +189,6 @@
 				16C784AA19FEC2E5008421CC /* Controller Layer */,
 				16C784A919FEC2A7008421CC /* View Layer */,
 				16C784AB19FEC2F5008421CC /* Model Layer */,
-				7E46DF2219FEB359009215E3 /* ViewController.swift */,
-				7E46DF4019FEBC2A009215E3 /* MultipeerController.swift */,
-				7E46DF2419FEB359009215E3 /* Main.storyboard */,
-				7E46DF2719FEB359009215E3 /* Images.xcassets */,
-				7E46DF2919FEB359009215E3 /* LaunchScreen.xib */,
 				7E46DF1E19FEB359009215E3 /* Supporting Files */,
 			);
 			path = "Hacker Mission";
@@ -195,6 +197,7 @@
 		7E46DF1E19FEB359009215E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7E46DF2719FEB359009215E3 /* Images.xcassets */,
 				16C007341A000C7000231A17 /* infinite_field_bw.gif */,
 				16C007351A000C7000231A17 /* infinite_wormhole.gif */,
 				16C007361A000C7000231A17 /* matrix_code1.gif */,
@@ -343,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16C784AE19FEC9FF008421CC /* PlayerCell.swift in Sources */,
+				164EDA901A015008005F7452 /* CharacterCreationViewController.swift in Sources */,
 				705BB11E19FFFB5C00584A5B /* LeadGameController.swift in Sources */,
 				70CAA5D419FFFC7F00D5BDC1 /* HomeViewController.swift in Sources */,
 				436546751A00299C0060B865 /* AppDelegate.swift in Sources */,
