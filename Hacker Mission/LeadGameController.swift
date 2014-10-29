@@ -43,8 +43,8 @@ class LeadGameController : MultiPeerDelegate {
 
       for user in usersForGame {
         
-          var playerFor = Player.makePlayerDictionaryForGameSession(user as UserInfo)
-          var player = Player(playerDictionary: playerFor) as Player
+        var playerFor = Player.makePlayerDictionaryForGameSession(user as UserInfo)
+        var player = Player(playerDictionary: playerFor) as Player
         var needToAdd : Bool = true
         for existingPlayer in players {
             if (existingPlayer.playerID == player.playerID) {

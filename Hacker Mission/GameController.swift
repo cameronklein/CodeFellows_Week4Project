@@ -28,6 +28,7 @@ class GameController : MultiPeerDelegate {
   
   func handleEvent(game: GameSession) {
     self.game = game
+    self.homeVC.game = game
     let event = game.currentGameState!
     println("Received \(event.rawValue) event from Main Brain. Woot.")
     switch event{

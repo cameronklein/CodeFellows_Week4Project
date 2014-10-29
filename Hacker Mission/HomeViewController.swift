@@ -27,6 +27,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     var players : [Player]?
     var user : Player?
+    var game: GameSession!
     //var currentMission : Mission?
     //TODO: Figure out where to pull a user's vote status from.
     
