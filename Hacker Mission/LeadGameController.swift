@@ -15,7 +15,7 @@ class LeadGameController : MultiPeerDelegate {
   var multipeerController : MultiPeerController = MultiPeerController()
   var game : GameSession!
   var currentVotes = [Bool]()
-  var usersForGame : NSMutableArray?
+  var usersForGame = [UserInfo]()
   var peerCount : Int = 0
 
   init() {
@@ -30,16 +30,19 @@ class LeadGameController : MultiPeerDelegate {
     multipeerController.stopBrowsing()
     var players = NSMutableArray()
 
-    if self.usersForGame == nil {
-        println("nil value for users for game, should be initialized")
-    }
+    if self.usersForGame.count == 0 {
+        println("No users added to game.")
+    } else {
 
-    for user in self.usersForGame! {
+      for user in usersForGame {
         
-        var playerFor = Player.makePlayerDictionaryForGameSession(user as UserInfo)
-        var player = Player(playerDictionary: playerFor)
-        players.addObject(player)
+          var playerFor = Player.makePlayerDictionaryForGameSession(user as UserInfo)
+          var player = Player(playerDictionary: playerFor)
+          players.addObject(player)
+      }
     }
+    
+    
     var missions = GameSession.populateMissionList() as NSMutableArray // Temporary methid until we have a pool of individualized missions
 
     self.game = GameSession(players: players, missions: missions)
@@ -121,17 +124,15 @@ class LeadGameController : MultiPeerDelegate {
     multipeerController.sendEventToPeers(game)
   }
   
-  func tabulateVotes(dictionary: NSMutableDictionary) {
+  func tabulateVotes(forPlayer playerID : String, andVote voteResult : Bool) {
     
     //Calculates if the mission is approved or rejected
     
-    let peerID = dictionary["peerID"] as String
-    let vote = dictionary["votes"] as Bool
-    currentVotes.append(vote)
+    currentVotes.append(voteResult)
     for player in game.players {
         let playerStaged = player as Player
-      if playerStaged.peerID == peerID {
-        playerStaged.currentVote = vote
+      if playerStaged.peerID == playerID {
+        playerStaged.currentVote = voteResult
       }
     }
     
@@ -139,7 +140,7 @@ class LeadGameController : MultiPeerDelegate {
       var approved = 0
       var rejected = 0
       for vote in currentVotes {
-        if vote {
+        if voteResult {
           approved = approved + 1
         } else {
           rejected = rejected + 1
@@ -167,7 +168,7 @@ class LeadGameController : MultiPeerDelegate {
     
   }
   
-  func tabulateMissionOutcome() {
+  func tabulateMissionOutcome(forPlayer playerID : String, andOutcome outcome: String) {
     //Calculate if the mission will succeed or fail, based on mission criteria
     
   }
@@ -202,27 +203,34 @@ class LeadGameController : MultiPeerDelegate {
   // MARK - Multipeer Delegate Methods
   
   func handleEvent(event: NSMutableDictionary) {
+    let action  = event["action"] as String
+    let peerID  = event["peerID"] as String
     
-    if let vote = event["vote"] as? Bool {
-      self.tabulateVotes(event)
-    }
-    if let vote = event["missionOutcome"] as? Bool {
-      self.tabulateVotes(event)
-    }
-    if let user = event["user"] as? UserInfo {
-        user.userPeerID = event["peerID"] as? NSString
-        self.usersForGame?.addObject(user)
+    switch action{
+    case "vote" :
+      let value = event["value"] as Bool
+      self.tabulateVotes(forPlayer: peerID, andVote: value)
+    case "missionOutcome" :
+      let value = event["value"] as String
+      self.tabulateMissionOutcome(forPlayer: peerID, andOutcome: value)
+    case "user" :
+      let value = event["value"] as UserInfo
+      usersForGame.append(value)
+    default:
+      println("LeadGameController event handler action not recognized.")
     }
   }
 
     func handleEvent(event: GameEvent) {
-        println("Something went wrong")
+        println("Something went wrong. This should not be called.")
     }
   
   func updatePeerCount(count : Int) {
     self.peerCount = count
     if let root = UIApplication.sharedApplication().keyWindow?.rootViewController as? LaunchViewController {
-      root.updateConnectedPeersLabel(count)
+      NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+        root.updateConnectedPeersLabel(count)
+      })
     }
   }
   

@@ -69,7 +69,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     }
     
   }
-  
+  // TODO: Send User Info
   func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
     if state == MCSessionState.Connected {
       println("Peer Connected")
@@ -99,7 +99,6 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     
     println("Got an invitation and auto-accepting.")
     invitationHandler(true, self.session)
-    
   }
   
   // MARK: - MCNearbyServiceBrowserDelegate Methods

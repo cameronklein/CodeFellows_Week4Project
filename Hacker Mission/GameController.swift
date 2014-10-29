@@ -8,14 +8,13 @@
 
 import Foundation
 
-class GameController : NSObject, MultiPeerDelegate {
+class GameController : MultiPeerDelegate {
   
   var game : GameSession!
   var homeVC : HomeViewController!
   var multipeerController = MultiPeerController.sharedInstance
   
-  override init(){
-    super.init()
+  init(){
     multipeerController.delegate = self
   }
   
@@ -51,12 +50,14 @@ class GameController : NSObject, MultiPeerDelegate {
   }
   
   func gameStart() {
-    
+    multipeerController.stopAdvertising()
+    // TODO: Intro Animation?
   }
   
   func revealCharacters() {
     //At start of game reveal what role you are in the game
-//    self.homeVC.revealCharacters(game.playerList)
+    
+    //self.homeVC.revealCharacters(game.playerList)
 
   }
   
@@ -67,10 +68,7 @@ class GameController : NSObject, MultiPeerDelegate {
   }
   
   func revealNominations() {
-    
-  }
-  
-  func startMission() {
+    //self.homeVC.revealNominations()
     
   }
   
@@ -84,6 +82,9 @@ class GameController : NSObject, MultiPeerDelegate {
 //    self.homeVC.revealVotes()
   }
   
+  func startMission() {
+    // TODO: Intro Animation?
+  }
   
   func beginMissionOutcome() {
     //Nominated players on mission vote to succeed or fail the mission
@@ -100,9 +101,9 @@ class GameController : NSObject, MultiPeerDelegate {
     
   }
 
-    func handleEvent(event: NSMutableDictionary) {
-        println("Two")
-    }
+  func handleEvent(event: NSMutableDictionary) {
+    println("Two")
+  }
 
   func updatePeerCount(count : Int) {
     println("Hello!")

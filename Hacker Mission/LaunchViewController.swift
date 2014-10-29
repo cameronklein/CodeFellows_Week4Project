@@ -10,8 +10,8 @@ import UIKit
 
 class LaunchViewController: UIViewController {
   
-  var masterController : LeadGameController?
-  var followerController : GameController?
+  var masterController    : LeadGameController?
+  var followerController  : GameController?
   var multiPeerController = MultiPeerController.sharedInstance
 
   @IBOutlet weak var peersLabel: UILabel!
@@ -22,11 +22,6 @@ class LaunchViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-      
-
-
-
-
     // Do any additional setup after loading the view.
   }
 
@@ -55,8 +50,7 @@ class LaunchViewController: UIViewController {
   }
   
   @IBAction func startGameButtonPressed(sender: AnyObject) {
-    println("Going to start game!")
-    
+    masterController!.startGame()
   }
     
     func updateConnectedPeersLabel (number: Int) -> Void
