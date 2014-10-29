@@ -58,18 +58,19 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
 
   func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
     println("Received Data!")
-    
+    var error : NSError?
     // Slave controller getting info from master controller
     if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
       delegate.handleEvent(gameData.currentGameState!)
     }
-    
-//    if let userData = UserInfo.unwrapUserInfo(data) as? UserInfo{
-//        self.delegate.handleEvent(["user" : userData])
-//    }
+    else if let userData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary{
+        
+        var newData: NSMutableData? = userData["userInfo"] as? NSMutableData
+        let passedUser = UserInfo.unwrapUserInfo(newData!)
+        self.delegate.handleEvent(["user" : userData])
+    }
     // Master controller getting info from slave controller
-    var error : NSError?
-    if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSMutableDictionary {
+    else if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSMutableDictionary {
       println("Found Dictionary")
       jsonDict["peerID"] = peerID.displayName
       delegate.handleEvent(jsonDict)
@@ -168,9 +169,11 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   }
     
     func sendUserInfoToLeadController(userInfo: UserInfo){
-        //let var dataObject = UserInfo.wrapUserInfo(userInfo)
-       // var error : NSError?
-      //  session.sendData(dataObject, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
+        let dataObject = UserInfo.wrapUserInfo(userInfo)
+        let dictionaryData = ["userInfo" : dataObject]
+        let dataToSend = NSKeyedArchiver.archivedDataWithRootObject(dictionaryData)
+        var error : NSError?
+        session.sendData(dataToSend, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
         println("sending user info")
     }
 

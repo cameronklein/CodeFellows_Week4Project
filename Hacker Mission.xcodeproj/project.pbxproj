@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		164EDA901A015008005F7452 /* CharacterCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164EDA8E1A015008005F7452 /* CharacterCreationViewController.swift */; };
+		164EDA941A01672D005F7452 /* RevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164EDA921A01672D005F7452 /* RevealViewController.swift */; };
+		164EDA951A01672D005F7452 /* RevealViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164EDA931A01672D005F7452 /* RevealViewController.xib */; };
 		16AA3ADC1A00596700646943 /* TYPEWRON.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B419FEE99F008421CC /* TYPEWRON.ttf */; };
 		16AA3ADD1A00596A00646943 /* BOYCOTT_.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B619FEE9DA008421CC /* BOYCOTT_.ttf */; };
 		16AA3ADE1A00596F00646943 /* MKStencilsansBlack.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B519FEE9C1008421CC /* MKStencilsansBlack.ttf */; };
@@ -29,7 +31,6 @@
 		705BB11E19FFFB5C00584A5B /* LeadGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BB11D19FFFB5C00584A5B /* LeadGameController.swift */; };
 		70CAA5D419FFFC7F00D5BDC1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */; };
 		7E423DF91A0027560015CC8D /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E423DF71A0027560015CC8D /* LaunchViewController.swift */; };
-		7E423DFA1A0027560015CC8D /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E423DF81A0027560015CC8D /* LaunchViewController.xib */; };
 		7E46DF2119FEB359009215E3 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		7E46DF2319FEB359009215E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF2219FEB359009215E3 /* ViewController.swift */; };
 		7E46DF2619FEB359009215E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E46DF2419FEB359009215E3 /* Main.storyboard */; };
@@ -57,6 +58,8 @@
 
 /* Begin PBXFileReference section */
 		164EDA8E1A015008005F7452 /* CharacterCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterCreationViewController.swift; sourceTree = "<group>"; };
+		164EDA921A01672D005F7452 /* RevealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealViewController.swift; sourceTree = "<group>"; };
+		164EDA931A01672D005F7452 /* RevealViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RevealViewController.xib; sourceTree = "<group>"; };
 		16C007341A000C7000231A17 /* infinite_field_bw.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = infinite_field_bw.gif; sourceTree = "<group>"; };
 		16C007351A000C7000231A17 /* infinite_wormhole.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = infinite_wormhole.gif; sourceTree = "<group>"; };
 		16C007361A000C7000231A17 /* matrix_code1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = matrix_code1.gif; sourceTree = "<group>"; };
@@ -80,7 +83,6 @@
 		705BB11D19FFFB5C00584A5B /* LeadGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadGameController.swift; sourceTree = "<group>"; };
 		70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7E423DF71A0027560015CC8D /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
-		7E423DF81A0027560015CC8D /* LaunchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchViewController.xib; sourceTree = "<group>"; };
 		7E46DF1B19FEB359009215E3 /* Hacker Mission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hacker Mission.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E46DF1F19FEB359009215E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E46DF2219FEB359009215E3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -120,12 +122,12 @@
 		16C784A919FEC2A7008421CC /* View Layer */ = {
 			isa = PBXGroup;
 			children = (
-				7E46DF2919FEB359009215E3 /* LaunchScreen.xib */,
 				7E46DF2419FEB359009215E3 /* Main.storyboard */,
-				7E9BE6701A00045400E21794 /* MissionOutcomeView.xib */,
-				7E9BE66E1A0001EC00E21794 /* NominationVoteView.xib */,
-				7E423DF81A0027560015CC8D /* LaunchViewController.xib */,
+				7E46DF2919FEB359009215E3 /* LaunchScreen.xib */,
 				16C784AD19FEC9FF008421CC /* PlayerCell.xib */,
+				7E9BE66E1A0001EC00E21794 /* NominationVoteView.xib */,
+				164EDA931A01672D005F7452 /* RevealViewController.xib */,
+				7E9BE6701A00045400E21794 /* MissionOutcomeView.xib */,
 				16C784AC19FEC9FF008421CC /* PlayerCell.swift */,
 			);
 			name = "View Layer";
@@ -143,6 +145,7 @@
 				7E9BE66A19FFFF1D00E21794 /* NominationViewController.swift */,
 				7E46DF2219FEB359009215E3 /* ViewController.swift */,
 				164EDA8E1A015008005F7452 /* CharacterCreationViewController.swift */,
+				164EDA921A01672D005F7452 /* RevealViewController.swift */,
 			);
 			name = "Controller Layer";
 			sourceTree = "<group>";
@@ -201,10 +204,10 @@
 				16C007361A000C7000231A17 /* matrix_code1.gif */,
 				16C007371A000C7000231A17 /* wireframe_planet.gif */,
 				16C784B719FEF5F3008421CC /* mission_connector.pdf */,
+				16C784B919FF09C6008421CC /* 1095222_34734740.jpg */,
 				16C784B119FECD4F008421CC /* typicons.ttf */,
 				16C784B019FECD0E008421CC /* fontawesome-webfont.ttf */,
 				16C784B519FEE9C1008421CC /* MKStencilsansBlack.ttf */,
-				16C784B919FF09C6008421CC /* 1095222_34734740.jpg */,
 				16C784B419FEE99F008421CC /* TYPEWRON.ttf */,
 				16C784B619FEE9DA008421CC /* BOYCOTT_.ttf */,
 				7E46DF1F19FEB359009215E3 /* Info.plist */,
@@ -314,10 +317,10 @@
 				16C784B819FEF5F3008421CC /* mission_connector.pdf in Resources */,
 				16C0073A1A000C7000231A17 /* matrix_code1.gif in Resources */,
 				16C784AF19FEC9FF008421CC /* PlayerCell.xib in Resources */,
-				7E423DFA1A0027560015CC8D /* LaunchViewController.xib in Resources */,
 				7E46DF2619FEB359009215E3 /* Main.storyboard in Resources */,
 				16C007391A000C7000231A17 /* infinite_wormhole.gif in Resources */,
 				16C784BA19FF09C6008421CC /* 1095222_34734740.jpg in Resources */,
+				164EDA951A01672D005F7452 /* RevealViewController.xib in Resources */,
 				7E9BE66F1A0001EC00E21794 /* NominationVoteView.xib in Resources */,
 				7E46DF2B19FEB359009215E3 /* LaunchScreen.xib in Resources */,
 				7E46DF2819FEB359009215E3 /* Images.xcassets in Resources */,
@@ -355,6 +358,7 @@
 				43CEB93119FF41BE007CF4A5 /* Player.swift in Sources */,
 				7E9BE66B19FFFF1D00E21794 /* NominationViewController.swift in Sources */,
 				4372ECB21A0024A200907EFA /* Mission.swift in Sources */,
+				164EDA941A01672D005F7452 /* RevealViewController.swift in Sources */,
 				7E46DF4919FF130A009215E3 /* GameEvent.swift in Sources */,
 				7E46DF2119FEB359009215E3 /* (null) in Sources */,
 				16C0073D1A000FBA00231A17 /* UIClassExtensions.swift in Sources */,

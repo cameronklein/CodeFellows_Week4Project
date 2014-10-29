@@ -10,6 +10,7 @@
         <mutableArray key="MKStencilsansBlack.ttf">
             <string>MKStencilsansBlack</string>
             <string>MKStencilsansBlack</string>
+            <string>MKStencilsansBlack</string>
         </mutableArray>
         <mutableArray key="TYPEWRON.ttf">
             <string>Typewrong</string>
@@ -134,22 +135,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DnX-Sf-lrV">
-                                <rect key="frame" x="252" y="85" width="97" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Player Name Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DnX-Sf-lrV">
+                                <rect key="frame" x="139" y="64" width="324" height="30"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfP-7t-JIE">
-                                <rect key="frame" x="277" y="489" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfP-7t-JIE">
+                                <rect key="frame" x="228" y="488" width="143" height="29"/>
+                                <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="15"/>
+                                <state key="normal" title="[SAVE CHARACTER]">
+                                    <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="saveButtonPressed:" destination="Qid-5I-G0n" eventType="touchUpInside" id="fwl-JO-7ad"/>
                                 </connections>
                             </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gX0-Qb-HeF">
-                                <rect key="frame" x="150" y="150" width="300" height="300"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gX0-Qb-HeF">
+                                <rect key="frame" x="30" y="120" width="540" height="360"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="O2M-xi-TRV">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -169,10 +176,17 @@
                                 </cells>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="YfP-7t-JIE" firstAttribute="top" secondItem="gX0-Qb-HeF" secondAttribute="bottom" constant="8" id="1n9-Go-AZo"/>
+                            <constraint firstItem="gX0-Qb-HeF" firstAttribute="height" secondItem="692-JX-l36" secondAttribute="height" multiplier="0.6" id="IzC-Ss-oTK"/>
+                            <constraint firstItem="DnX-Sf-lrV" firstAttribute="centerX" secondItem="gX0-Qb-HeF" secondAttribute="centerX" constant="0.5" id="Lc5-ut-c9a"/>
                             <constraint firstAttribute="centerX" secondItem="gX0-Qb-HeF" secondAttribute="centerX" id="amP-y1-G4a"/>
                             <constraint firstAttribute="centerY" secondItem="gX0-Qb-HeF" secondAttribute="centerY" id="cED-J5-hiq"/>
+                            <constraint firstItem="gX0-Qb-HeF" firstAttribute="centerX" secondItem="YfP-7t-JIE" secondAttribute="centerX" id="cZP-WG-0FH"/>
+                            <constraint firstItem="DnX-Sf-lrV" firstAttribute="width" secondItem="gX0-Qb-HeF" secondAttribute="width" multiplier="0.6" id="cbh-ec-f3A"/>
+                            <constraint firstItem="gX0-Qb-HeF" firstAttribute="top" secondItem="DnX-Sf-lrV" secondAttribute="bottom" constant="26" id="hCc-bO-nMo"/>
+                            <constraint firstItem="gX0-Qb-HeF" firstAttribute="width" secondItem="692-JX-l36" secondAttribute="width" multiplier="0.9" id="pyW-n2-yIw"/>
                         </constraints>
                     </view>
                     <connections>
