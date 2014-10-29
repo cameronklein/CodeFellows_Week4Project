@@ -27,6 +27,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     var players : [Player]?
     var user : Player?
+    var game: GameSession!
     //var currentMission : Mission?
     //TODO: Figure out where to pull a user's vote status from.
     
@@ -35,7 +36,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        self.playersCollectionView.delegate = self
+        self.playersCollectionView.dataSource = self
         self.playersCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
         
         //round corners on players collection view
@@ -45,7 +47,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.missionView.layer.cornerRadius = self.missionView.frame.size.width / 32
         self.missionView.layer.masksToBounds = true
         
-        self.backgroundImageView.animateGif("matrix_code1.gif", startAnimating: true)
+       // self.backgroundImageView.animateGif("matrix_code1.gif", startAnimating: true)
     }
     
     override func viewWillAppear(animated: Bool)
@@ -56,20 +58,21 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return self.players!.count
+      println("CollectionView asking for cells. Returned \(game.players.count).")
+        return self.game.players.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PLAYER", forIndexPath: indexPath) as PlayerCell
-        let player = self.players?[indexPath.row]
+        let player = self.game.players[indexPath.row] as Player
 
-        cell.imageView.image = player?.playerImage
-        cell.username.text = player?.playerName
+        cell.imageView.image = player.playerImage
+        cell.username.text = player.playerName
         
-        if player?.currentVote != nil
+        if player.currentVote != nil
         {
-            if (player?.currentVote == true)
+            if (player.currentVote == true)
             {
                 cell.approvesMission.alpha = 0
                 cell.approvesMission.hidden = false

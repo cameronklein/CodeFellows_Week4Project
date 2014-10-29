@@ -41,13 +41,13 @@ class Player : NSObject, NSCoding {
         self.playerID = aDecoder.decodeIntegerForKey("playerID") as NSInteger
         self.playerImage = aDecoder.decodeObjectForKey("playerImage") as UIImage
         self.peerID = aDecoder.decodeObjectForKey("peerID") as NSString
-        let playerRoleFor = aDecoder.decodeObjectForKey("currentGameState") as PlayerType.RawValue!
+        let playerRoleFor = aDecoder.decodeObjectForKey("playerRole") as NSInteger
         var playerRoleIs = PlayerType(rawValue: playerRoleFor)
         self.playerRole = playerRoleIs as PlayerType!
         self.isNominated = aDecoder.decodeBoolForKey("isNominated") as Bool
         self.isLeader = aDecoder.decodeBoolForKey("isLeader") as Bool
         self.currentVote = aDecoder.decodeBoolForKey("currentVote") as Bool?
-        self.playerDictionary = aDecoder.decodeObjectForKey("") as NSMutableDictionary
+        self.playerDictionary = aDecoder.decodeObjectForKey("playerDictionary") as NSMutableDictionary
 
     }
 
@@ -75,7 +75,9 @@ class Player : NSObject, NSCoding {
         playerDictionary.setObject(userInfo.userPeerID!, forKey: "peerID")
         if userInfo.userImage != nil {
           playerDictionary.setObject(userInfo.userImage!, forKey: "playerImage")
-        }
+        } else {
+          playerDictionary.setObject(UIImage(named: "AtSymbol")!, forKey: "playerImage")
+      }
         return playerDictionary as NSMutableDictionary
     }
 

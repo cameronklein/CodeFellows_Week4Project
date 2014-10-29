@@ -23,9 +23,12 @@ class GameController : MultiPeerDelegate {
     multipeerController.delegate = self
     myUserInfo = UserInfo(userName: "Teddy Roosevelt")
     myUserInfo.userPeerID = "myID234234234"
+    myUserInfo.userImage = UIImage(named: "1095222_34734740.jpg")!
   }
   
-  func handleEvent(event: GameEvent) {
+  func handleEvent(newGameInfo: GameSession) {
+    self.game = newGameInfo
+    let event = game.currentGameState!
     println("Received \(event.rawValue) event from Main Brain. Woot.")
     switch event{
     case .Start:
@@ -60,8 +63,8 @@ class GameController : MultiPeerDelegate {
   }
   
   func gameStart() {
+    println("Got Game Start Message")
     multipeerController.stopAdvertising()
-    sendUserInfo()
     
     // TODO: Intro Animation?
     let players = game.players
@@ -71,7 +74,10 @@ class GameController : MultiPeerDelegate {
       }
     }
     
-    self.launchVC.gameStart()
+    homeVC = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as HomeViewController
+    homeVC.game = self.game
+    
+    self.launchVC.gameStart(homeVC)
     
   }
   
@@ -124,7 +130,10 @@ class GameController : MultiPeerDelegate {
     func updatePeerCount(count : Int) {
         self.peerCount = count
         if let root = UIApplication.sharedApplication().keyWindow?.rootViewController as? LaunchViewController {
-            root.updateConnectedPeersLabel(count)
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                root.updateConnectedPeersLabel(count)
+                //collect userInfo as users join
+            })
         }
         sendUserInfo()
     }
