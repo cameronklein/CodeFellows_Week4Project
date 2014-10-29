@@ -15,6 +15,7 @@ class GameController : NSObject, MultiPeerDelegate {
   var homeVC : HomeViewController!
   var multipeerController = MultiPeerController.sharedInstance
   var peerCount : Int = 0
+    var userInfo : UserInfo?
   
   override init(){
     super.init()
@@ -49,6 +50,8 @@ class GameController : NSObject, MultiPeerDelegate {
   }
   
   func startLookingForGame(){
+    self.userInfo = UserInfo(userName: "Follower")
+    multipeerController.userInfo = self.userInfo
     multipeerController.startAdvertising()
   }
   

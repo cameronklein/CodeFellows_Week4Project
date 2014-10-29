@@ -17,19 +17,22 @@ class LeadGameController : MultiPeerDelegate {
   var currentVotes = [Bool]()
   var usersForGame : NSMutableArray?
   var peerCount : Int = 0
+    var userInfo : UserInfo?
 
   init() {
     multipeerController.delegate = self
   }
   
   func startLookingForPlayers() {
+    self.userInfo = UserInfo(userName: "Boss Man")
+    multipeerController.userInfo = self.userInfo
     multipeerController.startBrowsing()
   }
 
   func startGame() {
     multipeerController.stopBrowsing()
+    self.usersForGame = multipeerController.getPlayersForGame()
     var players = NSMutableArray()
-
     if self.usersForGame == nil {
         println("nil value for users for game, should be initialized")
     }

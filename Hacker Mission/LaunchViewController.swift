@@ -56,7 +56,7 @@ class LaunchViewController: UIViewController {
   
   @IBAction func startGameButtonPressed(sender: AnyObject) {
     println("Going to start game!")
-    
+    masterController?.startGame()
   }
     
     func updateConnectedPeersLabel (number: Int) -> Void

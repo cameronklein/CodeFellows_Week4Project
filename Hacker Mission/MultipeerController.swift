@@ -28,6 +28,8 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   var advertiser  : MCNearbyServiceAdvertiser!
   var browser     : MCNearbyServiceBrowser!
   var delegate    : MultiPeerDelegate!
+    var playersForGame : NSMutableArray = NSMutableArray()
+    var userInfo : UserInfo?
   
   let MyServiceType = "cf-hacker"
   
@@ -47,6 +49,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     
     browser = MCNearbyServiceBrowser(peer: peerID, serviceType: MyServiceType)
     browser.delegate = self
+    //playersForGame = [UserInfo] as NSMutableArray
     
   }
   
@@ -73,6 +76,10 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
     if state == MCSessionState.Connected {
       println("Peer Connected")
+        //self.userInfo = UserInfo(userName: peerID.description)
+        if (self.playersForGame.count != 0){
+        self.playersForGame.addObject(self.userInfo!)
+        }
       self.delegate.updatePeerCount(session.connectedPeers.count)
     } else if state == MCSessionState.NotConnected {
       println("Peer Stopped Connecting")
@@ -118,6 +125,8 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   // MARK: - Helper Methods
   
   func startBrowsing() {
+   // self.userInfo
+    playersForGame.addObject(self.userInfo!)
     browser.startBrowsingForPeers()
   }
   
@@ -149,7 +158,11 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
   }
 
-
+    func getPlayersForGame() ->NSMutableArray {
+    //Calls each device, gets User object and feeds the lead game controller with Array of players for game
+        println(self.playersForGame.count)
+        return playersForGame
+    }
 
 }
 
