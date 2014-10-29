@@ -129,7 +129,6 @@
 				7E423DF81A0027560015CC8D /* LaunchViewController.xib */,
 				16C784AD19FEC9FF008421CC /* PlayerCell.xib */,
 				16C784AC19FEC9FF008421CC /* PlayerCell.swift */,
-				439DEC6919FEF7A400ACA353 /* GameSession.swift */,
 			);
 			name = "View Layer";
 			sourceTree = "<group>";
@@ -153,6 +152,7 @@
 		16C784AB19FEC2F5008421CC /* Model Layer */ = {
 			isa = PBXGroup;
 			children = (
+				439DEC6919FEF7A400ACA353 /* GameSession.swift */,
 				16C0073C1A000FBA00231A17 /* UIClassExtensions.swift */,
 				4372ECB11A0024A200907EFA /* Mission.swift */,
 				43CEB92819FF41BE007CF4A5 /* ApprovedTeam.swift */,
