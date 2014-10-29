@@ -28,7 +28,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   var advertiser  : MCNearbyServiceAdvertiser!
   var browser     : MCNearbyServiceBrowser!
   var delegate    : MultiPeerDelegate!
-  var userInfo : UserInfo?
+  var userInfo    : UserInfo?
   
   let MyServiceType = "cf-hacker"
   

@@ -17,7 +17,7 @@ class LeadGameController : MultiPeerDelegate {
   var currentMissionOutcomeVotes = [String]()
   var usersForGame = [UserInfo]()
   var peerCount : Int = 0
-  var userInfo : UserInfo?
+  var myUserInfo : UserInfo!
   var launchVC : LaunchViewController!
 
   init() {
@@ -25,10 +25,10 @@ class LeadGameController : MultiPeerDelegate {
   }
   
   func startLookingForPlayers() {
-    myUserInfo = UserInfo(userName: "Boss Man")
-    myUserInfo.userPeerID = "myID234234234"
-    myUserInfo.userImage = UIImage(named: "questionMark")!
-    multipeerController.userInfo = self.myUserInfo
+//    myUserInfo = UserInfo(userName: "Boss Man")
+//    myUserInfo.userPeerID = "myID234234234"
+//    myUserInfo.userImage = UIImage(named: "questionMark")!
+//    multipeerController.userInfo = self.myUserInfo
     multipeerController.startBrowsing()
   }
 
