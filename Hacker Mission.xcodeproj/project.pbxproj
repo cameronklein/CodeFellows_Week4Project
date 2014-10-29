@@ -130,6 +130,7 @@
 		16C784AA19FEC2E5008421CC /* Controller Layer */ = {
 			isa = PBXGroup;
 			children = (
+				7E46DF4019FEBC2A009215E3 /* MultipeerController.swift */,
 				436546741A00299C0060B865 /* AppDelegate.swift */,
 				70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */,
 				705BB11D19FFFB5C00584A5B /* LeadGameController.swift */,
@@ -183,7 +184,6 @@
 				16C784A919FEC2A7008421CC /* View Layer */,
 				16C784AB19FEC2F5008421CC /* Model Layer */,
 				7E46DF2219FEB359009215E3 /* ViewController.swift */,
-				7E46DF4019FEBC2A009215E3 /* MultipeerController.swift */,
 				7E46DF2419FEB359009215E3 /* Main.storyboard */,
 				7E46DF2719FEB359009215E3 /* Images.xcassets */,
 				7E46DF2919FEB359009215E3 /* LaunchScreen.xib */,

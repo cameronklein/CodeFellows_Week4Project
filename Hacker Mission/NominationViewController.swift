@@ -25,12 +25,12 @@ class NominationVoteViewController: UIViewController//, UICollectionViewDataSour
     
     @IBAction func approveNominatedTeam (sender: AnyObject)
     {
-      multiPeerController.sendInfoToMainBrain(["vote" : true])
+      multiPeerController.sendInfoToMainBrain(["action" : "vote", "value" : true])
     }
     
     @IBAction func rejectNominatedTeam (sender: AnyObject)
     {
-      multiPeerController.sendInfoToMainBrain(["vote" : false])
+      multiPeerController.sendInfoToMainBrain(["action" : "vote", "value" : false])
     }
     
     

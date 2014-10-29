@@ -26,11 +26,11 @@ class GameSession {
 
 
     class func populateMissionList() -> NSMutableArray {
-        var missionList : NSMutableArray?
+        var missionList = NSMutableArray()
         for item in 1...5 {
             var missionFor : Mission
             var mission = Mission()
-            missionList?.addObject(mission as Mission!)
+            missionList.addObject(mission as Mission!)
         }
 
         return missionList as NSMutableArray!
