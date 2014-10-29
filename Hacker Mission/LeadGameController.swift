@@ -25,7 +25,7 @@ class LeadGameController : MultiPeerDelegate {
   }
   
   func startLookingForPlayers() {
-    myUserInfo = UserInfo(userName: "Boss Man")
+    myUserInfo = UserInfo(userName: "Boss Man", userImage: UIImage(named: "AtSymbol")!)
     myUserInfo.userPeerID = "myID234234234"
     myUserInfo.userImage = UIImage(named: "AtSymbol")!
     multipeerController.userInfo = self.myUserInfo
