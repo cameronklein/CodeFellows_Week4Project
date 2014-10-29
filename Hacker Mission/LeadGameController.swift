@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Code Fellows. All rights reserved.
 //
 
-
 import Foundation
 import UIKit
 
@@ -58,6 +57,7 @@ class LeadGameController : MultiPeerDelegate {
     self.game = GameSession(players: players, missions: missions)
     if self.game != nil {
       println("Game Created. We are ready for launch.")
+      assignRoles()
     }
     
   }
@@ -240,7 +240,12 @@ class LeadGameController : MultiPeerDelegate {
     //Memorialize mission information, call updateScore, reset mission timer
     var currentMission = game.missions[game.currentMission!] as Mission
     println("Updating mission number index.")
-    game.currentMission = game.currentMission! + 1
+    if game.passedMissionCount == 3 || game.failedMissionCount == 3{
+      endGame()
+    } else {
+        game.currentMission = game.currentMission! + 1
+      startMission()
+    }
   }
   
   func updateScore() {
