@@ -13,7 +13,6 @@
 		16AA3ADC1A00596700646943 /* TYPEWRON.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B419FEE99F008421CC /* TYPEWRON.ttf */; };
 		16AA3ADD1A00596A00646943 /* BOYCOTT_.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B619FEE9DA008421CC /* BOYCOTT_.ttf */; };
 		16AA3ADE1A00596F00646943 /* MKStencilsansBlack.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B519FEE9C1008421CC /* MKStencilsansBlack.ttf */; };
-		16AA3ADF1A0059C600646943 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E46DF1F19FEB359009215E3 /* Info.plist */; };
 		16C007381A000C7000231A17 /* infinite_field_bw.gif in Resources */ = {isa = PBXBuildFile; fileRef = 16C007341A000C7000231A17 /* infinite_field_bw.gif */; };
 		16C007391A000C7000231A17 /* infinite_wormhole.gif in Resources */ = {isa = PBXBuildFile; fileRef = 16C007351A000C7000231A17 /* infinite_wormhole.gif */; };
 		16C0073A1A000C7000231A17 /* matrix_code1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 16C007361A000C7000231A17 /* matrix_code1.gif */; };
@@ -77,7 +76,6 @@
 		16C784B919FF09C6008421CC /* 1095222_34734740.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1095222_34734740.jpg; sourceTree = "<group>"; };
 		436546741A00299C0060B865 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4372ECB11A0024A200907EFA /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
-		439DEC6919FEF7A400ACA353 /* GameSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
 		43CEB92819FF41BE007CF4A5 /* ApprovedTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovedTeam.swift; sourceTree = "<group>"; };
 		43CEB92919FF41BE007CF4A5 /* ProposedTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedTeam.swift; sourceTree = "<group>"; };
 		43CEB92A19FF41BE007CF4A5 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -155,7 +153,6 @@
 		16C784AB19FEC2F5008421CC /* Model Layer */ = {
 			isa = PBXGroup;
 			children = (
-				439DEC6919FEF7A400ACA353 /* GameSession.swift */,
 				16C0073C1A000FBA00231A17 /* UIClassExtensions.swift */,
 				4372ECB11A0024A200907EFA /* Mission.swift */,
 				43CEB92819FF41BE007CF4A5 /* ApprovedTeam.swift */,
@@ -189,6 +186,7 @@
 		7E46DF1D19FEB359009215E3 /* Hacker Mission */ = {
 			isa = PBXGroup;
 			children = (
+				7E46DF4019FEBC2A009215E3 /* MultipeerController.swift */,
 				16C784AA19FEC2E5008421CC /* Controller Layer */,
 				16C784A919FEC2A7008421CC /* View Layer */,
 				16C784AB19FEC2F5008421CC /* Model Layer */,
@@ -324,7 +322,6 @@
 				16C784BA19FF09C6008421CC /* 1095222_34734740.jpg in Resources */,
 				164EDA951A01672D005F7452 /* RevealViewController.xib in Resources */,
 				7E9BE66F1A0001EC00E21794 /* NominationVoteView.xib in Resources */,
-				16AA3ADF1A0059C600646943 /* Info.plist in Resources */,
 				7E46DF2B19FEB359009215E3 /* LaunchScreen.xib in Resources */,
 				7E46DF2819FEB359009215E3 /* Images.xcassets in Resources */,
 				16C007381A000C7000231A17 /* infinite_field_bw.gif in Resources */,

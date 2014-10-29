@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Code Fellows. All rights reserved.
 //
 
-
 import Foundation
 import UIKit
 
@@ -15,14 +14,18 @@ class LeadGameController : MultiPeerDelegate {
   var multipeerController : MultiPeerController = MultiPeerController()
   var game : GameSession!
   var currentVotes = [Bool]()
+  var currentMissionOutcomeVotes = [String]()
   var usersForGame = [UserInfo]()
   var peerCount : Int = 0
+    var userInfo : UserInfo?
 
   init() {
     multipeerController.delegate = self
   }
   
   func startLookingForPlayers() {
+    self.userInfo = UserInfo(userName: "Boss Man")
+    multipeerController.userInfo = self.userInfo
     multipeerController.startBrowsing()
   }
 
@@ -31,35 +34,36 @@ class LeadGameController : MultiPeerDelegate {
     println("Start Game Called on Master View Controller")
     
     multipeerController.stopBrowsing()
-    var players = NSMutableArray()
-
-    if self.usersForGame.count == 0 {
-        println("Looks like no users were added to the game.")
-    } else {
+    //send start game command to all users
+   // multipeerController.sendEventToPeers(game: GameSession)
+    var players : [Player] = []
 
       for user in usersForGame {
         
           var playerFor = Player.makePlayerDictionaryForGameSession(user as UserInfo)
-          var player = Player(playerDictionary: playerFor)
-          players.addObject(player)
+          var player = Player(playerDictionary: playerFor) as Player
+        var needToAdd : Bool = true
+        for existingPlayer in players {
+            if (existingPlayer.playerID == player.playerID) {
+                needToAdd = false
+            }
+        }
+        if (needToAdd) {
+            players.append(player)
+        }
       }
-    }
     
 //    var players = usersForGame.map { (UserInfo) -> U in
 //      return Player(Player.makePlayerDictionaryForGameSession(UserInfo))
 //    }
-    
     println("\(players.count) players created from provided user information.")
-    
-    
     var missions = GameSession.populateMissionList() as NSMutableArray // Temporary method until we have a pool of individualized missions
-
-    self.game = GameSession(players: players, missions: missions)
+    self.game = GameSession(players: NSMutableArray(array:players), missions: missions)
     if self.game != nil {
       println("Game Created. We are ready for launch.")
+      assignRoles()
     }
-    
-  }
+    }
 
   func assignRoles(){
     println("Beginning to assign player roles for \(game.players.count) players.")
@@ -201,7 +205,32 @@ class LeadGameController : MultiPeerDelegate {
   func tabulateMissionOutcome(forPlayer playerID : String, andOutcome outcome: String) {
     //Calculate if the mission will succeed or fail, based on mission criteria
     
+    println("Mission outcome vote received from \(playerID)")
+    currentMissionOutcomeVotes.append(outcome)
+    let currentMission = game.missions[game.currentMission!] as Mission
+    if currentMissionOutcomeVotes.count == currentMission.playersNeeded {
+      var succeed = 0
+      var fail = 0
+      for vote in currentMissionOutcomeVotes {
+        if vote == "succeed" {
+          succeed = succeed + 1
+        } else if vote == "fail" {
+          fail = fail + 1
+        }
+      }
+      if fail >= currentMission.failThreshold {
+        println("Mission Failed!!!")
+        currentMission.success = false
+        game.failedMissionCount = game.failedMissionCount + 1
+      } else {
+        println("Mission Succeeded!!!")
+        currentMission.success = true
+        game.passedMissionCount = game.passedMissionCount + 1
+      }
+      revealMissionOutcome()
+      }
   }
+  
     
   func revealMissionOutcome() {
     //Reveals if the mission is successful or fails
@@ -212,7 +241,14 @@ class LeadGameController : MultiPeerDelegate {
   
   func endMission() {
     //Memorialize mission information, call updateScore, reset mission timer
-    
+    var currentMission = game.missions[game.currentMission!] as Mission
+    println("Updating mission number index.")
+    if game.passedMissionCount == 3 || game.failedMissionCount == 3{
+      endGame()
+    } else {
+        game.currentMission = game.currentMission! + 1
+      startMission()
+    }
   }
   
   func updateScore() {
@@ -261,6 +297,7 @@ class LeadGameController : MultiPeerDelegate {
     if let root = UIApplication.sharedApplication().keyWindow?.rootViewController as? LaunchViewController {
       NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
         root.updateConnectedPeersLabel(count)
+        //collect userInfo as users join
       })
     }
   }

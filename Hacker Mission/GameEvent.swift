@@ -6,7 +6,9 @@
 //  Copyright (c) 2014 Code Fellows. All rights reserved.
 //
 
-enum GameEvent : String {
+import Foundation
+
+enum GameEvent : NSString {
   case Start                = "GameEventStart"
   case RevealCharacters     = "GameEventRevealCharacters"
   case NominatePlayers      = "GameEventNominatePlayers"
