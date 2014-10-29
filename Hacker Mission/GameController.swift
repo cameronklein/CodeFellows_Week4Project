@@ -26,9 +26,9 @@ class GameController : MultiPeerDelegate {
     myUserInfo.userImage = UIImage(named: "1095222_34734740.jpg")!
   }
   
-  func handleEvent(game: GameSession) {
-    self.game = game
-    self.homeVC.game = game
+  func handleEvent(newGameInfo: GameSession) {
+    self.game = newGameInfo
+    self.homeVC.game = newGameInfo
     let event = game.currentGameState!
     println("Received \(event.rawValue) event from Main Brain. Woot.")
     switch event{

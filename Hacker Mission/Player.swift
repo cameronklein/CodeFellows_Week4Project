@@ -76,7 +76,7 @@ class Player : NSObject, NSCoding {
         if userInfo.userImage != nil {
           playerDictionary.setObject(userInfo.userImage!, forKey: "playerImage")
         } else {
-          playerDictionary.setObject(UIImage(named: "1095222_34734740.jpg")!, forKey: "playerImage")
+          playerDictionary.setObject(UIImage(named: "AtSymbol")!, forKey: "playerImage")
       }
         return playerDictionary as NSMutableDictionary
     }
