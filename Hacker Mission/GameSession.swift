@@ -61,7 +61,7 @@ class GameSession: NSObject, NSCoding {
         var missionList = NSMutableArray()
         for item in 1...5 {
             var missionFor : Mission
-            var mission = Mission()
+          var mission = Mission(playersNeeded: 4, failThreshold: 1)
             missionList.addObject(mission as Mission!)
         }
 

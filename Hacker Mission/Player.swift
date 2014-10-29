@@ -20,7 +20,7 @@ class Player : NSObject, NSCoding {
     var playerID : NSInteger
     var peerID : NSString
     var playerImage : UIImage
-    var playerRole : PlayerType
+    var playerRole : PlayerType = .Hacker
     var isNominated =  false
     var isLeader = false
     var currentVote : Bool?
@@ -30,7 +30,6 @@ class Player : NSObject, NSCoding {
         var playerDictionary = playerDictionary as NSMutableDictionary
         self.playerName = playerDictionary["playerName"] as NSString
         self.playerID = playerDictionary["playerID"] as NSInteger
-        self.playerRole =  PlayerType(rawValue: playerDictionary["playerType"] as Int)!
         self.playerDictionary = playerDictionary
         self.playerImage = playerDictionary["playerImage"] as UIImage
         self.peerID = playerDictionary["peerID"] as NSString
@@ -70,12 +69,13 @@ class Player : NSObject, NSCoding {
 
 
     class func makePlayerDictionaryForGameSession (userInfo: UserInfo) -> NSMutableDictionary {
-        var playerDictionary = NSDictionary()
-        playerDictionary.setValue(userInfo.userName, forKey: "playerName")
-        playerDictionary.setValue(userInfo.userID, forKey: "playerID")
-        playerDictionary.setValue(userInfo.userPeerID, forKey: "peerID")
-        playerDictionary.setValue(userInfo.userImage?, forKey: "playerImage")
-
+        var playerDictionary = NSMutableDictionary()
+        playerDictionary.setObject(userInfo.userName, forKey: "playerName")
+        playerDictionary.setObject(userInfo.userID, forKey: "playerID")
+        playerDictionary.setObject(userInfo.userPeerID!, forKey: "peerID")
+        if userInfo.userImage != nil {
+          playerDictionary.setObject(userInfo.userImage!, forKey: "playerImage")
+        }
         return playerDictionary as NSMutableDictionary
     }
 

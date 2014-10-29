@@ -17,11 +17,12 @@ class GameController : MultiPeerDelegate {
   var multipeerController = MultiPeerController.sharedInstance
   var peerCount : Int = 0
   var userInfo : UserInfo?
-  var myUserInfo = UserInfo(userName: "Teddy Roosevelt")
+  var myUserInfo : UserInfo!
   
   init(){
     multipeerController.delegate = self
-
+    myUserInfo = UserInfo(userName: "Teddy Roosevelt")
+    myUserInfo.userPeerID = "myID234234234"
   }
   
   func handleEvent(event: GameEvent) {

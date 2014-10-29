@@ -17,7 +17,7 @@ class LeadGameController : MultiPeerDelegate {
   var currentMissionOutcomeVotes = [String]()
   var usersForGame = [UserInfo]()
   var peerCount : Int = 0
-    var userInfo : UserInfo?
+  var userInfo : UserInfo?
 
   init() {
     multipeerController.delegate = self
@@ -58,6 +58,7 @@ class LeadGameController : MultiPeerDelegate {
 //    }
     println("\(players.count) players created from provided user information.")
     var missions = GameSession.populateMissionList() as NSMutableArray // Temporary method until we have a pool of individualized missions
+    
     self.game = GameSession(players: NSMutableArray(array:players), missions: missions)
     if self.game != nil {
       println("Game Created. We are ready for launch.")
