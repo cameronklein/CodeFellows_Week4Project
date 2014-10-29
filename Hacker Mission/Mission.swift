@@ -26,12 +26,13 @@ class Mission : NSObject, NSCoding {
         self.missionDictionary = missionDictionary as NSMutableDictionary!
     }
 
-    convenience override init () {
+  convenience init (playersNeeded: NSInteger, failThreshold: NSInteger) {
 
-        var missionDictionary : NSMutableDictionary!
-        missionDictionary?.setValue("Test Mission", forKey: "missionName")
-
-        self.init (missionDictionary: missionDictionary as NSMutableDictionary!)
+      var missionDictionary = NSMutableDictionary()
+      missionDictionary.setObject("Test Mission", forKey: "missionName")
+    missionDictionary.setObject(playersNeeded, forKey: "playersNeeded")
+    missionDictionary.setObject(failThreshold, forKey: "failThreshold")
+      self.init (missionDictionary: missionDictionary as NSMutableDictionary!)
     }
   
   func encodeWithCoder(aCoder: NSCoder) {

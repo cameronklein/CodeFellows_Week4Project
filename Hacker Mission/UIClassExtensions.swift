@@ -38,11 +38,13 @@ extension UIImageView
         }
     }
 
-extension UILabel  //TODO: FINISH THIS
-{
-    func typingAnimation() -> Void
-    {
-        var textToAnimate = self.text as String?
-        
-    }
-}}
+//extension UILabel  //TODO: FINISH THIS
+//{
+//    func typingAnimation() -> Void
+//    {
+//        var textToAnimate = self.text as String?
+//        
+//    }
+//}
+
+}
