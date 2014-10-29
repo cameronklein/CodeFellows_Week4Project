@@ -46,6 +46,7 @@ class LaunchViewController: UIViewController {
     self.spinningWheel.startAnimating()
     followerController = GameController()
     followerController?.startLookingForGame()
+    followerController?.launchVC = self
     
   }
   
@@ -74,5 +75,10 @@ class LaunchViewController: UIViewController {
         
     
     }
+  
+  func gameStart() {
+    let homeVC = self.storyboard?.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
+    self.presentViewController(homeVC, animated: true, completion: nil)
+  }
   
 }
