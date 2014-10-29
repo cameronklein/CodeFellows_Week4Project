@@ -37,7 +37,6 @@ extension UIImageView
             }
         }
     }
-}
 
 extension UILabel  //TODO: FINISH THIS
 {
@@ -46,4 +45,4 @@ extension UILabel  //TODO: FINISH THIS
         var textToAnimate = self.text as String?
         
     }
-}
+}}
