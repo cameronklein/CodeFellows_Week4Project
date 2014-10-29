@@ -10,9 +10,9 @@ import UIKit
 
 class LaunchViewController: UIViewController {
   
-  var masterController : LeadGameController?
-  var followerController : GameController?
-  var multiPeerController = MultiPeerController.sharedInstance
+  var masterController    : LeadGameController?
+  var followerController  : GameController?
+  //var multiPeerController = MultiPeerController.sharedInstance
 
   @IBOutlet weak var peersLabel: UILabel!
   @IBOutlet weak var startButton: UIButton!
@@ -22,11 +22,6 @@ class LaunchViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-      
-
-
-
-
     // Do any additional setup after loading the view.
   }
 
@@ -50,13 +45,12 @@ class LaunchViewController: UIViewController {
     hostButton.hidden = true
     self.spinningWheel.startAnimating()
     followerController = GameController()
-    multiPeerController.startAdvertising()
+    followerController?.startLookingForGame()
     
   }
   
   @IBAction func startGameButtonPressed(sender: AnyObject) {
-    println("Going to start game!")
-    
+    masterController!.startGame()
   }
     
     func updateConnectedPeersLabel (number: Int) -> Void
