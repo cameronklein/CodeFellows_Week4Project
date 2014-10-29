@@ -37,7 +37,9 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     
     println("Multipeer Controller Loaded")
     
-    peerID  = MCPeerID(displayName: UIDevice.currentDevice().name)
+    let randomNumber = Int(arc4random_uniform(UInt32(1000)))
+    
+    peerID  = MCPeerID(displayName: UIDevice.currentDevice().name + randomNumber.description)
     
     session = MCSession(peer: self.peerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.None)
     session.delegate = self
@@ -117,18 +119,22 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   // MARK: - Helper Methods
   
   func startBrowsing() {
+    println("Started Browsing!")
     browser.startBrowsingForPeers()
   }
   
   func startAdvertising() {
+    println("Started Advertising!")
     advertiser.startAdvertisingPeer()
   }
   
   func stopBrowsing() {
+    println("Stopped Browsing!")
     browser.stopBrowsingForPeers()
   }
   
   func stopAdvertising() {
+    println("Stopped Advertising!")
     advertiser.stopAdvertisingPeer()
   }
   

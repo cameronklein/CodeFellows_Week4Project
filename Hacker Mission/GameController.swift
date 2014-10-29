@@ -19,7 +19,7 @@ class GameController : MultiPeerDelegate {
   }
   
   func handleEvent(event: GameEvent) {
-    println("Received \(event.rawValue) even from Main Brain. Woot.")
+    println("Received \(event.rawValue) event from Main Brain. Woot.")
     switch event{
     case .Start:
       self.gameStart()
@@ -31,8 +31,8 @@ class GameController : MultiPeerDelegate {
       self.revealNominations()
     case .MissionStart:
       self.startMission()
-    case .Vote:
-      self.vote()
+    //case .Vote:
+      //self.vote()
     case .RevealVote:
       self.revealVotes()
     case .BeginMissionOutcome:
@@ -53,6 +53,12 @@ class GameController : MultiPeerDelegate {
   func gameStart() {
     multipeerController.stopAdvertising()
     // TODO: Intro Animation?
+    let players = game.players
+    for player in players {
+      if multipeerController.peerID == player.peerID {
+        homeVC.user = player as Player
+      }
+    }
   }
   
   func revealCharacters() {
@@ -69,13 +75,7 @@ class GameController : MultiPeerDelegate {
   }
   
   func revealNominations() {
-    //self.homeVC.revealNominations()
-    
-  }
-  
-  func vote() {
-    //Vote on proposed team
-//    self.homeVC.voteOnProposedTeam()
+//    self.homeVC.voteOnProposedTeam(game)
   }
   
   func revealVotes() {
