@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameSession {
+class GameSession: NSObject, NSCoding {
 
     var players : NSMutableArray // Array of Player
     var missions : NSMutableArray // Array of Mission
