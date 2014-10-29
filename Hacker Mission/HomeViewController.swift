@@ -45,7 +45,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.missionView.layer.cornerRadius = self.missionView.frame.size.width / 32
         self.missionView.layer.masksToBounds = true
         
-        self.backgroundImageView.animateGif("matrix_code1.gif", startAnimating: true)
+        //self.backgroundImageView.animateGif("matrix_code1.gif", startAnimating: true)
     }
     
     override func viewWillAppear(animated: Bool)
@@ -56,6 +56,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
+      println("CollectionView asking for cells. Returned \(self.players!.count).")
         return self.players!.count
     }
     
@@ -67,9 +68,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         cell.imageView.image = player?.playerImage
         cell.username.text = player?.playerName
         
-        if player?.currentVote != nil
+        if player!.currentVote != nil
         {
-            if (player?.currentVote == true)
+            if (player!.currentVote == true)
             {
                 cell.approvesMission.alpha = 0
                 cell.approvesMission.hidden = false

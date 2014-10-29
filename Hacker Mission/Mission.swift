@@ -23,6 +23,8 @@ class Mission : NSObject, NSCoding {
     init(missionDictionary: NSMutableDictionary) {
         var missionDictionary = missionDictionary
         self.missionName = missionDictionary["missionName"] as String!
+        self.playersNeeded = missionDictionary["playersNeeded"] as NSInteger
+        self.failThreshold = missionDictionary["failThreshold"] as NSInteger
         self.missionDictionary = missionDictionary as NSMutableDictionary!
     }
 
@@ -30,8 +32,8 @@ class Mission : NSObject, NSCoding {
 
       var missionDictionary = NSMutableDictionary()
       missionDictionary.setObject("Test Mission", forKey: "missionName")
-    missionDictionary.setObject(playersNeeded, forKey: "playersNeeded")
-    missionDictionary.setObject(failThreshold, forKey: "failThreshold")
+      missionDictionary.setObject(playersNeeded, forKey: "playersNeeded")
+      missionDictionary.setObject(failThreshold, forKey: "failThreshold")
       self.init (missionDictionary: missionDictionary as NSMutableDictionary!)
     }
   
