@@ -42,6 +42,7 @@ class GameSession: NSObject, NSCoding {
 
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.players, forKey: "players")
+        println("Attemping to encode gamesession with GameSession Info \(self.players.description)")
         aCoder.encodeObject(self.missions, forKey: "missions")
         aCoder.encodeInteger(self.failedMissionCount, forKey: "failedMissionCount")
         aCoder.encodeInteger(self.passedMissionCount, forKey: "passedMissionCount")
