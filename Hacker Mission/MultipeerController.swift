@@ -67,7 +67,8 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
         
         var newData: NSMutableData? = userData["userInfo"] as? NSMutableData
         let passedUser = UserInfo.unwrapUserInfo(newData!)
-        self.delegate.handleEvent(["user" : userData])
+        var dictionaryToPass = ["value" : passedUser, "peerID": peerID.displayName, "action": "user"] as NSMutableDictionary
+        self.delegate.handleEvent(dictionaryToPass)
     }
     // Master controller getting info from slave controller
     else if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSMutableDictionary {
