@@ -15,7 +15,7 @@ class UserInfo : NSObject, NSCoding {
     var userPeerID : NSString?
 
     init(userName: NSString) {
-        self.userName = userName as NSString!
+        self.userName = userName as NSString
         let idGen = NSInteger(arc4random_uniform(999999))
         let userForHash : NSString = userName + String(idGen)
         let userHash = userForHash.hash as NSInteger!

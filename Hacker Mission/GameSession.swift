@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameSession {
+class GameSession: NSObject, NSCoding {
 
     var players : NSMutableArray // Array of Player
     var missions : NSMutableArray // Array of Mission
@@ -38,7 +38,6 @@ class GameSession {
         self.currentGameState = currentGameStateIs
         self.failedMissionCount = aDecoder.decodeIntegerForKey("failedMissionCount") as NSInteger
         self.passedMissionCount = aDecoder.decodeIntegerForKey("passedMissionCount") as NSInteger
-
     }
 
     func encodeWithCoder(aCoder: NSCoder) {

@@ -28,6 +28,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   var advertiser  : MCNearbyServiceAdvertiser!
   var browser     : MCNearbyServiceBrowser!
   var delegate    : MultiPeerDelegate!
+    var userInfo : UserInfo?
   
   let MyServiceType = "cf-hacker"
   
@@ -37,7 +38,9 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     
     println("Multipeer Controller Loaded")
     
-    peerID  = MCPeerID(displayName: UIDevice.currentDevice().name)
+    let randomNumber = Int(arc4random_uniform(UInt32(1000)))
+    
+    peerID  = MCPeerID(displayName: UIDevice.currentDevice().name + randomNumber.description)
     
     session = MCSession(peer: self.peerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.None)
     session.delegate = self
@@ -47,6 +50,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     
     browser = MCNearbyServiceBrowser(peer: peerID, serviceType: MyServiceType)
     browser.delegate = self
+    //playersForGame = [UserInfo] as NSMutableArray
     
   }
   
@@ -54,25 +58,37 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
 
   func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
     println("Received Data!")
-    
+    var error : NSError?
     // Slave controller getting info from master controller
     if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
       delegate.handleEvent(gameData.currentGameState!)
     }
-    
+    else if let userData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary{
+        
+        var newData: NSMutableData? = userData["userInfo"] as? NSMutableData
+        let passedUser = UserInfo.unwrapUserInfo(newData!)
+        var dictionaryToPass = ["value" : passedUser, "peerID": peerID.displayName, "action": "user"] as NSMutableDictionary
+        self.delegate.handleEvent(dictionaryToPass)
+    }
     // Master controller getting info from slave controller
-    var error : NSError?
-    if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSMutableDictionary {
+    else if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSMutableDictionary {
       println("Found Dictionary")
       jsonDict["peerID"] = peerID.displayName
       delegate.handleEvent(jsonDict)
     }
+    
     
   }
   // TODO: Send User Info
   func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
     if state == MCSessionState.Connected {
       println("\(peerID.displayName) Connected")
+      println("Peer Connected")
+        //self.userInfo = UserInfo(userName: peerID.description)
+        if let delegateCheck = self.delegate as? GameController {
+            println("I am not lead controller")
+            
+        }
       self.delegate.updatePeerCount(session.connectedPeers.count)
     } else if state == MCSessionState.NotConnected {
       println("Peer Stopped Connecting")
@@ -91,6 +107,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   
   func session(session: MCSession!, didFinishReceivingResourceWithName resourceName: String!, fromPeer peerID: MCPeerID!, atURL localURL: NSURL!, withError error: NSError!) {
     println("Got Resource")
+    //dewrap resource into
   }
   
   // MARK: - MCNearbyServiceAdvertiserDelegate Methods
@@ -117,18 +134,22 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   // MARK: - Helper Methods
   
   func startBrowsing() {
+    println("Started Browsing!")
     browser.startBrowsingForPeers()
   }
   
   func startAdvertising() {
+    println("Started Advertising!")
     advertiser.startAdvertisingPeer()
   }
   
   func stopBrowsing() {
+    println("Stopped Browsing!")
     browser.stopBrowsingForPeers()
   }
   
   func stopAdvertising() {
+    println("Stopped Advertising!")
     advertiser.stopAdvertisingPeer()
   }
   
@@ -147,8 +168,15 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     let data = NSJSONSerialization.dataWithJSONObject(dictionary, options: nil, error: &error)
     session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
   }
-
-
+    
+    func sendUserInfoToLeadController(userInfo: UserInfo){
+        let dataObject = UserInfo.wrapUserInfo(userInfo)
+        let dictionaryData = ["userInfo" : dataObject]
+        let dataToSend = NSKeyedArchiver.archivedDataWithRootObject(dictionaryData)
+        var error : NSError?
+        session.sendData(dataToSend, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
+        println("sending user info")
+    }
 
 }
 
