@@ -16,6 +16,7 @@ class GameController : MultiPeerDelegate {
   var multipeerController = MultiPeerController.sharedInstance
   var peerCount : Int = 0
     var userInfo : UserInfo?
+  var myUserInfo = UserInfo(userName: "Teddy Roosevelt")
   
   init(){
     multipeerController.delegate = self

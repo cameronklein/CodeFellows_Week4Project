@@ -60,7 +60,8 @@ class LeadGameController : MultiPeerDelegate {
     var missions = GameSession.populateMissionList() as NSMutableArray // Temporary method until we have a pool of individualized missions
     self.game = GameSession(players: NSMutableArray(array:players), missions: missions)
     if self.game != nil {
-      println("Game Created. We are ready to start.")
+      println("Game Created. We are ready for launch.")
+      assignRoles()
     }
     }
 
