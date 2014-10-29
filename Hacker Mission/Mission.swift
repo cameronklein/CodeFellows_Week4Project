@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Mission {
+class Mission : NSObject {
 //
 
     var missionDictionary : NSMutableDictionary // May not be needed, we may have to fold things into a dictionary.
@@ -26,13 +26,15 @@ class Mission {
         self.missionDictionary = missionDictionary as NSMutableDictionary!
     }
 
-    convenience init () {
+    convenience override init () {
 
-        var missionDictionary = NSMutableDictionary()
-        missionDictionary.setValue("Test Mission", forKey: "missionName")
+        var missionDictionary : NSMutableDictionary!
+        missionDictionary?.setValue("Test Mission", forKey: "missionName")
 
         self.init (missionDictionary: missionDictionary as NSMutableDictionary!)
     }
+
+
 
 
 } // End
