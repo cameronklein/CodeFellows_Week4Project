@@ -36,7 +36,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        self.playersCollectionView.delegate = self
+        self.playersCollectionView.dataSource = self
         self.playersCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
         
         //round corners on players collection view
@@ -57,7 +58,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-      println("CollectionView asking for cells. Returned \(self.players!.count).")
+      println("CollectionView asking for cells. Returned \(game.players.count).")
         return self.game.players.count
     }
     

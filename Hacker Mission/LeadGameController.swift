@@ -25,10 +25,11 @@ class LeadGameController : MultiPeerDelegate {
   }
   
   func startLookingForPlayers() {
-//    myUserInfo = UserInfo(userName: "Boss Man")
-//    myUserInfo.userPeerID = "myID234234234"
-//    myUserInfo.userImage = UIImage(named: "questionMark")!
-//    multipeerController.userInfo = self.myUserInfo
+    myUserInfo = UserInfo(userName: "Boss Man")
+    myUserInfo.userPeerID = "myID234234234"
+    myUserInfo.userImage = UIImage(named: "AtSymbol")!
+    multipeerController.userInfo = self.myUserInfo
+    usersForGame.append(self.myUserInfo)
     multipeerController.startBrowsing()
   }
 
@@ -79,7 +80,7 @@ class LeadGameController : MultiPeerDelegate {
 
     let players = game.players as NSArray
     let numberOfPlayers = players.count
-    var numberOfAgents = 2
+    var numberOfAgents = 1
     switch numberOfPlayers {
     case 7, 8, 9:
       numberOfAgents = 3
