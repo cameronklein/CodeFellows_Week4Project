@@ -77,8 +77,8 @@ class LaunchViewController: UIViewController {
     
     }
   
-  func gameStart() {
-    let homeVC = self.storyboard?.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
+  func gameStart(homeVC: HomeViewController) {
+    
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
       self.presentViewController(homeVC, animated: true, completion: nil)
     }

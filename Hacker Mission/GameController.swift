@@ -28,7 +28,6 @@ class GameController : MultiPeerDelegate {
   
   func handleEvent(newGameInfo: GameSession) {
     self.game = newGameInfo
-    self.homeVC.game = newGameInfo
     let event = game.currentGameState!
     println("Received \(event.rawValue) event from Main Brain. Woot.")
     switch event{
@@ -75,8 +74,10 @@ class GameController : MultiPeerDelegate {
       }
     }
     
+    homeVC = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as HomeViewController
+    homeVC.game = self.game
     
-    self.launchVC.gameStart()
+    self.launchVC.gameStart(homeVC)
     
   }
   

@@ -68,7 +68,10 @@ class LeadGameController : MultiPeerDelegate {
       println("Game Created. We are ready for launch.")
       assignRoles()
     }
-    self.launchVC.gameStart()
+    let homeVC = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as HomeViewController
+    homeVC.game = self.game
+    
+    self.launchVC.gameStart(homeVC)
     }
 
   func assignRoles(){
