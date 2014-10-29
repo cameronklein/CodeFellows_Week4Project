@@ -63,6 +63,7 @@ class GameController : MultiPeerDelegate {
   }
   
   func gameStart() {
+    println("Got Game Start Message")
     multipeerController.stopAdvertising()
     
     // TODO: Intro Animation?
@@ -127,7 +128,10 @@ class GameController : MultiPeerDelegate {
     func updatePeerCount(count : Int) {
         self.peerCount = count
         if let root = UIApplication.sharedApplication().keyWindow?.rootViewController as? LaunchViewController {
-            root.updateConnectedPeersLabel(count)
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                root.updateConnectedPeersLabel(count)
+                //collect userInfo as users join
+            })
         }
         sendUserInfo()
     }
