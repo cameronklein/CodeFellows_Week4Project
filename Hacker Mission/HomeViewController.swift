@@ -45,7 +45,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.missionView.layer.cornerRadius = self.missionView.frame.size.width / 32
         self.missionView.layer.masksToBounds = true
         
-        //self.backgroundImageView.animateGif("matrix_code1.gif", startAnimating: true)
+       // self.backgroundImageView.animateGif("matrix_code1.gif", startAnimating: true)
     }
     
     override func viewWillAppear(animated: Bool)
