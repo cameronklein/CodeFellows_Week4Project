@@ -15,8 +15,8 @@ class GameSession {
     var leader : Player? // Get from players.objectAtIndex(Int)
     var currentMission : NSInteger? // Get from missions.objectAtIndex(Int)
     var currentGameState  : GameEvent?
-    var failedMissionCount : Int = 0
-    var passedMissionCount : Int = 0
+    var failedMissionCount : NSInteger = 0
+    var passedMissionCount : NSInteger = 0
 
 
 
