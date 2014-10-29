@@ -180,7 +180,7 @@ class LeadGameController : MultiPeerDelegate {
       }
       if rejected > approved {
         let mission = game.missions[game.currentMission!] as Mission
-        mission.rejectedTeamsCount =  mission.rejectedTeamsCount! + 1
+        mission.rejectedTeamsCount =  mission.rejectedTeamsCount + 1
       }
     }
     self.revealVotes()

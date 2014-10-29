@@ -38,7 +38,6 @@ class GameSession: NSObject, NSCoding {
         self.currentGameState = currentGameStateIs
         self.failedMissionCount = aDecoder.decodeIntegerForKey("failedMissionCount") as NSInteger
         self.passedMissionCount = aDecoder.decodeIntegerForKey("passedMissionCount") as NSInteger
-
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
