@@ -38,16 +38,15 @@ class Player {
 
 
     class func makePlayerDictionaryForGameSession (userInfo: UserInfo) -> NSMutableDictionary {
-        var userInfo = userInfo
-        var playerDictionary : NSDictionary?
-        playerDictionary?.setValue(userInfo.userName, forKey: "playerName")
-        playerDictionary?.setValue(userInfo.userID, forKey: "playerID")
-        playerDictionary?.setValue(userInfo.userPeerID, forKey: "peerID")
-        var imageFor = userInfo.userImage?.imageAsset as NSData!
-        playerDictionary?.setValue(imageFor, forKey: "playerImage")
+        var playerDictionary = NSDictionary()
+        playerDictionary.setValue(userInfo.userName, forKey: "playerName")
+        playerDictionary.setValue(userInfo.userID, forKey: "playerID")
+        playerDictionary.setValue(userInfo.userPeerID, forKey: "peerID")
+        //var imageFor = userInfo.userImage.imageAsset as NSData
+        playerDictionary.setValue(userInfo.userImage, forKey: "playerImage")
 //        playerDictionary?.setValue(playerType.rawValue, forKey: "playerType")
 
-        return playerDictionary as NSMutableDictionary!
+        return playerDictionary as NSMutableDictionary
     }
 
 
