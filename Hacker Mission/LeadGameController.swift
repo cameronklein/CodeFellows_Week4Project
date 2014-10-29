@@ -270,6 +270,7 @@ class LeadGameController : MultiPeerDelegate {
   // MARK - Multipeer Delegate Methods
   
   func handleEvent(event: NSMutableDictionary) {
+    println(event.description)
     let action  = event["action"] as String
     let peerID  = event["peerID"] as String
     

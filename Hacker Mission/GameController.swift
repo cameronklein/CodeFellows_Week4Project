@@ -13,9 +13,10 @@ class GameController : MultiPeerDelegate {
   
   var game : GameSession!
   var homeVC : HomeViewController!
+  var launchVC : LaunchViewController!
   var multipeerController = MultiPeerController.sharedInstance
   var peerCount : Int = 0
-    var userInfo : UserInfo?
+  var userInfo : UserInfo?
   var myUserInfo = UserInfo(userName: "Teddy Roosevelt")
   
   init(){
@@ -65,9 +66,12 @@ class GameController : MultiPeerDelegate {
     let players = game.players
     for player in players {
       if multipeerController.peerID == player.peerID {
-        homeVC.user = player as Player
+        homeVC.user = player as? Player
       }
     }
+    
+    self.launchVC.gameStart()
+    
   }
   
   func revealCharacters() {
@@ -124,7 +128,7 @@ class GameController : MultiPeerDelegate {
         sendUserInfo()
     }
     func sendUserInfo () {
-     multipeerController.sendUserInfoToLeadController(userInfo!)
+     multipeerController.sendUserInfoToLeadController(myUserInfo)
     }
 
 }

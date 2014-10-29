@@ -14,9 +14,9 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var playerRevealCollectionView: UICollectionView!
     @IBOutlet weak var flavorTextLabel: UILabel!
     
-    var game : GameSession?
-    var playerArray : [Player]?
-    var agentArray : [Player]?
+    var game : GameSession!
+    var playerArray = [Player]()
+    var agentArray = [Player]()
     var user : Player?
     
     //MARK: - View Methods
@@ -28,19 +28,22 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.playerRevealCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
         self.playerRevealCollectionView.delegate = self
         self.playerRevealCollectionView.dataSource = self
-        
-        self.playerArray = game?.players as? Array
+      
+      for player in game.players {
+        playerArray.append(player as Player)
+      }
+        //self.playerArray = game.players as [Player]
         
         //creates array of "agents"
-        for player in self.playerArray!
+        for player in self.playerArray
         {
             if (player.playerRole == .Agent)
             {
-                self.agentArray!.append(player)
+                self.agentArray.append(player)
             }
         }
         
-        if user?.playerRole == .Agent
+        if user!.playerRole == .Agent
         {
             self.flavorTextLabel.text = "You're a secret bad guy. Here is your secret bad guy team."
         }
@@ -59,13 +62,13 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
     //MARK: - Collection View Methods
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        if user?.playerRole == .Agent
+        if user!.playerRole == .Agent
         {
-            return self.agentArray!.count
+            return self.agentArray.count
         }
         else
         {
-            return self.playerArray!.count
+            return self.playerArray.count
         }
     }
     
@@ -75,13 +78,13 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         var player : Player?
         
-        if user?.playerRole == .Agent
+        if user!.playerRole == .Agent
         {
-            player = agentArray![indexPath.row]
+            player = agentArray[indexPath.row]
         }
         else
         {
-            player = playerArray![indexPath.row]
+            player = playerArray[indexPath.row]
         }
         
         cell.imageView.image = player?.playerImage
