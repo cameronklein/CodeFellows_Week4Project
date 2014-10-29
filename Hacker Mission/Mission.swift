@@ -23,6 +23,8 @@ class Mission : NSObject, NSCoding {
     init(missionDictionary: NSMutableDictionary) {
         var missionDictionary = missionDictionary
         self.missionName = missionDictionary["missionName"] as String!
+        self.playersNeeded = missionDictionary["playersNeeded"] as NSInteger
+        self.failThreshold = missionDictionary["failThreshold"] as NSInteger
         self.missionDictionary = missionDictionary as NSMutableDictionary!
     }
 

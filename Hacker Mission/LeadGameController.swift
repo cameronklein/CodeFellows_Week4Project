@@ -17,15 +17,17 @@ class LeadGameController : MultiPeerDelegate {
   var currentMissionOutcomeVotes = [String]()
   var usersForGame = [UserInfo]()
   var peerCount : Int = 0
-  var userInfo : UserInfo?
+  var myUserInfo : UserInfo!
 
   init() {
     multipeerController.delegate = self
   }
   
   func startLookingForPlayers() {
-    self.userInfo = UserInfo(userName: "Boss Man")
-    multipeerController.userInfo = self.userInfo
+    myUserInfo = UserInfo(userName: "Boss Man")
+    myUserInfo.userPeerID = "myID234234234"
+    myUserInfo.userImage = UIImage(named: "questionMark")!
+    multipeerController.userInfo = self.myUserInfo
     multipeerController.startBrowsing()
   }
 
@@ -290,7 +292,7 @@ class LeadGameController : MultiPeerDelegate {
     }
   }
 
-    func handleEvent(event: GameEvent) {
+    func handleEvent(event: GameSession) {
         println("Something went wrong. This should not be called.")
     }
   
