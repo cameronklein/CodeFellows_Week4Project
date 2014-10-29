@@ -36,6 +36,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     {
         super.viewDidLoad()
         
+        self.playersCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
+        
         //round corners on players collection view
         self.playersCollectionView.layer.cornerRadius = self.playersCollectionView.frame.size.width / 16
         self.playersCollectionView.layer.masksToBounds = true
