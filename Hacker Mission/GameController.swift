@@ -23,6 +23,7 @@ class GameController : MultiPeerDelegate {
     multipeerController.delegate = self
     myUserInfo = UserInfo(userName: "Teddy Roosevelt")
     myUserInfo.userPeerID = "myID234234234"
+    myUserInfo.userImage = UIImage(named: "AtSymbol")
   }
   
   func handleEvent(event: GameEvent) {
