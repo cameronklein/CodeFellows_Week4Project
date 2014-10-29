@@ -11,10 +11,10 @@ import UIKit
 class UserInfo : NSObject, NSCoding {
     var userName : NSString
     var userID : NSInteger
-    var userImage : UIImage?
+    var userImage : UIImage
     var userPeerID : NSString?
 
-    init(userName: NSString) {
+    init(userName: NSString, userImage: UIImage) {
         self.userName = userName as NSString
         let idGen = NSInteger(arc4random_uniform(999999))
         let userForHash : NSString = userName + String(idGen)

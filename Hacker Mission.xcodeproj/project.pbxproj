@@ -22,6 +22,7 @@
 		16C784AF19FEC9FF008421CC /* PlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16C784AD19FEC9FF008421CC /* PlayerCell.xib */; };
 		16C784B819FEF5F3008421CC /* mission_connector.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B719FEF5F3008421CC /* mission_connector.pdf */; };
 		16C784BA19FF09C6008421CC /* 1095222_34734740.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B919FF09C6008421CC /* 1095222_34734740.jpg */; };
+		4334C3781A019EDD00CB7AFA /* DefaultIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334C3771A019EDD00CB7AFA /* DefaultIconCell.swift */; };
 		436546751A00299C0060B865 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436546741A00299C0060B865 /* AppDelegate.swift */; };
 		4372ECB21A0024A200907EFA /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4372ECB11A0024A200907EFA /* Mission.swift */; };
 		43CEB92E19FF41BE007CF4A5 /* ApprovedTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CEB92819FF41BE007CF4A5 /* ApprovedTeam.swift */; };
@@ -74,6 +75,7 @@
 		16C784B619FEE9DA008421CC /* BOYCOTT_.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BOYCOTT_.ttf; sourceTree = "<group>"; };
 		16C784B719FEF5F3008421CC /* mission_connector.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = mission_connector.pdf; sourceTree = "<group>"; };
 		16C784B919FF09C6008421CC /* 1095222_34734740.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1095222_34734740.jpg; sourceTree = "<group>"; };
+		4334C3771A019EDD00CB7AFA /* DefaultIconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultIconCell.swift; sourceTree = "<group>"; };
 		436546741A00299C0060B865 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4372ECB11A0024A200907EFA /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		43CEB92819FF41BE007CF4A5 /* ApprovedTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovedTeam.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				164EDA931A01672D005F7452 /* RevealViewController.xib */,
 				7E9BE6701A00045400E21794 /* MissionOutcomeView.xib */,
 				16C784AC19FEC9FF008421CC /* PlayerCell.swift */,
+				4334C3771A019EDD00CB7AFA /* DefaultIconCell.swift */,
 			);
 			name = "View Layer";
 			sourceTree = "<group>";
@@ -136,7 +139,6 @@
 		16C784AA19FEC2E5008421CC /* Controller Layer */ = {
 			isa = PBXGroup;
 			children = (
-				7E46DF4019FEBC2A009215E3 /* MultipeerController.swift */,
 				436546741A00299C0060B865 /* AppDelegate.swift */,
 				70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */,
 				705BB11D19FFFB5C00584A5B /* LeadGameController.swift */,
@@ -345,6 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4334C3781A019EDD00CB7AFA /* DefaultIconCell.swift in Sources */,
 				16C784AE19FEC9FF008421CC /* PlayerCell.swift in Sources */,
 				164EDA901A015008005F7452 /* CharacterCreationViewController.swift in Sources */,
 				705BB11E19FFFB5C00584A5B /* LeadGameController.swift in Sources */,
