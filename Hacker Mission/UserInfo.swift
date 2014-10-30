@@ -13,6 +13,8 @@ class UserInfo : NSObject, NSCoding {
     var userID : NSInteger
     var userImage : UIImage
     var userPeerID : NSString?
+    var userObject = NSMutableData()
+    var savePath : String?
 
     init(userName: NSString, userImage: UIImage) {
       self.userImage = userImage
