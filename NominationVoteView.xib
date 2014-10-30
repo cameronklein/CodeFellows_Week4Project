@@ -36,8 +36,8 @@
                                 <action selector="rejectNominatedTeam:" destination="-1" eventType="touchUpInside" id="eF1-RS-cHl"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Nominated Characters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07w-Wb-B2L">
-                            <rect key="frame" x="171" y="34" width="258" height="18"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nominated Characters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07w-Wb-B2L">
+                            <rect key="frame" x="171" y="34.5" width="258" height="17.5"/>
                             <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="17"/>
                             <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -76,7 +76,7 @@
                         <constraint firstItem="Nuy-08-Hdu" firstAttribute="top" secondItem="07w-Wb-B2L" secondAttribute="bottom" constant="8.5" id="k3a-Z8-CLm"/>
                         <constraint firstAttribute="centerX" secondItem="Nuy-08-Hdu" secondAttribute="centerX" id="l2o-gM-qHU"/>
                         <constraint firstItem="WUG-e6-lk3" firstAttribute="leading" secondItem="Nuy-08-Hdu" secondAttribute="leading" id="suV-Fh-bUi"/>
-                        <constraint firstItem="Nuy-08-Hdu" firstAttribute="height" secondItem="Q8X-Cx-xWI" secondAttribute="height" multiplier="0.6" id="wgB-c3-mTc"/>
+                        <constraint firstItem="Nuy-08-Hdu" firstAttribute="height" secondItem="Q8X-Cx-xWI" secondAttribute="height" multiplier="0.8" id="wgB-c3-mTc"/>
                     </constraints>
                 </view>
             </subviews>

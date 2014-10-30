@@ -24,12 +24,17 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var mission5ImageView: UIImageView!
     @IBOutlet weak var missionView: UIView!
     @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var votingResultsIndicatorLabel: UILabel!
+    @IBOutlet weak var nominationPromptLabel: UILabel!
+    @IBOutlet weak var confirmNominationButton: UIButton!
     
-    var players : [Player]?
+    var players : [Player] = []
     var user : Player?
-    var game: GameSession!
-    //var currentMission : Mission?
-    //TODO: Figure out where to pull a user's vote status from.
+    var playersSelected = 0
+    var game : GameSession!
+    //var gameController = GameController.sharedInstance
+    
+    var selectedIndexPath : NSIndexPath?
     
     //MARK: - View Methods
     
@@ -55,6 +60,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.viewWillAppear(true)
         
     }
+    
+    //MARK: - Collection view methods
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
@@ -101,12 +108,71 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         return cell
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    {
+        var player = self.players[indexPath.row]
+        
+        if player.isNominated == true
+        {
+            player.isNominated = false
+            self.playersSelected -= 1
+        }
+        else
+        {
+            player.isNominated = true
+            self.playersSelected += 1
+        }
+        
+        
+        if self.playersSelected == (game.missions[game.currentMission!] as Mission).playersNeeded
+        {
+            self.playersCollectionView.userInteractionEnabled = false
+            self.confirmNominationButton.userInteractionEnabled = true
+            UIView.animateWithDuration(0.1, animations:
+            { () -> Void in
+                self.confirmNominationButton.titleLabel?.textColor = UIColor.greenColor()
+                return ()
+            })
+            
+        }
+    }
+    
+    //MARK: - Actions and other functions
   
-
-  
-//  func nominatePlayers(game : GameSession) {
-//    let vc = NominationViewController(nibName: "NominationView", bundle: NSBundle.mainBundle())
-//    vc.view.frame = self.view.frame
+    func nominatePlayers(game : GameSession)
+    {
+        if self.user?.isLeader == true
+        {
+            self.nominationPromptLabel.hidden = false
+            self.nominationPromptLabel.text = "Nominate team members."
+            self.confirmNominationButton.hidden = false
+            self.confirmNominationButton.userInteractionEnabled = false
+            self.playersCollectionView.userInteractionEnabled = true
+            
+        }
+        else
+        {
+            self.nominationPromptLabel.hidden = false
+            self.nominationPromptLabel.text = "Nominations being selected..."
+        }
+    }
+    
+    @IBAction func confirmNominations(sender: AnyObject)
+    {
+        self.confirmNominationButton.userInteractionEnabled = false
+        self.confirmNominationButton.titleLabel?.textColor = UIColor.grayColor()
+        self.confirmNominationButton.hidden = true
+        
+        //dself.gameController.sendInfoToMainBrain()
+    }
+    
+//
+//  func voteOnProposedTeam(game: GameSession)
+//  {//Display the nominated team to all users and get a vote of Approve or Reject back
+//    let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
+//    vc.game = game
+//    vc.view.frame = self.playerCollectionView.frame
 //    self.addChildViewController(vc)
 //    self.view.addSubview(vc.view)
 //  }
