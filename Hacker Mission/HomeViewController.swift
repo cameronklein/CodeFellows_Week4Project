@@ -32,6 +32,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var user : Player?
     var playersSelected = 0
     var game : GameSession!
+    var labelsAreBlinking = false
+    
+    var screenWidth : CGFloat!
+    var layout : UICollectionViewFlowLayout!
     var multiPeerController = MultiPeerController.sharedInstance
     //var gameController = GameController.sharedInstance
     
@@ -169,6 +173,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         if self.user?.isLeader == true
         {
             self.nominationPromptLabel.hidden = false
+            self.nominationPromptLabel.text = "Nominate team members."
+            self.startBlinking(self.nominationPromptLabel)
             self.nominationPromptLabel.text = "Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) agents to send on this mission."
             self.confirmNominationButton.hidden = false
             self.confirmNominationButton.userInteractionEnabled = false
