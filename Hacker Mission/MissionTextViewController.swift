@@ -35,8 +35,8 @@ class MissionTextViewController: UIViewController {
   @IBAction func confirmButtonPressed(sender: AnyObject) {
     let parentVC = self.parentViewController as HomeViewController
     parentVC.nominatePlayers(game)
-    self.dismissViewControllerAnimated(true, completion: nil)
-    
+    self.view.removeFromSuperview()
+    self.removeFromParentViewController()
   }
  
 }

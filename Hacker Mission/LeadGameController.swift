@@ -64,7 +64,7 @@ class LeadGameController : MultiPeerDelegate {
     var missions = GameSession.populateMissionList(players.count) as NSMutableArray // Temporary method until we have a pool of individualized missions
     println("Created \(missions.count) missions.")
     
-    self.game = GameSession(players: NSMutableArray(array:players), missions: missions)
+    self.game = GameSession(players: players, missions: missions)
     if self.game != nil {
       println("Game Created. We are ready for launch.")
       assignRoles()
@@ -76,7 +76,7 @@ class LeadGameController : MultiPeerDelegate {
         println("\(multipeerController.peerID.displayName) is from Controller, \(player.peerID) is the local")
         if multipeerController.peerID.displayName == player.peerID {
             println("Entered the If")
-            revealVC.user = player as? Player
+            revealVC.user = player
         }
     }
 //    let revealVC = UIStoryboard(name: "Main", bundle:
@@ -131,13 +131,15 @@ class LeadGameController : MultiPeerDelegate {
     println("Sending *Reveal Characters* event to peers.")
     game.currentGameState = GameEvent.RevealCharacters
     multipeerController.sendEventToPeers(game)
-    game.currentGameState = GameEvent.MissionStart
-    multipeerController.sendEventToPeers(game)
+//    game.currentGameState = GameEvent.MissionStart
+//    multipeerController.sendEventToPeers(game)
   }
 
   func changeLeader() {
     //Assigns a leader for current mission and itterates through all players, per games rules, and gives them a chance to be leader.
-    var leaderIndex = game.players.indexOfObject(game.leader!)
+//    var leaderIndex = game.players.indexOfObject(game.leader!)
+    var NSPlayerArray = game.players as NSArray
+    var leaderIndex = NSPlayerArray.indexOfObject(game.leader!)
     if leaderIndex == game.players.count {
       leaderIndex = 0
     } else {

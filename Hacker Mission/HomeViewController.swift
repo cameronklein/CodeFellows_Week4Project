@@ -122,7 +122,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        var player = self.players[indexPath.row]
+        var player = game.players[indexPath.row]
         
         if player.isNominated == true
         {

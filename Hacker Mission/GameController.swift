@@ -73,7 +73,7 @@ class GameController : MultiPeerDelegate {
         println("\(multipeerController.peerID.displayName) is from Controller, \(player.peerID) is the local")
       if multipeerController.peerID.displayName == player.peerID {
         println("Entered the If")
-        revealVC.user = player as? Player
+        revealVC.user = player
       }
     }
     
