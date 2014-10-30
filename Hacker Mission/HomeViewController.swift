@@ -174,6 +174,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     @IBAction func confirmNominations(sender: AnyObject)
     {
+      println("Confirmed Button Pressed")
         self.confirmNominationButton.userInteractionEnabled = false
         self.confirmNominationButton.titleLabel?.textColor = UIColor.grayColor()
         self.confirmNominationButton.hidden = true
@@ -186,7 +187,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
           }
         }
       let dict = ["action" : "nominations", "value" : nominatedPlayerIDs]
-        self.multiPeerController.sendInfoToMainBrain(dict)
+      self.multiPeerController.sendInfoToMainBrain(dict)
     }
   
   func voteOnProposedTeam(game: GameSession)

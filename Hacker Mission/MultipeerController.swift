@@ -59,8 +59,15 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
     println("Received Data!")
     var error : NSError?
+    // Master controller getting info from slave controller
+    if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSMutableDictionary {
+      println("Found Dictionary")
+      jsonDict["peerID"] = peerID.displayName
+      delegate.handleEvent(jsonDict)
+    }
+
     // Slave controller getting info from master controller
-    if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
+    else if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
       delegate.handleEvent(gameData)
     }
     else if let userData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary{
@@ -69,12 +76,6 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
         let passedUser = UserInfo.unwrapUserInfo(newData!)
         var dictionaryToPass = ["value" : passedUser, "peerID": peerID.displayName, "action": "user"] as NSMutableDictionary
         self.delegate.handleEvent(dictionaryToPass)
-    }
-    // Master controller getting info from slave controller
-    else if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSMutableDictionary {
-      println("Found Dictionary")
-      jsonDict["peerID"] = peerID.displayName
-      delegate.handleEvent(jsonDict)
     }
     
     
