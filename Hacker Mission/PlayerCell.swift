@@ -22,5 +22,6 @@ class PlayerCell: UICollectionViewCell
         super.awakeFromNib()
         // Initialization code
     }
+  
 
 }
