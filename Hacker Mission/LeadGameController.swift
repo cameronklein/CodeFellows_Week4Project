@@ -13,7 +13,7 @@ class LeadGameController : MultiPeerDelegate {
   
   var multipeerController : MultiPeerController = MultiPeerController.sharedInstance
   var game : GameSession!
-  var currentVotes = [Bool]()
+  var currentVotes = [String]()
   var currentMissionOutcomeVotes = [String]()
   var usersForGame = [UserInfo]()
   var peerCount : Int = 0
@@ -21,7 +21,7 @@ class LeadGameController : MultiPeerDelegate {
   var launchVC : LaunchViewController!
 
   init() {
-    multipeerController.delegate = self
+    multipeerController.mainBrainDelegate = self
   }
   
   func startLookingForPlayers() {
@@ -70,7 +70,7 @@ class LeadGameController : MultiPeerDelegate {
       assignRoles()
     }
     let revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())
-    
+    GameController.sharedInstance.revealVC = revealVC
     let playerArray = game.players
     for player in playerArray {
         println("\(multipeerController.peerID.displayName) is from Controller, \(player.peerID) is the local")
@@ -140,7 +140,7 @@ class LeadGameController : MultiPeerDelegate {
 //    var leaderIndex = game.players.indexOfObject(game.leader!)
     var NSPlayerArray = game.players as NSArray
     var leaderIndex = NSPlayerArray.indexOfObject(game.leader!)
-    if leaderIndex == game.players.count {
+    if leaderIndex == (game.players.count - 1){
       leaderIndex = 0
     } else {
         leaderIndex = leaderIndex + 1
@@ -184,39 +184,43 @@ class LeadGameController : MultiPeerDelegate {
     
   }
   
-  func tabulateVotes(forPlayer playerID : String, andVote voteResult : Bool) {
+  func tabulateVotes(forPlayer playerID : String, andVote voteResult : String) {
     
     //Calculates if the mission is approved or rejected
     println("Vote receieved from \(playerID).")
     currentVotes.append(voteResult)
     for player in game.players {
-        let playerStaged = player as Player
-      if playerStaged.peerID == playerID {
-        playerStaged.currentVote = voteResult
+      if player.peerID == playerID {
+        if voteResult == "Approve" {
+          player.currentVote = true
+        } else if voteResult == "Reject" {
+          player.currentVote = false
+        }
       }
     }
     
     if currentVotes.count == game.players.count {
       println("Last vote received. Deciding winner...")
+      println(currentVotes.description)
       var approved = 0
       var rejected = 0
       for vote in currentVotes {
-        if voteResult {
+        if vote == "Approve" {
           approved = approved + 1
-        } else {
+        } else if vote == "Reject" {
           rejected = rejected + 1
         }
       }
       var didPass = false
       if rejected > approved {
-        println("Team rejected by players. (Approved: \(approved). Rejected: \(rejected).")
+        println("Team REJECTED by players. (Approved: \(approved). Rejected: \(rejected).")
         let mission = game.missions[game.currentMission] as Mission
         mission.rejectedTeamsCount =  mission.rejectedTeamsCount + 1
       } else {
-        println("Team approved by players. (Approved: \(approved). Rejected: \(rejected).")
+        println("Team APPROVED by players. (Approved: \(approved). Rejected: \(rejected).")
         didPass = true
       }
-      currentVotes = [Bool]()       //Reset currentVotes
+      currentVotes.removeAll(keepCapacity: true)      //Reset currentVotes
       self.revealVotes(didPass)
     }
   }
@@ -226,9 +230,14 @@ class LeadGameController : MultiPeerDelegate {
     println("Sending *Reveal Vote* event to peers.")
     game.currentGameState = GameEvent.RevealVote
     multipeerController.sendEventToPeers(game)
-    if passed == true {
+    if passed == false {
       self.changeLeader()
       self.tellLeaderToNominatePlayers()
+      for player in game.players {
+        player.currentVote = nil
+      }
+      let currentMission = game.missions[game.currentMission] as Mission
+      currentMission.nominatedPlayers.removeAll(keepCapacity: true)
     } else {
       self.tellPlayersToDetermineMissionOutcome()
     }
@@ -321,7 +330,7 @@ class LeadGameController : MultiPeerDelegate {
     switch action{
     case "vote" :
       println("Received vote information from \(peerID)")
-      let value = event["value"] as Bool
+      let value = event["value"] as String
       self.tabulateVotes(forPlayer: peerID, andVote: value)
     case "missionOutcome" :
       println("Received mission outcome information from \(peerID)")

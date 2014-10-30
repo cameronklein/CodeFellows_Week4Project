@@ -102,7 +102,7 @@ class GameController : MultiPeerDelegate {
   
   func nominatePlayers() {
     //Leader nominates their team of players
-//    self.homeVC.nominatePlayersForMission(game.missionList[currentMissionIndex])
+    self.homeVC.nominatePlayers(game)
 
   }
   

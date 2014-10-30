@@ -28,6 +28,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   var advertiser  : MCNearbyServiceAdvertiser!
   var browser     : MCNearbyServiceBrowser!
   var delegate    : MultiPeerDelegate!
+  var mainBrainDelegate : MultiPeerDelegate?
   var userInfo    : UserInfo?
   
   let MyServiceType = "cf-hacker"
@@ -77,7 +78,9 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       newDictionary.setObject(dataReceivedFromSlave.objectForKey("action")!, forKey: "action")
       newDictionary.setObject(dataReceivedFromSlave.objectForKey("value")!, forKey: "value")
       newDictionary.setObject(peerID.displayName, forKey: "peerID")
+      println(self.delegate)
       self.delegate.handleEvent(newDictionary)
+      self.mainBrainDelegate?.handleEvent(newDictionary)
     } else if let dataReceivedFromSlave = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSMutableDictionary{
       println("Recognized data as NSMutableDictionary.")
       let newDictionary : NSMutableDictionary = NSMutableDictionary()
@@ -85,6 +88,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       newDictionary.setObject(dataReceivedFromSlave.objectForKey("value")!, forKey: "value")
       newDictionary.setObject(peerID.displayName, forKey: "peerID")
       self.delegate.handleEvent(newDictionary)
+      self.mainBrainDelegate?.handleEvent(newDictionary)
     }
     else {
       println("Unknown Data Received!")
@@ -183,12 +187,16 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     if error != nil {
       println(error!.description)
     }
+    delegate.handleEvent(game)
   }
   
-  func sendInfoToMainBrain(dictionary: NSDictionary) {
+  func sendInfoToMainBrain(dictionary: NSMutableDictionary) {
+    
     var error : NSError?
     let data = NSKeyedArchiver.archivedDataWithRootObject(dictionary)
     session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
+    dictionary.setObject(self.peerID.displayName, forKey: "peerID")
+    self.mainBrainDelegate?.handleEvent(dictionary)
   }
     
     func sendUserInfoToLeadController(userInfo: UserInfo){

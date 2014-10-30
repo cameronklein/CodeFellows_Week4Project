@@ -218,8 +218,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
     vc.game = game
     vc.view.frame = self.playersCollectionView.frame
-    self.addChildViewController(vc)
-    self.view.addSubview(vc.view)
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.addChildViewController(vc)
+      self.view.addSubview(vc.view)
+    }
   }
 //
 //  func revealVotes(game : GameSession) {

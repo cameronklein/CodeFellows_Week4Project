@@ -19,13 +19,12 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
     var agentArray = [Player]()
     var user : Player?
     var gameController = GameController.sharedInstance
-    
+  
     //MARK: - View Methods
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
         self.playerRevealCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
         self.playerRevealCollectionView.delegate = self
         self.playerRevealCollectionView.dataSource = self

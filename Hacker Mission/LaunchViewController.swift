@@ -39,6 +39,8 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
     joinButton.hidden = true
     hostButton.hidden = true
     masterController = LeadGameController()
+    followerController = GameController.sharedInstance
+    followerController?.launchVC = self
     masterController?.startLookingForPlayers()
     masterController?.launchVC = self
     
