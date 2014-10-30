@@ -18,6 +18,7 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
     var playerArray = [Player]()
     var agentArray = [Player]()
     var user : Player?
+    var gameController = GameController.sharedInstance
     
     //MARK: - View Methods
     
@@ -105,6 +106,7 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
 //        self.view.removeFromSuperview()
 //        self.removeFromParentViewController()
       let homeVC = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as HomeViewController
+        gameController.homeVC = homeVC
         homeVC.user = self.user
         homeVC.game = self.game
         NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in

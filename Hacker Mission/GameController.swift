@@ -11,10 +11,18 @@ import UIKit
 
 class GameController : MultiPeerDelegate {
   
+  class var sharedInstance : GameController {
+    struct Static {
+      static let instance : GameController = GameController()
+    }
+    return Static.instance
+  }
+  
+  
   var game : GameSession!
   var revealVC : RevealViewController!
   var launchVC : LaunchViewController!
-    var homeVC : HomeViewController!
+  var homeVC : HomeViewController!
   var multipeerController = MultiPeerController.sharedInstance
   var peerCount : Int = 0
   var userInfo : UserInfo?
