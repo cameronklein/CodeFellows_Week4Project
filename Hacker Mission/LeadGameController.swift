@@ -98,7 +98,7 @@ class LeadGameController : MultiPeerDelegate {
     case 10:
       numberOfAgents = 4
     default:
-      numberOfAgents = 2
+      numberOfAgents = 1
     }
     var currentAgents = 0
     
