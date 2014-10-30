@@ -77,10 +77,10 @@ class LaunchViewController: UIViewController {
     
     }
   
-  func gameStart(homeVC: HomeViewController) {
+  func gameStart(revealVC: RevealViewController) {
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-      self.presentViewController(homeVC, animated: true, completion: nil)
+      self.presentViewController(revealVC, animated: true, completion: nil)
     }
   }
 }

@@ -12,7 +12,7 @@ import UIKit
 class GameController : MultiPeerDelegate {
   
   var game : GameSession!
-  var homeVC : HomeViewController!
+  var revealVC : RevealViewController!
   var launchVC : LaunchViewController!
   var multipeerController = MultiPeerController.sharedInstance
   var peerCount : Int = 0
@@ -22,7 +22,7 @@ class GameController : MultiPeerDelegate {
   init(){
     multipeerController.delegate = self
     myUserInfo = UserInfo(userName: "Teddy Roosevelt", userImage: UIImage(named: "AtSymbol")!)
-    myUserInfo.userPeerID = "myID234234234"
+    myUserInfo.userPeerID = multipeerController.peerID.displayName
     myUserInfo.userImage = UIImage(named: "AtSymbol")!
   }
   
@@ -65,19 +65,22 @@ class GameController : MultiPeerDelegate {
   func gameStart() {
     println("Got Game Start Message")
     multipeerController.stopAdvertising()
-    
+    revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())
     // TODO: Intro Animation?
     let players = game.players
     for player in players {
-      if multipeerController.peerID == player.peerID {
-        homeVC.user = player as? Player
+        println("\(multipeerController.peerID.displayName) is from Controller, \(player.peerID) is the local")
+      if multipeerController.peerID.displayName == player.peerID {
+        println("Entered the If")
+        revealVC.user = player as? Player
       }
     }
     
-    homeVC = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as HomeViewController
-    homeVC.game = self.game
+    //    let revealVC = UIStoryboard(name: "Main", bundle:
+    //        NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as RevealViewController
+    revealVC.game = self.game
     
-    self.launchVC.gameStart(homeVC)
+    self.launchVC.gameStart(revealVC)
     
   }
   
