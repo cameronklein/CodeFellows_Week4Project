@@ -123,8 +123,6 @@ class LeadGameController : MultiPeerDelegate {
     println("Sending *Game Start* event to peers.")
     game.currentGameState = GameEvent.Start
     multipeerController.sendEventToPeers(game)
-    
-    
     self.revealCharacters()
   }
   
@@ -132,6 +130,8 @@ class LeadGameController : MultiPeerDelegate {
     //Sends information on who is on what team (Hackers and Goverment Agents) to devices.  Only Goverment Agents see who the other Goverment Agents are
     println("Sending *Reveal Characters* event to peers.")
     game.currentGameState = GameEvent.RevealCharacters
+    multipeerController.sendEventToPeers(game)
+    game.currentGameState = GameEvent.MissionStart
     multipeerController.sendEventToPeers(game)
   }
 
@@ -179,6 +179,7 @@ class LeadGameController : MultiPeerDelegate {
     println("Sending *Begin Vote* event to peers.")
     game.currentGameState = GameEvent.BeginVote
     multipeerController.sendEventToPeers(game)
+    
   }
   
   func tabulateVotes(forPlayer playerID : String, andVote voteResult : Bool) {
