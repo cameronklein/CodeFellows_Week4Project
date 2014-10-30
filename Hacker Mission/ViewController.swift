@@ -17,13 +17,5 @@ class ViewController: UIViewController
     
   }
 
-  override func didReceiveMemoryWarning()
-  {
-    super.didReceiveMemoryWarning()
-    var dog = "dog"
-    dog
-  }
-
-
+  override func didReceiveMemoryWarning(){super.didReceiveMemoryWarning()}
 }
-
