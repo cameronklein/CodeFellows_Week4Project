@@ -32,6 +32,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var user : Player?
     var playersSelected = 0
     var game : GameSession!
+    var labelsAreBlinking = false
+    
+    var screenWidth : CGFloat!
+    var layout : UICollectionViewFlowLayout!
     var multiPeerController = MultiPeerController.sharedInstance
     //var gameController = GameController.sharedInstance
     
@@ -45,6 +49,16 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.playersCollectionView.delegate = self
         self.playersCollectionView.dataSource = self
         self.playersCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
+        
+        //Set Cell Dimensions
+        self.layout = playersCollectionView.collectionViewLayout as UICollectionViewFlowLayout
+        self.screenWidth = self.playersCollectionView.frame.width
+        super.viewWillAppear(true)
+        layout.minimumLineSpacing = screenWidth * 0.02
+        layout.minimumInteritemSpacing = screenWidth * 0.02
+        layout.sectionInset.left = screenWidth * 0.02
+        layout.sectionInset.right = screenWidth * 0.02
+        layout.itemSize = CGSize(width: screenWidth * 0.30, height: screenWidth * 0.30)
         
         //round corners on players collection view
         self.playersCollectionView.layer.cornerRadius = self.playersCollectionView.frame.size.width / 16
@@ -159,16 +173,18 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         if self.user?.isLeader == true
         {
             self.nominationPromptLabel.hidden = false
+            self.nominationPromptLabel.text = "Nominate team members."
+            self.startBlinking(self.nominationPromptLabel)
             self.nominationPromptLabel.text = "Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) agents to send on this mission."
             self.confirmNominationButton.hidden = false
             self.confirmNominationButton.userInteractionEnabled = false
             self.playersCollectionView.userInteractionEnabled = true
-            
         }
         else
         {
             self.nominationPromptLabel.hidden = false
             self.nominationPromptLabel.text = "Nominations being selected..."
+            self.startBlinking(self.nominationPromptLabel)
         }
     }
     
@@ -177,6 +193,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       println("Confirmed Button Pressed")
         self.confirmNominationButton.userInteractionEnabled = false
         self.confirmNominationButton.titleLabel?.textColor = UIColor.grayColor()
+        self.labelsAreBlinking = false
+        self.nominationPromptLabel.hidden = true
         self.confirmNominationButton.hidden = true
       
       
@@ -192,6 +210,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   func voteOnProposedTeam(game: GameSession)
   {//Display the nominated team to all users and get a vote of Approve or Reject back
+    self.labelsAreBlinking = false
+    self.nominationPromptLabel.hidden = true
+    
     let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
     vc.game = game
     vc.view.frame = self.playersCollectionView.frame
@@ -242,6 +263,28 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     self.view.addSubview(vc.view)
     
   }
+    
+    func startBlinking (label: UILabel)
+    {
+        label.alpha = 1
+        self.labelsAreBlinking = true
+        
+        var animationQueue = NSOperationQueue()
+        animationQueue.maxConcurrentOperationCount = 1
+        
+        while self.labelsAreBlinking
+        {
+            UIView.animateWithDuration(1, animations:
+            { () -> Void in
+                    label.alpha = 0
+            })
+            UIView.animateWithDuration(1, animations:
+            { () -> Void in
+                    label.alpha = 1
+            })
+        }
+        label.alpha = 1
+    }
 
     //MARK: - One line, because we probably won't use this.
     override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}
