@@ -23,10 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if let path = self.makeSavePath() {
       let fileComponent = "ArchivedUser"
       let filePath = path.stringByAppendingPathComponent(fileComponent)
-
+      println("file path is \(filePath)")
       let userDefaults = NSUserDefaults.standardUserDefaults()
-      userDefaults.setObject(filePath, forKey: "filePath")
+      userDefaults.setValue(filePath, forKey: "filePath")
       userDefaults.synchronize()
+      let exists = NSUserDefaults.standardUserDefaults().valueForKey("filePath") as String
+      println("created the docs path as \(exists)")
+      self.documentsPath = exists as String!
+      println("---------------------saved as \(self.documentsPath!)------------------")
     } else {
       println("ERROR: Could not create and store file path for saving user defaults")
     }
@@ -36,13 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-    let userDefaults = NSUserDefaults.standardUserDefaults()
-    if let value: String = userDefaults.valueForKey("filePath") as? String {
-      println("Previous path value found")
-      self.documentsPath = value as String!
-    } else {
       self.saveDefaultPath()
-    }
+
 
     return true
   }
