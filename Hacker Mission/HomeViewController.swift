@@ -204,7 +204,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             nominatedPlayerIDs.append(player.peerID)
           }
         }
-      let dict = ["action" : "nominations", "value" : nominatedPlayerIDs]
+      let dict = NSMutableDictionary()
+      dict.setObject("nominations", forKey: "action")
+      dict.setObject(nominatedPlayerIDs, forKey: "value")
       self.multiPeerController.sendInfoToMainBrain(dict)
     }
   
