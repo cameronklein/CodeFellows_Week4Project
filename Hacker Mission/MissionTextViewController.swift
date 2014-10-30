@@ -23,7 +23,7 @@ class MissionTextViewController: UIViewController {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    let currentMission = game.missions[game.currentMission!] as Mission
+    let currentMission = game.missions[game.currentMission] as Mission
     missionFlavorTextLabel.text = currentMission.missionDescription
   }
 
@@ -32,4 +32,11 @@ class MissionTextViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
   
+  @IBAction func confirmButtonPressed(sender: AnyObject) {
+    let parentVC = self.parentViewController as HomeViewController
+    parentVC.nominatePlayers(game)
+    self.dismissViewControllerAnimated(true, completion: nil)
+    
+  }
+ 
 }

@@ -106,8 +106,10 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         homeVC.user = self.user
         homeVC.game = self.game
         NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-            self.presentViewController(homeVC, animated: true, completion: nil)
-       // self.dismissViewControllerAnimated(false, completion: { () -> Void in})
+          self.presentViewController(homeVC, animated: true, completion: { () -> Void in
+            homeVC.startMission(self.game)
+          })
+       //   self.dismissViewControllerAnimated(false, completion: { () -> Void in})
 
         } }
 

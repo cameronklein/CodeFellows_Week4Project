@@ -208,7 +208,7 @@ class LeadGameController : MultiPeerDelegate {
       var didPass = false
       if rejected > approved {
         println("Team rejected by players. (Approved: \(approved). Rejected: \(rejected).")
-        let mission = game.missions[game.currentMission!] as Mission
+        let mission = game.missions[game.currentMission] as Mission
         mission.rejectedTeamsCount =  mission.rejectedTeamsCount + 1
       } else {
         println("Team approved by players. (Approved: \(approved). Rejected: \(rejected).")
@@ -246,7 +246,7 @@ class LeadGameController : MultiPeerDelegate {
     
     println("Mission outcome vote received from \(playerID)")
     currentMissionOutcomeVotes.append(outcome)
-    let currentMission = game.missions[game.currentMission!] as Mission
+    let currentMission = game.missions[game.currentMission] as Mission
     if currentMissionOutcomeVotes.count == currentMission.playersNeeded {
       var succeed = 0
       var fail = 0
@@ -282,12 +282,12 @@ class LeadGameController : MultiPeerDelegate {
   
   func endMission() {
     //Memorialize mission information, call updateScore, reset mission timer
-    var currentMission = game.missions[game.currentMission!] as Mission
+    var currentMission = game.missions[game.currentMission] as Mission
     println("Updating mission number index.")
     if game.passedMissionCount == 3 || game.failedMissionCount == 3 {
       self.endGame()
     } else {
-      game.currentMission = game.currentMission! + 1
+      game.currentMission = game.currentMission + 1
       self.changeLeader()
       self.startMission()
     }
