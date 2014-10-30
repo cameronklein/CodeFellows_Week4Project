@@ -320,15 +320,19 @@ class LeadGameController : MultiPeerDelegate {
     
     switch action{
     case "vote" :
+      println("Received vote information from \(peerID)")
       let value = event["value"] as Bool
       self.tabulateVotes(forPlayer: peerID, andVote: value)
     case "missionOutcome" :
+      println("Received mission outcome information from \(peerID)")
       let value = event["value"] as String
       self.tabulateMissionOutcome(forPlayer: peerID, andOutcome: value)
     case "user" :
+      println("Received user information from \(peerID)")
       let value = event["value"] as UserInfo
       usersForGame.append(value)
     case "nominations" :
+      println("Received nomination information from \(peerID)")
       let value = event["value"] as [String]
       self.assignNominations(value)
     default:
