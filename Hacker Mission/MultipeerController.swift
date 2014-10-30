@@ -60,22 +60,29 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     println("Received Data!")
     var error : NSError?
     // Master controller getting info from slave controller
-    if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSMutableDictionary {
-      println("Found Dictionary")
-      jsonDict["peerID"] = peerID.displayName
-      delegate.handleEvent(jsonDict)
-    }
+//    if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSMutableDictionary {
+//      println("Found Dictionary")
+//      jsonDict["peerID"] = peerID.displayName
+//      delegate.handleEvent(jsonDict)
+//    }
 
     // Slave controller getting info from master controller
-    else if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
+    if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
       delegate.handleEvent(gameData)
     }
-    else if let userData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary{
-        
-        var newData: NSMutableData? = userData["userInfo"] as? NSMutableData
-        let passedUser = UserInfo.unwrapUserInfo(newData!)
-        var dictionaryToPass = ["value" : passedUser, "peerID": peerID.displayName, "action": "user"] as NSMutableDictionary
-        self.delegate.handleEvent(dictionaryToPass)
+    else if let dataReceivedFromSlave = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary{
+      
+      let newDictionary : NSMutableDictionary = NSMutableDictionary()
+      newDictionary.setObject(dataReceivedFromSlave.objectForKey("action")!, forKey: "action")
+      newDictionary.setObject(dataReceivedFromSlave.objectForKey("value")!, forKey: "value")
+      newDictionary.setObject(peerID.displayName, forKey: "peerID")
+      self.delegate.handleEvent(newDictionary)
+      
+      
+//        var newData: NSMutableData? = userData["userInfo"] as? NSMutableData
+//        let passedUser = UserInfo.unwrapUserInfo(newData!)
+//        var dictionaryToPass = ["value" : passedUser, "peerID": peerID.displayName, "action": "user"] as NSMutableDictionary
+//        self.delegate.handleEvent(dictionaryToPass)
     }
     
     
@@ -169,13 +176,13 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   
   func sendInfoToMainBrain(dictionary: NSDictionary) {
     var error : NSError?
-    let data = NSJSONSerialization.dataWithJSONObject(dictionary, options: nil, error: &error)
+    let data = NSKeyedArchiver.archivedDataWithRootObject(dictionary)
     session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
   }
     
     func sendUserInfoToLeadController(userInfo: UserInfo){
-        let dataObject = UserInfo.wrapUserInfo(userInfo)
-        let dictionaryData = ["userInfo" : dataObject]
+//        let dataObject = UserInfo.wrapUserInfo(userInfo)
+        let dictionaryData = ["action" : "user", "value" : userInfo]
         let dataToSend = NSKeyedArchiver.archivedDataWithRootObject(dictionaryData)
         var error : NSError?
         session.sendData(dataToSend, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
