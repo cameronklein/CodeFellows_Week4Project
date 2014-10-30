@@ -11,7 +11,7 @@ import UIKit
 
 class LeadGameController : MultiPeerDelegate {
   
-  var multipeerController : MultiPeerController = MultiPeerController()
+  var multipeerController : MultiPeerController = MultiPeerController.sharedInstance
   var game : GameSession!
   var currentVotes = [Bool]()
   var currentMissionOutcomeVotes = [String]()
@@ -61,7 +61,7 @@ class LeadGameController : MultiPeerDelegate {
 //      return Player(Player.makePlayerDictionaryForGameSession(UserInfo))
 //    }
     println("\(players.count) players created from provided user information.")
-    var missions = GameSession.populateMissionList() as NSMutableArray // Temporary method until we have a pool of individualized missions
+    var missions = GameSession.populateMissionList(players.count) as NSMutableArray // Temporary method until we have a pool of individualized missions
     println("Created \(missions.count) missions.")
     
     self.game = GameSession(players: NSMutableArray(array:players), missions: missions)
@@ -106,6 +106,7 @@ class LeadGameController : MultiPeerDelegate {
       let i = Int(arc4random_uniform(UInt32(numberOfPlayers)))
         let player = players[i] as Player
       if player.playerRole != PlayerType.Agent {
+        println("Assigned \(player.playerName) as Agent.")
         player.playerRole = PlayerType.Agent
         currentAgents++
       }
@@ -203,19 +204,31 @@ class LeadGameController : MultiPeerDelegate {
           rejected = rejected + 1
         }
       }
+      var didPass = false
       if rejected > approved {
+        println("Team rejected by players. (Approved: \(approved). Rejected: \(rejected).")
         let mission = game.missions[game.currentMission!] as Mission
         mission.rejectedTeamsCount =  mission.rejectedTeamsCount + 1
+      } else {
+        println("Team approved by players. (Approved: \(approved). Rejected: \(rejected).")
+        didPass = true
       }
+      currentVotes = [Bool]()       //Reset currentVotes
+      self.revealVotes(didPass)
     }
-    self.revealVotes()
   }
   
-  func revealVotes() {
+  func revealVotes(passed: Bool) {
     //Displays all players votes to approve/reject the mission
     println("Sending *Reveal Vote* event to peers.")
     game.currentGameState = GameEvent.RevealVote
     multipeerController.sendEventToPeers(game)
+    if passed == true {
+      self.changeLeader()
+      self.tellLeaderToNominatePlayers()
+    } else {
+      self.tellPlayersToDetermineMissionOutcome()
+    }
     
   }
   
@@ -239,7 +252,9 @@ class LeadGameController : MultiPeerDelegate {
       for vote in currentMissionOutcomeVotes {
         if vote == "succeed" {
           succeed = succeed + 1
+          currentMission.successCardsPlayed = currentMission.successCardsPlayed + 1
         } else if vote == "fail" {
+          currentMission.failCardsPlayed = currentMission.failCardsPlayed + 1
           fail = fail + 1
         }
       }
@@ -268,18 +283,19 @@ class LeadGameController : MultiPeerDelegate {
     //Memorialize mission information, call updateScore, reset mission timer
     var currentMission = game.missions[game.currentMission!] as Mission
     println("Updating mission number index.")
-    if game.passedMissionCount == 3 || game.failedMissionCount == 3{
-      endGame()
+    if game.passedMissionCount == 3 || game.failedMissionCount == 3 {
+      self.endGame()
     } else {
-        game.currentMission = game.currentMission! + 1
-      startMission()
+      game.currentMission = game.currentMission! + 1
+      self.changeLeader()
+      self.startMission()
     }
   }
   
-  func updateScore() {
-    //Based on mission results upate the overall score
-    
-  }
+//  func updateScore() {
+//    //Based on mission results upate the overall score
+//    
+//  }
   
   func endGame() {
     //Calls revealTeamsAtEndGame, displays who won the game

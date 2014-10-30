@@ -8,10 +8,11 @@
 
 import UIKit
 
-class LaunchViewController: UIViewController {
+class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   
   var masterController    : LeadGameController?
   var followerController  : GameController?
+    var userInfoMyself : UserInfo?
   //var multiPeerController = MultiPeerController.sharedInstance
 
   @IBOutlet weak var peersLabel: UILabel!
@@ -23,7 +24,9 @@ class LaunchViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
-  }
+
+    }
+
 
   override func didReceiveMemoryWarning() {
       super.didReceiveMemoryWarning()
@@ -83,4 +86,20 @@ class LaunchViewController: UIViewController {
       self.presentViewController(revealVC, animated: true, completion: nil)
     }
   }
+    
+    func didSaveUser(userToSave: UserInfo) {
+        self.userInfoMyself = userToSave
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "SHOW_CHARCREATE" {
+            let destinationVC = segue.destinationViewController as CharacterCreationViewController
+            destinationVC.delegate = self
+        }
+    }
+    
+    
+    @IBAction func createCharacter(sender: AnyObject) {
+        self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
+    }
 }

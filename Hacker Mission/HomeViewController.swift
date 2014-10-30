@@ -77,6 +77,17 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         cell.imageView.image = player.playerImage
         cell.username.text = player.playerName
         
+        if player.isNominated
+        {
+            cell.layer.borderColor = UIColor.greenColor().CGColor
+            cell.layer.borderWidth = 1
+        }
+        else
+        {
+            cell.layer.borderColor = UIColor.blackColor().CGColor
+            cell.layer.borderWidth = 0
+        }
+        
         if player.currentVote != nil
         {
             if (player.currentVote == true)
@@ -85,8 +96,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 cell.approvesMission.hidden = false
                 cell.rejectsMission.hidden = true
                 UIView.animateWithDuration(1, animations:
-                    { () -> Void in
-                        cell.approvesMission.alpha = 1
+                { () -> Void in
+                    cell.approvesMission.alpha = 1
                 })
             }
             else
@@ -95,8 +106,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 cell.rejectsMission.hidden = false
                 cell.approvesMission.hidden = true
                 UIView.animateWithDuration(1, animations:
-                    { () -> Void in
-                        cell.rejectsMission.alpha = 1
+                { () -> Void in
+                    cell.rejectsMission.alpha = 1
                 })
             }
         }
@@ -117,11 +128,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         {
             player.isNominated = false
             self.playersSelected -= 1
+            self.playersCollectionView.reloadData()
         }
         else
         {
             player.isNominated = true
             self.playersSelected += 1
+            self.playersCollectionView.reloadData()
         }
         
         
@@ -166,17 +179,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         //dself.gameController.sendInfoToMainBrain()
     }
-    
-//
-//  func voteOnProposedTeam(game: GameSession)
-//  {//Display the nominated team to all users and get a vote of Approve or Reject back
-//    let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
-//    vc.game = game
-//    vc.view.frame = self.playerCollectionView.frame
-//    self.addChildViewController(vc)
-//    self.view.addSubview(vc.view)
-//  }
-//  
+  
   func voteOnProposedTeam(game: GameSession)
   {//Display the nominated team to all users and get a vote of Approve or Reject back
     let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
@@ -197,19 +200,34 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //    self.view.addSubview(vc.view)
 //  }
 //  
-//  func voteOnMissionSuccess(game: GameSession) {
-//    let vc = MissionVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
-//    vc.view.frame = self.view.frame
-//    self.addChildViewController(vc)
-//    self.view.addSubview(vc.view)
-//  }
-//
-//  func revealMissionOutcome(game : GameSession) {
-//    let vc = RevealViewController(nibName: "RevealView", bundle: NSBundle.mainBundle())
-//    vc.view.frame = self.view.frame
-//    self.addChildViewController(vc)
-//    self.view.addSubview(vc.view)
-//  }
+  func voteOnMissionSuccess(game: GameSession) {
+    
+    let currentMission = game.missions[game.currentMission!] as Mission
+    let nominatedPlayers = currentMission.nominatedPlayers
+
+    for player in nominatedPlayers {
+      let castedPlayer = player as? Player
+      if castedPlayer!.peerID == user!.peerID {
+        let vc = MissionOutcomeVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
+        vc.view.frame = self.view.frame
+        self.addChildViewController(vc)
+        self.view.addSubview(vc.view)
+      } else {
+        self.nominationPromptLabel.hidden = false
+        self.nominationPromptLabel.text = "Mission is taking place..."
+      }
+    }
+  }
+
+  func revealMissionOutcome(game : GameSession) {
+    
+    let vc = RevealMissionOutcomeViewController(nibName: "RevealView", bundle: NSBundle.mainBundle())
+    vc.view.frame = self.view.frame
+    vc.game = game
+    self.addChildViewController(vc)
+    self.view.addSubview(vc.view)
+    
+  }
 
     //MARK: - One line, because we probably won't use this.
     override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}

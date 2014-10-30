@@ -58,15 +58,65 @@ class GameSession: NSObject, NSCoding {
 
     }
 
-    class func populateMissionList() -> NSMutableArray {
-        var missionList = NSMutableArray()
-        for item in 1...5 {
-            var missionFor : Mission
-          var mission = Mission(playersNeeded: 4, failThreshold: 1)
-            missionList.addObject(mission as Mission!)
-        }
-
-        return missionList as NSMutableArray!
+  class func populateMissionList(playerCount: Int) -> NSMutableArray {
+      var mission1 : (Int, Int)
+      var mission2 : (Int, Int)
+      var mission3 : (Int, Int)
+      var mission4 : (Int, Int)
+      var mission5 : (Int, Int)
+      switch playerCount{
+      case 5:
+        mission1 = (2, 1)
+        mission2 = (3, 1)
+        mission3 = (2, 1)
+        mission4 = (3, 1)
+        mission5 = (3, 1)
+      case 6:
+        mission1 = (2, 1)
+        mission2 = (3, 1)
+        mission3 = (4, 1)
+        mission4 = (3, 1)
+        mission5 = (4, 1)
+      case 7:
+        mission1 = (2, 1)
+        mission2 = (3, 1)
+        mission3 = (3, 1)
+        mission4 = (4, 2)
+        mission5 = (4, 1)
+      case 8:
+        mission1 = (3, 1)
+        mission2 = (4, 1)
+        mission3 = (4, 1)
+        mission4 = (5, 2)
+        mission5 = (5, 1)
+      case 9:
+        mission1 = (3, 1)
+        mission2 = (4, 1)
+        mission3 = (4, 1)
+        mission4 = (5, 2)
+        mission5 = (5, 1)
+      case 10:
+        mission1 = (3, 1)
+        mission2 = (4, 1)
+        mission3 = (4, 1)
+        mission4 = (5, 2)
+        mission5 = (4, 1)
+      default:
+        mission1 = (2, 1)
+        mission2 = (3, 1)
+        mission3 = (2, 1)
+        mission4 = (3, 1)
+        mission5 = (3, 1)
+      }
+      var missionList = NSMutableArray()
+      
+      missionList.addObject(Mission(playersNeeded: mission1.0, failThreshold: mission1.1))
+      missionList.addObject(Mission(playersNeeded: mission2.0, failThreshold: mission2.1))
+      missionList.addObject(Mission(playersNeeded: mission3.0, failThreshold: mission3.1))
+      missionList.addObject(Mission(playersNeeded: mission4.0, failThreshold: mission4.1))
+      missionList.addObject(Mission(playersNeeded: mission5.0, failThreshold: mission5.1))
+      
+      return missionList as NSMutableArray!
 
     }
 

@@ -14,6 +14,7 @@ class GameController : MultiPeerDelegate {
   var game : GameSession!
   var revealVC : RevealViewController!
   var launchVC : LaunchViewController!
+    var homeVC : HomeViewController!
   var multipeerController = MultiPeerController.sharedInstance
   var peerCount : Int = 0
   var userInfo : UserInfo?
@@ -118,7 +119,7 @@ class GameController : MultiPeerDelegate {
   
   func revealMissionOutcome() {
     //revealing the success/fail votes
-//    self.homeVC.revealMissionOutcome()
+    self.homeVC.revealMissionOutcome(game)
   }
   
   func endGame() {
@@ -130,16 +131,16 @@ class GameController : MultiPeerDelegate {
   }
 
 
-    func updatePeerCount(count : Int) {
-        self.peerCount = count
-        if let root = UIApplication.sharedApplication().keyWindow?.rootViewController as? LaunchViewController {
-            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                root.updateConnectedPeersLabel(count)
-                //collect userInfo as users join
-            })
-        }
-        sendUserInfo()
+  func updatePeerCount(count : Int) {
+    self.peerCount = count
+    if let root = UIApplication.sharedApplication().keyWindow?.rootViewController as? LaunchViewController {
+      NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+        root.updateConnectedPeersLabel(count)
+            //collect userInfo as users join
+      })
     }
+    sendUserInfo()
+  }
     func sendUserInfo () {
      multipeerController.sendUserInfoToLeadController(myUserInfo)
     }

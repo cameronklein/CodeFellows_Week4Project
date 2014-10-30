@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CharacterCreationViewDelegate {
+    func didSaveUser(userToSave: UserInfo)
+}
+
 class CharacterCreationViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate
 {
     //MARK: - Outlets and Properties
@@ -17,9 +21,10 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     @IBOutlet weak var userImageView : UIImageView!
 
     var defaultIcons = [UIImage]()
-    var userFor : UserInfo!
+    var userForSave : UserInfo!
     var userNameFor : NSString?
     var userImageFor : UIImage?
+    var delegate : CharacterCreationViewDelegate?
 
     
     //MARK: - View Methods
@@ -48,7 +53,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
             self.defaultIcons.append(symbol8!)
         }
 
-
+        self.usernameTextField.delegate = self
 
 
     }
@@ -56,6 +61,12 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(true)
+
+        if self.userImageFor != nil && self.userNameFor != nil {
+            self.saveCharacterButton.hidden = false
+        } else {
+            self.saveCharacterButton.hidden = true
+        }
         
     }
     
@@ -83,7 +94,8 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     @IBAction func saveButtonPressed(sender: AnyObject)
     {
         var localUserInfo = UserInfo(userName: self.userNameFor!, userImage: self.userImageFor!)
-        self.userFor = localUserInfo
+        self.userForSave = localUserInfo
+        self.delegate?.didSaveUser(self.userForSave)
     }
 
     @IBAction func photoButtonPressed(sender: AnyObject) {
@@ -122,6 +134,10 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
         self.userImageFor = self.userImageView.image as UIImage!
         self.dismissViewControllerAnimated(true, completion: nil)
 
+        if self.userImageFor != nil && self.userNameFor != nil {
+            self.saveCharacterButton.hidden = false
+        }
+
     }
 
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
@@ -134,9 +150,15 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
     func textFieldDidEndEditing(textField: UITextField) {
         textField.resignFirstResponder()
-        self.userFor?.userName = textField.text!
+        self.userForSave?.userName = textField.text!
+
+        if self.userImageFor != nil && self.userNameFor != nil {
+            self.saveCharacterButton.hidden = false
+        }
 
     }
+
+
 
     //MARK: - You probably won't need this stupid thing.
     override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}
