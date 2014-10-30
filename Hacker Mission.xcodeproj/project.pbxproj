@@ -46,6 +46,11 @@
 		7E9BE66B19FFFF1D00E21794 /* NominationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9BE66A19FFFF1D00E21794 /* NominationViewController.swift */; };
 		7E9BE66F1A0001EC00E21794 /* NominationVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E9BE66E1A0001EC00E21794 /* NominationVoteView.xib */; };
 		7E9BE6711A00045400E21794 /* MissionOutcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E9BE6701A00045400E21794 /* MissionOutcomeView.xib */; };
+		7EF0C1291A02A519002A6219 /* RevealMissionOutcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF0C1271A02A519002A6219 /* RevealMissionOutcomeViewController.swift */; };
+		7EF0C12A1A02A519002A6219 /* RevealMissionOutcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF0C1281A02A519002A6219 /* RevealMissionOutcomeViewController.xib */; };
+		7EF0C12C1A02AAEC002A6219 /* MissionOutcomeVoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF0C12B1A02AAEC002A6219 /* MissionOutcomeVoteViewController.swift */; };
+		7EF0C12F1A02C358002A6219 /* MissionTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF0C12D1A02C358002A6219 /* MissionTextViewController.swift */; };
+		7EF0C1301A02C358002A6219 /* MissionTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF0C12E1A02C358002A6219 /* MissionTextViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +108,11 @@
 		7E9BE66A19FFFF1D00E21794 /* NominationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NominationViewController.swift; sourceTree = "<group>"; };
 		7E9BE66E1A0001EC00E21794 /* NominationVoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NominationVoteView.xib; path = ../NominationVoteView.xib; sourceTree = "<group>"; };
 		7E9BE6701A00045400E21794 /* MissionOutcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MissionOutcomeView.xib; sourceTree = SOURCE_ROOT; };
+		7EF0C1271A02A519002A6219 /* RevealMissionOutcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealMissionOutcomeViewController.swift; sourceTree = "<group>"; };
+		7EF0C1281A02A519002A6219 /* RevealMissionOutcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RevealMissionOutcomeViewController.xib; sourceTree = "<group>"; };
+		7EF0C12B1A02AAEC002A6219 /* MissionOutcomeVoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionOutcomeVoteViewController.swift; sourceTree = "<group>"; };
+		7EF0C12D1A02C358002A6219 /* MissionTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionTextViewController.swift; sourceTree = "<group>"; };
+		7EF0C12E1A02C358002A6219 /* MissionTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MissionTextViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +142,8 @@
 				7E9BE66E1A0001EC00E21794 /* NominationVoteView.xib */,
 				164EDA931A01672D005F7452 /* RevealViewController.xib */,
 				7E9BE6701A00045400E21794 /* MissionOutcomeView.xib */,
+				7EF0C1281A02A519002A6219 /* RevealMissionOutcomeViewController.xib */,
+				7EF0C12E1A02C358002A6219 /* MissionTextViewController.xib */,
 				16C784AC19FEC9FF008421CC /* PlayerCell.swift */,
 				4334C3771A019EDD00CB7AFA /* DefaultIconCell.swift */,
 			);
@@ -144,13 +156,16 @@
 				436546741A00299C0060B865 /* AppDelegate.swift */,
 				7E46DF4019FEBC2A009215E3 /* MultipeerController.swift */,
 				70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */,
+				7EF0C12D1A02C358002A6219 /* MissionTextViewController.swift */,
 				705BB11D19FFFB5C00584A5B /* LeadGameController.swift */,
+				7EF0C1271A02A519002A6219 /* RevealMissionOutcomeViewController.swift */,
 				7E423DF71A0027560015CC8D /* LaunchViewController.swift */,
 				7E46DF4619FF126A009215E3 /* GameController.swift */,
 				7E9BE66A19FFFF1D00E21794 /* NominationViewController.swift */,
 				7E46DF2219FEB359009215E3 /* ViewController.swift */,
 				164EDA8E1A015008005F7452 /* CharacterCreationViewController.swift */,
 				164EDA921A01672D005F7452 /* RevealViewController.swift */,
+				7EF0C12B1A02AAEC002A6219 /* MissionOutcomeVoteViewController.swift */,
 			);
 			name = "Controller Layer";
 			sourceTree = "<group>";
@@ -328,6 +343,8 @@
 				16C784BA19FF09C6008421CC /* 1095222_34734740.jpg in Resources */,
 				164EDA951A01672D005F7452 /* RevealViewController.xib in Resources */,
 				7E9BE66F1A0001EC00E21794 /* NominationVoteView.xib in Resources */,
+				7EF0C12A1A02A519002A6219 /* RevealMissionOutcomeViewController.xib in Resources */,
+				7EF0C1301A02C358002A6219 /* MissionTextViewController.xib in Resources */,
 				7E46DF2B19FEB359009215E3 /* LaunchScreen.xib in Resources */,
 				7E46DF2819FEB359009215E3 /* Images.xcassets in Resources */,
 				16C007381A000C7000231A17 /* infinite_field_bw.gif in Resources */,
@@ -371,7 +388,10 @@
 				16C0073D1A000FBA00231A17 /* UIClassExtensions.swift in Sources */,
 				7E46DF2119FEB359009215E3 /* (null) in Sources */,
 				7E46DF4719FF126A009215E3 /* GameController.swift in Sources */,
+				7EF0C12C1A02AAEC002A6219 /* MissionOutcomeVoteViewController.swift in Sources */,
 				7E46DF4119FEBC2A009215E3 /* MultipeerController.swift in Sources */,
+				7EF0C12F1A02C358002A6219 /* MissionTextViewController.swift in Sources */,
+				7EF0C1291A02A519002A6219 /* RevealMissionOutcomeViewController.swift in Sources */,
 				7E46DF5019FF336E009215E3 /* GameSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -26,7 +26,7 @@ class LeadGameController : MultiPeerDelegate {
   
   func startLookingForPlayers() {
     myUserInfo = UserInfo(userName: "Boss Man", userImage: UIImage(named: "AtSymbol")!)
-    myUserInfo.userPeerID = "myID234234234"
+    myUserInfo.userPeerID = multipeerController.peerID.displayName
     myUserInfo.userImage = UIImage(named: "AtSymbol")!
     multipeerController.userInfo = self.myUserInfo
     usersForGame.append(self.myUserInfo)
@@ -61,7 +61,7 @@ class LeadGameController : MultiPeerDelegate {
 //      return Player(Player.makePlayerDictionaryForGameSession(UserInfo))
 //    }
     println("\(players.count) players created from provided user information.")
-    var missions = GameSession.populateMissionList() as NSMutableArray // Temporary method until we have a pool of individualized missions
+    var missions = GameSession.populateMissionList(players.count) as NSMutableArray // Temporary method until we have a pool of individualized missions
     println("Created \(missions.count) missions.")
     
     self.game = GameSession(players: NSMutableArray(array:players), missions: missions)
@@ -69,10 +69,21 @@ class LeadGameController : MultiPeerDelegate {
       println("Game Created. We are ready for launch.")
       assignRoles()
     }
-    let homeVC = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as HomeViewController
-    homeVC.game = self.game
+    let revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())
     
-    self.launchVC.gameStart(homeVC)
+    let playerArray = game.players
+    for player in playerArray {
+        println("\(multipeerController.peerID.displayName) is from Controller, \(player.peerID) is the local")
+        if multipeerController.peerID.displayName == player.peerID {
+            println("Entered the If")
+            revealVC.user = player as? Player
+        }
+    }
+//    let revealVC = UIStoryboard(name: "Main", bundle:
+//        NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as RevealViewController
+    revealVC.game = self.game
+    
+    self.launchVC.gameStart(revealVC)
     }
 
   func assignRoles(){
@@ -87,7 +98,7 @@ class LeadGameController : MultiPeerDelegate {
     case 10:
       numberOfAgents = 4
     default:
-      numberOfAgents = 2
+      numberOfAgents = 1
     }
     var currentAgents = 0
     
@@ -95,6 +106,7 @@ class LeadGameController : MultiPeerDelegate {
       let i = Int(arc4random_uniform(UInt32(numberOfPlayers)))
         let player = players[i] as Player
       if player.playerRole != PlayerType.Agent {
+        println("Assigned \(player.playerName) as Agent.")
         player.playerRole = PlayerType.Agent
         currentAgents++
       }
@@ -111,8 +123,6 @@ class LeadGameController : MultiPeerDelegate {
     println("Sending *Game Start* event to peers.")
     game.currentGameState = GameEvent.Start
     multipeerController.sendEventToPeers(game)
-    
-    
     self.revealCharacters()
   }
   
@@ -120,6 +130,8 @@ class LeadGameController : MultiPeerDelegate {
     //Sends information on who is on what team (Hackers and Goverment Agents) to devices.  Only Goverment Agents see who the other Goverment Agents are
     println("Sending *Reveal Characters* event to peers.")
     game.currentGameState = GameEvent.RevealCharacters
+    multipeerController.sendEventToPeers(game)
+    game.currentGameState = GameEvent.MissionStart
     multipeerController.sendEventToPeers(game)
   }
 
@@ -167,6 +179,7 @@ class LeadGameController : MultiPeerDelegate {
     println("Sending *Begin Vote* event to peers.")
     game.currentGameState = GameEvent.BeginVote
     multipeerController.sendEventToPeers(game)
+    
   }
   
   func tabulateVotes(forPlayer playerID : String, andVote voteResult : Bool) {
@@ -201,9 +214,9 @@ class LeadGameController : MultiPeerDelegate {
         println("Team approved by players. (Approved: \(approved). Rejected: \(rejected).")
         didPass = true
       }
+      currentVotes = [Bool]()       //Reset currentVotes
+      self.revealVotes(didPass)
     }
-    currentVotes = [Bool]()       //Reset currentVotes
-    self.revealVotes(didPass)
   }
   
   func revealVotes(passed: Bool) {
@@ -240,7 +253,9 @@ class LeadGameController : MultiPeerDelegate {
       for vote in currentMissionOutcomeVotes {
         if vote == "succeed" {
           succeed = succeed + 1
+          currentMission.successCardsPlayed = currentMission.successCardsPlayed + 1
         } else if vote == "fail" {
+          currentMission.failCardsPlayed = currentMission.failCardsPlayed + 1
           fail = fail + 1
         }
       }

@@ -100,9 +100,16 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         { () -> Void in
             self.view.alpha = 0
         })
-        self.view.removeFromSuperview()
-        self.removeFromParentViewController()
-    }
+//        self.view.removeFromSuperview()
+//        self.removeFromParentViewController()
+      let homeVC = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as HomeViewController
+        homeVC.user = self.user
+        homeVC.game = self.game
+        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+            self.presentViewController(homeVC, animated: true, completion: nil)
+       // self.dismissViewControllerAnimated(false, completion: { () -> Void in})
+
+        } }
 
     //MARK: - You probably won't need this stupid thing.
     override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}
