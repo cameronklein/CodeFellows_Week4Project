@@ -11,7 +11,7 @@ import UIKit
 
 class LeadGameController : MultiPeerDelegate {
   
-  var multipeerController : MultiPeerController = MultiPeerController()
+  var multipeerController : MultiPeerController = MultiPeerController.sharedInstance
   var game : GameSession!
   var currentVotes = [Bool]()
   var currentMissionOutcomeVotes = [String]()
@@ -192,19 +192,31 @@ class LeadGameController : MultiPeerDelegate {
           rejected = rejected + 1
         }
       }
+      var didPass = false
       if rejected > approved {
+        println("Team rejected by players. (Approved: \(approved). Rejected: \(rejected).")
         let mission = game.missions[game.currentMission!] as Mission
         mission.rejectedTeamsCount =  mission.rejectedTeamsCount + 1
+      } else {
+        println("Team approved by players. (Approved: \(approved). Rejected: \(rejected).")
+        didPass = true
       }
     }
-    self.revealVotes()
+    currentVotes = [Bool]()       //Reset currentVotes
+    self.revealVotes(didPass)
   }
   
-  func revealVotes() {
+  func revealVotes(passed: Bool) {
     //Displays all players votes to approve/reject the mission
     println("Sending *Reveal Vote* event to peers.")
     game.currentGameState = GameEvent.RevealVote
     multipeerController.sendEventToPeers(game)
+    if passed == true {
+      self.changeLeader()
+      self.tellLeaderToNominatePlayers()
+    } else {
+      self.tellPlayersToDetermineMissionOutcome()
+    }
     
   }
   
@@ -257,18 +269,19 @@ class LeadGameController : MultiPeerDelegate {
     //Memorialize mission information, call updateScore, reset mission timer
     var currentMission = game.missions[game.currentMission!] as Mission
     println("Updating mission number index.")
-    if game.passedMissionCount == 3 || game.failedMissionCount == 3{
-      endGame()
+    if game.passedMissionCount == 3 || game.failedMissionCount == 3 {
+      self.endGame()
     } else {
-        game.currentMission = game.currentMission! + 1
-      startMission()
+      game.currentMission = game.currentMission! + 1
+      self.changeLeader()
+      self.startMission()
     }
   }
   
-  func updateScore() {
-    //Based on mission results upate the overall score
-    
-  }
+//  func updateScore() {
+//    //Based on mission results upate the overall score
+//    
+//  }
   
   func endGame() {
     //Calls revealTeamsAtEndGame, displays who won the game

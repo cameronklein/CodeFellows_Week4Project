@@ -71,6 +71,7 @@ class GameController : MultiPeerDelegate {
     for player in players {
       if multipeerController.peerID == player.peerID {
         homeVC.user = player as? Player
+        println("Identified YOU as \(player.playerName).")
       }
     }
     
@@ -127,16 +128,16 @@ class GameController : MultiPeerDelegate {
   }
 
 
-    func updatePeerCount(count : Int) {
-        self.peerCount = count
-        if let root = UIApplication.sharedApplication().keyWindow?.rootViewController as? LaunchViewController {
-            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                root.updateConnectedPeersLabel(count)
-                //collect userInfo as users join
-            })
-        }
-        sendUserInfo()
+  func updatePeerCount(count : Int) {
+    self.peerCount = count
+    if let root = UIApplication.sharedApplication().keyWindow?.rootViewController as? LaunchViewController {
+      NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+        root.updateConnectedPeersLabel(count)
+            //collect userInfo as users join
+      })
     }
+    sendUserInfo()
+  }
     func sendUserInfo () {
      multipeerController.sendUserInfoToLeadController(myUserInfo)
     }
