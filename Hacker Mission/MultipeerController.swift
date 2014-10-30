@@ -68,22 +68,33 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
 
     // Slave controller getting info from master controller
     if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
+      println("Recognized data as GameSession.")
       delegate.handleEvent(gameData)
     }
     else if let dataReceivedFromSlave = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary{
-      
+      println("Recognized data as NSDictionary.")
       let newDictionary : NSMutableDictionary = NSMutableDictionary()
       newDictionary.setObject(dataReceivedFromSlave.objectForKey("action")!, forKey: "action")
       newDictionary.setObject(dataReceivedFromSlave.objectForKey("value")!, forKey: "value")
       newDictionary.setObject(peerID.displayName, forKey: "peerID")
       self.delegate.handleEvent(newDictionary)
-      
-      
+    } else if let dataReceivedFromSlave = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSMutableDictionary{
+      println("Recognized data as NSMutableDictionary.")
+      let newDictionary : NSMutableDictionary = NSMutableDictionary()
+      newDictionary.setObject(dataReceivedFromSlave.objectForKey("action")!, forKey: "action")
+      newDictionary.setObject(dataReceivedFromSlave.objectForKey("value")!, forKey: "value")
+      newDictionary.setObject(peerID.displayName, forKey: "peerID")
+      self.delegate.handleEvent(newDictionary)
+    }
+    else {
+      println("Unknown Data Received!")
+    }
+    
 //        var newData: NSMutableData? = userData["userInfo"] as? NSMutableData
 //        let passedUser = UserInfo.unwrapUserInfo(newData!)
 //        var dictionaryToPass = ["value" : passedUser, "peerID": peerID.displayName, "action": "user"] as NSMutableDictionary
 //        self.delegate.handleEvent(dictionaryToPass)
-    }
+    
     
     
   }
