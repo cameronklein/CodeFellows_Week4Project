@@ -14,7 +14,7 @@
         </mutableArray>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MissionOutcomeVoteViewController" customModule="Hacker_Mission" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -27,7 +27,7 @@
                             <rect key="frame" x="8" y="8" width="584" height="292"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you want this mission to succeed or fail?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07w-Wb-B2L">
-                                    <rect key="frame" x="81" y="134" width="421" height="22.5"/>
+                                    <rect key="frame" x="81" y="134" width="421" height="23"/>
                                     <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="20"/>
                                     <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -43,12 +43,15 @@
                             <rect key="frame" x="8" y="300" width="292" height="292"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WUG-e6-lk3">
-                                    <rect key="frame" x="88.5" y="129.5" width="114" height="33"/>
+                                    <rect key="frame" x="89" y="130" width="114" height="33"/>
                                     <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="20"/>
                                     <state key="normal" title="Succeed">
                                         <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="successButtonPressed:" destination="-1" eventType="touchUpInside" id="pmh-SD-83K"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -61,12 +64,15 @@
                             <rect key="frame" x="300" y="300" width="292" height="292"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odu-f8-dsM">
-                                    <rect key="frame" x="120" y="129.5" width="52" height="33"/>
+                                    <rect key="frame" x="120" y="130" width="52" height="33"/>
                                     <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="20"/>
                                     <state key="normal" title="Fail">
                                         <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="failButtonPressed:" destination="-1" eventType="touchUpInside" id="E2u-Mk-yQ7"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
