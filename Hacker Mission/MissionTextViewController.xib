@@ -28,12 +28,23 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pb-Hm-93F">
+                    <rect key="frame" x="279" y="549" width="42" height="30"/>
+                    <state key="normal" title="Got it!">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="confirmButtonPressed:" destination="-1" eventType="touchUpInside" id="fJS-Yk-CIT"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="Jz5-at-WoY" secondAttribute="centerX" id="Lys-No-VWr"/>
+                <constraint firstAttribute="centerX" secondItem="4pb-Hm-93F" secondAttribute="centerX" id="Nkp-At-wiT"/>
                 <constraint firstAttribute="bottom" secondItem="7sa-49-DRk" secondAttribute="bottom" constant="48" id="RAF-ch-nPt"/>
                 <constraint firstItem="Jz5-at-WoY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="48" id="YpX-Ah-gnN"/>
+                <constraint firstItem="4pb-Hm-93F" firstAttribute="top" secondItem="7sa-49-DRk" secondAttribute="bottom" constant="-3" id="fB5-np-Cc2"/>
                 <constraint firstAttribute="centerX" secondItem="7sa-49-DRk" secondAttribute="centerX" id="xmn-ey-2Ic"/>
             </constraints>
         </view>

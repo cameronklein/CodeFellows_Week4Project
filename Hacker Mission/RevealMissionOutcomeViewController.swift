@@ -21,7 +21,7 @@ class RevealMissionOutcomeViewController: UIViewController {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    let currentMission = game.missions[game.currentMission!] as Mission
+    let currentMission = game.missions[game.currentMission] as Mission
     let result = currentMission.success! as Bool
     if result {
       missionOutcomeLabel.text = "Mission Succeeded!!!"

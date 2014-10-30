@@ -46,10 +46,12 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         if user!.playerRole == .Agent
         {
             self.flavorTextLabel.text = "You're a secret bad guy. Here is your secret bad guy team."
+            self.flavorTextLabel.typingAnimation(0.1)
         }
         else
         {
             self.flavorTextLabel.text = "You're a good guy. Some of your teammates are secret bad guys."
+            self.flavorTextLabel.typingAnimation(0.1)
         }
     }
     
@@ -106,8 +108,10 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         homeVC.user = self.user
         homeVC.game = self.game
         NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-            self.presentViewController(homeVC, animated: true, completion: nil)
-       // self.dismissViewControllerAnimated(false, completion: { () -> Void in})
+          self.presentViewController(homeVC, animated: true, completion: { () -> Void in
+            homeVC.startMission(self.game)
+          })
+       //   self.dismissViewControllerAnimated(false, completion: { () -> Void in})
 
         } }
 

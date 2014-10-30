@@ -32,6 +32,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var user : Player?
     var playersSelected = 0
     var game : GameSession!
+    var labelsAreBlinking = false
+    
+    var screenWidth : CGFloat!
+    var layout : UICollectionViewFlowLayout!
     //var gameController = GameController.sharedInstance
     
     var selectedIndexPath : NSIndexPath?
@@ -44,6 +48,16 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.playersCollectionView.delegate = self
         self.playersCollectionView.dataSource = self
         self.playersCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
+        
+        //Set Cell Dimensions
+        self.layout = playersCollectionView.collectionViewLayout as UICollectionViewFlowLayout
+        self.screenWidth = self.playersCollectionView.frame.width
+        super.viewWillAppear(true)
+        layout.minimumLineSpacing = screenWidth * 0.02
+        layout.minimumInteritemSpacing = screenWidth * 0.02
+        layout.sectionInset.left = screenWidth * 0.02
+        layout.sectionInset.right = screenWidth * 0.02
+        layout.itemSize = CGSize(width: screenWidth * 0.30, height: screenWidth * 0.30)
         
         //round corners on players collection view
         self.playersCollectionView.layer.cornerRadius = self.playersCollectionView.frame.size.width / 16
@@ -138,7 +152,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         
         
-        if self.playersSelected == (game.missions[game.currentMission!] as Mission).playersNeeded
+        if self.playersSelected == (game.missions[game.currentMission] as Mission).playersNeeded
         {
             self.playersCollectionView.userInteractionEnabled = false
             self.confirmNominationButton.userInteractionEnabled = true
@@ -159,15 +173,16 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         {
             self.nominationPromptLabel.hidden = false
             self.nominationPromptLabel.text = "Nominate team members."
+            self.startBlinking(self.nominationPromptLabel)
             self.confirmNominationButton.hidden = false
             self.confirmNominationButton.userInteractionEnabled = false
             self.playersCollectionView.userInteractionEnabled = true
-            
         }
         else
         {
             self.nominationPromptLabel.hidden = false
             self.nominationPromptLabel.text = "Nominations being selected..."
+            self.startBlinking(self.nominationPromptLabel)
         }
     }
     
@@ -175,6 +190,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     {
         self.confirmNominationButton.userInteractionEnabled = false
         self.confirmNominationButton.titleLabel?.textColor = UIColor.grayColor()
+        self.labelsAreBlinking = false
+        self.nominationPromptLabel.hidden = true
         self.confirmNominationButton.hidden = true
         
         //dself.gameController.sendInfoToMainBrain()
@@ -182,6 +199,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   func voteOnProposedTeam(game: GameSession)
   {//Display the nominated team to all users and get a vote of Approve or Reject back
+    self.labelsAreBlinking = false
+    self.nominationPromptLabel.hidden = true
+    
     let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
     vc.game = game
     vc.view.frame = self.playersCollectionView.frame
@@ -194,15 +214,19 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //  }
 //
   func startMission(game : GameSession) {
-    let vc = MissionTextViewController(nibName: "MissionStartView", bundle: NSBundle.mainBundle())
-    vc.view.frame = self.view.frame
+    let vc = MissionTextViewController(nibName: "MissionTextViewController", bundle: NSBundle.mainBundle())
+    vc.view.frame = self.playersCollectionView.frame
+    vc.game = game
+    if user!.isLeader == true {
+      vc.leaderSelectingTeam.text = "You are the leader. Select your team wisely"
+    }
     self.addChildViewController(vc)
     self.view.addSubview(vc.view)
   }
   
   func voteOnMissionSuccess(game: GameSession) {
     
-    let currentMission = game.missions[game.currentMission!] as Mission
+    let currentMission = game.missions[game.currentMission] as Mission
     let nominatedPlayers = currentMission.nominatedPlayers
 
     for player in nominatedPlayers {
@@ -228,6 +252,28 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     self.view.addSubview(vc.view)
     
   }
+    
+    func startBlinking (label: UILabel)
+    {
+        label.alpha = 1
+        self.labelsAreBlinking = true
+        
+        var animationQueue = NSOperationQueue()
+        animationQueue.maxConcurrentOperationCount = 1
+        
+        while self.labelsAreBlinking
+        {
+            UIView.animateWithDuration(1, animations:
+            { () -> Void in
+                    label.alpha = 0
+            })
+            UIView.animateWithDuration(1, animations:
+            { () -> Void in
+                    label.alpha = 1
+            })
+        }
+        label.alpha = 1
+    }
 
     //MARK: - One line, because we probably won't use this.
     override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}
