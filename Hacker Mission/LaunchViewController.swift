@@ -79,27 +79,27 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
         
     
     }
-
+  
+  func gameStart(revealVC: RevealViewController) {
+    
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.presentViewController(revealVC, animated: true, completion: nil)
+    }
+  }
+    
     func didSaveUser(userToSave: UserInfo) {
         self.userInfoMyself = userToSave
     }
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SHOW_CHARCREATE" {
             let destinationVC = segue.destinationViewController as CharacterCreationViewController
             destinationVC.delegate = self
         }
     }
-
+    
     
     @IBAction func createCharacter(sender: AnyObject) {
         self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
     }
-
-    func gameStart(homeVC: HomeViewController) {
-    
-    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-      self.presentViewController(homeVC, animated: true, completion: nil)
-    }
-  }
 }

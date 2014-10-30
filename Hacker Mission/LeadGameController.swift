@@ -26,7 +26,7 @@ class LeadGameController : MultiPeerDelegate {
   
   func startLookingForPlayers() {
     myUserInfo = UserInfo(userName: "Boss Man", userImage: UIImage(named: "AtSymbol")!)
-    myUserInfo.userPeerID = "myID234234234"
+    myUserInfo.userPeerID = multipeerController.peerID.displayName
     myUserInfo.userImage = UIImage(named: "AtSymbol")!
     multipeerController.userInfo = self.myUserInfo
     usersForGame.append(self.myUserInfo)
@@ -69,10 +69,21 @@ class LeadGameController : MultiPeerDelegate {
       println("Game Created. We are ready for launch.")
       assignRoles()
     }
-    let homeVC = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as HomeViewController
-    homeVC.game = self.game
+    let revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())
     
-    self.launchVC.gameStart(homeVC)
+    let playerArray = game.players
+    for player in playerArray {
+        println("\(multipeerController.peerID.displayName) is from Controller, \(player.peerID) is the local")
+        if multipeerController.peerID.displayName == player.peerID {
+            println("Entered the If")
+            revealVC.user = player as? Player
+        }
+    }
+//    let revealVC = UIStoryboard(name: "Main", bundle:
+//        NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as RevealViewController
+    revealVC.game = self.game
+    
+    self.launchVC.gameStart(revealVC)
     }
 
   func assignRoles(){
@@ -87,7 +98,7 @@ class LeadGameController : MultiPeerDelegate {
     case 10:
       numberOfAgents = 4
     default:
-      numberOfAgents = 2
+      numberOfAgents = 1
     }
     var currentAgents = 0
     
