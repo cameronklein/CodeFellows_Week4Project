@@ -14,6 +14,7 @@ class GameController : MultiPeerDelegate {
   var game : GameSession!
   var revealVC : RevealViewController!
   var launchVC : LaunchViewController!
+    var homeVC : HomeViewController!
   var multipeerController = MultiPeerController.sharedInstance
   var peerCount : Int = 0
   var userInfo : UserInfo?
