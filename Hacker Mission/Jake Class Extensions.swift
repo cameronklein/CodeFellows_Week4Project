@@ -54,6 +54,36 @@ extension UILabel
                     })
                 }
             }
+            self.cursorBlink()
+        }
+    }
+    
+    func cursorBlink ()  //made to be used after typingAnimation
+    {
+        let animationQueue = NSOperationQueue()
+        animationQueue.maxConcurrentOperationCount = 1
+        if (self.text?.hasSuffix("_") == false)
+        {
+            self.text = self.text! + "_"
+        }
+        let withCursor = self.text?
+        var withoutCursor = self.text?.stringByReplacingOccurrencesOfString("_", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        animationQueue.addOperationWithBlock
+        { () -> Void in
+            for var i=0; i<60; i++
+            {
+                sleep(1)
+                NSOperationQueue.mainQueue().addOperationWithBlock(
+                { () -> Void in
+                    self.text = withoutCursor
+                })
+                sleep(1)
+                NSOperationQueue.mainQueue().addOperationWithBlock(
+                { () -> Void in
+                    self.text = withCursor
+                })
+            }
         }
     }
 }
