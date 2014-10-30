@@ -23,7 +23,7 @@ class MissionTextViewController: UIViewController {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    let currentMission = game.missions[game.currentMission!] as Mission
+    let currentMission = game.missions[game.currentMission] as Mission
     missionFlavorTextLabel.text = currentMission.missionDescription
   }
 
