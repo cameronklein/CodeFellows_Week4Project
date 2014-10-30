@@ -11,7 +11,7 @@ import UIKit
 
 extension UILabel
 {
-    func typingAnimation() -> Void
+    func typingAnimation(durationPerCharacter : Float) -> Void
     {
         let textToAnimate = self.text as String?
         var characterArray : [String]!
@@ -23,19 +23,36 @@ extension UILabel
         else
         {
             var animationQueue = NSOperationQueue()
-            var outputString : String?
+            animationQueue.maxConcurrentOperationCount = 1
+            var sleepLength = UInt32(durationPerCharacter)
+            var outputString : String = "_"
+            var isFirstCycle = true
             
             for character in characterArray!
             {
-                if outputString == nil
+                if outputString == "_"
                 {
-                    outputString = character
+                    if isFirstCycle
+                    {
+                        isFirstCycle = false
+                    }
+                    else
+                    {
+                        outputString = character
+                    }
                 }
                 else
                 {
-                    outputString = outputString! + character
+                    outputString = outputString + character
                 }
-                self.text = outputString! + "_"
+                animationQueue.addOperationWithBlock
+                { () -> Void in
+                    sleep(sleepLength)
+                    NSOperationQueue.mainQueue().addOperationWithBlock(
+                    { () -> Void in
+                        self.text = outputString + "_"
+                    })
+                }
             }
         }
     }
