@@ -59,11 +59,11 @@ class GameSession: NSObject, NSCoding {
     }
 
     class func populateMissionList() -> NSMutableArray {
-      var mission1 = (Int, Int)
-      var mission2 = (Int, Int)
-      var mission3 = (Int, Int)
-      var mission4 = (Int, Int)
-      var mission5 = (Int, Int)
+      var mission1 : (Int, Int)
+      var mission2 : (Int, Int)
+      var mission3 : (Int, Int)
+      var mission4 : (Int, Int)
+      var mission5 : (Int, Int)
       switch players.count{
       case 5:
         mission1 = (2, 1)

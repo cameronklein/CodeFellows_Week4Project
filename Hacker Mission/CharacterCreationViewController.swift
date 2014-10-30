@@ -93,9 +93,16 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     //MARK: - Actions and Outlets
     @IBAction func saveButtonPressed(sender: AnyObject)
     {
-        var localUserInfo = UserInfo(userName: self.userNameFor!, userImage: self.userImageFor!)
-        self.userForSave = localUserInfo
-        self.delegate?.didSaveUser(self.userForSave)
+      let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+      var localUserInfo = UserInfo(userName: self.userNameFor!, userImage: self.userImageFor!)
+      self.userForSave = localUserInfo
+      self.delegate?.didSaveUser(self.userForSave)
+      if let pathForSave = appDelegate.documentsPath as String! {
+        println("Can Save File")
+      } else {
+        println("ERROR: No save path found, this is a fail case.")
+      }
+
     }
 
     @IBAction func photoButtonPressed(sender: AnyObject) {

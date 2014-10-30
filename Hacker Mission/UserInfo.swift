@@ -38,6 +38,8 @@ class UserInfo : NSObject, NSCoding {
 
     }
 
+
+
      func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.userName, forKey: "userName")
         aCoder.encodeInteger(self.userID, forKey: "userID")
@@ -112,6 +114,8 @@ class UserInfo : NSObject, NSCoding {
         return passedUser as UserInfo
 
     }
+
+
 
 
 

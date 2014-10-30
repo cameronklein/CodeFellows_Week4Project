@@ -12,10 +12,38 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+  var defaultUser: UserInfo?
+  var documentsPath : String?
+
+  func checkDefaultsForUser() {
+
+  }
+
+  func saveDefaultPath() {
+    if let path = self.makeSavePath() {
+      let fileComponent = "ArchivedUser"
+      let filePath = path.stringByAppendingPathComponent(fileComponent)
+
+      let userDefaults = NSUserDefaults.standardUserDefaults()
+      userDefaults.setObject(filePath, forKey: "filePath")
+      userDefaults.synchronize()
+    } else {
+      println("ERROR: Could not create and store file path for saving user defaults")
+    }
+
+  }
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    // Override point for customization after application launch.
+
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    if let value: String = userDefaults.valueForKey("filePath") as? String {
+      println("Previous path value found")
+      self.documentsPath = value as String!
+    } else {
+      self.saveDefaultPath()
+    }
+
     return true
   }
 
@@ -39,6 +67,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func applicationWillTerminate(application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+  }
+
+  func makeSavePath() -> String? {
+    let fileManager = NSFileManager.defaultManager()
+    let arrayOfPotentialDirectories : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as [String]
+    println("directories count is \(arrayOfPotentialDirectories.count)")
+    for directory in arrayOfPotentialDirectories {
+      println("directory is \(directory)")
+    }
+
+    if arrayOfPotentialDirectories.count > 0 {
+      let arrayOfValidatedDirectories = arrayOfPotentialDirectories as [String]!
+      let pathForSave = arrayOfValidatedDirectories.first
+      return pathForSave as String!
+    }
+    println("ERROR: Could not generate an array of directories")
+    return nil
+    
   }
 
 
