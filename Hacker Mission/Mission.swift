@@ -19,6 +19,9 @@ class Mission : NSObject, NSCoding {
     var failThreshold : NSInteger!
     var rejectedTeamsCount : NSInteger = 0
     var nominatedPlayers : NSMutableArray = NSMutableArray()
+    var successCardsPlayed : NSInteger = 0
+    var failCardsPlayed : NSInteger = 0
+  
 
     init(missionDictionary: NSMutableDictionary) {
         var missionDictionary = missionDictionary
@@ -29,11 +32,11 @@ class Mission : NSObject, NSCoding {
     }
 
   convenience init (playersNeeded: NSInteger, failThreshold: NSInteger) {
-
       var missionDictionary = NSMutableDictionary()
       missionDictionary.setObject("Test Mission", forKey: "missionName")
       missionDictionary.setObject(playersNeeded, forKey: "playersNeeded")
       missionDictionary.setObject(failThreshold, forKey: "failThreshold")
+    
       self.init (missionDictionary: missionDictionary as NSMutableDictionary!)
     }
   
@@ -44,6 +47,8 @@ class Mission : NSObject, NSCoding {
     aCoder.encodeObject(self.failThreshold, forKey: "failThreshold")
     aCoder.encodeObject(self.rejectedTeamsCount, forKey: "rejectedTeamCount")
     aCoder.encodeObject(self.nominatedPlayers, forKey: "nominatedPlayers")
+    aCoder.encodeObject(self.successCardsPlayed, forKey: "successCardsPlayed")
+    aCoder.encodeObject(self.failCardsPlayed, forKey: "failCardsPlayed")
     if self.missionDescription != nil{
       aCoder.encodeObject(self.missionDescription, forKey: "missionDescription")
     }
@@ -59,6 +64,8 @@ class Mission : NSObject, NSCoding {
     self.failThreshold = aDecoder.decodeObjectForKey("failThreshold") as NSInteger
     self.rejectedTeamsCount = aDecoder.decodeObjectForKey("rejectedTeamCount") as NSInteger
     self.nominatedPlayers = aDecoder.decodeObjectForKey("nominatedPlayers") as NSMutableArray
+    self.successCardsPlayed = aDecoder.decodeObjectForKey("successCardsPlayed") as NSInteger
+    self.failCardsPlayed = aDecoder.decodeObjectForKey("failCardsPlayed") as NSInteger
     if let desc = aDecoder.decodeObjectForKey("missionDescription") as? NSString {
       self.missionDescription = desc
     }

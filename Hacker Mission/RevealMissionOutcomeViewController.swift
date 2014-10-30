@@ -16,8 +16,18 @@ class RevealMissionOutcomeViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-
-      // Do any additional setup after loading the view.
+ 
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    let currentMission = game.missions[game.currentMission!] as Mission
+    let result = currentMission.success! as Bool
+    if result {
+      missionOutcomeLabel.text = "Mission Succeeded!!!"
+    } else {
+      missionOutcomeLabel.text = "Mission Failed!!!"
+    }
   }
 
   override func didReceiveMemoryWarning() {

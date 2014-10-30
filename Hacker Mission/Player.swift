@@ -33,6 +33,7 @@ class Player : NSObject, NSCoding {
         self.playerDictionary = playerDictionary
         self.playerImage = playerDictionary["playerImage"] as UIImage
         self.peerID = playerDictionary["peerID"] as NSString
+      
     }
 
     required init(coder aDecoder: NSCoder) {

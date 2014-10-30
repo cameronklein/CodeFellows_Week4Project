@@ -71,7 +71,7 @@ class GameController : MultiPeerDelegate {
     for player in players {
       if multipeerController.peerID == player.peerID {
         homeVC.user = player as? Player
-        println("Identified YOU as \(player.playerName).")
+        println("Identified YOU as \(homeVC.user!.playerName).")
       }
     }
     

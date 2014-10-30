@@ -202,11 +202,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //  
   func voteOnMissionSuccess(game: GameSession) {
     
-    let currentMission = game.missions[game.currentMission] as Mission
-    let nominatedPlayers = currentMisison.nominatedPlayers as [Player]
+    let currentMission = game.missions[game.currentMission!] as Mission
+    let nominatedPlayers = currentMission.nominatedPlayers
+
     for player in nominatedPlayers {
-      if player.peerID = user.peerID {
-        let vc = MissionVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
+      let castedPlayer = player as? Player
+      if castedPlayer!.peerID == user!.peerID {
+        let vc = MissionOutcomeVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
         vc.view.frame = self.view.frame
         self.addChildViewController(vc)
         self.view.addSubview(vc.view)
