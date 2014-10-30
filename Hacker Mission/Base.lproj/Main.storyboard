@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="B2m-a2-ZUT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="B2m-a2-ZUT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -37,7 +37,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qma-9f-JgQ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                 <subviews>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Peers Connected...]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P14-56-dqD">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="[Peers Connected...]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P14-56-dqD">
                                         <rect key="frame" x="221" y="177" width="159" height="19"/>
                                         <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="17"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -95,10 +95,21 @@
                                             <action selector="joinGameButtonPressed:" destination="B2m-a2-ZUT" eventType="touchUpInside" id="reG-18-jVM"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1OX-99-S4k">
+                                        <rect key="frame" x="259" y="177" width="82" height="30"/>
+                                        <state key="normal" title="Create User">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="createCharacter:" destination="B2m-a2-ZUT" eventType="touchUpInside" id="kU7-gP-GLz"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="1OX-99-S4k" secondAttribute="centerX" id="3P7-Oo-b7y"/>
                                     <constraint firstAttribute="centerX" secondItem="c69-h1-LK6" secondAttribute="centerX" id="6CT-4U-sao"/>
+                                    <constraint firstItem="1OX-99-S4k" firstAttribute="top" secondItem="c69-h1-LK6" secondAttribute="bottom" constant="8" id="RfE-bH-4Hm"/>
                                     <constraint firstAttribute="centerY" secondItem="c69-h1-LK6" secondAttribute="centerY" id="fDM-g7-Qpx"/>
                                 </constraints>
                             </view>
@@ -121,6 +132,7 @@
                         <outlet property="peersLabel" destination="P14-56-dqD" id="vmh-7Y-zZq"/>
                         <outlet property="spinningWheel" destination="Nr6-3m-elK" id="paX-bz-ems"/>
                         <outlet property="startButton" destination="PPf-6S-DwA" id="Mgc-vv-flW"/>
+                        <segue destination="Qid-5I-G0n" kind="show" id="56A-8c-pr8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m36-AE-PQO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -168,7 +180,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="bud-1w-lef">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="bud-1w-lef" customClass="DefaultIconCell" customModule="Hacker_Mission" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -189,6 +201,9 @@
                                             <constraint firstItem="kPp-Mg-lTu" firstAttribute="top" secondItem="bud-1w-lef" secondAttribute="topMargin" constant="-8" id="mjQ-fj-ps8"/>
                                             <constraint firstAttribute="centerX" secondItem="kPp-Mg-lTu" secondAttribute="centerX" id="skr-LU-3DL"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="kPp-Mg-lTu" id="5hT-G8-FDn"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -198,15 +213,26 @@
                                     <constraint firstAttribute="width" secondItem="WWg-Hl-4eJ" secondAttribute="height" multiplier="1:1" id="zen-g8-9Km"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYg-lI-wCd">
+                                <rect key="frame" x="276" y="525" width="49" height="30"/>
+                                <state key="normal" title="Photos">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="photoButtonPressed:" destination="Qid-5I-G0n" eventType="touchUpInside" id="RsZ-ni-s9d"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YfP-7t-JIE" firstAttribute="top" secondItem="gX0-Qb-HeF" secondAttribute="bottom" constant="8" id="1n9-Go-AZo"/>
+                            <constraint firstItem="mYg-lI-wCd" firstAttribute="top" secondItem="YfP-7t-JIE" secondAttribute="bottom" constant="8" id="2yP-YG-VjW"/>
                             <constraint firstItem="WWg-Hl-4eJ" firstAttribute="leading" secondItem="DnX-Sf-lrV" secondAttribute="trailing" constant="8" id="7og-Yo-rng"/>
                             <constraint firstItem="WWg-Hl-4eJ" firstAttribute="bottom" secondItem="DnX-Sf-lrV" secondAttribute="bottom" id="9ns-DY-BMM"/>
                             <constraint firstItem="gX0-Qb-HeF" firstAttribute="height" secondItem="692-JX-l36" secondAttribute="height" multiplier="0.6" id="IzC-Ss-oTK"/>
                             <constraint firstItem="DnX-Sf-lrV" firstAttribute="centerX" secondItem="gX0-Qb-HeF" secondAttribute="centerX" constant="0.5" id="Lc5-ut-c9a"/>
                             <constraint firstAttribute="centerX" secondItem="gX0-Qb-HeF" secondAttribute="centerX" id="amP-y1-G4a"/>
+                            <constraint firstAttribute="centerX" secondItem="mYg-lI-wCd" secondAttribute="centerX" id="biz-2G-0fB"/>
                             <constraint firstAttribute="centerY" secondItem="gX0-Qb-HeF" secondAttribute="centerY" id="cED-J5-hiq"/>
                             <constraint firstItem="gX0-Qb-HeF" firstAttribute="centerX" secondItem="YfP-7t-JIE" secondAttribute="centerX" id="cZP-WG-0FH"/>
                             <constraint firstItem="DnX-Sf-lrV" firstAttribute="width" secondItem="gX0-Qb-HeF" secondAttribute="width" multiplier="0.6" id="cbh-ec-f3A"/>
@@ -228,6 +254,7 @@
                     <connections>
                         <outlet property="defaultIconsCollectionView" destination="gX0-Qb-HeF" id="CYX-cN-AjX"/>
                         <outlet property="saveCharacterButton" destination="YfP-7t-JIE" id="5d7-yS-eyt"/>
+                        <outlet property="userImageView" destination="WWg-Hl-4eJ" id="umA-PX-YWp"/>
                         <outlet property="usernameTextField" destination="DnX-Sf-lrV" id="noG-uW-R4I"/>
                     </connections>
                 </viewController>
@@ -248,7 +275,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of this HackerMission Game" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1m-Yd-cud">
-                                <rect key="frame" x="128" y="52" width="342.5" height="20.5"/>
+                                <rect key="frame" x="128" y="52" width="343" height="21"/>
                                 <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="20"/>
                                 <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -270,7 +297,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="juq-1B-11K">
                                 <rect key="frame" x="16" y="478" width="568" height="90"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mission_open" translatesAutoresizingMaskIntoConstraints="NO" id="4wM-5k-Cs2">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="mission_open" translatesAutoresizingMaskIntoConstraints="NO" id="4wM-5k-Cs2">
                                         <rect key="frame" x="5" y="-3" width="97" height="97"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="4wM-5k-Cs2" secondAttribute="height" multiplier="1:1" id="tm2-Db-G8I"/>
@@ -315,7 +342,7 @@
                                             <rect key="frame" x="474.5" y="-3" width="85" height="86"/>
                                         </variation>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mission_connector" translatesAutoresizingMaskIntoConstraints="NO" id="nw8-7T-8Rg">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="mission_connector" translatesAutoresizingMaskIntoConstraints="NO" id="nw8-7T-8Rg">
                                         <rect key="frame" x="97" y="24" width="28.5" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="nw8-7T-8Rg" secondAttribute="height" multiplier="2:3" id="C9f-oR-sjr"/>
@@ -369,7 +396,7 @@
                                 </constraints>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt; VOTING RESULTS ARE IN! &gt;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yO-ZI-uxD">
-                                <rect key="frame" x="161" y="389" width="276.5" height="22.5"/>
+                                <rect key="frame" x="161" y="389" width="277" height="23"/>
                                 <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="20"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -386,7 +413,7 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nominate team members." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovz-Ln-f4Q">
-                                <rect key="frame" x="16" y="388" width="284" height="22.5"/>
+                                <rect key="frame" x="16" y="388" width="284" height="23"/>
                                 <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="20"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
