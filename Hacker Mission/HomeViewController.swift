@@ -77,6 +77,17 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         cell.imageView.image = player.playerImage
         cell.username.text = player.playerName
         
+        if player.isNominated
+        {
+            cell.layer.borderColor = UIColor.greenColor().CGColor
+            cell.layer.borderWidth = 1
+        }
+        else
+        {
+            cell.layer.borderColor = UIColor.blackColor().CGColor
+            cell.layer.borderWidth = 0
+        }
+        
         if player.currentVote != nil
         {
             if (player.currentVote == true)
@@ -85,8 +96,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 cell.approvesMission.hidden = false
                 cell.rejectsMission.hidden = true
                 UIView.animateWithDuration(1, animations:
-                    { () -> Void in
-                        cell.approvesMission.alpha = 1
+                { () -> Void in
+                    cell.approvesMission.alpha = 1
                 })
             }
             else
@@ -95,8 +106,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 cell.rejectsMission.hidden = false
                 cell.approvesMission.hidden = true
                 UIView.animateWithDuration(1, animations:
-                    { () -> Void in
-                        cell.rejectsMission.alpha = 1
+                { () -> Void in
+                    cell.rejectsMission.alpha = 1
                 })
             }
         }
@@ -117,11 +128,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         {
             player.isNominated = false
             self.playersSelected -= 1
+            self.playersCollectionView.reloadData()
         }
         else
         {
             player.isNominated = true
             self.playersSelected += 1
+            self.playersCollectionView.reloadData()
         }
         
         
