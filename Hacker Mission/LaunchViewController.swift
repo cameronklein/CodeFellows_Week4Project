@@ -12,7 +12,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   
   var masterController    : LeadGameController?
   var followerController  : GameController?
-    var userInfoMyself : UserInfo?
+  var userInfoMyself : UserInfo?
   //var multiPeerController = MultiPeerController.sharedInstance
 
   @IBOutlet weak var peersLabel: UILabel!
