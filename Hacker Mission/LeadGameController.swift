@@ -123,8 +123,6 @@ class LeadGameController : MultiPeerDelegate {
     println("Sending *Game Start* event to peers.")
     game.currentGameState = GameEvent.Start
     multipeerController.sendEventToPeers(game)
-    
-    
     self.revealCharacters()
   }
   
@@ -132,6 +130,8 @@ class LeadGameController : MultiPeerDelegate {
     //Sends information on who is on what team (Hackers and Goverment Agents) to devices.  Only Goverment Agents see who the other Goverment Agents are
     println("Sending *Reveal Characters* event to peers.")
     game.currentGameState = GameEvent.RevealCharacters
+    multipeerController.sendEventToPeers(game)
+    game.currentGameState = GameEvent.MissionStart
     multipeerController.sendEventToPeers(game)
   }
 
@@ -179,6 +179,7 @@ class LeadGameController : MultiPeerDelegate {
     println("Sending *Begin Vote* event to peers.")
     game.currentGameState = GameEvent.BeginVote
     multipeerController.sendEventToPeers(game)
+    
   }
   
   func tabulateVotes(forPlayer playerID : String, andVote voteResult : Bool) {
@@ -207,7 +208,7 @@ class LeadGameController : MultiPeerDelegate {
       var didPass = false
       if rejected > approved {
         println("Team rejected by players. (Approved: \(approved). Rejected: \(rejected).")
-        let mission = game.missions[game.currentMission!] as Mission
+        let mission = game.missions[game.currentMission] as Mission
         mission.rejectedTeamsCount =  mission.rejectedTeamsCount + 1
       } else {
         println("Team approved by players. (Approved: \(approved). Rejected: \(rejected).")
@@ -245,7 +246,7 @@ class LeadGameController : MultiPeerDelegate {
     
     println("Mission outcome vote received from \(playerID)")
     currentMissionOutcomeVotes.append(outcome)
-    let currentMission = game.missions[game.currentMission!] as Mission
+    let currentMission = game.missions[game.currentMission] as Mission
     if currentMissionOutcomeVotes.count == currentMission.playersNeeded {
       var succeed = 0
       var fail = 0
@@ -281,12 +282,12 @@ class LeadGameController : MultiPeerDelegate {
   
   func endMission() {
     //Memorialize mission information, call updateScore, reset mission timer
-    var currentMission = game.missions[game.currentMission!] as Mission
+    var currentMission = game.missions[game.currentMission] as Mission
     println("Updating mission number index.")
     if game.passedMissionCount == 3 || game.failedMissionCount == 3 {
       self.endGame()
     } else {
-      game.currentMission = game.currentMission! + 1
+      game.currentMission = game.currentMission + 1
       self.changeLeader()
       self.startMission()
     }

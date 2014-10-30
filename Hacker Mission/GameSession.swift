@@ -13,13 +13,11 @@ class GameSession: NSObject, NSCoding {
     var players : NSMutableArray // Array of Player
     var missions : NSMutableArray // Array of Mission
     var leader : Player? // Get from players.objectAtIndex(Int)
-    var currentMission : NSInteger? // Get from missions.objectAtIndex(Int)
+    var currentMission : NSInteger = 0 // Get from missions.objectAtIndex(Int)
     var currentGameState  : GameEvent?
     var failedMissionCount : NSInteger = 0
     var passedMissionCount : NSInteger = 0
-
-
-
+  
     init (players: NSMutableArray, missions: NSMutableArray) {
         self.players = players
         self.missions = missions
@@ -31,8 +29,7 @@ class GameSession: NSObject, NSCoding {
         self.players = aDecoder.decodeObjectForKey("players") as NSMutableArray
         self.missions = aDecoder.decodeObjectForKey("missions") as NSMutableArray
         self.leader = aDecoder.decodeObjectForKey("leader") as Player?
-        let currentMissionFor = NSInteger(aDecoder.decodeIntForKey("currentMission"))
-        self.currentMission = currentMissionFor
+        self.currentMission = aDecoder.decodeIntegerForKey("currentMission") as NSInteger
         let currentGameStateFor = aDecoder.decodeObjectForKey("currentGameState") as GameEvent.RawValue!
         var currentGameStateIs = GameEvent(rawValue: currentGameStateFor)
         self.currentGameState = currentGameStateIs
@@ -49,9 +46,7 @@ class GameSession: NSObject, NSCoding {
         if self.leader != nil {
             aCoder.encodeObject(self.leader, forKey: "leader")
         }
-        if self.currentMission != nil {
-            aCoder.encodeObject(self.currentMission, forKey: "currentMission")
-        }
+        aCoder.encodeInteger(self.currentMission, forKey: "currentMission")
         if self.currentGameState != nil {
             aCoder.encodeObject(self.currentGameState?.rawValue, forKey: "currentGameState")
         }

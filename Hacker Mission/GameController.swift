@@ -109,11 +109,12 @@ class GameController : MultiPeerDelegate {
   
   func startMission() {
     // TODO: Intro Animation?
+    //self.homeVC.startMission(game)
   }
   
   func beginMissionOutcome() {
     //Nominated players on mission vote to succeed or fail the mission
-//    self.homeVC.voteOnMissionSuccess()
+    //self.homeVC.voteOnMissionSuccess()
 
   }
   

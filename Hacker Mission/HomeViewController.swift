@@ -138,7 +138,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         
         
-        if self.playersSelected == (game.missions[game.currentMission!] as Mission).playersNeeded
+        if self.playersSelected == (game.missions[game.currentMission] as Mission).playersNeeded
         {
             self.playersCollectionView.userInteractionEnabled = false
             self.confirmNominationButton.userInteractionEnabled = true
@@ -193,16 +193,20 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //   self.playersCollectionView.reloadData()
 //  }
 //
-//  func startMission(game : GameSession) {
-//    let vc = MissionStartViewController(nibName: "MissionStartView", bundle: NSBundle.mainBundle())
-//    vc.view.frame = self.view.frame
-//    self.addChildViewController(vc)
-//    self.view.addSubview(vc.view)
-//  }
-//  
+  func startMission(game : GameSession) {
+    let vc = MissionTextViewController(nibName: "MissionTextViewController", bundle: NSBundle.mainBundle())
+    vc.view.frame = self.playersCollectionView.frame
+    vc.game = game
+    if user!.isLeader == true {
+      vc.leaderSelectingTeam.text = "You are the leader. Select your team wisely"
+    }
+    self.addChildViewController(vc)
+    self.view.addSubview(vc.view)
+  }
+  
   func voteOnMissionSuccess(game: GameSession) {
     
-    let currentMission = game.missions[game.currentMission!] as Mission
+    let currentMission = game.missions[game.currentMission] as Mission
     let nominatedPlayers = currentMission.nominatedPlayers
 
     for player in nominatedPlayers {
