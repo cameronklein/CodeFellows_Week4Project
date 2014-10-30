@@ -102,8 +102,7 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         })
 //        self.view.removeFromSuperview()
 //        self.removeFromParentViewController()
-        let homeVC = UIStoryboard(name: "Main", bundle:
-        NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as HomeViewController
+      let homeVC = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as HomeViewController
         homeVC.user = self.user
         homeVC.game = self.game
         NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
