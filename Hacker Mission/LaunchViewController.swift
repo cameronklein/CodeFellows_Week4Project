@@ -8,10 +8,11 @@
 
 import UIKit
 
-class LaunchViewController: UIViewController {
+class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   
   var masterController    : LeadGameController?
   var followerController  : GameController?
+    var userInfoMyself : UserInfo?
   //var multiPeerController = MultiPeerController.sharedInstance
 
   @IBOutlet weak var peersLabel: UILabel!
@@ -23,7 +24,9 @@ class LaunchViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
-  }
+
+    }
+
 
   override func didReceiveMemoryWarning() {
       super.didReceiveMemoryWarning()
