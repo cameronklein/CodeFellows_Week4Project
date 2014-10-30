@@ -71,7 +71,7 @@ class GameController : MultiPeerDelegate {
     for player in players {
       if multipeerController.peerID == player.peerID {
         homeVC.user = player as? Player
-        println("Identified YOU as \(player.playerName).")
+        println("Identified YOU as \(homeVC.user!.playerName).")
       }
     }
     
@@ -116,7 +116,7 @@ class GameController : MultiPeerDelegate {
   
   func revealMissionOutcome() {
     //revealing the success/fail votes
-//    self.homeVC.revealMissionOutcome()
+    self.homeVC.revealMissionOutcome(game)
   }
   
   func endGame() {
