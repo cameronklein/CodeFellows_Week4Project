@@ -41,7 +41,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        self.playersCollectionView.delegate = self
+        self.playersCollectionView.dataSource = self
         self.playersCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
         
         //round corners on players collection view
@@ -51,7 +52,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.missionView.layer.cornerRadius = self.missionView.frame.size.width / 32
         self.missionView.layer.masksToBounds = true
         
-        self.backgroundImageView.animateGif("matrix_code1.gif", startAnimating: true)
+       // self.backgroundImageView.animateGif("matrix_code1.gif", startAnimating: true)
     }
     
     override func viewWillAppear(animated: Bool)
@@ -187,12 +188,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //  }
 //  
 //  func voteOnMissionSuccess(game: GameSession) {
-//    let vc = MissionVoteViewController(nibName: "MissionVoteView", bundle: NSBundle.mainBundle())
+//    let vc = MissionVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
 //    vc.view.frame = self.view.frame
 //    self.addChildViewController(vc)
 //    self.view.addSubview(vc.view)
 //  }
-//  
+//
 //  func revealMissionOutcome(game : GameSession) {
 //    let vc = RevealViewController(nibName: "RevealView", bundle: NSBundle.mainBundle())
 //    vc.view.frame = self.view.frame

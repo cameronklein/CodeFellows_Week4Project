@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameSession {
+class GameSession: NSObject, NSCoding {
 
     var players : NSMutableArray // Array of Player
     var missions : NSMutableArray // Array of Mission
@@ -38,11 +38,11 @@ class GameSession {
         self.currentGameState = currentGameStateIs
         self.failedMissionCount = aDecoder.decodeIntegerForKey("failedMissionCount") as NSInteger
         self.passedMissionCount = aDecoder.decodeIntegerForKey("passedMissionCount") as NSInteger
-
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.players, forKey: "players")
+        println("Attemping to encode gamesession with GameSession Info \(self.players.description)")
         aCoder.encodeObject(self.missions, forKey: "missions")
         aCoder.encodeInteger(self.failedMissionCount, forKey: "failedMissionCount")
         aCoder.encodeInteger(self.passedMissionCount, forKey: "passedMissionCount")
@@ -62,7 +62,7 @@ class GameSession {
         var missionList = NSMutableArray()
         for item in 1...5 {
             var missionFor : Mission
-            var mission = Mission()
+          var mission = Mission(playersNeeded: 4, failThreshold: 1)
             missionList.addObject(mission as Mission!)
         }
 

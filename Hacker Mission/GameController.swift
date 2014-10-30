@@ -13,17 +13,22 @@ class GameController : MultiPeerDelegate {
   
   var game : GameSession!
   var homeVC : HomeViewController!
+  var launchVC : LaunchViewController!
   var multipeerController = MultiPeerController.sharedInstance
   var peerCount : Int = 0
-    var userInfo : UserInfo?
-  var myUserInfo = UserInfo(userName: "Teddy Roosevelt")
+  var userInfo : UserInfo?
+  var myUserInfo : UserInfo!
   
   init(){
     multipeerController.delegate = self
-
+    myUserInfo = UserInfo(userName: "Teddy Roosevelt", userImage: UIImage(named: "AtSymbol")!)
+    myUserInfo.userPeerID = "myID234234234"
+    myUserInfo.userImage = UIImage(named: "AtSymbol")!
   }
   
-  func handleEvent(event: GameEvent) {
+  func handleEvent(newGameInfo: GameSession) {
+    self.game = newGameInfo
+    let event = game.currentGameState!
     println("Received \(event.rawValue) event from Main Brain. Woot.")
     switch event{
     case .Start:
@@ -52,22 +57,28 @@ class GameController : MultiPeerDelegate {
   }
   
   func startLookingForGame(){
-    self.userInfo = UserInfo(userName: "Follower")
+    self.userInfo = UserInfo(userName: "Follower", userImage: UIImage(named: "AtSymbol")!)
     multipeerController.userInfo = self.userInfo
     multipeerController.startAdvertising()
   }
   
   func gameStart() {
+    println("Got Game Start Message")
     multipeerController.stopAdvertising()
-    sendUserInfo()
     
     // TODO: Intro Animation?
     let players = game.players
     for player in players {
       if multipeerController.peerID == player.peerID {
-        homeVC.user = player as Player
+        homeVC.user = player as? Player
       }
     }
+    
+    homeVC = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as HomeViewController
+    homeVC.game = self.game
+    
+    self.launchVC.gameStart(homeVC)
+    
   }
   
   func revealCharacters() {
@@ -119,12 +130,15 @@ class GameController : MultiPeerDelegate {
     func updatePeerCount(count : Int) {
         self.peerCount = count
         if let root = UIApplication.sharedApplication().keyWindow?.rootViewController as? LaunchViewController {
-            root.updateConnectedPeersLabel(count)
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                root.updateConnectedPeersLabel(count)
+                //collect userInfo as users join
+            })
         }
         sendUserInfo()
     }
     func sendUserInfo () {
-     multipeerController.sendUserInfoToLeadController(userInfo!)
+     multipeerController.sendUserInfoToLeadController(myUserInfo)
     }
 
 }

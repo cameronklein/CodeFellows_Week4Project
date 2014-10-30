@@ -37,6 +37,7 @@ class LaunchViewController: UIViewController {
     hostButton.hidden = true
     masterController = LeadGameController()
     masterController?.startLookingForPlayers()
+    masterController?.launchVC = self
     
   }
 
@@ -46,6 +47,7 @@ class LaunchViewController: UIViewController {
     self.spinningWheel.startAnimating()
     followerController = GameController()
     followerController?.startLookingForGame()
+    followerController?.launchVC = self
     
   }
   
@@ -74,7 +76,11 @@ class LaunchViewController: UIViewController {
         
     
     }
-    
-    
   
+  func gameStart(homeVC: HomeViewController) {
+    
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.presentViewController(homeVC, animated: true, completion: nil)
+    }
+  }
 }

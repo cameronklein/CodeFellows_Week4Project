@@ -11,10 +11,11 @@ import UIKit
 class UserInfo : NSObject, NSCoding {
     var userName : NSString
     var userID : NSInteger
-    var userImage : UIImage?
+    var userImage : UIImage
     var userPeerID : NSString?
 
-    init(userName: NSString) {
+    init(userName: NSString, userImage: UIImage) {
+      self.userImage = userImage
         self.userName = userName as NSString
         let idGen = NSInteger(arc4random_uniform(999999))
         let userForHash : NSString = userName + String(idGen)
@@ -22,9 +23,7 @@ class UserInfo : NSObject, NSCoding {
         self.userID = userHash as NSInteger!
         NSUserDefaults.standardUserDefaults().setValue(self.userName, forKey: "userName")
         NSUserDefaults.standardUserDefaults().setValue(self.userID, forKey: "userID")
-        if self.userImage != nil {
-            UserInfo.saveUserImage(self.userImage!)
-        }
+        UserInfo.saveUserImage(self.userImage)
         NSUserDefaults.standardUserDefaults().synchronize()
     }
 
@@ -32,7 +31,7 @@ class UserInfo : NSObject, NSCoding {
 
         self.userName = aDecoder.decodeObjectForKey("userName") as NSString
         self.userID = aDecoder.decodeIntegerForKey("userID") as NSInteger
-        self.userImage = aDecoder.decodeObjectForKey("userImage") as UIImage?
+        self.userImage = aDecoder.decodeObjectForKey("userImage") as UIImage
         self.userPeerID = aDecoder.decodeObjectForKey("userPeerID") as NSString?
 
     }
@@ -40,9 +39,7 @@ class UserInfo : NSObject, NSCoding {
      func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.userName, forKey: "userName")
         aCoder.encodeInteger(self.userID, forKey: "userID")
-        if self.userImage != nil {
-            aCoder.encodeObject(self.userImage, forKey: "userImage")
-        }
+        aCoder.encodeObject(self.userImage, forKey: "userImage")
         if self.userPeerID != nil {
             aCoder.encodeObject(self.userPeerID, forKey: "userPeerID")
         }

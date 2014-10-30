@@ -12,6 +12,7 @@ class NominationVoteViewController: UIViewController//, UICollectionViewDataSour
 {
     @IBOutlet weak var nominatedPlayerViewContoller : UICollectionView!
     var multiPeerController : MultiPeerController = MultiPeerController.sharedInstance
+    var game : GameSession?
   
     var nominatedPlayersArray : [Player]!
     
