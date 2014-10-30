@@ -99,7 +99,7 @@ class GameController : MultiPeerDelegate {
   }
   
   func revealNominations() {
-//    self.homeVC.voteOnProposedTeam(game)
+    self.homeVC.voteOnProposedTeam(game)
   }
   
   func revealVotes() {

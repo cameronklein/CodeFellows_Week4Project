@@ -346,6 +346,7 @@ class LeadGameController : MultiPeerDelegate {
         }
       }
     }
+    self.revealNominations()
     
   }
 
