@@ -158,7 +158,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         if self.user?.isLeader == true
         {
             self.nominationPromptLabel.hidden = false
-            self.nominationPromptLabel.text = "Nominate team members."
+            self.nominationPromptLabel.text = "Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) agents to send on this mission."
             self.confirmNominationButton.hidden = false
             self.confirmNominationButton.userInteractionEnabled = false
             self.playersCollectionView.userInteractionEnabled = true
