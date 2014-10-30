@@ -32,6 +32,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var user : Player?
     var playersSelected = 0
     var game : GameSession!
+    var multiPeerController = MultiPeerController.sharedInstance
     //var gameController = GameController.sharedInstance
     
     var selectedIndexPath : NSIndexPath?
@@ -176,8 +177,16 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.confirmNominationButton.userInteractionEnabled = false
         self.confirmNominationButton.titleLabel?.textColor = UIColor.grayColor()
         self.confirmNominationButton.hidden = true
-        
-        //dself.gameController.sendInfoToMainBrain()
+      
+      
+        var nominatedPlayerIDs = [String]()
+        for player in players {
+          if player.isNominated == true {
+            nominatedPlayerIDs.append(player.peerID)
+          }
+        }
+      let dict = ["action" : "nominations", "value" : nominatedPlayerIDs]
+        self.multiPeerController.sendInfoToMainBrain(dict)
     }
   
   func voteOnProposedTeam(game: GameSession)
@@ -210,8 +219,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let nominatedPlayers = currentMission.nominatedPlayers
 
     for player in nominatedPlayers {
-      let castedPlayer = player as? Player
-      if castedPlayer!.peerID == user!.peerID {
+      let castedPlayer = player
+      if castedPlayer.peerID == user!.peerID {
         let vc = MissionOutcomeVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
         vc.view.frame = self.view.frame
         self.addChildViewController(vc)

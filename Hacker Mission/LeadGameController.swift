@@ -328,9 +328,26 @@ class LeadGameController : MultiPeerDelegate {
     case "user" :
       let value = event["value"] as UserInfo
       usersForGame.append(value)
+    case "nominations" :
+      let value = event["value"] as [String]
+      self.assignNominations(value)
     default:
       println("LeadGameController event handler action not recognized.")
     }
+  }
+  
+  func assignNominations(arrayOfNominatedPlayerIDs : [String]) {
+    let currentMission = game.missions[game.currentMission] as Mission
+    for player in game.players {
+      for nominationID in arrayOfNominatedPlayerIDs {
+        if nominationID == player.peerID {
+          println("Added \(player.playerName) to mission # \(game.currentMission)'s nominatedPlayer array.")
+          currentMission.nominatedPlayers.append(player)
+        }
+      }
+    }
+    self.revealNominations()
+    
   }
 
     func handleEvent(event: GameSession) {
