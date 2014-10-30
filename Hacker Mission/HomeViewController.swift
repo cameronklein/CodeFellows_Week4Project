@@ -195,8 +195,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //
   func startMission(game : GameSession) {
     let vc = MissionTextViewController(nibName: "MissionTextViewController", bundle: NSBundle.mainBundle())
-    vc.view.frame = self.view.frame
+    vc.view.frame = self.playersCollectionView.frame
     vc.game = game
+    if user!.isLeader == true {
+      vc.leaderSelectingTeam.text = "You are the leader. Select your team wisely"
+    }
     self.addChildViewController(vc)
     self.view.addSubview(vc.view)
   }
