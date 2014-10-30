@@ -33,15 +33,19 @@ class UserInfo : NSObject, NSCoding {
 
         self.userName = aDecoder.decodeObjectForKey("userName") as NSString
         self.userID = aDecoder.decodeIntegerForKey("userID") as NSInteger
-        self.userImage = aDecoder.decodeObjectForKey("userImage") as UIImage
+      let data = aDecoder.decodeObjectForKey("userImage") as NSData
+        self.userImage = UIImage(data: data)!
         self.userPeerID = aDecoder.decodeObjectForKey("userPeerID") as NSString?
 
     }
 
+
+
      func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.userName, forKey: "userName")
         aCoder.encodeInteger(self.userID, forKey: "userID")
-        aCoder.encodeObject(self.userImage, forKey: "userImage")
+      let data = UIImagePNGRepresentation(self.userImage)
+        aCoder.encodeObject(data, forKey: "userImage")
         if self.userPeerID != nil {
             aCoder.encodeObject(self.userPeerID, forKey: "userPeerID")
         }
@@ -112,6 +116,41 @@ class UserInfo : NSObject, NSCoding {
         return passedUser as UserInfo
 
     }
+
+  class func saveTheObject (object: UserInfo) {
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let filePath = appDelegate.documentsPath as String!
+    println("filePath = \(filePath)")
+    println("Saving to File")
+
+    NSKeyedArchiver.archiveRootObject(object, toFile: filePath)
+
+    let fileManager = NSFileManager.defaultManager()
+    if fileManager.fileExistsAtPath(filePath) {
+      println("there it is")
+    } else {
+      println("????")
+    }
+
+
+  }
+
+  class func loadTheObject() -> UserInfo {
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let filePath = appDelegate.documentsPath as String!
+    println("filePath = \(filePath)")
+    println("load from file")
+    let fileManager = NSFileManager.defaultManager()
+    if fileManager.fileExistsAtPath(filePath) {
+      println("there it is for load")
+    } else {
+      println("what the fuck?")
+    }
+
+    return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as UserInfo
+
+
+  }
 
 
 
