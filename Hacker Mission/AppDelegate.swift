@@ -11,7 +11,7 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-  var window: UIWindow?x
+  var window: UIWindow?
   let multipeerController = MultiPeerController.sharedInstance
   var defaultUser: UserInfo?
   var documentsPath : String?
