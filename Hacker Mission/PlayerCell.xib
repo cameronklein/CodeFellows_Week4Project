@@ -33,36 +33,41 @@
                                 <color key="textColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USERNAME" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKf-c0-krF">
+                                <rect key="frame" x="57" y="178" width="86.5" height="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.4079129192" green="1" blue="0.44638519469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwa-mX-vL7" userLabel="APPROVE">
                                 <rect key="frame" x="170.5" y="176" width="14.5" height="21"/>
                                 <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="20"/>
                                 <color key="textColor" red="0.4079129192" green="1" blue="0.44638519469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHa-QG-R9R" userLabel="REJECT">
+                                <rect key="frame" x="170.5" y="176" width="14.5" height="21"/>
+                                <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="20"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="WHa-QG-R9R" firstAttribute="centerY" secondItem="hwa-mX-vL7" secondAttribute="centerY" id="0pO-ub-ZRn"/>
+                            <constraint firstItem="QiA-8f-dm1" firstAttribute="centerX" secondItem="bKf-c0-krF" secondAttribute="centerX" id="7JS-5t-EQy"/>
                             <constraint firstItem="QiA-8f-dm1" firstAttribute="width" secondItem="VcC-QV-NIB" secondAttribute="width" multiplier="0.85" id="FLF-OK-rEZ"/>
+                            <constraint firstItem="WHa-QG-R9R" firstAttribute="centerX" secondItem="hwa-mX-vL7" secondAttribute="centerX" id="GUp-90-nP4"/>
                             <constraint firstItem="QiA-8f-dm1" firstAttribute="top" secondItem="e6z-MK-GXE" secondAttribute="bottom" constant="-21" id="Ij3-xe-8sM"/>
                             <constraint firstItem="QiA-8f-dm1" firstAttribute="height" secondItem="VcC-QV-NIB" secondAttribute="height" multiplier="0.85" id="KkL-tp-OXe"/>
+                            <constraint firstItem="hwa-mX-vL7" firstAttribute="centerY" secondItem="bKf-c0-krF" secondAttribute="centerY" id="Ryp-jV-Hge"/>
                             <constraint firstItem="hwa-mX-vL7" firstAttribute="trailing" secondItem="QiA-8f-dm1" secondAttribute="trailing" id="U7R-em-BlK"/>
+                            <constraint firstItem="bKf-c0-krF" firstAttribute="top" secondItem="QiA-8f-dm1" secondAttribute="bottom" id="ZlV-g0-EkP"/>
                             <constraint firstItem="QiA-8f-dm1" firstAttribute="top" secondItem="VcC-QV-NIB" secondAttribute="top" constant="8" id="c30-XP-R8E"/>
                             <constraint firstAttribute="centerX" secondItem="QiA-8f-dm1" secondAttribute="centerX" id="fTa-Hf-Ny5"/>
                             <constraint firstItem="e6z-MK-GXE" firstAttribute="leading" secondItem="QiA-8f-dm1" secondAttribute="trailing" constant="-14" id="udK-Jl-wCk"/>
                         </constraints>
                     </view>
-                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHa-QG-R9R" userLabel="REJECT">
-                        <rect key="frame" x="170.5" y="176" width="14.5" height="21"/>
-                        <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="20"/>
-                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USERNAME" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKf-c0-krF">
-                        <rect key="frame" x="57" y="178" width="86.5" height="18"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                        <color key="textColor" red="0.4079129192" green="1" blue="0.44638519469999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -70,14 +75,9 @@
             <constraints>
                 <constraint firstAttribute="centerY" secondItem="VcC-QV-NIB" secondAttribute="centerY" id="5c2-7K-BWF"/>
                 <constraint firstItem="VcC-QV-NIB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="9Ea-PY-Fvw"/>
-                <constraint firstItem="hwa-mX-vL7" firstAttribute="centerY" secondItem="WHa-QG-R9R" secondAttribute="centerY" id="BBD-Mc-MWh"/>
-                <constraint firstItem="hwa-mX-vL7" firstAttribute="centerY" secondItem="bKf-c0-krF" secondAttribute="centerY" constant="-0.5" id="Hmf-yX-YZ5"/>
                 <constraint firstAttribute="bottom" secondItem="VcC-QV-NIB" secondAttribute="bottom" id="IaA-6m-dCB"/>
-                <constraint firstItem="bKf-c0-krF" firstAttribute="centerX" secondItem="QiA-8f-dm1" secondAttribute="centerX" constant="0.25" id="K5K-vz-qss"/>
-                <constraint firstItem="bKf-c0-krF" firstAttribute="top" secondItem="QiA-8f-dm1" secondAttribute="bottom" id="Szg-0W-hx6"/>
                 <constraint firstItem="VcC-QV-NIB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ifc-tJ-v42"/>
                 <constraint firstAttribute="trailing" secondItem="VcC-QV-NIB" secondAttribute="trailing" id="kcd-Dy-dwh"/>
-                <constraint firstItem="hwa-mX-vL7" firstAttribute="centerX" secondItem="WHa-QG-R9R" secondAttribute="centerX" id="qlu-Xy-T2t"/>
                 <constraint firstAttribute="centerX" secondItem="VcC-QV-NIB" secondAttribute="centerX" id="x8n-SI-KR0"/>
             </constraints>
             <size key="customSize" width="127" height="116"/>
