@@ -3,6 +3,14 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="MKStencilsansBlack.ttf">
+            <string>MKStencilsansBlack</string>
+        </mutableArray>
+        <mutableArray key="TYPEWRON.ttf">
+            <string>Typewrong</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MissionTextViewController" customModule="Hacker_Mission" customModuleProvider="target">
             <connections>
@@ -18,9 +26,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Flavor Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jz5-at-WoY">
-                    <rect key="frame" x="200" y="48" width="201" height="29"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <rect key="frame" x="192" y="48" width="216" height="27"/>
+                    <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="24"/>
+                    <color key="textColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leader Selecting Team" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sa-49-DRk">
@@ -38,15 +46,17 @@
                         <action selector="confirmButtonPressed:" destination="-1" eventType="touchUpInside" id="fJS-Yk-CIT"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Flavor Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Kc-3h-JK6">
-                    <rect key="frame" x="199" y="93" width="203" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Flavor Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Kc-3h-JK6">
+                    <rect key="frame" x="16" y="91" width="568" height="18"/>
+                    <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="17"/>
+                    <color key="textColor" red="1" green="0.052867877950000003" blue="0.14780411399999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="3Kc-3h-JK6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="AkT-1g-QKp"/>
+                <constraint firstAttribute="trailing" secondItem="3Kc-3h-JK6" secondAttribute="trailing" constant="16" id="Bap-yY-2TS"/>
                 <constraint firstAttribute="centerX" secondItem="3Kc-3h-JK6" secondAttribute="centerX" id="DHz-We-cXy"/>
                 <constraint firstItem="3Kc-3h-JK6" firstAttribute="top" secondItem="Jz5-at-WoY" secondAttribute="bottom" constant="16" id="DJz-6g-Abw"/>
                 <constraint firstAttribute="centerX" secondItem="Jz5-at-WoY" secondAttribute="centerX" id="Lys-No-VWr"/>
