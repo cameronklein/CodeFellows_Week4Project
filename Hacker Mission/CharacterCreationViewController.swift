@@ -100,53 +100,27 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     let attibutedStringBright = NSAttributedString(string: "Enter a UserName", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.75)])
     let attibutedStringDim = NSAttributedString(string: "Enter a UserName", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.33)])
 
-//    self.usernameTextField.attributedPlaceholder
+//    self.usernameTextField.attributedPlaceholder = attibutedStringDim
 
     let theAnimation = CABasicAnimation(keyPath: "opacity")
-    let theLayer = CALayer(layer: self.usernameTextField.attributedPlaceholder)
+    let theLayer = CALayer(layer: self.usernameTextField.text)
 
     animationQueue.addOperationWithBlock { () -> Void in
-      println("Uh...")
       theAnimation.duration = 1.0
-      theAnimation.repeatCount = 10000
+      theAnimation.repeatCount = 10000.0
       theAnimation.autoreverses = true
       theAnimation.fromValue = NSNumber(float: 1.0)
       theAnimation.toValue = NSNumber(float: 0.0)
 
 
 
-      theLayer.addAnimation(theAnimation, forKey: "opacity")
+      theLayer.addAnimation(theAnimation, forKey: "hidden")
     }
 
 
 
 
-//    animationQueue.addOperationWithBlock
-//      { () -> Void in
-//        for var i=0; i<60; i++
-//        {
-//          sleep(1)
-//          NSOperationQueue.mainQueue().addOperationWithBlock(
-//            { () -> Void in
-//              UITextField.animateWithDuration(2.0, delay: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: { () -> Void in
-//                self.usernameTextField.attributedPlaceholder = attibutedStringBright
-//                }, completion: { (animation) -> Void in
-//                  println("bright")
-//              })
-//          })
-//          sleep(1)
-//          NSOperationQueue.mainQueue().addOperationWithBlock(
-//            { () -> Void in
-//
-//              UITextField.animateWithDuration(2.0, delay: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: { () -> Void in
-//                self.usernameTextField.attributedPlaceholder = attibutedStringDim
-//                }, completion: { (animation) -> Void in
-//                  println("dim")
-//              })
-//
-//          })
-//        }
-//    }
+
 
   }
 
