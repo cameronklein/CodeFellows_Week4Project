@@ -12,9 +12,6 @@
             <string>Typewrong</string>
             <string>Typewrong</string>
         </mutableArray>
-        <mutableArray key="typicons.ttf">
-            <string>typicons</string>
-        </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MissionOutcomeVoteViewController" customModule="Hacker_Mission" customModuleProvider="target">
@@ -33,8 +30,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcW-mh-QO2">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you want this mission to succeed or fail?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07w-Wb-B2L">
-                            <rect key="frame" x="89" y="48" width="421" height="23"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you want this mission to succeed or fail?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07w-Wb-B2L">
+                            <rect key="frame" x="16" y="48" width="568" height="23"/>
                             <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="20"/>
                             <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -78,9 +75,9 @@
                                         <action selector="failButtonPressed:" destination="-1" eventType="touchUpInside" id="E2u-Mk-yQ7"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are loyal to the cause" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhQ-v3-1yo">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You are loyal to the cause" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhQ-v3-1yo">
                                     <rect key="frame" x="48" y="137" width="196" height="18"/>
-                                    <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="17"/>
+                                    <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -100,6 +97,8 @@
                         <constraint firstItem="Z8o-tv-DtX" firstAttribute="top" secondItem="kcW-mh-QO2" secondAttribute="centerY" id="0uy-Vf-odM"/>
                         <constraint firstItem="5Ta-JD-Via" firstAttribute="leading" secondItem="kcW-mh-QO2" secondAttribute="leading" constant="8" id="Ap3-sy-7Ek"/>
                         <constraint firstItem="wVd-q9-hbe" firstAttribute="leading" secondItem="kcW-mh-QO2" secondAttribute="leading" constant="8" id="ArG-6f-ily"/>
+                        <constraint firstItem="07w-Wb-B2L" firstAttribute="leading" secondItem="kcW-mh-QO2" secondAttribute="leading" constant="16" id="C5R-y8-SfM"/>
+                        <constraint firstAttribute="trailing" secondItem="07w-Wb-B2L" secondAttribute="trailing" constant="16" id="F6K-8l-TRD"/>
                         <constraint firstAttribute="centerX" secondItem="5Ta-JD-Via" secondAttribute="trailing" id="W79-MS-8Lt"/>
                         <constraint firstAttribute="centerY" secondItem="wVd-q9-hbe" secondAttribute="bottom" id="WYT-iQ-3jX"/>
                         <constraint firstAttribute="trailing" secondItem="wVd-q9-hbe" secondAttribute="trailing" constant="8" id="ZMO-mD-cqS"/>

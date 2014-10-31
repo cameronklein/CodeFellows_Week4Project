@@ -277,11 +277,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         },
         completion: { (success) -> Void in
           UIView.animateWithDuration(0.4,
-            delay: 0.4,
+            delay: 0.5,
             options: UIViewAnimationOptions.CurveEaseInOut,
             animations: { () -> Void in
               self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
-              self.incomingMesageLabel.alpha = 1.0
+              self.incomingMesageLabel.alpha = 0.0
             },
             completion: { (success) -> Void in
               self.addChildViewController(vc)

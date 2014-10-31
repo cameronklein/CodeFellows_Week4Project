@@ -38,7 +38,6 @@ class RevealMissionOutcomeViewController: UIViewController {
   @IBAction func confirmButtonPressed(sender: AnyObject) {
     let parentVC = self.parentViewController as HomeViewController
  
-    
     self.view.removeFromSuperview()
     self.removeFromParentViewController()
     parentVC.processEndMission()
