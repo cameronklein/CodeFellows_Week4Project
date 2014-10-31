@@ -252,8 +252,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       if player.peerID == user!.peerID {
         let vc = MissionOutcomeVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
         vc.view.frame = self.view.frame
-        self.addChildViewController(vc)
-        self.view.addSubview(vc.view)
+        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+          self.addChildViewController(vc)
+          self.view.addSubview(vc.view)
+        }
       } else {
         self.nominationPromptLabel.hidden = false
         self.nominationPromptLabel.text = "Mission is taking place..."
@@ -266,9 +268,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let vc = RevealMissionOutcomeViewController(nibName: "RevealMissionOutcomeViewController", bundle: NSBundle.mainBundle())
     vc.view.frame = self.view.frame
     vc.game = game
-    self.addChildViewController(vc)
-    self.view.addSubview(vc.view)
-    
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.addChildViewController(vc)
+      self.view.addSubview(vc.view)
+    }
   }
     
     func startBlinking (label: UILabel)
