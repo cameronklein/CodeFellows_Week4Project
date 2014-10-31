@@ -73,9 +73,55 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
       self.userImageView.image = self.userImageFor
       self.checkButtonState()
+      let attibutedString = NSAttributedString(string: "Enter a UserName", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.75)])
+
+      self.usernameTextField.attributedPlaceholder = attibutedString
 
     }
 
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+
+    if self.userForSave == nil {
+      println("name")
+      self.informThePlayer()
+    }
+
+    let animationQueue = NSOperationQueue()
+    animationQueue.maxConcurrentOperationCount = 1
+    let attibutedStringBright = NSAttributedString(string: "Enter a UserName", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.75)])
+    let attibutedStringDim = NSAttributedString(string: "Enter a UserName", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.33)])
+
+//    self.usernameTextField.attributedPlaceholder
+
+    animationQueue.addOperationWithBlock
+      { () -> Void in
+        for var i=0; i<60; i++
+        {
+          sleep(1)
+          NSOperationQueue.mainQueue().addOperationWithBlock(
+            { () -> Void in
+              UITextField.animateWithDuration(2.0, delay: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: { () -> Void in
+                self.usernameTextField.attributedPlaceholder = attibutedStringBright
+                }, completion: { (animation) -> Void in
+                  println("bright")
+              })
+          })
+          sleep(1)
+          NSOperationQueue.mainQueue().addOperationWithBlock(
+            { () -> Void in
+
+              UITextField.animateWithDuration(2.0, delay: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: { () -> Void in
+                self.usernameTextField.attributedPlaceholder = attibutedStringDim
+                }, completion: { (animation) -> Void in
+                  println("dim")
+              })
+
+          })
+        }
+    }
+
+  }
 
 
 
@@ -102,13 +148,6 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
     }
 
-  override func viewDidAppear(animated: Bool) {
-    super.viewDidAppear(animated)
-
-    if self.userForSave == nil {
-      println("name")
-    }
-  }
 
 
     //MARK: - Actions and Outlets
@@ -282,6 +321,17 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
   }
 
 
+  func informThePlayer() {
+    let alertController = UIAlertController(title: "Identify Yourself", message: "You must choose a name and image to identify you to other players. You can choose a default image or use your device's camera.", preferredStyle: UIAlertControllerStyle.Alert)
+
+    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel) { (action) -> Void in
+      println("Okay I will, thank you may i have another")
+    }
+
+    alertController.addAction(okAction)
+    self.presentViewController(alertController, animated: true, completion: nil)
+
+  }
 
     //MARK: - You probably won't need this stupid thing.
     override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}
