@@ -73,7 +73,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   @IBAction func hostGameButtonPressed(sender: AnyObject) {
     startButton.hidden = true
     peersLabel.hidden = false
-    peersLabel.text = "Looking for other players"
+    peersLabel.text = "Looking for other players..."
     joinButton.hidden = true
     hostButton.hidden = true
     self.spinningWheel.startAnimating()
