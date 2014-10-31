@@ -201,7 +201,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       
       
         var nominatedPlayerIDs = [String]()
-        for player in players {
+        for player in game.players {
           if player.isNominated == true {
             nominatedPlayerIDs.append(player.peerID)
           }
@@ -249,12 +249,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     let currentMission = game.missions[game.currentMission] as Mission
     let nominatedPlayers = currentMission.nominatedPlayers
-
+    
     for player in nominatedPlayers {
+      println("Comparing \(player.peerID) and \(user!.peerID)")
       if player.peerID == user!.peerID {
         let vc = MissionOutcomeVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
-        vc.view.frame = self.view.frame
+        vc.game = game
+        vc.view.frame = self.playersCollectionView.frame
         NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+          println("Presenting Mission Vote Screen!")
           self.addChildViewController(vc)
           self.view.addSubview(vc.view)
         }
