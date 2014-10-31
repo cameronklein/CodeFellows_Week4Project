@@ -351,7 +351,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     if currentMissionIndex == 5 || game.failedMissionCount == 3 || game.passedMissionCount == 3 {
       self.endGame()
     } else {
-      self.nominatePlayers(game)
+      self.startMission(game)
     }
     
     
