@@ -170,6 +170,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
     func nominatePlayers(game : GameSession)
     {
+      NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
         if self.user?.isLeader == true
         {
             self.nominationPromptLabel.hidden = false
@@ -186,6 +187,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.nominationPromptLabel.text = "Nominations being selected..."
           //self.startBlinking(self.nominationPromptLabel)
         }
+      }
     }
     
     @IBAction func confirmNominations(sender: AnyObject)
@@ -235,8 +237,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     if user!.isLeader == true {
       vc.leaderSelectingTeam.text = "You are the leader. Select your team wisely"
     }
-    self.addChildViewController(vc)
-    self.view.addSubview(vc.view)
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.addChildViewController(vc)
+      self.view.addSubview(vc.view)
+    }
   }
   
   func voteOnMissionSuccess(game: GameSession) {

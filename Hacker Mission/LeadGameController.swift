@@ -145,6 +145,7 @@ class LeadGameController : MultiPeerDelegate {
     } else {
         leaderIndex = leaderIndex + 1
     }
+    game.players[leaderIndex].isLeader = false
     println("Changing leader. Was \((game.players[leaderIndex] as Player).playerName)")
     let player = game.players[leaderIndex] as Player
     game.leader = player
