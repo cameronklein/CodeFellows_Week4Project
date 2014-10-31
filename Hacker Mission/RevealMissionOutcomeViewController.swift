@@ -12,6 +12,7 @@ class RevealMissionOutcomeViewController: UIViewController {
 
   @IBOutlet weak var missionOutcomeLabel: UILabel!
   
+    @IBOutlet weak var missionOutcomeTitleLabel: UILabel!
   var game : GameSession!
   
   override func viewDidLoad() {
@@ -23,10 +24,12 @@ class RevealMissionOutcomeViewController: UIViewController {
     super.viewWillAppear(animated)
     let justCompletedMission = game.missions[game.currentMission - 1] as Mission
     let result = justCompletedMission.success! as Bool
+    let successVotes = justCompletedMission.successCardsPlayed
+    let failVotes = justCompletedMission.failCardsPlayed
     if result {
-      missionOutcomeLabel.text = "Mission Succeeded!!!"
+      missionOutcomeLabel.text = "Mission Succeeded with a vote of \(successVotes) to \(failVotes)!"
     } else {
-      missionOutcomeLabel.text = "Mission Failed!!!"
+      missionOutcomeLabel.text = "Mission Failed with a vote of \(failVotes) to \(successVotes)"
     }
   }
 
