@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="typicons.ttf">
@@ -23,30 +23,33 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VcC-QV-NIB">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QiA-8f-dm1">
-                                <rect key="frame" x="20" y="8" width="160" height="160"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QiA-8f-dm1">
+                                <rect key="frame" x="21" y="8" width="158" height="158"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="QiA-8f-dm1" secondAttribute="height" multiplier="1:1" id="jsp-n8-AfO"/>
+                                </constraints>
                             </imageView>
                             <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6z-MK-GXE" userLabel="LEADER">
-                                <rect key="frame" x="166" y="-5" width="25" height="34"/>
+                                <rect key="frame" x="165" y="-4.5" width="25" height="33.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="32"/>
                                 <color key="textColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USERNAME" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKf-c0-krF">
-                                <rect key="frame" x="57" y="174" width="87" height="18"/>
+                                <rect key="frame" x="57.5" y="174" width="86.5" height="18"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                 <color key="textColor" red="0.4079129192" green="1" blue="0.44638519469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwa-mX-vL7" userLabel="APPROVE">
-                                <rect key="frame" x="166" y="173" width="15" height="21"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwa-mX-vL7" userLabel="APPROVE">
+                                <rect key="frame" x="164.5" y="173" width="14.5" height="21"/>
                                 <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="20"/>
                                 <color key="textColor" red="0.4079129192" green="1" blue="0.44638519469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHa-QG-R9R" userLabel="REJECT">
-                                <rect key="frame" x="166" y="173" width="15" height="21"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHa-QG-R9R" userLabel="REJECT">
+                                <rect key="frame" x="164.5" y="173" width="14.5" height="21"/>
                                 <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="20"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -57,12 +60,11 @@
                             <constraint firstItem="WHa-QG-R9R" firstAttribute="centerY" secondItem="hwa-mX-vL7" secondAttribute="centerY" id="0pO-ub-ZRn"/>
                             <constraint firstItem="QiA-8f-dm1" firstAttribute="centerX" secondItem="bKf-c0-krF" secondAttribute="centerX" id="7JS-5t-EQy"/>
                             <constraint firstAttribute="bottom" secondItem="bKf-c0-krF" secondAttribute="bottom" constant="8" id="9Is-8f-Cmo"/>
-                            <constraint firstItem="QiA-8f-dm1" firstAttribute="width" secondItem="VcC-QV-NIB" secondAttribute="width" multiplier="0.8" id="FLF-OK-rEZ"/>
                             <constraint firstItem="WHa-QG-R9R" firstAttribute="centerX" secondItem="hwa-mX-vL7" secondAttribute="centerX" id="GUp-90-nP4"/>
                             <constraint firstItem="QiA-8f-dm1" firstAttribute="top" secondItem="e6z-MK-GXE" secondAttribute="bottom" constant="-21" id="Ij3-xe-8sM"/>
-                            <constraint firstItem="QiA-8f-dm1" firstAttribute="height" secondItem="VcC-QV-NIB" secondAttribute="height" multiplier="0.8" id="KkL-tp-OXe"/>
                             <constraint firstItem="hwa-mX-vL7" firstAttribute="centerY" secondItem="bKf-c0-krF" secondAttribute="centerY" id="Ryp-jV-Hge"/>
                             <constraint firstItem="hwa-mX-vL7" firstAttribute="trailing" secondItem="QiA-8f-dm1" secondAttribute="trailing" id="U7R-em-BlK"/>
+                            <constraint firstItem="bKf-c0-krF" firstAttribute="top" secondItem="QiA-8f-dm1" secondAttribute="bottom" constant="8" id="Yyd-4r-hYx"/>
                             <constraint firstItem="QiA-8f-dm1" firstAttribute="top" secondItem="VcC-QV-NIB" secondAttribute="top" constant="8" id="c30-XP-R8E"/>
                             <constraint firstAttribute="centerX" secondItem="QiA-8f-dm1" secondAttribute="centerX" id="fTa-Hf-Ny5"/>
                             <constraint firstItem="e6z-MK-GXE" firstAttribute="leading" secondItem="QiA-8f-dm1" secondAttribute="trailing" constant="-14" id="udK-Jl-wCk"/>

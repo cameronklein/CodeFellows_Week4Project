@@ -54,7 +54,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.viewDidLoad()
         self.playersCollectionView.delegate = self
         self.playersCollectionView.dataSource = self
-        self.playersCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
         
         //Set Cell Dimensions
         self.layout = playersCollectionView.collectionViewLayout as UICollectionViewFlowLayout
@@ -65,6 +64,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         layout.sectionInset.left = screenWidth * 0.05
         layout.sectionInset.right = screenWidth * 0.05
         layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.17)
+      
+        self.playersCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
         
         //round corners on players collection view
         self.playersCollectionView.layer.cornerRadius = self.playersCollectionView.frame.size.width / 16
