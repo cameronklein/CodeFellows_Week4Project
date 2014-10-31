@@ -257,6 +257,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         vc.game = game
         vc.view.frame = self.playersCollectionView.frame
         NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+          println("Presenting Mission Vote Screen!")
           self.addChildViewController(vc)
           self.view.addSubview(vc.view)
         }
