@@ -38,6 +38,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var playersSelected = 0
     var game : GameSession!
     var labelsAreBlinking = false
+    var lastRejectedGameCount = 0
     
     var screenWidth : CGFloat!
     var layout : UICollectionViewFlowLayout!
@@ -189,7 +190,38 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
         }
     }
+  
+  func revealVotes(game: GameSession) {
+    self.game = game
+    let currentMission = game.missions[game.currentMission] as Mission
+    if currentMission.rejectedTeamsCount > self.lastRejectedGameCount {
+      self.incomingMesageLabel.text = "Team Rejected!"
+    } else {
+      self.incomingMesageLabel.text = "Team Approved!"
+    }
     
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+      UIView.animateWithDuration(0.4,
+        delay: 0.0,
+        options: UIViewAnimationOptions.CurveEaseInOut,
+        animations: { () -> Void in
+          self.incomingMesageLabel.transform = CGAffineTransformMakeScale(1.0, 1.0)
+          self.incomingMesageLabel.alpha = 1.0
+        },
+        completion: { (success) -> Void in
+          UIView.animateWithDuration(0.4,
+            delay: 1.0,
+            options: UIViewAnimationOptions.CurveEaseInOut,
+            animations: { () -> Void in
+              self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+              self.incomingMesageLabel.alpha = 0.0
+            },
+            completion: nil)
+      })
+    }
+  }
+  
     //MARK: - Actions and other functions
   
     func nominatePlayers(game : GameSession)
