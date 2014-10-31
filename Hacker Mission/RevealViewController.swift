@@ -20,6 +20,9 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
     var user : Player?
     var gameController = GameController.sharedInstance
   
+    var screenWidth : CGFloat!
+    var layout : UICollectionViewFlowLayout!
+  
     //MARK: - View Methods
     
     override func viewDidLoad()
@@ -28,6 +31,15 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.playerRevealCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
         self.playerRevealCollectionView.delegate = self
         self.playerRevealCollectionView.dataSource = self
+      
+      self.layout = playerRevealCollectionView.collectionViewLayout as UICollectionViewFlowLayout
+      self.screenWidth = self.playerRevealCollectionView.frame.width
+      super.viewWillAppear(true)
+      layout.minimumLineSpacing = screenWidth * 0.02
+      layout.minimumInteritemSpacing = screenWidth * 0.02
+      layout.sectionInset.left = screenWidth * 0.05
+      layout.sectionInset.right = screenWidth * 0.05
+      layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.17)
       
       for player in game.players {
         playerArray.append(player as Player)
