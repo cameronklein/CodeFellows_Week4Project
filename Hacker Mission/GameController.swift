@@ -92,9 +92,7 @@ class GameController : MultiPeerDelegate {
     // TODO: Intro Animation?
     let players = game.players
     for player in players {
-        println("\(multipeerController.peerID.displayName) is from Controller, \(player.peerID) is the local")
       if multipeerController.peerID.displayName == player.peerID {
-        println("Entered the If")
         revealVC.user = player
       }
     }

@@ -19,9 +19,11 @@ class LeadGameController : MultiPeerDelegate {
   var peerCount : Int = 0
   var myUserInfo : UserInfo!
   var launchVC : LaunchViewController!
+  var flavorTextArray = [(String,String)]()
 
   init() {
     multipeerController.mainBrainDelegate = self
+    self.loadFlavorTextIntoArray()
   }
   
   func startLookingForPlayers() {
@@ -62,6 +64,7 @@ class LeadGameController : MultiPeerDelegate {
 //    }
     println("MAIN BRAIN: \(players.count) players created from provided user information.")
     var missions = GameSession.populateMissionList(players.count) as NSMutableArray // Temporary method until we have a pool of individualized missions
+    
     println("MAIN BRAIN: Created \(missions.count) missions.")
     
     self.game = GameSession(players: players, missions: missions)
@@ -73,9 +76,7 @@ class LeadGameController : MultiPeerDelegate {
     GameController.sharedInstance.revealVC = revealVC
     let playerArray = game.players
     for player in playerArray {
-        println("\(multipeerController.peerID.displayName) is from Controller, \(player.peerID) is the local")
         if multipeerController.peerID.displayName == player.peerID {
-            println("Entered the If")
             revealVC.user = player
         }
     }
@@ -399,6 +400,21 @@ class LeadGameController : MultiPeerDelegate {
         //collect userInfo as users join
       })
     }
+  }
+  
+  func loadFlavorTextIntoArray() {
+    flavorTextArray.append(("Pure Water","The government is seeding the water supply with drugs to control the population. Defeat the grid security to stop the flow of mood alterants."))
+    flavorTextArray.append(("LOLLOLLOL","The comedy program Night Time Live broadcasts tonight. Rewrite the teleprompter jokes to become critical of the government as they perform live on air."))
+    flavorTextArray.append(("Get Lost","The Secretary for Culture’s motorcade is on the move. Defeat the satellite uplink to hack their GPS and reroute the motorcade to a waiting capture team."))
+    flavorTextArray.append(("Higher Education","Hijack the internal security camera feed from a secret reeducation camp and reroute the signal to replace the nightly celebrity report."))
+    flavorTextArray.append(("A Percentage","The Wealth Exchange market systems have recently upgraded their network and they are now vulnerable. Hack in and redistribute assets to the poor."))
+    flavorTextArray.append(("Blind Justice","This week’s mass execution includes key opposition leaders. Activate prison fire suppression systems to provide cover to an extraction team."))
+    flavorTextArray.append(("Musical Chairs","The music played in all public spaces contains subliminal messages supporting the state. Turn up the volume on the messages so the populace knows what's up."))
+    flavorTextArray.append(("Voting Record","The electronic voting system changes votes to maintain the status quo. Change the algorithm to favor the opposition cause."))
+//    flavorTextArray.append(("",""))
+//    flavorTextArray.append(("",""))
+//    flavorTextArray.append(("",""))
+    
   }
   
 }

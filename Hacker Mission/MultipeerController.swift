@@ -81,6 +81,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       println(self.delegate)
       self.delegate.handleEvent(newDictionary)
       self.mainBrainDelegate?.handleEvent(newDictionary)
+      
     } else if let dataReceivedFromSlave = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSMutableDictionary{
       println("Recognized data as NSMutableDictionary.")
       let newDictionary : NSMutableDictionary = NSMutableDictionary()
