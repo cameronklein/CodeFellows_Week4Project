@@ -35,7 +35,7 @@
         <!--Launch View Controller-->
         <scene sceneID="2xv-jF-dYj">
             <objects>
-                <viewController id="B2m-a2-ZUT" customClass="LaunchViewController" customModule="Hacker_Mission" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LAUNCHVIEW_VC" id="B2m-a2-ZUT" customClass="LaunchViewController" customModule="Hacker_Mission" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mt0-82-dOi"/>
                         <viewControllerLayoutGuide type="bottom" id="fKb-iI-2cd"/>
@@ -143,7 +143,7 @@
                         <outlet property="peersLabel" destination="P14-56-dqD" id="vmh-7Y-zZq"/>
                         <outlet property="spinningWheel" destination="Nr6-3m-elK" id="paX-bz-ems"/>
                         <outlet property="startButton" destination="PPf-6S-DwA" id="Mgc-vv-flW"/>
-                        <segue destination="Qid-5I-G0n" kind="show" identifier="SHOW_CHARCREATE" id="56A-8c-pr8"/>
+                        <segue destination="Qid-5I-G0n" kind="presentation" identifier="SHOW_CHARCREATE" modalTransitionStyle="coverVertical" id="56A-8c-pr8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m36-AE-PQO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -153,7 +153,7 @@
         <!--Character Creation View Controller-->
         <scene sceneID="Jwh-Dg-Rnr">
             <objects>
-                <viewController id="Qid-5I-G0n" customClass="CharacterCreationViewController" customModule="Hacker_Mission" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CHARCREATE_VC" id="Qid-5I-G0n" customClass="CharacterCreationViewController" customModule="Hacker_Mission" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="81c-e4-kXY"/>
                         <viewControllerLayoutGuide type="bottom" id="dJA-2U-H2F"/>

@@ -24,23 +24,44 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
-
-  }
-
-  override func viewDidAppear(animated: Bool) {
-    super.viewDidAppear(animated)
 
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     let myUserTest = appDelegate.defaultUser as UserInfo!
-    println("myUserTest is \(myUserTest)")
     if myUserTest != nil {
       println("existing defaultUser is \(appDelegate.defaultUser?.userName)")
       self.userInfoMyself = appDelegate.defaultUser
     } else {
-      println("missing defaultUser is \(appDelegate.defaultUser?.userName)")
-      self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
+      self.userInfoMyself = nil
     }
+
+  }
+
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(!animated)
+
+    println("viewWillAppear")
+
+  }
+
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+
+    if self.userInfoMyself == nil {
+
+      let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+      let destinationvVC = storyboard.instantiateViewControllerWithIdentifier("CHARCREATE_VC") as CharacterCreationViewController!
+      destinationvVC.delegate = self
+      self.presentViewController(destinationvVC, animated: false, completion: { () -> Void in
+        println("yes!")
+      })
+
+    }
+  }
+
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(!animated)
+    println("viewDidAppear")
+
   }
 
 
