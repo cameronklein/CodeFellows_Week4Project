@@ -195,25 +195,53 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
     func nominatePlayers(game : GameSession)
     {
-      NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-        if self.user?.isLeader == true
-        {
-            self.nominationPromptLabel.hidden = false
-            self.nominationPromptLabel.text = "Nominate team members."
-          //self.startBlinking(self.nominationPromptLabel)
-            self.nominationPromptLabel.text = "Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) agents to send on this mission."
-            self.confirmNominationButton.hidden = false
-            self.confirmNominationButton.userInteractionEnabled = false
-            self.playersCollectionView.userInteractionEnabled = true
-        }
-        else
-        {
-            self.nominationPromptLabel.hidden = false
-            self.nominationPromptLabel.text = "Nominations being selected..."
-          //self.startBlinking(self.nominationPromptLabel)
-        }
+      if self.user?.isLeader == true {
+        self.incomingMesageLabel.text = "You are leader. Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) people."
+      } else {
+        self.incomingMesageLabel.text = "\(game.leader!.playerName) is leader and will nominate people."
       }
-    }
+      
+      NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+        UIView.animateWithDuration(0.4,
+          delay: 0.0,
+          options: UIViewAnimationOptions.CurveEaseInOut,
+          animations: { () -> Void in
+            self.incomingMesageLabel.transform = CGAffineTransformMakeScale(1.0, 1.0)
+            self.incomingMesageLabel.alpha = 1.0
+          },
+          completion: { (success) -> Void in
+            UIView.animateWithDuration(0.4,
+              delay: 0.9,
+              options: UIViewAnimationOptions.CurveEaseInOut,
+              animations: { () -> Void in
+                self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+                self.incomingMesageLabel.alpha = 0.0
+              },
+              completion: { (success) -> Void in
+                if self.user?.isLeader == true
+                {
+                  self.nominationPromptLabel.hidden = false
+                  self.nominationPromptLabel.text = "Nominate team members."
+                  //self.startBlinking(self.nominationPromptLabel)
+                  self.nominationPromptLabel.text = "Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) agents to send on this mission."
+                  self.confirmNominationButton.hidden = false
+                  self.confirmNominationButton.userInteractionEnabled = false
+                  self.playersCollectionView.userInteractionEnabled = true
+                }
+                else
+                {
+                  self.nominationPromptLabel.hidden = false
+                  self.nominationPromptLabel.text = "Nominations being selected..."
+                  //self.startBlinking(self.nominationPromptLabel)
+                }
+            })
+                
+          
+        })
+      }
+  }
+  
     
     @IBAction func confirmNominations(sender: AnyObject)
     {
@@ -248,9 +276,39 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
     vc.game = game
     vc.view.frame = self.playersCollectionView.frame
+    self.incomingMesageLabel.text = "Nominations Are In"
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-      self.addChildViewController(vc)
-      self.view.addSubview(vc.view)
+      self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+      UIView.animateWithDuration(0.4,
+        delay: 0.0,
+        options: UIViewAnimationOptions.CurveEaseInOut,
+        animations: { () -> Void in
+          self.incomingMesageLabel.transform = CGAffineTransformMakeScale(1.0, 1.0)
+          self.incomingMesageLabel.alpha = 1.0
+        },
+        completion: { (success) -> Void in
+          UIView.animateWithDuration(0.4,
+            delay: 0.9,
+            options: UIViewAnimationOptions.CurveEaseInOut,
+            animations: { () -> Void in
+              self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+              self.incomingMesageLabel.alpha = 0.0
+            },
+            completion: { (success) -> Void in
+              self.addChildViewController(vc)
+              vc.view.alpha = 0.0
+              self.view.addSubview(vc.view)
+              UIView.animateWithDuration(0.4,
+                delay: 0.0,
+                options: UIViewAnimationOptions.CurveEaseInOut,
+                animations: { () -> Void in
+                  vc.view.alpha = 1.0
+                },
+                completion: { (success) -> Void in
+                  return () //Add more animation here if needed.
+              })
+          })
+      })
     }
   }
 //
@@ -298,7 +356,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
               })
           })
       })
-      
     }
   }
   
@@ -307,24 +364,53 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     let currentMission = game.missions[game.currentMission] as Mission
     let nominatedPlayers = currentMission.nominatedPlayers
-    
-    for player in nominatedPlayers {
-      println("Comparing \(player.peerID) and \(user!.peerID)")
-      if player.peerID == user!.peerID {
-        let vc = MissionOutcomeVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
-        vc.game = game
-        vc.currentUser = self.user
-        vc.view.frame = self.playersCollectionView.frame
-        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-          println("Presenting Mission Vote Screen!")
-          self.addChildViewController(vc)
-          self.view.addSubview(vc.view)
-        }
-      } else {
-        self.nominationPromptLabel.hidden = false
-        self.nominationPromptLabel.text = "Mission is taking place..."
-      }
+    self.incomingMesageLabel.text = "Mission Proceeding"
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+      UIView.animateWithDuration(0.4,
+        delay: 0.0,
+        options: UIViewAnimationOptions.CurveEaseInOut,
+        animations: { () -> Void in
+          self.incomingMesageLabel.transform = CGAffineTransformMakeScale(1.0, 1.0)
+          self.incomingMesageLabel.alpha = 1.0
+        },
+        completion: { (success) -> Void in
+          UIView.animateWithDuration(0.4,
+            delay: 1.0,
+            options: UIViewAnimationOptions.CurveEaseInOut,
+            animations: { () -> Void in
+              self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+              self.incomingMesageLabel.alpha = 0.0
+            },
+            completion: { (success) -> Void in
+              for player in nominatedPlayers {
+                if player.peerID == self.user!.peerID {
+                  let vc = MissionOutcomeVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
+                  vc.game = game
+                  vc.currentUser = self.user
+                  vc.view.frame = self.playersCollectionView.frame
+                  self.addChildViewController(vc)
+                  vc.view.alpha = 0.0
+                  self.view.addSubview(vc.view)
+                  UIView.animateWithDuration(0.4,
+                    delay: 0.0,
+                    options: UIViewAnimationOptions.CurveEaseInOut,
+                    animations: { () -> Void in
+                      vc.view.alpha = 1.0
+                    },
+                    completion: { (success) -> Void in
+                      return () //Add more animation here if needed.
+                  })
+                } else {
+                  self.nominationPromptLabel.hidden = false
+                  self.nominationPromptLabel.text = "Mission is taking place..."
+                }
+              }
+              
+          })
+      })
     }
+    
   }
 
   func revealMissionOutcome(game : GameSession) {
@@ -332,55 +418,85 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let vc = RevealMissionOutcomeViewController(nibName: "RevealMissionOutcomeViewController", bundle: NSBundle.mainBundle())
     vc.view.frame = self.playersCollectionView.frame
     vc.game = game
+    
+    self.incomingMesageLabel.text = "Mission Completed"
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-      self.addChildViewController(vc)
-      self.view.addSubview(vc.view)
-        let justCompletedMission = game.missions[game.currentMission-1] as Mission
-        let justCompletedMissionIndex = game.currentMission-1
-        if justCompletedMission.success == true
-        {
-            switch justCompletedMissionIndex {
-            case 0:
-                self.mission1OutcomeLabel.text = "\u{E11C}"
-                self.mission1OutcomeLabel.textColor = UIColor.greenColor()
-            case 1:
-                self.mission2OutcomeLabel.text = "\u{E11C}"
-                self.mission2OutcomeLabel.textColor = UIColor.greenColor()
-            case 2:
-                self.mission3OutcomeLabel.text = "\u{E11C}"
-                self.mission3OutcomeLabel.textColor = UIColor.greenColor()
-            case 3:
-                self.mission4OutcomeLabel.text = "\u{E11C}"
-                self.mission4OutcomeLabel.textColor = UIColor.greenColor()
-            case 4:
-                self.mission5OutcomeLabel.text = "\u{E11C}"
-                self.mission5OutcomeLabel.textColor = UIColor.greenColor()
-            default:
-                println("You should never see this.")
-            }
-        }
-        else
-        {
-            switch justCompletedMissionIndex {
-            case 0:
-                self.mission1OutcomeLabel.text = "\u{E11A}"
-                self.mission1OutcomeLabel.textColor = UIColor.redColor()
-            case 1:
-                self.mission2OutcomeLabel.text = "\u{E11A}"
-                self.mission2OutcomeLabel.textColor = UIColor.redColor()
-            case 2:
-                self.mission3OutcomeLabel.text = "\u{E11A}"
-                self.mission3OutcomeLabel.textColor = UIColor.redColor()
-            case 3:
-                self.mission4OutcomeLabel.text = "\u{E11A}"
-                self.mission4OutcomeLabel.textColor = UIColor.redColor()
-            case 4:
-                self.mission5OutcomeLabel.text = "\u{E11A}"
-                self.mission5OutcomeLabel.textColor = UIColor.redColor()
-            default:
-                println("You should never see this.")
-            }
-        }
+      self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+      UIView.animateWithDuration(0.4,
+        delay: 0.0,
+        options: UIViewAnimationOptions.CurveEaseInOut,
+        animations: { () -> Void in
+          self.incomingMesageLabel.transform = CGAffineTransformMakeScale(1.0, 1.0)
+          self.incomingMesageLabel.alpha = 1.0
+        },
+        completion: { (success) -> Void in
+          UIView.animateWithDuration(0.4,
+            delay: 0.9,
+            options: UIViewAnimationOptions.CurveEaseInOut,
+            animations: { () -> Void in
+              self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+              self.incomingMesageLabel.alpha = 0.0
+            },
+            completion: { (success) -> Void in
+              self.addChildViewController(vc)
+              vc.view.alpha = 0.0
+              self.view.addSubview(vc.view)
+              UIView.animateWithDuration(0.4,
+                delay: 0.0,
+                options: UIViewAnimationOptions.CurveEaseInOut,
+                animations: { () -> Void in
+                  vc.view.alpha = 1.0
+                },
+                completion: { (success) -> Void in
+                  let justCompletedMission = game.missions[game.currentMission-1] as Mission
+                  let justCompletedMissionIndex = game.currentMission-1
+                  if justCompletedMission.success == true
+                  {
+                    switch justCompletedMissionIndex {
+                    case 0:
+                      self.mission1OutcomeLabel.text = "\u{E11C}"
+                      self.mission1OutcomeLabel.textColor = UIColor.greenColor()
+                    case 1:
+                      self.mission2OutcomeLabel.text = "\u{E11C}"
+                      self.mission2OutcomeLabel.textColor = UIColor.greenColor()
+                    case 2:
+                      self.mission3OutcomeLabel.text = "\u{E11C}"
+                      self.mission3OutcomeLabel.textColor = UIColor.greenColor()
+                    case 3:
+                      self.mission4OutcomeLabel.text = "\u{E11C}"
+                      self.mission4OutcomeLabel.textColor = UIColor.greenColor()
+                    case 4:
+                      self.mission5OutcomeLabel.text = "\u{E11C}"
+                      self.mission5OutcomeLabel.textColor = UIColor.greenColor()
+                    default:
+                      println("You should never see this.")
+                    }
+                  }
+                  else
+                  {
+                    switch justCompletedMissionIndex {
+                    case 0:
+                      self.mission1OutcomeLabel.text = "\u{E11A}"
+                      self.mission1OutcomeLabel.textColor = UIColor.redColor()
+                    case 1:
+                      self.mission2OutcomeLabel.text = "\u{E11A}"
+                      self.mission2OutcomeLabel.textColor = UIColor.redColor()
+                    case 2:
+                      self.mission3OutcomeLabel.text = "\u{E11A}"
+                      self.mission3OutcomeLabel.textColor = UIColor.redColor()
+                    case 3:
+                      self.mission4OutcomeLabel.text = "\u{E11A}"
+                      self.mission4OutcomeLabel.textColor = UIColor.redColor()
+                    case 4:
+                      self.mission5OutcomeLabel.text = "\u{E11A}"
+                      self.mission5OutcomeLabel.textColor = UIColor.redColor()
+                    default:
+                      println("You should never see this.")
+                    }
+                  }
+              })
+          })
+      })
     }
   }
   
