@@ -38,7 +38,9 @@ class GameController : MultiPeerDelegate {
   func handleEvent(newGameInfo: GameSession) {
     self.game = newGameInfo
     let event = game.currentGameState!
-    findMe()
+    if event != .Start {
+      findMe()
+    }
     println("Received \(event.rawValue) event from Main Brain. Woot.")
     switch event{
     case .Start:
