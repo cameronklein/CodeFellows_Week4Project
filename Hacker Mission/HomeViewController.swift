@@ -249,8 +249,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let nominatedPlayers = currentMission.nominatedPlayers
 
     for player in nominatedPlayers {
-      let castedPlayer = player
-      if castedPlayer.peerID == user!.peerID {
+      if player.peerID == user!.peerID {
         let vc = MissionOutcomeVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
         vc.view.frame = self.view.frame
         self.addChildViewController(vc)

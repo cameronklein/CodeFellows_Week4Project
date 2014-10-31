@@ -140,20 +140,21 @@ class LeadGameController : MultiPeerDelegate {
 //    var leaderIndex = game.players.indexOfObject(game.leader!)
     println("Changing leader. Was \(game.leader!.playerName)")
     var foundLeader = false
-    for player in game.players {
-      if foundLeader == true {
-        player.isLeader = true
-        game.leader = player
-        break
-      }
-      if player.isLeader == true {
-        player.isLeader = false
-        foundLeader = true
-      }
-    }
-    if foundLeader == false {
+    
+    if game.players.last!.isLeader == true {
+      game.players.last!.isLeader = false
       game.players.first!.isLeader = true
       game.leader = game.players.first!
+    } else {
+      for player in game.players {
+        if foundLeader == true {
+          player.isLeader = true
+          game.leader = player
+        } else if player.isLeader == true {
+          player.isLeader = false
+          foundLeader = true
+        }
+      }
     }
     println("New leader is \(game.leader!.playerName)")
   }
@@ -236,7 +237,14 @@ class LeadGameController : MultiPeerDelegate {
     println("Sending *Reveal Vote* event to peers.")
     game.currentGameState = GameEvent.RevealVote
     multipeerController.sendEventToPeers(game)
-    if passed == false {
+    let currentMission = game.missions[game.currentMission] as Mission
+    
+    if currentMission.rejectedTeamsCount == 5 {
+      self.revealMissionOutcome()
+      currentMission.success = false
+      game.failedMissionCount = game.failedMissionCount + 1
+      revealMissionOutcome()
+    } else if passed == false {
       self.changeLeader()
       self.tellLeaderToNominatePlayers()
       for player in game.players {
@@ -244,7 +252,8 @@ class LeadGameController : MultiPeerDelegate {
       }
       let currentMission = game.missions[game.currentMission] as Mission
       currentMission.nominatedPlayers.removeAll(keepCapacity: true)
-    } else {
+      
+    } else if passed == true {
       self.tellPlayersToDetermineMissionOutcome()
     }
     
@@ -356,6 +365,7 @@ class LeadGameController : MultiPeerDelegate {
   }
   
   func assignNominations(arrayOfNominatedPlayerIDs : [String]) {
+    
     let currentMission = game.missions[game.currentMission] as Mission
     for player in game.players {
       for nominationID in arrayOfNominatedPlayerIDs {
@@ -366,7 +376,6 @@ class LeadGameController : MultiPeerDelegate {
       }
     }
     self.revealNominations()
-    
   }
 
     func handleEvent(event: GameSession) {
