@@ -174,7 +174,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gX0-Qb-HeF">
-                                <rect key="frame" x="32" y="257" width="536" height="216"/>
+                                <rect key="frame" x="32" y="262" width="536" height="211"/>
                                 <color key="tintColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="O2M-xi-TRV">
                                     <size key="itemSize" width="50" height="50"/>
@@ -221,26 +221,36 @@
                                     <action selector="photoButtonPressed:" destination="Qid-5I-G0n" eventType="touchUpInside" id="RsZ-ni-s9d"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Player Name Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DnX-Sf-lrV">
-                                <rect key="frame" x="212" y="28" width="176" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter A Name Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DnX-Sf-lrV">
+                                <rect key="frame" x="217" y="33" width="167" height="30"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="167" id="KOa-nP-bTY"/>
+                                </constraints>
                                 <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WWg-Hl-4eJ">
-                                <rect key="frame" x="217" y="74" width="167" height="167"/>
+                                <rect key="frame" x="217" y="79" width="167" height="167"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="167" id="Mga-gG-Irv"/>
                                     <constraint firstAttribute="height" constant="167" id="xQM-8b-OsY"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjU-eC-SH2">
+                                <rect key="frame" x="279" y="8" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="gX0-Qb-HeF" secondAttribute="trailing" constant="16" id="0jp-44-tmC"/>
-                            <constraint firstItem="DnX-Sf-lrV" firstAttribute="top" secondItem="81c-e4-kXY" secondAttribute="bottom" constant="8" id="Azl-6M-Us1"/>
+                            <constraint firstItem="DnX-Sf-lrV" firstAttribute="top" secondItem="CjU-eC-SH2" secondAttribute="bottom" constant="4" id="AU7-gH-21n"/>
                             <constraint firstItem="gX0-Qb-HeF" firstAttribute="leading" secondItem="692-JX-l36" secondAttribute="leadingMargin" constant="16" id="DoK-GP-FxK"/>
+                            <constraint firstItem="CjU-eC-SH2" firstAttribute="top" secondItem="692-JX-l36" secondAttribute="topMargin" constant="8" id="JTP-Fi-3St"/>
                             <constraint firstAttribute="centerX" secondItem="mYg-lI-wCd" secondAttribute="centerX" id="Kyt-Gg-CNA"/>
                             <constraint firstItem="gX0-Qb-HeF" firstAttribute="top" secondItem="WWg-Hl-4eJ" secondAttribute="bottom" constant="16" id="MJZ-AR-MWA"/>
                             <constraint firstAttribute="centerX" secondItem="WWg-Hl-4eJ" secondAttribute="centerX" id="PZx-a8-GXN"/>
@@ -248,6 +258,7 @@
                             <constraint firstAttribute="centerX" secondItem="YfP-7t-JIE" secondAttribute="centerX" id="UFe-sD-RvJ"/>
                             <constraint firstItem="YfP-7t-JIE" firstAttribute="top" secondItem="gX0-Qb-HeF" secondAttribute="bottom" constant="8" id="Yzd-38-DtV"/>
                             <constraint firstItem="mYg-lI-wCd" firstAttribute="top" secondItem="YfP-7t-JIE" secondAttribute="bottom" constant="8" id="ZXL-ge-STx"/>
+                            <constraint firstAttribute="centerX" secondItem="CjU-eC-SH2" secondAttribute="centerX" id="d2N-FX-EUb"/>
                             <constraint firstItem="dJA-2U-H2F" firstAttribute="top" secondItem="mYg-lI-wCd" secondAttribute="bottom" constant="45" id="dac-nr-JDb"/>
                             <constraint firstItem="WWg-Hl-4eJ" firstAttribute="top" secondItem="DnX-Sf-lrV" secondAttribute="bottom" constant="16" id="wTi-0u-aO9"/>
                         </constraints>

@@ -68,20 +68,17 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
     }
     
-    override func viewWillAppear(animated: Bool)
-    {
+    override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
 
-
-
       self.userImageView.image = self.userImageFor
+      self.checkButtonState()
 
-
-
-        self.checkButtonState()
-        
     }
-    
+
+
+
+
     //MARK: - Collection View Methods
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
@@ -105,6 +102,13 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
     }
 
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+
+    if self.userForSave == nil {
+      println("name")
+    }
+  }
 
 
     //MARK: - Actions and Outlets

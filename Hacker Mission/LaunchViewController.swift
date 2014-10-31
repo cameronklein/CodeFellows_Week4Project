@@ -50,10 +50,11 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
         self.truthInAdvertising = true
         println("no userInfoMyself")
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        
         let destinationvVC = storyboard.instantiateViewControllerWithIdentifier("CHARCREATE_VC") as CharacterCreationViewController!
         let presentingVC = storyboard.instantiateViewControllerWithIdentifier("LAUNCHVIEW_VC") as LaunchViewController!
-        destinationvVC.delegate = presentingVC
-        presentingVC.presentViewController(destinationvVC, animated: false, completion: { () -> Void in
+        destinationvVC.delegate = self
+        self.presentViewController(destinationvVC, animated: false, completion: { () -> Void in
           println("yes!")
         })
       }
