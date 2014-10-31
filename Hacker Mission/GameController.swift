@@ -38,6 +38,7 @@ class GameController : MultiPeerDelegate {
   func handleEvent(newGameInfo: GameSession) {
     self.game = newGameInfo
     let event = game.currentGameState!
+    findMe()
     println("Received \(event.rawValue) event from Main Brain. Woot.")
     switch event{
     case .Start:
@@ -62,6 +63,14 @@ class GameController : MultiPeerDelegate {
       self.endGame()
     default:
         println("Unknown")
+    }
+  }
+  
+  func findMe(){
+    for player in game.players {
+      if player.peerID == multipeerController.peerID.displayName {
+        homeVC.user = player
+      }
     }
   }
   
