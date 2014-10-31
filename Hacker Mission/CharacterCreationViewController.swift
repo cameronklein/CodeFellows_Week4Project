@@ -67,12 +67,9 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
       if let filePath = appDelegate.documentsPath as String! {
         println("found path")
-
         let fileManager = NSFileManager.defaultManager()
         if fileManager.fileExistsAtPath(filePath) {
-          println("there it is")
           self.loadIt()
-
         }
       }
 
@@ -126,7 +123,6 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       var localUserInfo = UserInfo(userName: self.userNameFor!, userImage: self.userImageFor!)
       self.userForSave = localUserInfo
       self.delegate?.didSaveUser(self.userForSave)
-      println("the path is \(appDelegate.documentsPath)")
       if let pathForSave = appDelegate.documentsPath as String! {
       println("Can Save File")
         UserInfo.saveTheObject(localUserInfo)

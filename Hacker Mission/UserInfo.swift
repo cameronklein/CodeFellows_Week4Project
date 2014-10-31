@@ -120,7 +120,6 @@ class UserInfo : NSObject, NSCoding {
   class func saveTheObject (object: UserInfo) {
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     let filePath = appDelegate.documentsPath as String!
-    println("filePath = \(filePath)")
     println("Saving to File")
 
     NSKeyedArchiver.archiveRootObject(object, toFile: filePath)
@@ -138,7 +137,6 @@ class UserInfo : NSObject, NSCoding {
   class func loadTheObject() -> UserInfo {
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     let filePath = appDelegate.documentsPath as String!
-    println("filePath = \(filePath)")
     println("load from file")
     let fileManager = NSFileManager.defaultManager()
     if fileManager.fileExistsAtPath(filePath) {

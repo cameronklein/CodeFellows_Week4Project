@@ -21,18 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func saveDefaultPath() {
-    if let path = self.makeSavePath() {
+      if let path = self.makeSavePath() {
       let fileComponent = "ArchivedUser"
       let filePath = path.stringByAppendingPathComponent(fileComponent)
-      println("file path is \(filePath)")
-      let userDefaults = NSUserDefaults.standardUserDefaults()
-      userDefaults.setValue(filePath, forKey: "filePath")
-      userDefaults.synchronize()
-      let exists = NSUserDefaults.standardUserDefaults().valueForKey("filePath") as String
-      println("created the docs path as \(exists)")
-      self.documentsPath = exists as String!
-      println("---------------------saved as \(self.documentsPath!)------------------")
-    } else {
+
+      self.documentsPath = filePath as String!
+      println("created the docs path as \(self.documentsPath)")
+      } else {
       println("ERROR: Could not create and store file path for saving user defaults")
     }
 
@@ -42,8 +37,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
       self.saveDefaultPath()
-      
 
+    let fileManager = NSFileManager.defaultManager()
+    if fileManager.fileExistsAtPath(self.documentsPath!) {
+      println("there it is")
+      var userForLoad = UserInfo.loadTheObject()
+      self.defaultUser = userForLoad as UserInfo!
+    } else {
+      println("NO file exists")
+      self.defaultUser = nil
+      println("default is \(self.defaultUser)")
+    }
 
     return true
   }
@@ -75,19 +79,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func makeSavePath() -> String? {
     let fileManager = NSFileManager.defaultManager()
     let arrayOfPotentialDirectories : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as [String]
-    println("directories count is \(arrayOfPotentialDirectories.count)")
     for directory in arrayOfPotentialDirectories {
-      println("directory is \(directory)")
     }
 
     if arrayOfPotentialDirectories.count > 0 {
+      println("Success: Did create array of directories")
       let arrayOfValidatedDirectories = arrayOfPotentialDirectories as [String]!
       let pathForSave = arrayOfValidatedDirectories.first
       return pathForSave as String!
-    }
+    } else {
     println("ERROR: Could not generate an array of directories")
     return nil
-    
+    }
   }
 
 

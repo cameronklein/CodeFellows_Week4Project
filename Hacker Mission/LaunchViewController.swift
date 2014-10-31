@@ -12,7 +12,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   
   var masterController    : LeadGameController?
   var followerController  : GameController?
-  var userInfoMyself : UserInfo?
+  var userInfoMyself      : UserInfo?
   //var multiPeerController = MultiPeerController.sharedInstance
 
   @IBOutlet weak var peersLabel: UILabel!
@@ -21,7 +21,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   @IBOutlet weak var joinButton: UIButton!
   @IBOutlet weak var spinningWheel: UIActivityIndicatorView!
   @IBOutlet weak var createCharacterButton: UIButton!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
@@ -32,11 +32,13 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
     super.viewDidAppear(animated)
 
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    if appDelegate.defaultUser != nil {
-      println("HEY!")
+    let myUserTest = appDelegate.defaultUser as UserInfo!
+    println("myUserTest is \(myUserTest)")
+    if myUserTest != nil {
+      println("existing defaultUser is \(appDelegate.defaultUser?.userName)")
       self.userInfoMyself = appDelegate.defaultUser
     } else {
-      println("Whew!")
+      println("missing defaultUser is \(appDelegate.defaultUser?.userName)")
       self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
     }
   }
