@@ -13,6 +13,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   var masterController    : LeadGameController?
   var followerController  : GameController?
   var userInfoMyself      : UserInfo?
+  var truthInAdvertising  : Bool?
   //var multiPeerController = MultiPeerController.sharedInstance
 
   @IBOutlet weak var peersLabel: UILabel!
@@ -39,22 +40,24 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(false)
 
-    println("viewWillAppear")
-
   }
 
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
 
     if self.userInfoMyself == nil {
+      if self.truthInAdvertising != true {
+        self.truthInAdvertising = true
+        println("no userInfoMyself")
+        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let destinationvVC = storyboard.instantiateViewControllerWithIdentifier("CHARCREATE_VC") as CharacterCreationViewController!
+        let presentingVC = storyboard.instantiateViewControllerWithIdentifier("LAUNCHVIEW_VC") as LaunchViewController!
+        destinationvVC.delegate = presentingVC
+        presentingVC.presentViewController(destinationvVC, animated: false, completion: { () -> Void in
+          println("yes!")
+        })
+      }
 
-      let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-      let destinationvVC = storyboard.instantiateViewControllerWithIdentifier("CHARCREATE_VC") as CharacterCreationViewController!
-      let presentingVC = storyboard.instantiateViewControllerWithIdentifier("LAUNCHVIEW_VC") as LaunchViewController!
-      destinationvVC.delegate = presentingVC
-      presentingVC.presentViewController(destinationvVC, animated: false, completion: { () -> Void in
-        println("yes!")
-      })
 
     }
   }

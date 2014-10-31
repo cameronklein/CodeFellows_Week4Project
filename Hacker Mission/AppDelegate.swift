@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       let filePath = path.stringByAppendingPathComponent(fileComponent)
 
       self.documentsPath = filePath as String!
-      println("created the docs path as \(self.documentsPath)")
+      println("created the docs path")
       } else {
       println("ERROR: Could not create and store file path for saving user defaults")
     }
@@ -40,13 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let fileManager = NSFileManager.defaultManager()
     if fileManager.fileExistsAtPath(self.documentsPath!) {
-      println("there it is")
+      println("Success: Saved user data found.")
       var userForLoad = UserInfo.loadTheObject()
       self.defaultUser = userForLoad as UserInfo!
     } else {
-      println("NO file exists")
+      println("No saved user data found.")
       self.defaultUser = nil
-      println("default is \(self.defaultUser)")
     }
 
 
@@ -84,7 +83,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     if arrayOfPotentialDirectories.count > 0 {
-      println("Success: Did create array of directories")
       let arrayOfValidatedDirectories = arrayOfPotentialDirectories as [String]!
       let pathForSave = arrayOfValidatedDirectories.first
       return pathForSave as String!
