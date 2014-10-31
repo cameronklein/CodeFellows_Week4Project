@@ -138,7 +138,7 @@ class LeadGameController : MultiPeerDelegate {
   func changeLeader() {
     //Assigns a leader for current mission and itterates through all players, per games rules, and gives them a chance to be leader.
 //    var leaderIndex = game.players.indexOfObject(game.leader!)
-    println("Changing leader. Was \(game.leader)")
+    println("Changing leader. Was \(game.leader!.playerName)")
     var foundLeader = false
     for player in game.players {
       if foundLeader == true {
@@ -152,10 +152,10 @@ class LeadGameController : MultiPeerDelegate {
       }
     }
     if foundLeader == false {
-      game.players.first?.isLeader = true
-      game.leader = game.players.first
+      game.players.first!.isLeader = true
+      game.leader = game.players.first!
     }
-    println("New leader is \(game.leader)")
+    println("New leader is \(game.leader!.playerName)")
   }
 
   func startMission() {
