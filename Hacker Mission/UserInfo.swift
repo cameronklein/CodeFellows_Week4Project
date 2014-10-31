@@ -38,9 +38,7 @@ class UserInfo : NSObject, NSCoding {
         self.userPeerID = aDecoder.decodeObjectForKey("userPeerID") as NSString?
 
     }
-
-
-
+  
      func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.userName, forKey: "userName")
         aCoder.encodeInteger(self.userID, forKey: "userID")

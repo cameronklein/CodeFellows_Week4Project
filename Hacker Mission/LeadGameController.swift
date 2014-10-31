@@ -451,4 +451,8 @@ class LeadGameController : MultiPeerDelegate {
       dispatch_get_main_queue(), closure)
   }
   
+  func sendUserInfo() {
+    println("Not doing anything!")
+  }
+  
 }

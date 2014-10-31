@@ -18,7 +18,6 @@ class GameController : MultiPeerDelegate {
     return Static.instance
   }
   
-  
   var game : GameSession!
   var revealVC : RevealViewController!
   var launchVC : LaunchViewController!
@@ -91,18 +90,16 @@ class GameController : MultiPeerDelegate {
     println("GAME CONTROLLER: Got Game Start Message")
     multipeerController.stopAdvertising()
     revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())
-    // TODO: Intro Animation?
+
     let players = game.players
     for player in players {
+      println("Comparing \(multipeerController.peerID.displayName) and \(player.peerID)")
       if multipeerController.peerID.displayName == player.peerID {
         revealVC.user = player
       }
     }
     
-    //    let revealVC = UIStoryboard(name: "Main", bundle:
-    //        NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as RevealViewController
     revealVC.game = self.game
-    
     self.launchVC.gameStart(revealVC)
     
   }
@@ -163,7 +160,6 @@ class GameController : MultiPeerDelegate {
             //collect userInfo as users join
       })
     }
-    sendUserInfo()
   }
     func sendUserInfo () {
       let appDel = UIApplication.sharedApplication().delegate as AppDelegate
@@ -173,5 +169,6 @@ class GameController : MultiPeerDelegate {
       }
      
     }
+  }
 
 }
