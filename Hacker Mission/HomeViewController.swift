@@ -209,6 +209,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       let dict = NSMutableDictionary()
       dict.setObject("nominations", forKey: "action")
       dict.setObject(nominatedPlayerIDs, forKey: "value")
+      println("Sending nomination information with players: \(nominatedPlayerIDs.description)")
       self.multiPeerController.sendInfoToMainBrain(dict)
     }
   
@@ -244,6 +245,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   }
   
   func voteOnMissionSuccess(game: GameSession) {
+    
     
     let currentMission = game.missions[game.currentMission] as Mission
     let nominatedPlayers = currentMission.nominatedPlayers

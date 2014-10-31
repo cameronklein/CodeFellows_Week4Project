@@ -249,10 +249,10 @@ class LeadGameController : MultiPeerDelegate {
       for player in game.players {
         player.currentVote = nil
       }
-      let currentMission = game.missions[game.currentMission] as Mission
       currentMission.nominatedPlayers.removeAll(keepCapacity: true)
       
     } else if passed == true {
+      println("Telling nominated players to determine mission outcome! Nominated players: \(currentMission.nominatedPlayers.description)")
       self.tellPlayersToDetermineMissionOutcome()
     }
     
@@ -365,9 +365,12 @@ class LeadGameController : MultiPeerDelegate {
   
   func assignNominations(arrayOfNominatedPlayerIDs : [String]) {
     
+    println("Got nomination info with these players nominated: \(arrayOfNominatedPlayerIDs.description)")
+    
     let currentMission = game.missions[game.currentMission] as Mission
     for player in game.players {
       for nominationID in arrayOfNominatedPlayerIDs {
+        println("Comparing \(nominationID) to \(player.peerID)")
         if nominationID == player.peerID {
           println("Added \(player.playerName) to mission # \(game.currentMission)'s nominatedPlayer array.")
           currentMission.nominatedPlayers.append(player)

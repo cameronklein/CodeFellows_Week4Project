@@ -135,6 +135,7 @@ class GameController : MultiPeerDelegate {
   }
   
   func beginMissionOutcome() {
+    println("Begin Mission Outcome call sent to HomeViewController")
     //Nominated players on mission vote to succeed or fail the mission
     self.homeVC.voteOnMissionSuccess(game)
 
