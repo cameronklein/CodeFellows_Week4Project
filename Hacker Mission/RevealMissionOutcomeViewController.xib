@@ -3,10 +3,20 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="MKStencilsansBlack.ttf">
+            <string>MKStencilsansBlack</string>
+            <string>MKStencilsansBlack</string>
+        </mutableArray>
+        <mutableArray key="TYPEWRON.ttf">
+            <string>Typewrong</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RevealMissionOutcomeViewController" customModule="Hacker_Mission" customModuleProvider="target">
             <connections>
                 <outlet property="missionOutcomeLabel" destination="FtA-Ud-3lg" id="OVa-qg-03k"/>
+                <outlet property="missionOutcomeTitleLabel" destination="j5e-Q1-iAz" id="SSU-iu-wu7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,14 +25,25 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Outcome" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FtA-Ud-3lg">
-                    <rect key="frame" x="187" y="282" width="226" height="36"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place Holder" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FtA-Ud-3lg">
+                    <rect key="frame" x="151" y="254" width="312.5" height="91"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="91" id="0uR-DA-4tf"/>
+                        <constraint firstAttribute="width" constant="312.5" id="GHl-Tb-HXH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="30"/>
+                    <color key="textColor" red="0.26747486149999999" green="1" blue="0.32945114939999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Outcome" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5e-Q1-iAz">
+                    <rect key="frame" x="178" y="192" width="245.5" height="33.5"/>
+                    <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="30"/>
+                    <color key="textColor" red="0.26747486149999999" green="1" blue="0.32945114939999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leK-nC-DVq">
-                    <rect key="frame" x="279" y="334" width="42" height="30"/>
+                    <rect key="frame" x="266" y="353" width="68" height="29"/>
+                    <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="16"/>
                     <state key="normal" title="Got it!">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -31,13 +52,16 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="leK-nC-DVq" firstAttribute="top" secondItem="FtA-Ud-3lg" secondAttribute="bottom" constant="16" id="I1f-cj-9Jg"/>
-                <constraint firstAttribute="centerY" secondItem="FtA-Ud-3lg" secondAttribute="centerY" id="Kzy-LW-dz1"/>
-                <constraint firstAttribute="centerX" secondItem="FtA-Ud-3lg" secondAttribute="centerX" id="RlA-vG-syI"/>
-                <constraint firstAttribute="centerX" secondItem="leK-nC-DVq" secondAttribute="centerX" id="xt3-gu-Eqh"/>
+                <constraint firstItem="FtA-Ud-3lg" firstAttribute="centerX" secondItem="j5e-Q1-iAz" secondAttribute="centerX" constant="6.5" id="Cm5-ea-dqm"/>
+                <constraint firstItem="leK-nC-DVq" firstAttribute="top" secondItem="FtA-Ud-3lg" secondAttribute="bottom" constant="8" id="KC6-FJ-jEe"/>
+                <constraint firstItem="FtA-Ud-3lg" firstAttribute="top" secondItem="j5e-Q1-iAz" secondAttribute="bottom" constant="29" id="MNd-l0-csq"/>
+                <constraint firstAttribute="centerY" secondItem="FtA-Ud-3lg" secondAttribute="centerY" id="W1X-jd-4zO"/>
+                <constraint firstAttribute="centerX" secondItem="leK-nC-DVq" secondAttribute="centerX" id="mtK-VB-5wK"/>
+                <constraint firstAttribute="centerX" secondItem="FtA-Ud-3lg" secondAttribute="centerX" constant="-7.25" id="sDM-fA-vrG"/>
             </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
         </view>
     </objects>
 </document>
