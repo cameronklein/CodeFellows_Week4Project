@@ -331,6 +331,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 self.mission5OutcomeLabel.textColor = UIColor.redColor()
             default:
                 println("You should never see this.")
+            }
         }
     }
   }
