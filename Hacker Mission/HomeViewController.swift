@@ -217,6 +217,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       dict.setObject(nominatedPlayerIDs, forKey: "value")
       println("Sending nomination information with players: \(nominatedPlayerIDs.description)")
       self.multiPeerController.sendInfoToMainBrain(dict)
+
     }
   
   func voteOnProposedTeam(game: GameSession)
