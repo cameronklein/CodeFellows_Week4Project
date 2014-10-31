@@ -307,24 +307,19 @@ class LeadGameController : MultiPeerDelegate {
     var currentMission = game.missions[game.currentMission] as Mission
     println("Updating mission number index.")
     
-    if game.passedMissionCount == 3 || game.failedMissionCount == 3 {
-      self.endGame()
-    } else {
-      game.currentMission = game.currentMission + 1
-      self.changeLeader()
-      self.startMission()
-    }
-    
+    self.changeLeader()
+    game.currentMission = game.currentMission + 1
+
     game.currentGameState = GameEvent.RevealMissionOutcome
     multipeerController.sendEventToPeers(game)
-    
-  }
+    //Game Controller will go to endgame if failed/succeeded missions are more than 3, or to next mission
+  
   }
   
   func endMission() {
     //Memorialize mission information, call updateScore, reset mission timer
     
-  
+}
 //  func updateScore() {
 //    //Based on mission results upate the overall score
 //    

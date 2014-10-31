@@ -328,6 +328,30 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
   }
+  
+  func processEndMission() {
+    
+    let currentMissionIndex = game.currentMission
+    if currentMissionIndex == 5 || game.failedMissionCount == 3 || game.passedMissionCount == 3 {
+      self.endGame()
+    } else {
+      self.nominatePlayers(game)
+    }
+    
+    
+    
+  }
+  
+  func endGame(){
+    let vc = EndGameViewController(nibName: "EndGameViewController", bundle: NSBundle.mainBundle())
+    vc.view.frame = self.playersCollectionView.frame
+    vc.game = game
+
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.addChildViewController(vc)
+      self.view.addSubview(vc.view)
+    }
+  }
     
     func startBlinking (label: UILabel)
     {
