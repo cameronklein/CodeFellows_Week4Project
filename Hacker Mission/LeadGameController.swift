@@ -60,13 +60,13 @@ class LeadGameController : MultiPeerDelegate {
 //    var players = usersForGame.map { (UserInfo) -> U in
 //      return Player(Player.makePlayerDictionaryForGameSession(UserInfo))
 //    }
-    println("\(players.count) players created from provided user information.")
+    println("MAIN BRAIN: \(players.count) players created from provided user information.")
     var missions = GameSession.populateMissionList(players.count) as NSMutableArray // Temporary method until we have a pool of individualized missions
-    println("Created \(missions.count) missions.")
+    println("MAIN BRAIN: Created \(missions.count) missions.")
     
     self.game = GameSession(players: players, missions: missions)
     if self.game != nil {
-      println("Game Created. We are ready for launch.")
+      println("MAIN BRAIN: Game Created. We are ready for launch.")
       assignRoles()
     }
     let revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())
@@ -87,7 +87,7 @@ class LeadGameController : MultiPeerDelegate {
     }
 
   func assignRoles(){
-    println("Beginning to assign player roles for \(game.players.count) players.")
+    println("MAIN BRAIN: Beginning to assign player roles for \(game.players.count) players.")
 
     let players = game.players as NSArray
     let numberOfPlayers = players.count
@@ -106,21 +106,21 @@ class LeadGameController : MultiPeerDelegate {
       let i = Int(arc4random_uniform(UInt32(numberOfPlayers)))
         let player = players[i] as Player
       if player.playerRole != PlayerType.Agent {
-        println("Assigned \(player.playerName) as Agent.")
+        println("MAIN BRAIN: Assigned \(player.playerName) as Agent.")
         player.playerRole = PlayerType.Agent
         currentAgents++
       }
     }
     
-    println("Assigned \(currentAgents) agents at random.")
+    println("MAIN BRAIN: Assigned \(currentAgents) agents at random.")
     
     let j = Int(arc4random_uniform(UInt32(numberOfPlayers)))
     var player = players[j] as Player
     player.isLeader = true
     game.leader = player
     
-    println("Assigned \(player.playerName) as initial leader.")
-    println("Sending *Game Start* event to peers.")
+    println("MAIN BRAIN: Assigned \(player.playerName) as initial leader.")
+    println("MAIN BRAIN: Sending *Game Start* event to peers.")
     game.currentGameState = GameEvent.Start
     multipeerController.sendEventToPeers(game)
     self.revealCharacters()

@@ -131,7 +131,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             cell.rejectsMission.hidden = true
             cell.approvesMission.hidden = true
         }
-        
+      
+      if player.isLeader == true {
+        cell.leaderStar.hidden = false
+      } else if player.isLeader == false {
+        cell.leaderStar.hidden = true
+      }
+      
         return cell
     }
     

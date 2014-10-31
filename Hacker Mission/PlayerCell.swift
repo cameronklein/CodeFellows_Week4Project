@@ -15,6 +15,7 @@ class PlayerCell: UICollectionViewCell
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var approvesMission: UILabel!
     @IBOutlet weak var rejectsMission: UILabel!
+    @IBOutlet weak var leaderStar: UILabel!
     
     var isSelected : Bool = false
     
