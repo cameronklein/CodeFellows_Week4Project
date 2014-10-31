@@ -38,6 +38,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var playersSelected = 0
     var game : GameSession!
     var labelsAreBlinking = false
+    var lastRejectedGameCount = 0
     
     var screenWidth : CGFloat!
     var layout : UICollectionViewFlowLayout!
@@ -116,6 +117,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       
       if player.currentVote != nil
       {
+        println("Found a currentVote")
       
         if (player.currentVote == true)
         {
@@ -140,6 +142,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       }
       else
       {
+        println("Found nil for currentVote")
           cell.rejectsMission.hidden = true
           cell.approvesMission.hidden = true
       }
@@ -189,7 +192,44 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
         }
     }
+  
+  func revealVotes(game: GameSession) {
+    self.game = game
+    let currentMission = game.missions[game.currentMission] as Mission
     
+    
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      if currentMission.rejectedTeamsCount > self.lastRejectedGameCount {
+        self.incomingMesageLabel.text = "Team Rejected!"
+      } else {
+        self.incomingMesageLabel.text = "Team Approved!"
+      }
+      self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+      UIView.animateWithDuration(0.4,
+        delay: 0.0,
+        options: UIViewAnimationOptions.CurveEaseInOut,
+        animations: { () -> Void in
+          self.incomingMesageLabel.transform = CGAffineTransformMakeScale(1.0, 1.0)
+          self.incomingMesageLabel.alpha = 1.0
+        },
+        completion: { (success) -> Void in
+          UIView.animateWithDuration(0.4,
+            delay: 1.0,
+            options: UIViewAnimationOptions.CurveEaseInOut,
+            animations: { () -> Void in
+              self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+              self.incomingMesageLabel.alpha = 0.0
+            },
+            completion: { (success) -> Void in
+              
+              return ()
+              
+          })
+
+    })
+  }
+  }
+  
     //MARK: - Actions and other functions
   
     func nominatePlayers(game : GameSession)
@@ -277,8 +317,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
     vc.game = game
     vc.view.frame = self.playersCollectionView.frame
-    self.incomingMesageLabel.text = "Nominations Are In"
+    
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.incomingMesageLabel.text = "Nominations Are In"
       self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
       UIView.animateWithDuration(0.4,
         delay: 0.0,
@@ -322,11 +363,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let vc = MissionTextViewController(nibName: "MissionTextViewController", bundle: NSBundle.mainBundle())
     vc.view.frame = self.playersCollectionView.frame
     vc.game = game
-    if user!.isLeader == true {
-      vc.leaderSelectingTeam.text = "You are the leader. Select your team wisely"
-    }
-    self.incomingMesageLabel.text = "New Mission Proposed"
+    
+    
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      if self.user!.isLeader == true {
+        vc.leaderSelectingTeam.text = "You are the leader. Select your team wisely"
+      }
+      self.incomingMesageLabel.text = "New Mission Proposed"
       self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
       UIView.animateWithDuration(0.4,
         delay: 0.0,
@@ -365,8 +408,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     self.game = game
     let currentMission = game.missions[game.currentMission] as Mission
     let nominatedPlayers = currentMission.nominatedPlayers
-    self.incomingMesageLabel.text = "Mission Proceeding"
+    
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.incomingMesageLabel.text = "Mission Proceeding"
       self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
       UIView.animateWithDuration(0.4,
         delay: 0.0,
@@ -421,8 +465,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     vc.view.frame = self.playersCollectionView.frame
     vc.game = game
     
-    self.incomingMesageLabel.text = "Mission Completed"
+    
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.incomingMesageLabel.text = "Mission Completed"
       self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
       UIView.animateWithDuration(0.4,
         delay: 0.0,
@@ -560,4 +605,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     //MARK: - One line, because we probably won't use this.
     override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}
+  
+
+
 }
+
