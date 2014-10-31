@@ -25,11 +25,11 @@ class LeadGameController : MultiPeerDelegate {
   }
   
   func startLookingForPlayers() {
-    myUserInfo = UserInfo(userName: "Boss Man", userImage: UIImage(named: "AtSymbol")!)
-    myUserInfo.userPeerID = multipeerController.peerID.displayName
-    myUserInfo.userImage = UIImage(named: "AtSymbol")!
-    multipeerController.userInfo = self.myUserInfo
-    usersForGame.append(self.myUserInfo)
+    let appDel = UIApplication.sharedApplication().delegate as AppDelegate
+    if let thisUser = appDel.defaultUser as UserInfo! {
+      thisUser.userPeerID = multipeerController.peerID.displayName
+      usersForGame.append(thisUser)
+    }
     multipeerController.startBrowsing()
   }
 
@@ -240,7 +240,6 @@ class LeadGameController : MultiPeerDelegate {
     let currentMission = game.missions[game.currentMission] as Mission
     
     if currentMission.rejectedTeamsCount == 5 {
-      self.revealMissionOutcome()
       currentMission.success = false
       game.failedMissionCount = game.failedMissionCount + 1
       revealMissionOutcome()
