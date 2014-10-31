@@ -39,6 +39,8 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
     multiPeerController.sendInfoToMainBrain(["action" : "vote", "value" : "Approve"])
     self.approveButton.userInteractionEnabled = false
     self.rejectButton.userInteractionEnabled = false
+    let parentVC = self.parentViewController as HomeViewController
+    parentVC.nominationPromptLabel.text = "Waiting on other players..."
     self.view.removeFromSuperview()
     self.removeFromParentViewController()
   }
@@ -48,6 +50,8 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
     multiPeerController.sendInfoToMainBrain(["action" : "vote", "value" : "Reject"])
     self.approveButton.userInteractionEnabled = false
     self.rejectButton.userInteractionEnabled = false
+    let parentVC = self.parentViewController as HomeViewController
+    parentVC.nominationPromptLabel.text = "Waiting on other players..."
     self.view.removeFromSuperview()
     self.removeFromParentViewController()
   }

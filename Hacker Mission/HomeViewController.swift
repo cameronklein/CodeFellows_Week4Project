@@ -213,7 +213,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
           },
           completion: { (success) -> Void in
             UIView.animateWithDuration(0.4,
-              delay: 0.9,
+              delay: 1.0,
               options: UIViewAnimationOptions.CurveEaseInOut,
               animations: { () -> Void in
                 self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
@@ -459,18 +459,23 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                     case 0:
                       self.mission1OutcomeLabel.text = "\u{E11C}"
                       self.mission1OutcomeLabel.textColor = UIColor.greenColor()
+                      self.mission1OutcomeLabel.hidden = false
                     case 1:
                       self.mission2OutcomeLabel.text = "\u{E11C}"
                       self.mission2OutcomeLabel.textColor = UIColor.greenColor()
+                      self.mission2OutcomeLabel.hidden = false
                     case 2:
                       self.mission3OutcomeLabel.text = "\u{E11C}"
                       self.mission3OutcomeLabel.textColor = UIColor.greenColor()
+                      self.mission3OutcomeLabel.hidden = false
                     case 3:
                       self.mission4OutcomeLabel.text = "\u{E11C}"
                       self.mission4OutcomeLabel.textColor = UIColor.greenColor()
+                      self.mission4OutcomeLabel.hidden = false
                     case 4:
                       self.mission5OutcomeLabel.text = "\u{E11C}"
                       self.mission5OutcomeLabel.textColor = UIColor.greenColor()
+                      self.mission5OutcomeLabel.hidden = false
                     default:
                       println("You should never see this.")
                     }
@@ -481,18 +486,23 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                     case 0:
                       self.mission1OutcomeLabel.text = "\u{E11A}"
                       self.mission1OutcomeLabel.textColor = UIColor.redColor()
+                      self.mission1OutcomeLabel.hidden = false
                     case 1:
                       self.mission2OutcomeLabel.text = "\u{E11A}"
                       self.mission2OutcomeLabel.textColor = UIColor.redColor()
+                      self.mission2OutcomeLabel.hidden = false
                     case 2:
                       self.mission3OutcomeLabel.text = "\u{E11A}"
                       self.mission3OutcomeLabel.textColor = UIColor.redColor()
+                      self.mission3OutcomeLabel.hidden = false
                     case 3:
                       self.mission4OutcomeLabel.text = "\u{E11A}"
                       self.mission4OutcomeLabel.textColor = UIColor.redColor()
+                      self.mission4OutcomeLabel.hidden = false
                     case 4:
                       self.mission5OutcomeLabel.text = "\u{E11A}"
                       self.mission5OutcomeLabel.textColor = UIColor.redColor()
+                      self.mission5OutcomeLabel.hidden = false
                     default:
                       println("You should never see this.")
                     }
