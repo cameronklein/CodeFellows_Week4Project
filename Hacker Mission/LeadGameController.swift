@@ -138,19 +138,24 @@ class LeadGameController : MultiPeerDelegate {
   func changeLeader() {
     //Assigns a leader for current mission and itterates through all players, per games rules, and gives them a chance to be leader.
 //    var leaderIndex = game.players.indexOfObject(game.leader!)
-    var NSPlayerArray = game.players as NSArray
-    var leaderIndex = NSPlayerArray.indexOfObject(game.leader!)
-    if leaderIndex == (game.players.count - 1){
-      leaderIndex = 0
-    } else {
-        leaderIndex = leaderIndex + 1
+    println("Changing leader. Was \(game.leader)")
+    var foundLeader = false
+    for player in game.players {
+      if foundLeader == true {
+        player.isLeader = true
+        game.leader = player
+        break
+      }
+      if player.isLeader == true {
+        player.isLeader = false
+        foundLeader = true
+      }
     }
-    game.players[leaderIndex].isLeader = false
-    println("Changing leader. Was \((game.players[leaderIndex] as Player).playerName)")
-    let player = game.players[leaderIndex] as Player
-    game.leader = player
-    player.isLeader = true
-    println("New leader is \((game.players[leaderIndex] as Player).playerName)")
+    if foundLeader == false {
+      game.players.first?.isLeader = true
+      game.leader = game.players.first
+    }
+    println("New leader is \(game.leader)")
   }
 
   func startMission() {
