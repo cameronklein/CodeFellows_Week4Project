@@ -12,6 +12,7 @@
 		164EDA941A01672D005F7452 /* RevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164EDA921A01672D005F7452 /* RevealViewController.swift */; };
 		164EDA951A01672D005F7452 /* RevealViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164EDA931A01672D005F7452 /* RevealViewController.xib */; };
 		164EDA971A018C5B005F7452 /* HackerMissionTitle.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 164EDA961A018C5B005F7452 /* HackerMissionTitle.pdf */; };
+		1697EB5D1A03FE72007D8D77 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1697EB5C1A03F0F4007D8D77 /* fontawesome-webfont.ttf */; };
 		16AA3ADC1A00596700646943 /* TYPEWRON.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B419FEE99F008421CC /* TYPEWRON.ttf */; };
 		16AA3ADD1A00596A00646943 /* BOYCOTT_.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B619FEE9DA008421CC /* BOYCOTT_.ttf */; };
 		16AA3ADE1A00596F00646943 /* MKStencilsansBlack.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B519FEE9C1008421CC /* MKStencilsansBlack.ttf */; };
@@ -350,6 +351,7 @@
 				16C007391A000C7000231A17 /* infinite_wormhole.gif in Resources */,
 				16C784BA19FF09C6008421CC /* 1095222_34734740.jpg in Resources */,
 				164EDA951A01672D005F7452 /* RevealViewController.xib in Resources */,
+				1697EB5D1A03FE72007D8D77 /* fontawesome-webfont.ttf in Resources */,
 				7E9BE66F1A0001EC00E21794 /* NominationVoteView.xib in Resources */,
 				7EF0C12A1A02A519002A6219 /* RevealMissionOutcomeViewController.xib in Resources */,
 				7EF0C1301A02C358002A6219 /* MissionTextViewController.xib in Resources */,
@@ -358,7 +360,6 @@
 				16C007381A000C7000231A17 /* infinite_field_bw.gif in Resources */,
 				16AA3ADD1A00596A00646943 /* BOYCOTT_.ttf in Resources */,
 				7E86E9BD1A03F234001C81C5 /* EndGameViewController.xib in Resources */,
-				7E86E9B81A03EF03001C81C5 /* fontawesome-webfont.ttf in Resources */,
 				16AA3ADE1A00596F00646943 /* MKStencilsansBlack.ttf in Resources */,
 				16C0073B1A000C7000231A17 /* wireframe_planet.gif in Resources */,
 			);

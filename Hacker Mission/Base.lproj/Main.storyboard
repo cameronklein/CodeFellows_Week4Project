@@ -493,7 +493,6 @@
                         <outlet property="gameNameLabel" destination="k1m-Yd-cud" id="ji0-Zp-Og8"/>
                         <outlet property="mission1ImageView" destination="4wM-5k-Cs2" id="wDH-XM-hGb"/>
                         <outlet property="mission1OutcomeLabel" destination="u4c-3W-8pu" id="PUl-bk-o0f"/>
-                        <outlet property="mission1To2TransitionImageView" destination="pc3-ME-ajL" id="0HA-hF-AGJ"/>
                         <outlet property="mission1to2TransitionImageView" destination="nw8-7T-8Rg" id="IOd-PL-quw"/>
                         <outlet property="mission2ImageView" destination="3Jr-GY-ybQ" id="EVr-0Q-h6U"/>
                         <outlet property="mission2OutcomeLabel" destination="158-wq-82b" id="PCr-dE-za5"/>

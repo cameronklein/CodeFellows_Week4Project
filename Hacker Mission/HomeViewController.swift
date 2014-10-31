@@ -158,15 +158,21 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         else
         {
+          if self.playersSelected == (game.missions[game.currentMission] as Mission).playersNeeded
+          {
+            println("You can't select this person until you deselect somebody else.")
+          }
+          else
+          {
             player.isNominated = true
             self.playersSelected += 1
-            self.playersCollectionView.reloadData()
+          }
+          self.playersCollectionView.reloadData()
         }
         
         
         if self.playersSelected == (game.missions[game.currentMission] as Mission).playersNeeded
         {
-            self.playersCollectionView.userInteractionEnabled = false
             self.confirmNominationButton.userInteractionEnabled = true
             UIView.animateWithDuration(0.1, animations:
             { () -> Void in
@@ -204,6 +210,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBAction func confirmNominations(sender: AnyObject)
     {
       println("Confirmed Button Pressed")
+        self.playersCollectionView.userInteractionEnabled = false
         self.confirmNominationButton.userInteractionEnabled = false
         self.confirmNominationButton.titleLabel?.textColor = UIColor.grayColor()
         self.labelsAreBlinking = false
