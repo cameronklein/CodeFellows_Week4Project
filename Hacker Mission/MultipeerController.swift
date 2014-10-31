@@ -66,7 +66,11 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
 //      jsonDict["peerID"] = peerID.displayName
 //      delegate.handleEvent(jsonDict)
 //    }
-
+    let decoder = NSKeyedUnarchiver(forReadingWithData: data)
+    let unarchivedObject: AnyObject? = decoder.decodeObject()
+    decoder.finishDecoding()
+    println("Instantiated NSKeyedUnarchiver has found \(unarchivedObject?.description)")
+    
     // Slave controller getting info from master controller
     if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
       println("Recognized data as GameSession.")

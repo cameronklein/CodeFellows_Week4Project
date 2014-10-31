@@ -261,12 +261,17 @@ class LeadGameController : MultiPeerDelegate {
       self.tellLeaderToNominatePlayers()
       for player in game.players {
         player.currentVote = nil
+        player.isNominated = false
       }
       currentMission.nominatedPlayers.removeAll(keepCapacity: true)
       
     } else if passed == true {
       println("MAIN BRAIN: Telling nominated players to determine mission outcome! Nominated players: \(currentMission.nominatedPlayers.description)")
       self.tellPlayersToDetermineMissionOutcome()
+      for player in game.players{
+        player.currentVote = nil
+        player.isNominated = false
+      }
     }
     
   }
@@ -308,6 +313,8 @@ class LeadGameController : MultiPeerDelegate {
         currentMission.success = true
         game.passedMissionCount = game.passedMissionCount + 1
       }
+      currentMissionOutcomeVotes.removeAll(keepCapacity: true)
+        
       revealMissionOutcome()
       }
   }
