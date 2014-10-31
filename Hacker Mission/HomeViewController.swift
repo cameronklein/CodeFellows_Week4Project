@@ -195,6 +195,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
     func nominatePlayers(game : GameSession)
     {
+      self.game = game
       if self.user?.isLeader == true {
         self.incomingMesageLabel.text = "You are leader. Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) people."
       } else {
@@ -272,6 +273,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   {//Display the nominated team to all users and get a vote of Approve or Reject back
     self.labelsAreBlinking = false
     self.nominationPromptLabel.hidden = true
+    self.game = game
     
     let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
     vc.game = game
@@ -317,6 +319,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //  }
 //
   func startMission(game : GameSession) {
+    self.game = game
     let vc = MissionTextViewController(nibName: "MissionTextViewController", bundle: NSBundle.mainBundle())
     vc.view.frame = self.playersCollectionView.frame
     vc.game = game
@@ -360,8 +363,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   }
   
   func voteOnMissionSuccess(game: GameSession) {
-    
-    
+    self.game = game
     let currentMission = game.missions[game.currentMission] as Mission
     let nominatedPlayers = currentMission.nominatedPlayers
     self.incomingMesageLabel.text = "Mission Proceeding"
@@ -416,6 +418,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   func revealMissionOutcome(game : GameSession) {
     
     let vc = RevealMissionOutcomeViewController(nibName: "RevealMissionOutcomeViewController", bundle: NSBundle.mainBundle())
+    self.game = game
     vc.view.frame = self.playersCollectionView.frame
     vc.game = game
     
