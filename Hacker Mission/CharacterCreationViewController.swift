@@ -225,7 +225,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
         } else {
             println("no text")
           checkButtonState()
-            return false
+            return true
         }
     }
 
@@ -242,7 +242,14 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     }
 
   func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-    println("editing in \(textField)")
+    println("editing in \(textField.text)")
+    println("range is \(range)")
+    println("string is \(string)")
+    if string == "" && range.location == 0 {
+      println("true!!!!!!!!!!!!")
+      self.userNameFor = nil
+      checkButtonState()
+    }
     return true
   }
 
@@ -256,13 +263,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
   }
 
-//  func textFieldShouldClear(textField: UITextField) -> Bool {
-//    if countElements(textField.text) == 1 {
-//      self.userNameFor = nil
-//    }
-//
-//    return true
-//  }
+
 
   func checkFirstResponder() {
     if self.usernameTextField.isFirstResponder() {
