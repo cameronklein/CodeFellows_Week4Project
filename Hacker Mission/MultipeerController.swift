@@ -66,10 +66,10 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
 //      jsonDict["peerID"] = peerID.displayName
 //      delegate.handleEvent(jsonDict)
 //    }
-    let decoder = NSKeyedUnarchiver(forReadingWithData: data)
-    let unarchivedObject: AnyObject? = decoder.decodeObject()
-    decoder.finishDecoding()
-    println("Instantiated NSKeyedUnarchiver has found \(unarchivedObject?.description)")
+//    let decoder = NSKeyedUnarchiver(forReadingWithData: data)
+//    let unarchivedObject: AnyObject? = decoder.decodeObject()
+//    decoder.finishDecoding()
+//    println("Instantiated NSKeyedUnarchiver has found \(unarchivedObject?.description)")
     
     // Slave controller getting info from master controller
     if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
@@ -107,7 +107,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     
     
   }
-  // TODO: Send User Info
+ 
   func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
     if state == MCSessionState.Connected {
       println("\(peerID.displayName) Connected")

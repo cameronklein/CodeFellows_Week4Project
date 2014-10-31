@@ -258,7 +258,9 @@ class LeadGameController : MultiPeerDelegate {
       revealMissionOutcome()
     } else if passed == false {
       self.changeLeader()
-      self.tellLeaderToNominatePlayers()
+      self.delay(10.0, closure: { () -> () in
+        self.tellLeaderToNominatePlayers()
+      })
       for player in game.players {
         player.currentVote = nil
         player.isNominated = false
@@ -267,7 +269,10 @@ class LeadGameController : MultiPeerDelegate {
       
     } else if passed == true {
       println("MAIN BRAIN: Telling nominated players to determine mission outcome! Nominated players: \(currentMission.nominatedPlayers.description)")
-      self.tellPlayersToDetermineMissionOutcome()
+      self.delay(10.0, closure: { () -> () in
+       self.tellPlayersToDetermineMissionOutcome()
+      })
+      
       for player in game.players{
         player.currentVote = nil
         player.isNominated = false
@@ -434,6 +439,15 @@ class LeadGameController : MultiPeerDelegate {
 //    flavorTextArray.append(("",""))
 //    flavorTextArray.append(("",""))
     
+  }
+  
+  func delay(delay:Double, closure:()->()) {
+    dispatch_after(
+      dispatch_time(
+        DISPATCH_TIME_NOW,
+        Int64(delay * Double(NSEC_PER_SEC))
+      ),
+      dispatch_get_main_queue(), closure)
   }
   
 }
