@@ -165,7 +165,10 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     {
         let cell = defaultIconsCollectionView.dequeueReusableCellWithReuseIdentifier("DEFAULT_ICON_CELL", forIndexPath: indexPath) as DefaultIconCell
         cell.imageView.image = self.defaultIcons[indexPath.row] as UIImage
-        return cell
+      cell.layer.borderWidth = 1
+      cell.layer.borderColor = UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.15).CGColor
+
+      return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
