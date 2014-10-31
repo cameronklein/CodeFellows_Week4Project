@@ -20,12 +20,26 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   @IBOutlet weak var hostButton: UIButton!
   @IBOutlet weak var joinButton: UIButton!
   @IBOutlet weak var spinningWheel: UIActivityIndicatorView!
+  @IBOutlet weak var createCharacterButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
 
+  }
+
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    if appDelegate.defaultUser != nil {
+      println("HEY!")
+      self.userInfoMyself = appDelegate.defaultUser
+    } else {
+      println("Whew!")
+      self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
     }
+  }
 
 
   override func didReceiveMemoryWarning() {
@@ -94,6 +108,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
     
     func didSaveUser(userToSave: UserInfo) {
         self.userInfoMyself = userToSave
+
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

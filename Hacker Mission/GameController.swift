@@ -30,7 +30,7 @@ class GameController : MultiPeerDelegate {
   
   init(){
     multipeerController.delegate = self
-    myUserInfo = UserInfo(userName: "Teddy Roosevelt", userImage: UIImage(named: "AtSymbol")!)
+    myUserInfo = UserInfo(userName: "Teddy Ruxpin", userImage: UIImage(named: "QuestionSymbol")!)
     myUserInfo.userPeerID = multipeerController.peerID.displayName
     myUserInfo.userImage = UIImage(named: "AtSymbol")!
   }
@@ -38,7 +38,7 @@ class GameController : MultiPeerDelegate {
   func handleEvent(newGameInfo: GameSession) {
     self.game = newGameInfo
     let event = game.currentGameState!
-    if event != .Start {
+    if event != .Start || event != .RevealCharacters {
       findMe()
     }
     println("Received \(event.rawValue) event from Main Brain. Woot.")
@@ -71,7 +71,10 @@ class GameController : MultiPeerDelegate {
   func findMe(){
     for player in game.players {
       if player.peerID == multipeerController.peerID.displayName {
-        homeVC.user = player
+        if homeVC != nil{
+          homeVC.user = player
+
+        }
       }
     }
   }

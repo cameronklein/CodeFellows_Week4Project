@@ -129,9 +129,9 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       println("the path is \(appDelegate.documentsPath)")
       if let pathForSave = appDelegate.documentsPath as String! {
       println("Can Save File")
-//      var object = UserInfo.wrapUserInfo(self.userForSave) as NSMutableData
         UserInfo.saveTheObject(localUserInfo)
-self.dismissViewControllerAnimated(true, completion: nil)
+        appDelegate.defaultUser = localUserInfo
+        self.dismissViewControllerAnimated(true, completion: nil)
       } else {
         println("ERROR: No save path found, this is a fail case.")
       }

@@ -145,10 +145,11 @@ class LeadGameController : MultiPeerDelegate {
         player.isLeader = true
         game.leader = player
         break
-      }
+      } else {
       if player.isLeader == true {
         player.isLeader = false
         foundLeader = true
+        }
       }
     }
     if foundLeader == false {
