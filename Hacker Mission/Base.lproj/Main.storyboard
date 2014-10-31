@@ -53,6 +53,9 @@
                                         <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="17"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="123" y="179" width="155" height="20"/>
+                                        </variation>
                                     </label>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPf-6S-DwA">
                                         <rect key="frame" x="235" y="212" width="130" height="29"/>
@@ -61,6 +64,9 @@
                                             <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="136" y="215" width="129" height="30"/>
+                                        </variation>
                                         <connections>
                                             <action selector="startGameButtonPressed:" destination="B2m-a2-ZUT" eventType="touchUpInside" id="Wlx-W7-7vM"/>
                                         </connections>
@@ -72,6 +78,9 @@
                                             <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="94.5" y="129" width="211" height="42"/>
+                                        </variation>
                                         <connections>
                                             <action selector="hostGameButtonPressed:" destination="B2m-a2-ZUT" eventType="touchUpInside" id="uVB-ul-vro"/>
                                         </connections>
@@ -97,6 +106,9 @@
                                             <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="132" y="129" width="136" height="42"/>
+                                        </variation>
                                         <connections>
                                             <action selector="joinGameButtonPressed:" destination="B2m-a2-ZUT" eventType="touchUpInside" id="reG-18-jVM"/>
                                         </connections>
@@ -106,6 +118,9 @@
                                         <state key="normal" title="Change User">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="155" y="179" width="90" height="30"/>
+                                        </variation>
                                         <connections>
                                             <action selector="createCharacter:" destination="B2m-a2-ZUT" eventType="touchUpInside" id="kU7-gP-GLz"/>
                                         </connections>
@@ -121,6 +136,9 @@
                             </view>
                             <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HackerMissionTitle" translatesAutoresizingMaskIntoConstraints="NO" id="VXa-Dh-u7j">
                                 <rect key="frame" x="152" y="240" width="296" height="120"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="73.5" y="240" width="253" height="120"/>
+                                </variation>
                             </imageView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Nr6-3m-elK">
                                 <rect key="frame" x="281" y="282" width="37" height="37"/>
@@ -177,6 +195,9 @@
                                     <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="130" y="477" width="140" height="30"/>
+                                </variation>
                                 <connections>
                                     <action selector="saveButtonPressed:" destination="Qid-5I-G0n" eventType="touchUpInside" id="fwl-JO-7ad"/>
                                 </connections>
@@ -217,6 +238,9 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="32" y="257" width="336" height="212"/>
+                                </variation>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYg-lI-wCd">
                                 <rect key="frame" x="285" y="518" width="30" height="37"/>
@@ -225,6 +249,9 @@
                                     <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="185" y="515" width="30" height="40"/>
+                                </variation>
                                 <connections>
                                     <action selector="photoButtonPressed:" destination="Qid-5I-G0n" eventType="touchUpInside" id="RsZ-ni-s9d"/>
                                 </connections>
