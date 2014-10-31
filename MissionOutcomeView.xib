@@ -12,10 +12,16 @@
             <string>Typewrong</string>
             <string>Typewrong</string>
         </mutableArray>
+        <mutableArray key="typicons.ttf">
+            <string>typicons</string>
+        </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MissionOutcomeVoteViewController" customModule="Hacker_Mission" customModuleProvider="target">
             <connections>
+                <outlet property="failButton" destination="odu-f8-dsM" id="Ci4-zT-M2H"/>
+                <outlet property="loyalLabel" destination="YhQ-v3-1yo" id="xld-oD-ypB"/>
+                <outlet property="succeedButton" destination="WUG-e6-lk3" id="wSo-Bn-DkD"/>
                 <outlet property="view" destination="iN0-l3-epB" id="hvB-R5-j2j"/>
             </connections>
         </placeholder>
@@ -72,11 +78,19 @@
                                         <action selector="failButtonPressed:" destination="-1" eventType="touchUpInside" id="E2u-Mk-yQ7"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are loyal to the cause" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhQ-v3-1yo">
+                                    <rect key="frame" x="48" y="137" width="196" height="18"/>
+                                    <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="17"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="centerY" secondItem="odu-f8-dsM" secondAttribute="centerY" id="5d9-PB-kyn"/>
+                                <constraint firstAttribute="centerY" secondItem="YhQ-v3-1yo" secondAttribute="centerY" id="A1M-Ri-9Yq"/>
                                 <constraint firstAttribute="centerX" secondItem="odu-f8-dsM" secondAttribute="centerX" id="AtJ-Nt-9x5"/>
+                                <constraint firstAttribute="centerX" secondItem="YhQ-v3-1yo" secondAttribute="centerX" id="xoB-R5-fz8"/>
                             </constraints>
                         </view>
                     </subviews>

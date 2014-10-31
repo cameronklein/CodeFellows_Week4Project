@@ -17,6 +17,7 @@ class GameSession: NSObject, NSCoding {
     var currentGameState  : GameEvent?
     var failedMissionCount : NSInteger = 0
     var passedMissionCount : NSInteger = 0
+    var flavorTextArray = [(String,String)]()
   
     init (players: [Player], missions: NSMutableArray) {
         self.players = players
@@ -137,6 +138,9 @@ class GameSession: NSObject, NSCoding {
         return passedGame as UserInfo
         
     }
+  
+
+  
     
     
 } // End

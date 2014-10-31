@@ -267,6 +267,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       if player.peerID == user!.peerID {
         let vc = MissionOutcomeVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
         vc.game = game
+        vc.currentUser = self.user
         vc.view.frame = self.playersCollectionView.frame
         NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
           println("Presenting Mission Vote Screen!")
