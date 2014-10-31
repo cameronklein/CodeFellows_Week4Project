@@ -127,6 +127,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="createCharacterButton" destination="1OX-99-S4k" id="ASB-nK-gGA"/>
                         <outlet property="hostButton" destination="gJT-k5-bx7" id="7em-mQ-L9q"/>
                         <outlet property="joinButton" destination="c69-h1-LK6" id="JMS-y9-KpR"/>
                         <outlet property="peersLabel" destination="P14-56-dqD" id="vmh-7Y-zZq"/>

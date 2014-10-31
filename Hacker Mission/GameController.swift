@@ -30,7 +30,7 @@ class GameController : MultiPeerDelegate {
   
   init(){
     multipeerController.delegate = self
-    myUserInfo = UserInfo(userName: "Teddy Roosevelt", userImage: UIImage(named: "AtSymbol")!)
+    myUserInfo = UserInfo(userName: "Teddy Ruxpin", userImage: UIImage(named: "QuestionSymbol")!)
     myUserInfo.userPeerID = multipeerController.peerID.displayName
     myUserInfo.userImage = UIImage(named: "AtSymbol")!
   }
