@@ -19,10 +19,21 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
   var game : GameSession!
   var nominatedPlayersArray : [Player] = [Player]()
   
+  var screenWidth : CGFloat!
+  var layout : UICollectionViewFlowLayout!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     collectionView.dataSource = self
     self.collectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
+    self.layout = nominatedPlayerViewContoller.collectionViewLayout as UICollectionViewFlowLayout
+    self.screenWidth = self.nominatedPlayerViewContoller.frame.width
+    super.viewWillAppear(true)
+    layout.minimumLineSpacing = screenWidth * 0.02
+    layout.minimumInteritemSpacing = screenWidth * 0.02
+    layout.sectionInset.left = screenWidth * 0.05
+    layout.sectionInset.right = screenWidth * 0.05
+    layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.17)
   }
   
   override func viewWillAppear(animated: Bool) {
