@@ -10,7 +10,8 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate
 {
-    //MARK: - Outlets and Properties
+  //MARK: - Outlets and Properties
+    @IBOutlet weak var incomingMesageLabel: UILabel!
     @IBOutlet weak var gameNameLabel: UILabel!
     @IBOutlet weak var playersCollectionView: UICollectionView!
     @IBOutlet weak var mission1ImageView: UIImageView!
@@ -264,9 +265,40 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     if user!.isLeader == true {
       vc.leaderSelectingTeam.text = "You are the leader. Select your team wisely"
     }
+    self.incomingMesageLabel.text = "New Mission Proposed"
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-      self.addChildViewController(vc)
-      self.view.addSubview(vc.view)
+      self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+      UIView.animateWithDuration(0.4,
+        delay: 0.0,
+        options: UIViewAnimationOptions.CurveEaseInOut,
+        animations: { () -> Void in
+          self.incomingMesageLabel.transform = CGAffineTransformMakeScale(1.0, 1.0)
+          self.incomingMesageLabel.alpha = 1.0
+        },
+        completion: { (success) -> Void in
+          UIView.animateWithDuration(0.4,
+            delay: 0.4,
+            options: UIViewAnimationOptions.CurveEaseInOut,
+            animations: { () -> Void in
+              self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+              self.incomingMesageLabel.alpha = 1.0
+            },
+            completion: { (success) -> Void in
+              self.addChildViewController(vc)
+              vc.view.alpha = 0.0
+              self.view.addSubview(vc.view)
+              UIView.animateWithDuration(0.4,
+                delay: 0.0,
+                options: UIViewAnimationOptions.CurveEaseInOut,
+                animations: { () -> Void in
+                  vc.view.alpha = 1.0
+                },
+                completion: { (success) -> Void in
+                  return () //Add more animation here if needed.
+              })
+          })
+      })
+      
     }
   }
   
@@ -358,7 +390,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     if currentMissionIndex == 5 || game.failedMissionCount == 3 || game.passedMissionCount == 3 {
       self.endGame()
     } else {
-      self.nominatePlayers(game)
+      self.startMission(game)
     }
     
     
