@@ -13,18 +13,21 @@ class MissionTextViewController: UIViewController {
   @IBOutlet weak var missionFlavorTextLabel: UILabel!
   @IBOutlet weak var leaderSelectingTeam: UILabel!
   
+  @IBOutlet weak var missionFlavorTextDescriptionLabel: UILabel!
+  
+  
   var game : GameSession!
   
     override func viewDidLoad() {
         super.viewDidLoad()
 
-      
     }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     let currentMission = game.missions[game.currentMission] as Mission
-    missionFlavorTextLabel.text = currentMission.missionDescription
+    missionFlavorTextLabel.text = currentMission.missionName
+    missionFlavorTextDescriptionLabel.text = currentMission.missionDescription
   }
 
     override func didReceiveMemoryWarning() {

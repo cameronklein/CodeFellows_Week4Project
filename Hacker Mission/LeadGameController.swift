@@ -63,7 +63,17 @@ class LeadGameController : MultiPeerDelegate {
 //      return Player(Player.makePlayerDictionaryForGameSession(UserInfo))
 //    }
     println("MAIN BRAIN: \(players.count) players created from provided user information.")
-    var missions = GameSession.populateMissionList(players.count) as NSMutableArray // Temporary method until we have a pool of individualized missions
+    var missions = GameSession.populateMissionList(players.count) as NSMutableArray
+    
+    for i in 0...4 {
+
+      let flavorTextIndex = Int(arc4random_uniform(UInt32(flavorTextArray.count)))
+      let mission = missions[i] as Mission
+      mission.missionName = flavorTextArray[flavorTextIndex].0
+      mission.missionDescription = flavorTextArray[flavorTextIndex].1
+      flavorTextArray.removeAtIndex(flavorTextIndex)
+      
+    }
     
     println("MAIN BRAIN: Created \(missions.count) missions.")
     
@@ -141,6 +151,7 @@ class LeadGameController : MultiPeerDelegate {
 //    var leaderIndex = game.players.indexOfObject(game.leader!)
     println("MAIN BRAIN: Changing leader. Was \(game.leader!.playerName)")
     var foundLeader = false
+    var assignedLeader = false
     
     if game.players.last!.isLeader == true {
       game.players.last!.isLeader = false
@@ -148,9 +159,10 @@ class LeadGameController : MultiPeerDelegate {
       game.leader = game.players.first!
     } else {
       for player in game.players {
-        if foundLeader == true {
+        if foundLeader == true && assignedLeader == false {
           player.isLeader = true
           game.leader = player
+          assignedLeader = true
         } else if player.isLeader == true {
           player.isLeader = false
           foundLeader = true
