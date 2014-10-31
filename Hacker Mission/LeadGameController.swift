@@ -19,9 +19,11 @@ class LeadGameController : MultiPeerDelegate {
   var peerCount : Int = 0
   var myUserInfo : UserInfo!
   var launchVC : LaunchViewController!
+  var flavorTextArray = [(String,String)]()
 
   init() {
     multipeerController.mainBrainDelegate = self
+    self.loadFlavorTextIntoArray()
   }
   
   func startLookingForPlayers() {
@@ -60,22 +62,31 @@ class LeadGameController : MultiPeerDelegate {
 //    var players = usersForGame.map { (UserInfo) -> U in
 //      return Player(Player.makePlayerDictionaryForGameSession(UserInfo))
 //    }
-    println("\(players.count) players created from provided user information.")
-    var missions = GameSession.populateMissionList(players.count) as NSMutableArray // Temporary method until we have a pool of individualized missions
-    println("Created \(missions.count) missions.")
+    println("MAIN BRAIN: \(players.count) players created from provided user information.")
+    var missions = GameSession.populateMissionList(players.count) as NSMutableArray
+    
+    for i in 0...4 {
+
+      let flavorTextIndex = Int(arc4random_uniform(UInt32(flavorTextArray.count)))
+      let mission = missions[i] as Mission
+      mission.missionName = flavorTextArray[flavorTextIndex].0
+      mission.missionDescription = flavorTextArray[flavorTextIndex].1
+      flavorTextArray.removeAtIndex(flavorTextIndex)
+      
+    }
+    
+    println("MAIN BRAIN: Created \(missions.count) missions.")
     
     self.game = GameSession(players: players, missions: missions)
     if self.game != nil {
-      println("Game Created. We are ready for launch.")
+      println("MAIN BRAIN: Game Created. We are ready for launch.")
       assignRoles()
     }
     let revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())
     GameController.sharedInstance.revealVC = revealVC
     let playerArray = game.players
     for player in playerArray {
-        println("\(multipeerController.peerID.displayName) is from Controller, \(player.peerID) is the local")
         if multipeerController.peerID.displayName == player.peerID {
-            println("Entered the If")
             revealVC.user = player
         }
     }
@@ -87,7 +98,7 @@ class LeadGameController : MultiPeerDelegate {
     }
 
   func assignRoles(){
-    println("Beginning to assign player roles for \(game.players.count) players.")
+    println("MAIN BRAIN: Beginning to assign player roles for \(game.players.count) players.")
 
     let players = game.players as NSArray
     let numberOfPlayers = players.count
@@ -106,21 +117,21 @@ class LeadGameController : MultiPeerDelegate {
       let i = Int(arc4random_uniform(UInt32(numberOfPlayers)))
         let player = players[i] as Player
       if player.playerRole != PlayerType.Agent {
-        println("Assigned \(player.playerName) as Agent.")
+        println("MAIN BRAIN: Assigned \(player.playerName) as Agent.")
         player.playerRole = PlayerType.Agent
         currentAgents++
       }
     }
     
-    println("Assigned \(currentAgents) agents at random.")
+    println("MAIN BRAIN: Assigned \(currentAgents) agents at random.")
     
     let j = Int(arc4random_uniform(UInt32(numberOfPlayers)))
     var player = players[j] as Player
     player.isLeader = true
     game.leader = player
     
-    println("Assigned \(player.playerName) as initial leader.")
-    println("Sending *Game Start* event to peers.")
+    println("MAIN BRAIN: Assigned \(player.playerName) as initial leader.")
+    println("MAIN BRAIN: Sending *Game Start* event to peers.")
     game.currentGameState = GameEvent.Start
     multipeerController.sendEventToPeers(game)
     self.revealCharacters()
@@ -128,7 +139,7 @@ class LeadGameController : MultiPeerDelegate {
   
   func revealCharacters() {
     //Sends information on who is on what team (Hackers and Goverment Agents) to devices.  Only Goverment Agents see who the other Goverment Agents are
-    println("Sending *Reveal Characters* event to peers.")
+    println("MAIN BRAIN: Sending *Reveal Characters* event to peers.")
     game.currentGameState = GameEvent.RevealCharacters
     multipeerController.sendEventToPeers(game)
 //    game.currentGameState = GameEvent.MissionStart
@@ -138,8 +149,9 @@ class LeadGameController : MultiPeerDelegate {
   func changeLeader() {
     //Assigns a leader for current mission and itterates through all players, per games rules, and gives them a chance to be leader.
 //    var leaderIndex = game.players.indexOfObject(game.leader!)
-    println("Changing leader. Was \(game.leader!.playerName)")
+    println("MAIN BRAIN: Changing leader. Was \(game.leader!.playerName)")
     var foundLeader = false
+    var assignedLeader = false
     
     if game.players.last!.isLeader == true {
       game.players.last!.isLeader = false
@@ -147,21 +159,22 @@ class LeadGameController : MultiPeerDelegate {
       game.leader = game.players.first!
     } else {
       for player in game.players {
-        if foundLeader == true {
+        if foundLeader == true && assignedLeader == false {
           player.isLeader = true
           game.leader = player
+          assignedLeader = true
         } else if player.isLeader == true {
           player.isLeader = false
           foundLeader = true
         }
       }
     }
-    println("New leader is \(game.leader!.playerName)")
+    println("MAIN BRAIN: New leader is \(game.leader!.playerName)")
   }
 
   func startMission() {
     //Calculates how many hackers will go on a mission, and how many failures it requires for the mission to fail
-    println("Sending *Mission Start* event to peers.")
+    println("MAIN BRAIN: Sending *Mission Start* event to peers.")
     game.currentGameState = GameEvent.MissionStart
     multipeerController.sendEventToPeers(game)
     
@@ -169,7 +182,7 @@ class LeadGameController : MultiPeerDelegate {
   
   func tellLeaderToNominatePlayers() {
     //Leader nominates the appropriate number of hackers to go on the mission
-    println("Sending *Nominate Players* event to peers.")
+    println("MAIN BRAIN: Sending *Nominate Players* event to peers.")
     game.currentGameState = GameEvent.NominatePlayers
     multipeerController.sendEventToPeers(game)
     
@@ -177,7 +190,7 @@ class LeadGameController : MultiPeerDelegate {
   
   func revealNominations() {
     //Leader locks in their nominated team for the mission
-    println("Sending *Reveal Nominations* event to peers.")
+    println("MAIN BRAIN: Sending *Reveal Nominations* event to peers.")
     game.currentGameState = GameEvent.RevealNominations
     multipeerController.sendEventToPeers(game)
     
@@ -185,7 +198,7 @@ class LeadGameController : MultiPeerDelegate {
   
   func tellPlayersToVote() {
     //All players vote to approve or reject the nominated team for the mission
-    println("Sending *Begin Vote* event to peers.")
+    println("MAIN BRAIN: Sending *Begin Vote* event to peers.")
     game.currentGameState = GameEvent.BeginVote
     multipeerController.sendEventToPeers(game)
     
@@ -194,7 +207,7 @@ class LeadGameController : MultiPeerDelegate {
   func tabulateVotes(forPlayer playerID : String, andVote voteResult : String) {
     
     //Calculates if the mission is approved or rejected
-    println("Vote receieved from \(playerID).")
+    println("MAIN BRAIN: Vote receieved from \(playerID).")
     currentVotes.append(voteResult)
     for player in game.players {
       if player.peerID == playerID {
@@ -207,7 +220,7 @@ class LeadGameController : MultiPeerDelegate {
     }
     
     if currentVotes.count == game.players.count {
-      println("Last vote received. Deciding winner...")
+      println("MAIN BRAIN: Last vote received. Deciding winner...")
       println(currentVotes.description)
       var approved = 0
       var rejected = 0
@@ -220,11 +233,11 @@ class LeadGameController : MultiPeerDelegate {
       }
       var didPass = false
       if rejected > approved {
-        println("Team REJECTED by players. (Approved: \(approved). Rejected: \(rejected).")
+        println("MAIN BRAIN: Team REJECTED by players. (Approved: \(approved). Rejected: \(rejected).")
         let mission = game.missions[game.currentMission] as Mission
         mission.rejectedTeamsCount =  mission.rejectedTeamsCount + 1
       } else {
-        println("Team APPROVED by players. (Approved: \(approved). Rejected: \(rejected).")
+        println("MAIN BRAIN: Team APPROVED by players. (Approved: \(approved). Rejected: \(rejected).")
         didPass = true
       }
       currentVotes.removeAll(keepCapacity: true)      //Reset currentVotes
@@ -234,7 +247,7 @@ class LeadGameController : MultiPeerDelegate {
   
   func revealVotes(passed: Bool) {
     //Displays all players votes to approve/reject the mission
-    println("Sending *Reveal Vote* event to peers.")
+    println("MAIN BRAIN: Sending *Reveal Vote* event to peers.")
     game.currentGameState = GameEvent.RevealVote
     multipeerController.sendEventToPeers(game)
     let currentMission = game.missions[game.currentMission] as Mission
@@ -252,7 +265,7 @@ class LeadGameController : MultiPeerDelegate {
       currentMission.nominatedPlayers.removeAll(keepCapacity: true)
       
     } else if passed == true {
-      println("Telling nominated players to determine mission outcome! Nominated players: \(currentMission.nominatedPlayers.description)")
+      println("MAIN BRAIN: Telling nominated players to determine mission outcome! Nominated players: \(currentMission.nominatedPlayers.description)")
       self.tellPlayersToDetermineMissionOutcome()
     }
     
@@ -260,7 +273,7 @@ class LeadGameController : MultiPeerDelegate {
   
   func tellPlayersToDetermineMissionOutcome() {
     //Nominated hackers vote if the mission will Succeed or Fail
-    println("Sending *Begin Mission Outcome* event to peers.")
+    println("MAIN BRAIN: Sending *Begin Mission Outcome* event to peers.")
     game.currentGameState = GameEvent.BeginMissionOutcome
     multipeerController.sendEventToPeers(game)
     
@@ -269,9 +282,11 @@ class LeadGameController : MultiPeerDelegate {
   func tabulateMissionOutcome(forPlayer playerID : String, andOutcome outcome: String) {
     //Calculate if the mission will succeed or fail, based on mission criteria
     
-    println("Mission outcome vote received from \(playerID)")
+    println("MAIN BRAIN: Mission outcome vote received from \(playerID)")
     currentMissionOutcomeVotes.append(outcome)
+    
     let currentMission = game.missions[game.currentMission] as Mission
+    
     if currentMissionOutcomeVotes.count == currentMission.playersNeeded {
       var succeed = 0
       var fail = 0
@@ -285,11 +300,11 @@ class LeadGameController : MultiPeerDelegate {
         }
       }
       if fail >= currentMission.failThreshold {
-        println("Mission Failed!!!")
+        println("MAIN BRAIN: Mission Failed!!!")
         currentMission.success = false
         game.failedMissionCount = game.failedMissionCount + 1
       } else {
-        println("Mission Succeeded!!!")
+        println("MAIN BRAIN: Mission Succeeded!!!")
         currentMission.success = true
         game.passedMissionCount = game.passedMissionCount + 1
       }
@@ -300,24 +315,24 @@ class LeadGameController : MultiPeerDelegate {
     
   func revealMissionOutcome() {
     //Reveals if the mission is successful or fails
-    println("Sending *Reveal Mission Outcome* event to peers.")
+    println("MAIN BRAIN: Sending *Reveal Mission Outcome* event to peers.")
+    
+    var currentMission = game.missions[game.currentMission] as Mission
+    println("MAIN BRAIN: Updating mission number index.")
+    
+    self.changeLeader()
+    game.currentMission = game.currentMission + 1
+
     game.currentGameState = GameEvent.RevealMissionOutcome
     multipeerController.sendEventToPeers(game)
+    //Game Controller will go to endgame if failed/succeeded missions are more than 3, or to next mission
+  
   }
   
   func endMission() {
     //Memorialize mission information, call updateScore, reset mission timer
-    var currentMission = game.missions[game.currentMission] as Mission
-    println("Updating mission number index.")
-    if game.passedMissionCount == 3 || game.failedMissionCount == 3 {
-      self.endGame()
-    } else {
-      game.currentMission = game.currentMission + 1
-      self.changeLeader()
-      self.startMission()
-    }
-  }
-  
+    
+}
 //  func updateScore() {
 //    //Based on mission results upate the overall score
 //    
@@ -342,37 +357,42 @@ class LeadGameController : MultiPeerDelegate {
     let peerID  = event["peerID"] as String
     
     switch action{
+      
     case "vote" :
-      println("Received vote information from \(peerID)")
+      println("MAIN BRAIN: Received vote information from \(peerID)")
       let value = event["value"] as String
       self.tabulateVotes(forPlayer: peerID, andVote: value)
+      
     case "missionOutcome" :
-      println("Received mission outcome information from \(peerID)")
+      println("MAIN BRAIN: Received mission outcome information from \(peerID)")
       let value = event["value"] as String
       self.tabulateMissionOutcome(forPlayer: peerID, andOutcome: value)
+      
     case "user" :
-      println("Received user information from \(peerID)")
+      println("MAIN BRAIN: Received user information from \(peerID)")
       let value = event["value"] as UserInfo
       usersForGame.append(value)
+      
     case "nominations" :
-      println("Received nomination information from \(peerID)")
+      println("MAIN BRAIN: Received nomination information from \(peerID)")
       let value = event["value"] as [String]
       self.assignNominations(value)
+      
     default:
-      println("LeadGameController event handler action not recognized.")
+      println("MAIN BRAIN: LeadGameController event handler action not recognized.")
     }
   }
   
   func assignNominations(arrayOfNominatedPlayerIDs : [String]) {
     
-    println("Got nomination info with these players nominated: \(arrayOfNominatedPlayerIDs.description)")
+    println("MAIN BRAIN: Got nomination info with these players nominated: \(arrayOfNominatedPlayerIDs.description)")
     
     let currentMission = game.missions[game.currentMission] as Mission
     for player in game.players {
       for nominationID in arrayOfNominatedPlayerIDs {
-        println("Comparing \(nominationID) to \(player.peerID)")
+        println("MAIN BRAIN: Comparing \(nominationID) to \(player.peerID)")
         if nominationID == player.peerID {
-          println("Added \(player.playerName) to mission # \(game.currentMission)'s nominatedPlayer array.")
+          println("MAIN BRAIN: Added \(player.playerName) to mission # \(game.currentMission)'s nominatedPlayer array.")
           currentMission.nominatedPlayers.append(player)
         }
       }
@@ -381,7 +401,7 @@ class LeadGameController : MultiPeerDelegate {
   }
 
     func handleEvent(event: GameSession) {
-        println("Something went wrong. This should not be called.")
+        println("MAIN BRAIN: Something went wrong. This should not be called.")
     }
   
   func updatePeerCount(count : Int) {
@@ -392,6 +412,21 @@ class LeadGameController : MultiPeerDelegate {
         //collect userInfo as users join
       })
     }
+  }
+  
+  func loadFlavorTextIntoArray() {
+    flavorTextArray.append(("Pure Water","The government is seeding the water supply with drugs to control the population. Defeat the grid security to stop the flow of mood alterants."))
+    flavorTextArray.append(("LOLLOLLOL","The comedy program Night Time Live broadcasts tonight. Rewrite the teleprompter jokes to become critical of the government as they perform live on air."))
+    flavorTextArray.append(("Get Lost","The Secretary for Culture’s motorcade is on the move. Defeat the satellite uplink to hack their GPS and reroute the motorcade to a waiting capture team."))
+    flavorTextArray.append(("Higher Education","Hijack the internal security camera feed from a secret reeducation camp and reroute the signal to replace the nightly celebrity report."))
+    flavorTextArray.append(("A Percentage","The Wealth Exchange market systems have recently upgraded their network and they are now vulnerable. Hack in and redistribute assets to the poor."))
+    flavorTextArray.append(("Blind Justice","This week’s mass execution includes key opposition leaders. Activate prison fire suppression systems to provide cover to an extraction team."))
+    flavorTextArray.append(("Musical Chairs","The music played in all public spaces contains subliminal messages supporting the state. Turn up the volume on the messages so the populace knows what's up."))
+    flavorTextArray.append(("Voting Record","The electronic voting system changes votes to maintain the status quo. Change the algorithm to favor the opposition cause."))
+//    flavorTextArray.append(("",""))
+//    flavorTextArray.append(("",""))
+//    flavorTextArray.append(("",""))
+    
   }
   
 }

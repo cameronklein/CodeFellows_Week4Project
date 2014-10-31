@@ -56,12 +56,6 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       self.usernameTextField.delegate = self
       self.defaultIconsCollectionView.dataSource = self
       self.defaultIconsCollectionView.delegate = self
-    
-    }
-    
-    override func viewWillAppear(animated: Bool)
-    {
-        super.viewWillAppear(true)
 
       let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
       if let filePath = appDelegate.documentsPath as String! {
@@ -72,9 +66,19 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
         }
       }
 
+    }
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(true)
 
 
-        checkButtonState()
+
+      self.userImageView.image = self.userImageFor
+
+
+
+        self.checkButtonState()
         
     }
     
@@ -93,24 +97,32 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-      if self.usernameTextField.isFirstResponder() {
-        self.usernameTextField.resignFirstResponder()
-      }
-        self.userImageFor = self.defaultIcons[indexPath.row] as UIImage!
-        self.userImageView.image = self.userImageFor
+      self.checkFirstResponder()
+      self.userImageFor = self.defaultIcons[indexPath.row] as UIImage!
+      self.userImageView.image = self.userImageFor
 
-        checkButtonState()
+      checkButtonState()
 
     }
 
 
 
     //MARK: - Actions and Outlets
+  func checkNameLength() -> Bool {
+    if self.userNameFor != nil && countElements(self.usernameTextField.text) > 0 {
+      return true
+    } else {
+      return false
+    }
+  }
+
+
     func checkButtonState(){
         println("Checked Button State")
-        if self.userImageFor != nil && self.userNameFor != nil {
+        if self.userImageFor != nil && self.checkNameLength() == true {
             self.saveCharacterButton.enabled = true
             self.saveCharacterButton.setTitle("Save Character", forState: UIControlState.Normal)
+//            self.saveCharacterButton.titleLabel?.typingAnimation(0.1)
         } else {
             println("Hit Else")
             self.saveCharacterButton.setTitle("Enter a Player Name and Choose an Image", forState: UIControlState.Disabled)
@@ -151,7 +163,10 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
   override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
     super.touchesBegan(touches, withEvent: event)
-    self.usernameTextField.resignFirstResponder()
+
+      self.checkFirstResponder()
+
+
   }
 
     @IBAction func photoButtonPressed(sender: AnyObject) {
@@ -187,14 +202,14 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
       var imageToResize = info[UIImagePickerControllerEditedImage] as UIImage!
-      let size = CGSize(width: 128, height: 128)
+      let size = CGSize(width: 350, height: 350)
       UIGraphicsBeginImageContext(size)
-        imageToResize.drawInRect(CGRect(x: 0, y: 0, width: 128, height: 128))
+        imageToResize.drawInRect(CGRect(x: 0, y: 0, width: 350, height: 350))
         var imageResized = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()
 
       self.userImageView.image = imageResized
-        self.userImageFor = self.userImageView.image as UIImage!
+        self.userImageFor = imageResized as UIImage!
         self.dismissViewControllerAnimated(true, completion: nil)
 
 
@@ -205,29 +220,61 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         if countElements(textField.text) > 0 {
           println("is text")
+          checkButtonState()
             return true
         } else {
             println("no text")
-            return false
+          checkButtonState()
+            return true
         }
     }
 
     func textFieldDidEndEditing(textField: UITextField) {
 
-      println("here")
+        println("didEndEditing")
+      if countElements(textField.text) > 0 {
         self.userNameFor = textField.text!
+      } else {
+        self.userNameFor = nil
+      }
 
         checkButtonState()
     }
 
   func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-    println("editing in \(textField)")
+    println("editing in \(textField.text)")
+    println("range is \(range)")
+    println("string is \(string)")
+    if string == "" && range.location == 0 {
+      println("true!!!!!!!!!!!!")
+      self.userNameFor = nil
+      checkButtonState()
+    }
     return true
   }
 
   func textFieldShouldReturn(textField: UITextField) -> Bool {
-            textField.resignFirstResponder()
-    return true
+    if countElements(textField.text) > 0 {
+      textField.resignFirstResponder()
+      return true
+    } else {
+      return false
+    }
+
+  }
+
+
+
+  func checkFirstResponder() {
+    if self.usernameTextField.isFirstResponder() {
+      let trueFalse = self.textFieldShouldEndEditing(self.usernameTextField) as Bool!
+      if trueFalse == true {
+        self.userNameFor = nil
+        self.usernameTextField.resignFirstResponder()
+      }
+      self.checkButtonState()
+      self.usernameTextField.resignFirstResponder()
+    }
   }
 
 

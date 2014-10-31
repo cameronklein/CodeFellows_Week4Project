@@ -41,7 +41,7 @@ class GameController : MultiPeerDelegate {
     if event != .Start || event != .RevealCharacters {
       findMe()
     }
-    println("Received \(event.rawValue) event from Main Brain. Woot.")
+    println("GAME CONTROLLER: Received \(event.rawValue) event from Main Brain. Woot.")
     switch event{
     case .Start:
       self.gameStart()
@@ -73,7 +73,7 @@ class GameController : MultiPeerDelegate {
       if player.peerID == multipeerController.peerID.displayName {
         if homeVC != nil {
           homeVC.user = player
-          println("Updated homeVC user!")
+          println("GAME CONTROLLER: Updated homeVC user!")
         }
       }
     }
@@ -86,15 +86,13 @@ class GameController : MultiPeerDelegate {
   }
   
   func gameStart() {
-    println("Got Game Start Message")
+    println("GAME CONTROLLER: Got Game Start Message")
     multipeerController.stopAdvertising()
     revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())
     // TODO: Intro Animation?
     let players = game.players
     for player in players {
-        println("\(multipeerController.peerID.displayName) is from Controller, \(player.peerID) is the local")
       if multipeerController.peerID.displayName == player.peerID {
-        println("Entered the If")
         revealVC.user = player
       }
     }
@@ -135,7 +133,7 @@ class GameController : MultiPeerDelegate {
   }
   
   func beginMissionOutcome() {
-    println("Begin Mission Outcome call sent to HomeViewController")
+    println("GAME CONTROLLER: Begin Mission Outcome call sent to HomeViewController")
     //Nominated players on mission vote to succeed or fail the mission
     self.homeVC.voteOnMissionSuccess(game)
 
@@ -151,7 +149,7 @@ class GameController : MultiPeerDelegate {
   }
 
   func handleEvent(event: NSMutableDictionary) {
-    println("Two")
+    println("GAME CONTROLLER: Received Dictionary through multipeer. Doing nothing with it.")
   }
 
 
