@@ -72,6 +72,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
 //    println("Instantiated NSKeyedUnarchiver has found \(unarchivedObject?.description)")
     
     // Slave controller getting info from master controller
+    
     if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
       println("Recognized data as GameSession.")
       delegate.handleEvent(gameData)
@@ -204,14 +205,14 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     self.mainBrainDelegate?.handleEvent(dictionary)
   }
     
-    func sendUserInfoToLeadController(userInfo: UserInfo){
-        userInfo.userPeerID = self.peerID.displayName
-        let dictionaryData = ["action" : "user", "value" : userInfo]
-        let dataToSend = NSKeyedArchiver.archivedDataWithRootObject(dictionaryData)
-        var error : NSError?
-        session.sendData(dataToSend, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
-        println("sending user info")
-    }
+  func sendUserInfoToLeadController(userInfo: UserInfo){
+      userInfo.userPeerID = self.peerID.displayName
+      let dictionaryData = ["action" : "user", "value" : userInfo]
+      let dataToSend = NSKeyedArchiver.archivedDataWithRootObject(dictionaryData)
+      var error : NSError?
+      session.sendData(dataToSend, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
+      println("sending user info")
+  }
 
 }
 

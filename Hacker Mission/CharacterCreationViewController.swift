@@ -278,9 +278,9 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
       var imageToResize = info[UIImagePickerControllerEditedImage] as UIImage!
-      let size = CGSize(width: 350, height: 350)
+      let size = CGSize(width: 128, height: 128)
       UIGraphicsBeginImageContext(size)
-        imageToResize.drawInRect(CGRect(x: 0, y: 0, width: 350, height: 350))
+        imageToResize.drawInRect(CGRect(x: 0, y: 0, width: 128, height: 128))
         var imageResized = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()
 

@@ -197,7 +197,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     self.game = game
     let currentMission = game.missions[game.currentMission] as Mission
     
-    
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
       if currentMission.rejectedTeamsCount > self.lastRejectedGameCount {
         self.incomingMesageLabel.text = "Team Rejected!"

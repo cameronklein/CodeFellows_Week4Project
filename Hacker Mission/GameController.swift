@@ -124,7 +124,7 @@ class GameController : MultiPeerDelegate {
   
   func revealVotes() {
     //reveal everyone's vote on the proposed team
-//    self.homeVC.revealVotes()
+    self.homeVC.revealVotes(game)
   }
   
   func startMission() {
