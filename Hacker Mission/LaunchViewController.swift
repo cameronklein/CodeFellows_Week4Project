@@ -55,11 +55,13 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
     peersLabel.text = "Looking for other players"
     joinButton.hidden = true
     hostButton.hidden = true
+    self.spinningWheel.startAnimating()
     masterController = LeadGameController()
     followerController = GameController.sharedInstance
     followerController?.launchVC = self
     masterController?.startLookingForPlayers()
     masterController?.launchVC = self
+    createCharacterButton.hidden = true
     
   }
 
@@ -72,6 +74,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
     followerController = GameController()
     followerController?.startLookingForGame()
     followerController?.launchVC = self
+    createCharacterButton.hidden = true
     
   }
   
