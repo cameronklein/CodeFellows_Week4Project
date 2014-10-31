@@ -8,6 +8,7 @@
         <mutableArray key="typicons.ttf">
             <string>typicons</string>
             <string>typicons</string>
+            <string>typicons</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -40,6 +41,12 @@
                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6z-MK-GXE">
+                        <rect key="frame" x="167" y="8" width="25" height="34"/>
+                        <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="32"/>
+                        <color key="textColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -54,13 +61,16 @@
                 <constraint firstAttribute="trailing" secondItem="QiA-8f-dm1" secondAttribute="trailing" id="ZNy-tx-1gl"/>
                 <constraint firstItem="bKf-c0-krF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="ZxR-Sz-k9v"/>
                 <constraint firstAttribute="trailing" secondItem="bKf-c0-krF" secondAttribute="trailing" constant="8" id="aAx-lI-Wm9"/>
+                <constraint firstItem="e6z-MK-GXE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="jBS-dI-IDW"/>
                 <constraint firstAttribute="bottom" secondItem="QiA-8f-dm1" secondAttribute="bottom" id="kFp-Fo-lI2"/>
                 <constraint firstAttribute="centerX" secondItem="hwa-mX-vL7" secondAttribute="centerX" id="kmW-kK-ymq"/>
+                <constraint firstAttribute="trailing" secondItem="e6z-MK-GXE" secondAttribute="trailing" constant="8" id="u4y-d9-aVl"/>
             </constraints>
             <size key="customSize" width="127" height="116"/>
             <connections>
                 <outlet property="approvesMission" destination="hwa-mX-vL7" id="vhm-ev-hVh"/>
                 <outlet property="imageView" destination="QiA-8f-dm1" id="X14-ID-1hZ"/>
+                <outlet property="leaderStar" destination="e6z-MK-GXE" id="IvL-ew-53l"/>
                 <outlet property="rejectsMission" destination="WHa-QG-R9R" id="R1n-lx-fYb"/>
                 <outlet property="username" destination="bKf-c0-krF" id="6zy-jJ-4eR"/>
             </connections>
