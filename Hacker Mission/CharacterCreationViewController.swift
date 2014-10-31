@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 protocol CharacterCreationViewDelegate {
     func didSaveUser(userToSave: UserInfo)
@@ -25,6 +26,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     var userNameFor : NSString?
     var userImageFor : UIImage?
     var delegate : CharacterCreationViewDelegate?
+    var hasLaunched = false
 
     
     //MARK: - View Methods
@@ -81,10 +83,16 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    if appDelegate.defaultUser == nil {
+      println("nil saved")
+      if self.hasLaunched == false {
+        self.hasLaunched = true
+        self.informThePlayer()
+      } else {
+        println("has launched")
+      }
 
-    if self.userForSave == nil {
-      println("name")
-      self.informThePlayer()
     }
 
     let animationQueue = NSOperationQueue()
@@ -94,34 +102,56 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
 //    self.usernameTextField.attributedPlaceholder
 
-    animationQueue.addOperationWithBlock
-      { () -> Void in
-        for var i=0; i<60; i++
-        {
-          sleep(1)
-          NSOperationQueue.mainQueue().addOperationWithBlock(
-            { () -> Void in
-              UITextField.animateWithDuration(2.0, delay: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: { () -> Void in
-                self.usernameTextField.attributedPlaceholder = attibutedStringBright
-                }, completion: { (animation) -> Void in
-                  println("bright")
-              })
-          })
-          sleep(1)
-          NSOperationQueue.mainQueue().addOperationWithBlock(
-            { () -> Void in
+    let theAnimation = CABasicAnimation(keyPath: "opacity")
+    let theLayer = CALayer(layer: self.usernameTextField.attributedPlaceholder)
 
-              UITextField.animateWithDuration(2.0, delay: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: { () -> Void in
-                self.usernameTextField.attributedPlaceholder = attibutedStringDim
-                }, completion: { (animation) -> Void in
-                  println("dim")
-              })
+    animationQueue.addOperationWithBlock { () -> Void in
+      println("Uh...")
+      theAnimation.duration = 1.0
+      theAnimation.repeatCount = 10000
+      theAnimation.autoreverses = true
+      theAnimation.fromValue = NSNumber(float: 1.0)
+      theAnimation.toValue = NSNumber(float: 0.0)
 
-          })
-        }
+
+
+      theLayer.addAnimation(theAnimation, forKey: "opacity")
     }
 
+
+
+
+//    animationQueue.addOperationWithBlock
+//      { () -> Void in
+//        for var i=0; i<60; i++
+//        {
+//          sleep(1)
+//          NSOperationQueue.mainQueue().addOperationWithBlock(
+//            { () -> Void in
+//              UITextField.animateWithDuration(2.0, delay: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: { () -> Void in
+//                self.usernameTextField.attributedPlaceholder = attibutedStringBright
+//                }, completion: { (animation) -> Void in
+//                  println("bright")
+//              })
+//          })
+//          sleep(1)
+//          NSOperationQueue.mainQueue().addOperationWithBlock(
+//            { () -> Void in
+//
+//              UITextField.animateWithDuration(2.0, delay: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: { () -> Void in
+//                self.usernameTextField.attributedPlaceholder = attibutedStringDim
+//                }, completion: { (animation) -> Void in
+//                  println("dim")
+//              })
+//
+//          })
+//        }
+//    }
+
   }
+
+
+
 
 
 
