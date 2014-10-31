@@ -18,7 +18,6 @@ class GameController : MultiPeerDelegate {
     return Static.instance
   }
   
-  
   var game : GameSession!
   var revealVC : RevealViewController!
   var launchVC : LaunchViewController!
@@ -30,9 +29,6 @@ class GameController : MultiPeerDelegate {
   
   init(){
     multipeerController.delegate = self
-    myUserInfo = UserInfo(userName: "Teddy Ruxpin", userImage: UIImage(named: "QuestionSymbol")!)
-    myUserInfo.userPeerID = multipeerController.peerID.displayName
-    myUserInfo.userImage = UIImage(named: "AtSymbol")!
   }
   
   func handleEvent(newGameInfo: GameSession) {
@@ -89,18 +85,16 @@ class GameController : MultiPeerDelegate {
     println("GAME CONTROLLER: Got Game Start Message")
     multipeerController.stopAdvertising()
     revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())
-    // TODO: Intro Animation?
+
     let players = game.players
     for player in players {
+      println("Comparing \(multipeerController.peerID.displayName) and \(player.peerID)")
       if multipeerController.peerID.displayName == player.peerID {
         revealVC.user = player
       }
     }
     
-    //    let revealVC = UIStoryboard(name: "Main", bundle:
-    //        NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as RevealViewController
     revealVC.game = self.game
-    
     self.launchVC.gameStart(revealVC)
     
   }
@@ -161,14 +155,14 @@ class GameController : MultiPeerDelegate {
             //collect userInfo as users join
       })
     }
-    sendUserInfo()
   }
-    func sendUserInfo () {
-      let appDel = UIApplication.sharedApplication().delegate as AppDelegate
-      if let thisUser = appDel.defaultUser as UserInfo! {
-        multipeerController.sendUserInfoToLeadController(thisUser)
-      }
-     
+  
+  func sendUserInfo () {
+    let appDel = UIApplication.sharedApplication().delegate as AppDelegate
+    if let thisUser = appDel.defaultUser as UserInfo! {
+      thisUser.userPeerID = multipeerController.peerID.displayName
+      multipeerController.sendUserInfoToLeadController(thisUser)
     }
+  }
 
 }

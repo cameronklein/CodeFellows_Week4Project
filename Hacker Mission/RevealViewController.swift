@@ -25,13 +25,15 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
   
     //MARK: - View Methods
     
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        self.playerRevealCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
-        self.playerRevealCollectionView.delegate = self
-        self.playerRevealCollectionView.dataSource = self
+    override func viewDidLoad(){
       
+      gameController.sendUserInfo()
+      
+      super.viewDidLoad()
+      self.playerRevealCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
+      self.playerRevealCollectionView.delegate = self
+      self.playerRevealCollectionView.dataSource = self
+    
       self.layout = playerRevealCollectionView.collectionViewLayout as UICollectionViewFlowLayout
       self.screenWidth = self.playerRevealCollectionView.frame.width
       super.viewWillAppear(true)
@@ -44,9 +46,7 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
       for player in game.players {
         playerArray.append(player as Player)
       }
-        //self.playerArray = game.players as [Player]
-        
-        //creates array of "agents"
+
         for player in self.playerArray
         {
             if (player.playerRole == .Agent)

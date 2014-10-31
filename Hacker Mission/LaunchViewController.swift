@@ -97,11 +97,11 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
     peersLabel.hidden = false
     peersLabel.text = "Looking for other players..."
     self.spinningWheel.startAnimating()
-    followerController = GameController()
+    followerController = GameController.sharedInstance
     followerController?.startLookingForGame()
     followerController?.launchVC = self
     createCharacterButton.hidden = true
-    
+    followerController?.sendUserInfo()
   }
   
   @IBAction func startGameButtonPressed(sender: AnyObject) {
@@ -126,8 +126,6 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
                 self.startButton.hidden = false
             }
         }
-        
-    
     }
   
   func gameStart(revealVC: RevealViewController) {
@@ -139,7 +137,6 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
     
     func didSaveUser(userToSave: UserInfo) {
         self.userInfoMyself = userToSave
-
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

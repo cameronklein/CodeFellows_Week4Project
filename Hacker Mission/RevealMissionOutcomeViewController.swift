@@ -12,7 +12,7 @@ class RevealMissionOutcomeViewController: UIViewController {
 
   @IBOutlet weak var missionOutcomeLabel: UILabel!
   
-    @IBOutlet weak var missionOutcomeTitleLabel: UILabel!
+  @IBOutlet weak var missionOutcomeTitleLabel: UILabel!
   var game : GameSession!
   
   override func viewDidLoad() {
