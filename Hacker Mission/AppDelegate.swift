@@ -49,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       println("default is \(self.defaultUser)")
     }
 
+
     return true
   }
 
