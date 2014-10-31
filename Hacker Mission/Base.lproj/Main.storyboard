@@ -284,13 +284,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1095222_34734740.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="izK-87-4nm">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="73"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="81"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HackerMissionTitle" translatesAutoresizingMaskIntoConstraints="NO" id="rI0-ga-ANe">
-                                <rect key="frame" x="129.5" y="0.0" width="341" height="73"/>
+                                <rect key="frame" x="101" y="0.0" width="398" height="73"/>
                             </imageView>
                             <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="matrix_code1.gif" translatesAutoresizingMaskIntoConstraints="NO" id="o7P-p7-Sfa">
-                                <rect key="frame" x="0.0" y="81" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="81" width="600" height="519"/>
                             </imageView>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8CR-C6-ZKL">
                                 <rect key="frame" x="16" y="81" width="568" height="300"/>
@@ -482,7 +482,6 @@
                             <constraint firstItem="PYt-Mz-d6u" firstAttribute="centerY" secondItem="8CR-C6-ZKL" secondAttribute="centerY" id="8Vj-7N-fvr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PYt-Mz-d6u" secondAttribute="trailing" constant="16" id="9Lq-jd-xoW"/>
                             <constraint firstItem="8CR-C6-ZKL" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.5" id="AmX-9Q-tPQ"/>
-                            <constraint firstItem="juq-1B-11K" firstAttribute="bottom" secondItem="o7P-p7-Sfa" secondAttribute="bottom" id="CjY-vW-q1w"/>
                             <constraint firstItem="8CR-C6-ZKL" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="IXF-NC-jxl"/>
                             <constraint firstItem="o7P-p7-Sfa" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="OQA-gr-YN0"/>
                             <constraint firstItem="gRv-F4-kIG" firstAttribute="trailing" secondItem="8CR-C6-ZKL" secondAttribute="trailing" id="QIx-3A-kN6"/>
@@ -497,9 +496,9 @@
                             <constraint firstItem="o7P-p7-Sfa" firstAttribute="top" secondItem="8CR-C6-ZKL" secondAttribute="top" id="bpL-B9-5nK"/>
                             <constraint firstItem="izK-87-4nm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="cKR-qg-xcS"/>
                             <constraint firstItem="PYt-Mz-d6u" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="f82-jb-l8g"/>
-                            <constraint firstItem="o7P-p7-Sfa" firstAttribute="top" secondItem="izK-87-4nm" secondAttribute="bottom" constant="8" id="fTr-ov-sgu"/>
+                            <constraint firstItem="o7P-p7-Sfa" firstAttribute="top" secondItem="izK-87-4nm" secondAttribute="bottom" id="fTr-ov-sgu"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="o7P-p7-Sfa" secondAttribute="bottom" id="gIr-Hc-hSw"/>
                             <constraint firstItem="8CR-C6-ZKL" firstAttribute="leading" secondItem="ovz-Ln-f4Q" secondAttribute="leading" id="hOP-43-Cpf"/>
-                            <constraint firstItem="PYt-Mz-d6u" firstAttribute="centerX" secondItem="8CR-C6-ZKL" secondAttribute="centerX" id="jFe-qm-zwg"/>
                             <constraint firstAttribute="centerXWithinMargins" secondItem="ovz-Ln-f4Q" secondAttribute="trailing" id="l3w-Se-QjB"/>
                             <constraint firstItem="1yO-ZI-uxD" firstAttribute="top" secondItem="8CR-C6-ZKL" secondAttribute="bottom" constant="8" id="mLV-Bm-3dT"/>
                             <constraint firstItem="juq-1B-11K" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ndt-kJ-tlM"/>
@@ -510,11 +509,7 @@
                             <constraint firstAttribute="centerX" secondItem="o7P-p7-Sfa" secondAttribute="centerX" id="uPY-Cz-fj8"/>
                             <constraint firstItem="rI0-ga-ANe" firstAttribute="centerX" secondItem="8CR-C6-ZKL" secondAttribute="centerX" id="ubv-uW-9r7"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="jFe-qm-zwg"/>
-                            </mask>
-                        </variation>
+                        <variation key="widthClass=compact"/>
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="o7P-p7-Sfa" id="liG-8r-Yuj"/>
