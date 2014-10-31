@@ -90,7 +90,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
     joinButton.hidden = true
     hostButton.hidden = true
     peersLabel.hidden = false
-    peersLabel.text = "Looking for other players"
+    peersLabel.text = "Looking for other players..."
     self.spinningWheel.startAnimating()
     followerController = GameController()
     followerController?.startLookingForGame()
