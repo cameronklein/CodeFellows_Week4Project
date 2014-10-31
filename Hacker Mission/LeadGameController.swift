@@ -29,6 +29,7 @@ class LeadGameController : MultiPeerDelegate {
   func startLookingForPlayers() {
     let appDel = UIApplication.sharedApplication().delegate as AppDelegate
     if let thisUser = appDel.defaultUser as UserInfo! {
+      println("thisUser is \(thisUser)")
       thisUser.userPeerID = multipeerController.peerID.displayName
       usersForGame.append(thisUser)
     }

@@ -30,7 +30,9 @@ class GameController : MultiPeerDelegate {
   
   init(){
     multipeerController.delegate = self
-    myUserInfo = UserInfo(userName: "Teddy Ruxpin", userImage: UIImage(named: "QuestionSymbol")!)
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+
+    myUserInfo = appDelegate.defaultUser as UserInfo!
     myUserInfo.userPeerID = multipeerController.peerID.displayName
     myUserInfo.userImage = UIImage(named: "AtSymbol")!
   }
@@ -166,6 +168,7 @@ class GameController : MultiPeerDelegate {
     func sendUserInfo () {
       let appDel = UIApplication.sharedApplication().delegate as AppDelegate
       if let thisUser = appDel.defaultUser as UserInfo! {
+        println("the user is \(appDel.defaultUser?.userName)")
         multipeerController.sendUserInfoToLeadController(thisUser)
       }
      
