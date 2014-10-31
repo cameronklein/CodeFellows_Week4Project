@@ -271,7 +271,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   func revealMissionOutcome(game : GameSession) {
     
     let vc = RevealMissionOutcomeViewController(nibName: "RevealMissionOutcomeViewController", bundle: NSBundle.mainBundle())
-    vc.view.frame = self.view.frame
+    vc.view.frame = self.playersCollectionView.frame
     vc.game = game
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
       self.addChildViewController(vc)

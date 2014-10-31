@@ -35,6 +35,13 @@ class RevealMissionOutcomeViewController: UIViewController {
       // Dispose of any resources that can be recreated.
   }
   
+  @IBAction func confirmButtonPressed(sender: AnyObject) {
+    let parentVC = self.parentViewController as HomeViewController
+ 
+    
+    self.view.removeFromSuperview()
+    self.removeFromParentViewController()
+  }
 
   /*
   // MARK: - Navigation

@@ -271,7 +271,9 @@ class LeadGameController : MultiPeerDelegate {
     
     println("Mission outcome vote received from \(playerID)")
     currentMissionOutcomeVotes.append(outcome)
+    
     let currentMission = game.missions[game.currentMission] as Mission
+    
     if currentMissionOutcomeVotes.count == currentMission.playersNeeded {
       var succeed = 0
       var fail = 0
@@ -301,14 +303,10 @@ class LeadGameController : MultiPeerDelegate {
   func revealMissionOutcome() {
     //Reveals if the mission is successful or fails
     println("Sending *Reveal Mission Outcome* event to peers.")
-    game.currentGameState = GameEvent.RevealMissionOutcome
-    multipeerController.sendEventToPeers(game)
-  }
-  
-  func endMission() {
-    //Memorialize mission information, call updateScore, reset mission timer
+    
     var currentMission = game.missions[game.currentMission] as Mission
     println("Updating mission number index.")
+    
     if game.passedMissionCount == 3 || game.failedMissionCount == 3 {
       self.endGame()
     } else {
@@ -316,7 +314,16 @@ class LeadGameController : MultiPeerDelegate {
       self.changeLeader()
       self.startMission()
     }
+    
+    game.currentGameState = GameEvent.RevealMissionOutcome
+    multipeerController.sendEventToPeers(game)
+    
   }
+  }
+  
+  func endMission() {
+    //Memorialize mission information, call updateScore, reset mission timer
+    
   
 //  func updateScore() {
 //    //Based on mission results upate the overall score
@@ -342,22 +349,27 @@ class LeadGameController : MultiPeerDelegate {
     let peerID  = event["peerID"] as String
     
     switch action{
+      
     case "vote" :
       println("Received vote information from \(peerID)")
       let value = event["value"] as String
       self.tabulateVotes(forPlayer: peerID, andVote: value)
+      
     case "missionOutcome" :
       println("Received mission outcome information from \(peerID)")
       let value = event["value"] as String
       self.tabulateMissionOutcome(forPlayer: peerID, andOutcome: value)
+      
     case "user" :
       println("Received user information from \(peerID)")
       let value = event["value"] as UserInfo
       usersForGame.append(value)
+      
     case "nominations" :
       println("Received nomination information from \(peerID)")
       let value = event["value"] as [String]
       self.assignNominations(value)
+      
     default:
       println("LeadGameController event handler action not recognized.")
     }

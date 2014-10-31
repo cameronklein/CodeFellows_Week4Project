@@ -43,6 +43,8 @@
 		7E46DF4719FF126A009215E3 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4619FF126A009215E3 /* GameController.swift */; };
 		7E46DF4919FF130A009215E3 /* GameEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4819FF130A009215E3 /* GameEvent.swift */; };
 		7E46DF5019FF336E009215E3 /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4A19FF336E009215E3 /* GameSession.swift */; };
+		7E86E9B81A03EF03001C81C5 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B019FECD0E008421CC /* fontawesome-webfont.ttf */; };
+		7E86E9B91A03EF06001C81C5 /* typicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B119FECD4F008421CC /* typicons.ttf */; };
 		7E9BE66B19FFFF1D00E21794 /* NominationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9BE66A19FFFF1D00E21794 /* NominationViewController.swift */; };
 		7E9BE66F1A0001EC00E21794 /* NominationVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E9BE66E1A0001EC00E21794 /* NominationVoteView.xib */; };
 		7E9BE6711A00045400E21794 /* MissionOutcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E9BE6701A00045400E21794 /* MissionOutcomeView.xib */; };
@@ -336,6 +338,7 @@
 				7E9BE6711A00045400E21794 /* MissionOutcomeView.xib in Resources */,
 				16C784B819FEF5F3008421CC /* mission_connector.pdf in Resources */,
 				16C0073A1A000C7000231A17 /* matrix_code1.gif in Resources */,
+				7E86E9B91A03EF06001C81C5 /* typicons.ttf in Resources */,
 				164EDA971A018C5B005F7452 /* HackerMissionTitle.pdf in Resources */,
 				16C784AF19FEC9FF008421CC /* PlayerCell.xib in Resources */,
 				7E46DF2619FEB359009215E3 /* Main.storyboard in Resources */,
@@ -349,6 +352,7 @@
 				7E46DF2819FEB359009215E3 /* Images.xcassets in Resources */,
 				16C007381A000C7000231A17 /* infinite_field_bw.gif in Resources */,
 				16AA3ADD1A00596A00646943 /* BOYCOTT_.ttf in Resources */,
+				7E86E9B81A03EF03001C81C5 /* fontawesome-webfont.ttf in Resources */,
 				16AA3ADE1A00596F00646943 /* MKStencilsansBlack.ttf in Resources */,
 				16C0073B1A000C7000231A17 /* wireframe_planet.gif in Resources */,
 			);
