@@ -56,8 +56,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       self.usernameTextField.delegate = self
       self.defaultIconsCollectionView.dataSource = self
       self.defaultIconsCollectionView.delegate = self
-
-
+    
     }
     
     override func viewWillAppear(animated: Bool)
@@ -75,11 +74,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
 
 
-        if self.userImageFor != nil && self.userNameFor != nil {
-            self.saveCharacterButton.hidden = false
-        } else {
-            self.saveCharacterButton.hidden = true
-        }
+        checkButtonState()
         
     }
     
@@ -104,19 +99,26 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
         self.userImageFor = self.defaultIcons[indexPath.row] as UIImage!
         self.userImageView.image = self.userImageFor
 
-      if self.userImageFor != nil && self.userNameFor != nil {
-        println("true")
-        self.saveCharacterButton.hidden = false
-      } else {
-        println("false")
-        self.saveCharacterButton.hidden = true
-      }
+        checkButtonState()
 
     }
 
 
 
     //MARK: - Actions and Outlets
+    func checkButtonState(){
+        println("Checked Button State")
+        if self.userImageFor != nil && self.userNameFor != nil {
+            self.saveCharacterButton.enabled = true
+            self.saveCharacterButton.setTitle("Save Character", forState: UIControlState.Normal)
+        } else {
+            println("Hit Else")
+            self.saveCharacterButton.setTitle("Enter a Player Name and Choose an Image", forState: UIControlState.Disabled)
+            self.saveCharacterButton.enabled = false
+        }
+    }
+    
+    
     @IBAction func saveButtonPressed(sender: AnyObject)
     {
       let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -196,16 +198,9 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
         self.dismissViewControllerAnimated(true, completion: nil)
 
 
-      if self.userImageFor != nil && self.userNameFor != nil {
-        println("true")
-        self.saveCharacterButton.hidden = false
-      } else {
-        println("false")
-        self.saveCharacterButton.hidden = true
-      }
+        checkButtonState()
+
     }
-
-
 
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         if countElements(textField.text) > 0 {
@@ -222,14 +217,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       println("here")
         self.userNameFor = textField.text!
 
-      if self.userImageFor != nil && self.userNameFor != nil {
-        println("true")
-        self.saveCharacterButton.hidden = false
-      } else {
-        println("false")
-        self.saveCharacterButton.hidden = true
-      }
-
+        checkButtonState()
     }
 
   func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
