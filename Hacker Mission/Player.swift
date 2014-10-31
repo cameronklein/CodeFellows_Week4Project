@@ -40,7 +40,8 @@ class Player : NSObject, NSCoding {
 
         self.playerName = aDecoder.decodeObjectForKey("playerName") as NSString
         self.playerID = aDecoder.decodeIntegerForKey("playerID") as NSInteger
-        self.playerImage = aDecoder.decodeObjectForKey("playerImage") as UIImage
+        let data = aDecoder.decodeObjectForKey("playerImage") as NSData
+        self.playerImage = UIImage(data: data)!
         self.peerID = aDecoder.decodeObjectForKey("peerID") as NSString
         let playerRoleFor = aDecoder.decodeObjectForKey("playerRole") as NSInteger
         var playerRoleIs = PlayerType(rawValue: playerRoleFor)
@@ -55,7 +56,8 @@ class Player : NSObject, NSCoding {
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.playerName, forKey: "playerName")
         aCoder.encodeInteger(self.playerID, forKey: "playerID")
-        aCoder.encodeObject(self.playerImage, forKey: "playerImage")
+        let data = UIImagePNGRepresentation(self.playerImage)
+        aCoder.encodeObject(data, forKey: "playerImage")
         aCoder.encodeObject(self.peerID, forKey: "peerID")
         aCoder.encodeObject(self.playerRole.rawValue, forKey: "playerRole")
         aCoder.encodeBool(self.isNominated, forKey: "isNominated")
