@@ -10,7 +10,8 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate
 {
-    //MARK: - Outlets and Properties
+  //MARK: - Outlets and Properties
+    @IBOutlet weak var incomingMesageLabel: UILabel!
     @IBOutlet weak var gameNameLabel: UILabel!
     @IBOutlet weak var playersCollectionView: UICollectionView!
     @IBOutlet weak var mission1ImageView: UIImageView!
@@ -63,7 +64,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         layout.minimumInteritemSpacing = screenWidth * 0.02
         layout.sectionInset.left = screenWidth * 0.02
         layout.sectionInset.right = screenWidth * 0.02
-        layout.itemSize = CGSize(width: screenWidth * 0.30, height: screenWidth * 0.30)
+        layout.itemSize = CGSize(width: screenWidth * 0.20, height: screenWidth * 0.20)
         
         //round corners on players collection view
         self.playersCollectionView.layer.cornerRadius = self.playersCollectionView.frame.size.width / 16
@@ -91,51 +92,58 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PLAYER", forIndexPath: indexPath) as PlayerCell
-        let player = self.game.players[indexPath.row] as Player
+      let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PLAYER", forIndexPath: indexPath) as PlayerCell
+      let player = self.game.players[indexPath.row] as Player
 
-        cell.imageView.image = player.playerImage
-        cell.username.text = player.playerName
-        
-        if player.isNominated
+      cell.imageView.image = player.playerImage
+      cell.username.text = player.playerName
+      
+      if player.isNominated
+      {
+          cell.layer.borderColor = UIColor.greenColor().CGColor
+          cell.layer.borderWidth = 1
+      }
+      else
+      {
+          cell.layer.borderColor = UIColor.blackColor().CGColor
+          cell.layer.borderWidth = 0
+      }
+      
+      if self.game.currentGameState == .NominatePlayers
+      {
+        cell.approvesMission.hidden = true
+        cell.rejectsMission.hidden = true
+      }
+      
+      if player.currentVote != nil
+      {
+      
+        if (player.currentVote == true)
         {
-            cell.layer.borderColor = UIColor.greenColor().CGColor
-            cell.layer.borderWidth = 1
-        }
-        else
-        {
-            cell.layer.borderColor = UIColor.blackColor().CGColor
-            cell.layer.borderWidth = 0
-        }
-        
-        if player.currentVote != nil
-        {
-            if (player.currentVote == true)
-            {
-                cell.approvesMission.alpha = 0
-                cell.approvesMission.hidden = false
-                cell.rejectsMission.hidden = true
-                UIView.animateWithDuration(1, animations:
-                { () -> Void in
-                    cell.approvesMission.alpha = 1
-                })
-            }
-            else
-            {
-                cell.rejectsMission.alpha = 0
-                cell.rejectsMission.hidden = false
-                cell.approvesMission.hidden = true
-                UIView.animateWithDuration(1, animations:
-                { () -> Void in
-                    cell.rejectsMission.alpha = 1
-                })
-            }
-        }
-        else
-        {
+            cell.approvesMission.alpha = 0
+            cell.approvesMission.hidden = false
             cell.rejectsMission.hidden = true
-            cell.approvesMission.hidden = true
+            UIView.animateWithDuration(1, animations:
+            { () -> Void in
+                cell.approvesMission.alpha = 1
+            })
         }
+        else
+        {
+            cell.rejectsMission.alpha = 0
+            cell.rejectsMission.hidden = false
+            cell.approvesMission.hidden = true
+            UIView.animateWithDuration(1, animations:
+            { () -> Void in
+                cell.rejectsMission.alpha = 1
+            })
+        }
+      }
+      else
+      {
+          cell.rejectsMission.hidden = true
+          cell.approvesMission.hidden = true
+      }
       
       if player.isLeader == true {
         cell.leaderStar.hidden = false
@@ -257,9 +265,40 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     if user!.isLeader == true {
       vc.leaderSelectingTeam.text = "You are the leader. Select your team wisely"
     }
+    self.incomingMesageLabel.text = "New Mission Proposed"
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-      self.addChildViewController(vc)
-      self.view.addSubview(vc.view)
+      self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+      UIView.animateWithDuration(0.4,
+        delay: 0.0,
+        options: UIViewAnimationOptions.CurveEaseInOut,
+        animations: { () -> Void in
+          self.incomingMesageLabel.transform = CGAffineTransformMakeScale(1.0, 1.0)
+          self.incomingMesageLabel.alpha = 1.0
+        },
+        completion: { (success) -> Void in
+          UIView.animateWithDuration(0.4,
+            delay: 0.4,
+            options: UIViewAnimationOptions.CurveEaseInOut,
+            animations: { () -> Void in
+              self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+              self.incomingMesageLabel.alpha = 1.0
+            },
+            completion: { (success) -> Void in
+              self.addChildViewController(vc)
+              vc.view.alpha = 0.0
+              self.view.addSubview(vc.view)
+              UIView.animateWithDuration(0.4,
+                delay: 0.0,
+                options: UIViewAnimationOptions.CurveEaseInOut,
+                animations: { () -> Void in
+                  vc.view.alpha = 1.0
+                },
+                completion: { (success) -> Void in
+                  return () //Add more animation here if needed.
+              })
+          })
+      })
+      
     }
   }
   
