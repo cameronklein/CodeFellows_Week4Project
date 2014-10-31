@@ -10,7 +10,7 @@ import UIKit
 
 class GameSession: NSObject, NSCoding {
 
-    var players : NSMutableArray // Array of Player
+    var players : [Player] // Array of Player
     var missions : NSMutableArray // Array of Mission
     var leader : Player? // Get from players.objectAtIndex(Int)
     var currentMission : NSInteger = 0 // Get from missions.objectAtIndex(Int)
@@ -18,7 +18,7 @@ class GameSession: NSObject, NSCoding {
     var failedMissionCount : NSInteger = 0
     var passedMissionCount : NSInteger = 0
   
-    init (players: NSMutableArray, missions: NSMutableArray) {
+    init (players: [Player], missions: NSMutableArray) {
         self.players = players
         self.missions = missions
 
@@ -26,7 +26,7 @@ class GameSession: NSObject, NSCoding {
 
     required init(coder aDecoder: NSCoder) {
 
-        self.players = aDecoder.decodeObjectForKey("players") as NSMutableArray
+      self.players = aDecoder.decodeObjectForKey("players") as [Player]
         self.missions = aDecoder.decodeObjectForKey("missions") as NSMutableArray
         self.leader = aDecoder.decodeObjectForKey("leader") as Player?
         self.currentMission = aDecoder.decodeIntegerForKey("currentMission") as NSInteger
@@ -39,7 +39,6 @@ class GameSession: NSObject, NSCoding {
 
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.players, forKey: "players")
-        println("Attemping to encode gamesession with GameSession Info \(self.players.description)")
         aCoder.encodeObject(self.missions, forKey: "missions")
         aCoder.encodeInteger(self.failedMissionCount, forKey: "failedMissionCount")
         aCoder.encodeInteger(self.passedMissionCount, forKey: "passedMissionCount")

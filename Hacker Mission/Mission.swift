@@ -18,7 +18,7 @@ class Mission : NSObject, NSCoding {
     var playersNeeded : NSInteger! //
     var failThreshold : NSInteger!
     var rejectedTeamsCount : NSInteger = 0
-    var nominatedPlayers : NSMutableArray = NSMutableArray()
+    var nominatedPlayers = [Player]()
     var successCardsPlayed : NSInteger = 0
     var failCardsPlayed : NSInteger = 0
   
@@ -63,7 +63,7 @@ class Mission : NSObject, NSCoding {
     self.playersNeeded = aDecoder.decodeObjectForKey("playersNeeded") as NSInteger
     self.failThreshold = aDecoder.decodeObjectForKey("failThreshold") as NSInteger
     self.rejectedTeamsCount = aDecoder.decodeObjectForKey("rejectedTeamCount") as NSInteger
-    self.nominatedPlayers = aDecoder.decodeObjectForKey("nominatedPlayers") as NSMutableArray
+    self.nominatedPlayers = aDecoder.decodeObjectForKey("nominatedPlayers") as [Player]
     self.successCardsPlayed = aDecoder.decodeObjectForKey("successCardsPlayed") as NSInteger
     self.failCardsPlayed = aDecoder.decodeObjectForKey("failCardsPlayed") as NSInteger
     if let desc = aDecoder.decodeObjectForKey("missionDescription") as? NSString {

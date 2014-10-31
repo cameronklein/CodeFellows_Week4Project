@@ -11,10 +11,18 @@ import UIKit
 
 class GameController : MultiPeerDelegate {
   
+  class var sharedInstance : GameController {
+    struct Static {
+      static let instance : GameController = GameController()
+    }
+    return Static.instance
+  }
+  
+  
   var game : GameSession!
   var revealVC : RevealViewController!
   var launchVC : LaunchViewController!
-    var homeVC : HomeViewController!
+  var homeVC : HomeViewController!
   var multipeerController = MultiPeerController.sharedInstance
   var peerCount : Int = 0
   var userInfo : UserInfo?
@@ -73,7 +81,7 @@ class GameController : MultiPeerDelegate {
         println("\(multipeerController.peerID.displayName) is from Controller, \(player.peerID) is the local")
       if multipeerController.peerID.displayName == player.peerID {
         println("Entered the If")
-        revealVC.user = player as? Player
+        revealVC.user = player
       }
     }
     
@@ -94,12 +102,12 @@ class GameController : MultiPeerDelegate {
   
   func nominatePlayers() {
     //Leader nominates their team of players
-//    self.homeVC.nominatePlayersForMission(game.missionList[currentMissionIndex])
+    self.homeVC.nominatePlayers(game)
 
   }
   
   func revealNominations() {
-//    self.homeVC.voteOnProposedTeam(game)
+    self.homeVC.voteOnProposedTeam(game)
   }
   
   func revealVotes() {

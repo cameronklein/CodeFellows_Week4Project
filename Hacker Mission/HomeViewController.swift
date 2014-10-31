@@ -36,6 +36,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     var screenWidth : CGFloat!
     var layout : UICollectionViewFlowLayout!
+    var multiPeerController = MultiPeerController.sharedInstance
     //var gameController = GameController.sharedInstance
     
     var selectedIndexPath : NSIndexPath?
@@ -136,7 +137,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        var player = self.players[indexPath.row]
+        var player = game.players[indexPath.row]
         
         if player.isNominated == true
         {
@@ -173,7 +174,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         {
             self.nominationPromptLabel.hidden = false
             self.nominationPromptLabel.text = "Nominate team members."
-            self.startBlinking(self.nominationPromptLabel)
+          //self.startBlinking(self.nominationPromptLabel)
+            self.nominationPromptLabel.text = "Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) agents to send on this mission."
             self.confirmNominationButton.hidden = false
             self.confirmNominationButton.userInteractionEnabled = false
             self.playersCollectionView.userInteractionEnabled = true
@@ -182,19 +184,30 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         {
             self.nominationPromptLabel.hidden = false
             self.nominationPromptLabel.text = "Nominations being selected..."
-            self.startBlinking(self.nominationPromptLabel)
+          //self.startBlinking(self.nominationPromptLabel)
         }
     }
     
     @IBAction func confirmNominations(sender: AnyObject)
     {
+      println("Confirmed Button Pressed")
         self.confirmNominationButton.userInteractionEnabled = false
         self.confirmNominationButton.titleLabel?.textColor = UIColor.grayColor()
         self.labelsAreBlinking = false
         self.nominationPromptLabel.hidden = true
         self.confirmNominationButton.hidden = true
-        
-        //dself.gameController.sendInfoToMainBrain()
+      
+      
+        var nominatedPlayerIDs = [String]()
+        for player in players {
+          if player.isNominated == true {
+            nominatedPlayerIDs.append(player.peerID)
+          }
+        }
+      let dict = NSMutableDictionary()
+      dict.setObject("nominations", forKey: "action")
+      dict.setObject(nominatedPlayerIDs, forKey: "value")
+      self.multiPeerController.sendInfoToMainBrain(dict)
     }
   
   func voteOnProposedTeam(game: GameSession)
@@ -205,8 +218,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
     vc.game = game
     vc.view.frame = self.playersCollectionView.frame
-    self.addChildViewController(vc)
-    self.view.addSubview(vc.view)
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.addChildViewController(vc)
+      self.view.addSubview(vc.view)
+    }
   }
 //
 //  func revealVotes(game : GameSession) {
@@ -230,8 +245,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let nominatedPlayers = currentMission.nominatedPlayers
 
     for player in nominatedPlayers {
-      let castedPlayer = player as? Player
-      if castedPlayer!.peerID == user!.peerID {
+      let castedPlayer = player
+      if castedPlayer.peerID == user!.peerID {
         let vc = MissionOutcomeVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
         vc.view.frame = self.view.frame
         self.addChildViewController(vc)

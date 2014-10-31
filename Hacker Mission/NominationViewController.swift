@@ -12,9 +12,15 @@ class NominationVoteViewController: UIViewController//, UICollectionViewDataSour
 {
     @IBOutlet weak var nominatedPlayerViewContoller : UICollectionView!
     var multiPeerController : MultiPeerController = MultiPeerController.sharedInstance
-    var game : GameSession?
+    var game : GameSession!
   
     var nominatedPlayersArray : [Player]!
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    let currentMission = game.missions[game.currentMission] as Mission
+    nominatedPlayersArray = currentMission.nominatedPlayers
+  }
     
     override func viewDidAppear(animated: Bool) {
         var playerNames = NSString()
@@ -26,12 +32,16 @@ class NominationVoteViewController: UIViewController//, UICollectionViewDataSour
     
     @IBAction func approveNominatedTeam (sender: AnyObject)
     {
-      multiPeerController.sendInfoToMainBrain(["action" : "vote", "value" : true])
+      multiPeerController.sendInfoToMainBrain(["action" : "vote", "value" : "Approve"])
+      self.view.removeFromSuperview()
+      self.removeFromParentViewController()
     }
     
     @IBAction func rejectNominatedTeam (sender: AnyObject)
     {
-      multiPeerController.sendInfoToMainBrain(["action" : "vote", "value" : false])
+      multiPeerController.sendInfoToMainBrain(["action" : "vote", "value" : "Reject"])
+      self.view.removeFromSuperview()
+      self.removeFromParentViewController()
     }
     
     

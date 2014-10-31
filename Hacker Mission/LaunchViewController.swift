@@ -12,7 +12,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   
   var masterController    : LeadGameController?
   var followerController  : GameController?
-    var userInfoMyself : UserInfo?
+  var userInfoMyself : UserInfo?
   //var multiPeerController = MultiPeerController.sharedInstance
 
   @IBOutlet weak var peersLabel: UILabel!
@@ -36,9 +36,12 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   @IBAction func hostGameButtonPressed(sender: AnyObject) {
     startButton.hidden = true
     peersLabel.hidden = false
+    peersLabel.text = "Looking for other players"
     joinButton.hidden = true
     hostButton.hidden = true
     masterController = LeadGameController()
+    followerController = GameController.sharedInstance
+    followerController?.launchVC = self
     masterController?.startLookingForPlayers()
     masterController?.launchVC = self
     
@@ -47,6 +50,8 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   @IBAction func joinGameButtonPressed(sender: AnyObject) {
     joinButton.hidden = true
     hostButton.hidden = true
+    peersLabel.hidden = false
+    peersLabel.text = "Looking for other players"
     self.spinningWheel.startAnimating()
     followerController = GameController()
     followerController?.startLookingForGame()
