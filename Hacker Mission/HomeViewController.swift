@@ -12,7 +12,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 {
   //MARK: - Outlets and Properties
     @IBOutlet weak var incomingMesageLabel: UILabel!
-    @IBOutlet weak var gameNameLabel: UILabel!
     @IBOutlet weak var playersCollectionView: UICollectionView!
     @IBOutlet weak var mission1ImageView: UIImageView!
     @IBOutlet weak var mission1OutcomeLabel: UILabel!
@@ -62,9 +61,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.viewWillAppear(true)
         layout.minimumLineSpacing = screenWidth * 0.02
         layout.minimumInteritemSpacing = screenWidth * 0.02
-        layout.sectionInset.left = screenWidth * 0.02
-        layout.sectionInset.right = screenWidth * 0.02
-        layout.itemSize = CGSize(width: screenWidth * 0.20, height: screenWidth * 0.20)
+        layout.sectionInset.left = screenWidth * 0.05
+        layout.sectionInset.right = screenWidth * 0.05
+        layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.17)
         
         //round corners on players collection view
         self.playersCollectionView.layer.cornerRadius = self.playersCollectionView.frame.size.width / 16
