@@ -4,6 +4,8 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>fontawesome-webfont.ttf</string>
+		<string>typicons.ttf</string>
 		<string>BOYCOTT_.ttf</string>
 		<string>TYPEWRON.ttf</string>
 		<string>MKStencilsansBlack.ttf</string>

@@ -14,14 +14,19 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var gameNameLabel: UILabel!
     @IBOutlet weak var playersCollectionView: UICollectionView!
     @IBOutlet weak var mission1ImageView: UIImageView!
-    @IBOutlet weak var mission1To2TransitionImageView: NSLayoutConstraint!
+    @IBOutlet weak var mission1OutcomeLabel: UILabel!
+    @IBOutlet weak var mission1to2TransitionImageView: UIImageView!
     @IBOutlet weak var mission2ImageView: UIImageView!
+    @IBOutlet weak var mission2OutcomeLabel: UILabel!
     @IBOutlet weak var mission2To3TransitionImageView: UIImageView!
     @IBOutlet weak var mission3ImageView: UIImageView!
+    @IBOutlet weak var mission3OutcomeLabel: UILabel!
     @IBOutlet weak var mission3To4TransitionImageView: UIImageView!
     @IBOutlet weak var mission4ImageView: UIImageView!
+    @IBOutlet weak var mission4OutcomeLabel: UILabel!
     @IBOutlet weak var mission4To5TransitionImageView: UIImageView!
     @IBOutlet weak var mission5ImageView: UIImageView!
+    @IBOutlet weak var mission5OutcomeLabel: UILabel!
     @IBOutlet weak var missionView: UIView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var votingResultsIndicatorLabel: UILabel!
@@ -131,7 +136,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             cell.rejectsMission.hidden = true
             cell.approvesMission.hidden = true
         }
-        
+      
+      if player.isLeader == true {
+        cell.leaderStar.hidden = false
+      } else if player.isLeader == false {
+        cell.leaderStar.hidden = true
+      }
+      
         return cell
     }
     
@@ -211,6 +222,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       dict.setObject(nominatedPlayerIDs, forKey: "value")
       println("Sending nomination information with players: \(nominatedPlayerIDs.description)")
       self.multiPeerController.sendInfoToMainBrain(dict)
+
     }
   
   func voteOnProposedTeam(game: GameSession)
@@ -271,8 +283,78 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   func revealMissionOutcome(game : GameSession) {
     
     let vc = RevealMissionOutcomeViewController(nibName: "RevealMissionOutcomeViewController", bundle: NSBundle.mainBundle())
-    vc.view.frame = self.view.frame
+    vc.view.frame = self.playersCollectionView.frame
     vc.game = game
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.addChildViewController(vc)
+      self.view.addSubview(vc.view)
+        let justCompletedMission = game.missions[game.currentMission-1] as Mission
+        let justCompletedMissionIndex = game.currentMission-1
+        if justCompletedMission.success == true
+        {
+            switch justCompletedMissionIndex {
+            case 0:
+                self.mission1OutcomeLabel.text = "\u{E11C}"
+                self.mission1OutcomeLabel.textColor = UIColor.greenColor()
+            case 1:
+                self.mission2OutcomeLabel.text = "\u{E11C}"
+                self.mission2OutcomeLabel.textColor = UIColor.greenColor()
+            case 2:
+                self.mission3OutcomeLabel.text = "\u{E11C}"
+                self.mission3OutcomeLabel.textColor = UIColor.greenColor()
+            case 3:
+                self.mission4OutcomeLabel.text = "\u{E11C}"
+                self.mission4OutcomeLabel.textColor = UIColor.greenColor()
+            case 4:
+                self.mission5OutcomeLabel.text = "\u{E11C}"
+                self.mission5OutcomeLabel.textColor = UIColor.greenColor()
+            default:
+                println("You should never see this.")
+            }
+        }
+        else
+        {
+            switch justCompletedMissionIndex {
+            case 0:
+                self.mission1OutcomeLabel.text = "\u{E11A}"
+                self.mission1OutcomeLabel.textColor = UIColor.redColor()
+            case 1:
+                self.mission2OutcomeLabel.text = "\u{E11A}"
+                self.mission2OutcomeLabel.textColor = UIColor.redColor()
+            case 2:
+                self.mission3OutcomeLabel.text = "\u{E11A}"
+                self.mission3OutcomeLabel.textColor = UIColor.redColor()
+            case 3:
+                self.mission4OutcomeLabel.text = "\u{E11A}"
+                self.mission4OutcomeLabel.textColor = UIColor.redColor()
+            case 4:
+                self.mission5OutcomeLabel.text = "\u{E11A}"
+                self.mission5OutcomeLabel.textColor = UIColor.redColor()
+            default:
+                println("You should never see this.")
+            }
+        }
+    }
+  }
+  
+  func processEndMission() {
+    
+    let currentMissionIndex = game.currentMission
+    if currentMissionIndex == 5 || game.failedMissionCount == 3 || game.passedMissionCount == 3 {
+      self.endGame()
+    } else {
+      self.nominatePlayers(game)
+    }
+    
+    
+    
+  }
+  
+  func endGame(){
+    let vc = EndGameViewController(nibName: "EndGameViewController", bundle: NSBundle.mainBundle())
+    vc.view.frame = self.playersCollectionView.frame
+    vc.game = game
+
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
       self.addChildViewController(vc)
       self.view.addSubview(vc.view)

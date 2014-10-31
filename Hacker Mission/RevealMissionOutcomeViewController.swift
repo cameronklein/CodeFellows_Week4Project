@@ -21,8 +21,8 @@ class RevealMissionOutcomeViewController: UIViewController {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    let currentMission = game.missions[game.currentMission] as Mission
-    let result = currentMission.success! as Bool
+    let justCompletedMission = game.missions[game.currentMission - 1] as Mission
+    let result = justCompletedMission.success! as Bool
     if result {
       missionOutcomeLabel.text = "Mission Succeeded!!!"
     } else {
@@ -35,6 +35,14 @@ class RevealMissionOutcomeViewController: UIViewController {
       // Dispose of any resources that can be recreated.
   }
   
+  @IBAction func confirmButtonPressed(sender: AnyObject) {
+    let parentVC = self.parentViewController as HomeViewController
+ 
+    
+    self.view.removeFromSuperview()
+    self.removeFromParentViewController()
+    parentVC.processEndMission()
+  }
 
   /*
   // MARK: - Navigation
