@@ -12,6 +12,8 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
 {
   @IBOutlet weak var nominatedPlayerViewContoller : UICollectionView!
   @IBOutlet weak var collectionView: UICollectionView!
+  @IBOutlet weak var approveButton: UIButton!
+  @IBOutlet weak var rejectButton: UIButton!
 
   var multiPeerController : MultiPeerController = MultiPeerController.sharedInstance
   var game : GameSession!
@@ -28,11 +30,15 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
     let currentMission = game.missions[game.currentMission] as Mission
     nominatedPlayersArray = currentMission.nominatedPlayers
     collectionView.reloadData()
+    self.approveButton.userInteractionEnabled = true
+    self.rejectButton.userInteractionEnabled = true
   }
   
   @IBAction func approveNominatedTeam (sender: AnyObject)
   {
     multiPeerController.sendInfoToMainBrain(["action" : "vote", "value" : "Approve"])
+    self.approveButton.userInteractionEnabled = false
+    self.rejectButton.userInteractionEnabled = false
     self.view.removeFromSuperview()
     self.removeFromParentViewController()
   }
@@ -40,6 +46,8 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
   @IBAction func rejectNominatedTeam (sender: AnyObject)
   {
     multiPeerController.sendInfoToMainBrain(["action" : "vote", "value" : "Reject"])
+    self.approveButton.userInteractionEnabled = false
+    self.rejectButton.userInteractionEnabled = false
     self.view.removeFromSuperview()
     self.removeFromParentViewController()
   }
