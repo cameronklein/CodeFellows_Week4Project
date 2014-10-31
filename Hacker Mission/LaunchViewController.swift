@@ -37,7 +37,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   }
 
   override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(!animated)
+    super.viewWillAppear(false)
 
     println("viewWillAppear")
 
@@ -50,8 +50,9 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
 
       let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
       let destinationvVC = storyboard.instantiateViewControllerWithIdentifier("CHARCREATE_VC") as CharacterCreationViewController!
-      destinationvVC.delegate = self
-      self.presentViewController(destinationvVC, animated: false, completion: { () -> Void in
+      let presentingVC = storyboard.instantiateViewControllerWithIdentifier("LAUNCHVIEW_VC") as LaunchViewController!
+      destinationvVC.delegate = presentingVC
+      presentingVC.presentViewController(destinationvVC, animated: false, completion: { () -> Void in
         println("yes!")
       })
 
@@ -59,7 +60,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   }
 
   override func viewDidAppear(animated: Bool) {
-    super.viewDidAppear(!animated)
+    super.viewDidAppear(false)
     println("viewDidAppear")
 
   }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="B2m-a2-ZUT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="B2m-a2-ZUT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -47,7 +47,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qma-9f-JgQ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                 <subviews>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Peers Connected...]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P14-56-dqD">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="[Peers Connected...]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P14-56-dqD">
                                         <rect key="frame" x="221" y="177" width="159" height="19"/>
                                         <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="17"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -276,7 +276,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of this HackerMission Game" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1m-Yd-cud">
-                                <rect key="frame" x="128" y="52" width="342.5" height="20.5"/>
+                                <rect key="frame" x="128" y="52" width="343" height="21"/>
                                 <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="20"/>
                                 <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -298,7 +298,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="juq-1B-11K">
                                 <rect key="frame" x="16" y="478" width="568" height="90"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mission_open" translatesAutoresizingMaskIntoConstraints="NO" id="4wM-5k-Cs2">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="mission_open" translatesAutoresizingMaskIntoConstraints="NO" id="4wM-5k-Cs2">
                                         <rect key="frame" x="5" y="-3" width="97" height="97"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="4wM-5k-Cs2" secondAttribute="height" multiplier="1:1" id="tm2-Db-G8I"/>
@@ -343,7 +343,7 @@
                                             <rect key="frame" x="474.5" y="-3" width="85" height="86"/>
                                         </variation>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mission_connector" translatesAutoresizingMaskIntoConstraints="NO" id="nw8-7T-8Rg">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="mission_connector" translatesAutoresizingMaskIntoConstraints="NO" id="nw8-7T-8Rg">
                                         <rect key="frame" x="97" y="24" width="28.5" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="nw8-7T-8Rg" secondAttribute="height" multiplier="2:3" id="C9f-oR-sjr"/>
@@ -361,32 +361,32 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mission_connector" translatesAutoresizingMaskIntoConstraints="NO" id="OUc-hz-2BE">
                                         <rect key="frame" x="444" y="23" width="29" height="43"/>
                                     </imageView>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4c-3W-8pu" userLabel="Mission1Outcome">
-                                        <rect key="frame" x="35" y="19.5" width="35.5" height="52.5"/>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4c-3W-8pu" userLabel="Mission1Outcome">
+                                        <rect key="frame" x="35" y="20" width="36" height="53"/>
                                         <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="50"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="158-wq-82b" userLabel="Mission2Outcome">
-                                        <rect key="frame" x="151" y="18" width="35.5" height="52.5"/>
+                                        <rect key="frame" x="151" y="18" width="36" height="53"/>
                                         <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="50"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5A-nc-I41" userLabel="Mission3Outcome">
-                                        <rect key="frame" x="267" y="18" width="35.5" height="52.5"/>
+                                        <rect key="frame" x="267" y="18" width="36" height="53"/>
                                         <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="50"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mQ-Pv-LeK" userLabel="Mission4Outcome">
-                                        <rect key="frame" x="383" y="18" width="35.5" height="52.5"/>
+                                        <rect key="frame" x="383" y="18" width="36" height="53"/>
                                         <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="50"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="71Z-46-FYA" userLabel="Mission5Outcome">
-                                        <rect key="frame" x="499" y="18" width="35.5" height="52.5"/>
+                                        <rect key="frame" x="499" y="18" width="36" height="53"/>
                                         <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="50"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -437,7 +437,7 @@
                                 </constraints>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt; VOTING RESULTS ARE IN! &gt;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yO-ZI-uxD">
-                                <rect key="frame" x="161" y="389" width="276.5" height="22.5"/>
+                                <rect key="frame" x="161" y="389" width="277" height="23"/>
                                 <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="20"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -454,7 +454,7 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nominate team members." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovz-Ln-f4Q">
-                                <rect key="frame" x="16" y="388" width="284" height="22.5"/>
+                                <rect key="frame" x="16" y="388" width="284" height="23"/>
                                 <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="20"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
