@@ -42,8 +42,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
       self.saveDefaultPath()
-      
-
+    let fileManager = NSFileManager.defaultManager()
+    if fileManager.fileExistsAtPath(self.documentsPath!) {
+      println("there it is")
+      var userForLoad = UserInfo.loadTheObject()
+      self.defaultUser = userForLoad as UserInfo!
+    } else {
+      println("NO file exists")
+      self.defaultUser = nil
+      println("default is \(self.defaultUser)")
+    }
 
     return true
   }

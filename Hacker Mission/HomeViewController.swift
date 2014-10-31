@@ -263,7 +263,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
   func revealMissionOutcome(game : GameSession) {
     
-    let vc = RevealMissionOutcomeViewController(nibName: "RevealView", bundle: NSBundle.mainBundle())
+    let vc = RevealMissionOutcomeViewController(nibName: "RevealMissionOutcomeViewController", bundle: NSBundle.mainBundle())
     vc.view.frame = self.view.frame
     vc.game = game
     self.addChildViewController(vc)

@@ -165,7 +165,11 @@ class GameController : MultiPeerDelegate {
     sendUserInfo()
   }
     func sendUserInfo () {
-     multipeerController.sendUserInfoToLeadController(myUserInfo)
+      let appDel = UIApplication.sharedApplication().delegate as AppDelegate
+      if let thisUser = appDel.defaultUser as UserInfo! {
+        multipeerController.sendUserInfoToLeadController(thisUser)
+      }
+     
     }
 
 }
