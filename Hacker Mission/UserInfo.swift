@@ -124,9 +124,9 @@ class UserInfo : NSObject, NSCoding {
 
     let fileManager = NSFileManager.defaultManager()
     if fileManager.fileExistsAtPath(filePath) {
-      println("there it is")
+      println("save appears to be successful, saved file has been found")
     } else {
-      println("????")
+      println("save apears to have failed, no saved file found")
     }
 
 
@@ -135,15 +135,17 @@ class UserInfo : NSObject, NSCoding {
   class func loadTheObject() -> UserInfo {
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     let filePath = appDelegate.documentsPath as String!
-    println("load from file")
+    println("attempting to find the default user from the drive")
     let fileManager = NSFileManager.defaultManager()
     if fileManager.fileExistsAtPath(filePath) {
-      println("there it is for load")
+      println("found the file, will attempt to load it")
     } else {
-      println("what the fuck?")
+      println("no file found")
     }
+    let aFile = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as UserInfo!
+    println("the info I loded is for user  \(aFile.userName)")
 
-    return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as UserInfo
+    return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as UserInfo!
 
 
   }

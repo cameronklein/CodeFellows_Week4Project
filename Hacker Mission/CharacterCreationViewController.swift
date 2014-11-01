@@ -61,7 +61,6 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
       let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
       if let filePath = appDelegate.documentsPath as String! {
-        println("found path")
         let fileManager = NSFileManager.defaultManager()
         if fileManager.fileExistsAtPath(filePath) {
           self.loadIt()
@@ -85,14 +84,12 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     super.viewDidAppear(animated)
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     if appDelegate.defaultUser == nil {
-      println("nil saved")
       if self.hasLaunched == false {
         self.hasLaunched = true
         self.informThePlayer()
       } else {
-        println("has launched")
+        println("Has launched previously, don't alert the player that they need to save.")
       }
-
     }
 
     let animationQueue = NSOperationQueue()
@@ -112,16 +109,8 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       theAnimation.fromValue = NSNumber(float: 1.0)
       theAnimation.toValue = NSNumber(float: 0.0)
 
-
-
       theLayer.addAnimation(theAnimation, forKey: "hidden")
     }
-
-
-
-
-
-
   }
 
 
@@ -172,7 +161,6 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
         if self.userImageFor != nil && self.checkNameLength() == true {
             self.saveCharacterButton.enabled = true
             self.saveCharacterButton.setTitle("Save Character", forState: UIControlState.Normal)
-//            self.saveCharacterButton.titleLabel?.typingAnimation(0.1)
         } else {
             println("Hit Else")
             self.saveCharacterButton.setTitle("Enter a Player Name and Choose an Image", forState: UIControlState.Disabled)
@@ -186,11 +174,14 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
       var localUserInfo = UserInfo(userName: self.userNameFor!, userImage: self.userImageFor!)
       self.userForSave = localUserInfo
+      print("delegate is: ")
+      println(self.delegate)
       self.delegate?.didSaveUser(self.userForSave)
       if let pathForSave = appDelegate.documentsPath as String! {
       println("Can Save File")
         UserInfo.saveTheObject(localUserInfo)
         appDelegate.defaultUser = localUserInfo
+        println("appdelegate user is \(appDelegate.defaultUser?.userName)")
         self.dismissViewControllerAnimated(true, completion: nil)
       } else {
         println("ERROR: No save path found, this is a fail case.")
@@ -292,11 +283,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     }
 
   func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-    println("editing in \(textField.text)")
-    println("range is \(range)")
-    println("string is \(string)")
     if string == "" && range.location == 0 {
-      println("true!!!!!!!!!!!!")
       self.userNameFor = nil
       checkButtonState()
     }
@@ -312,8 +299,6 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     }
 
   }
-
-
 
   func checkFirstResponder() {
     if self.usernameTextField.isFirstResponder() {

@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-      self.saveDefaultPath()
+    self.saveDefaultPath()
 
     let fileManager = NSFileManager.defaultManager()
     if fileManager.fileExistsAtPath(self.documentsPath!) {

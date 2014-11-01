@@ -66,7 +66,10 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(false)
     println("viewDidAppear")
+    println("user is \(self.userInfoMyself?.userName)")
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
 
+    println("the appDelUser is: \(appDelegate.defaultUser?.userName)")
   }
 
 

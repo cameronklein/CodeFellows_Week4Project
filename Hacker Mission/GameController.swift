@@ -31,6 +31,11 @@ class GameController : MultiPeerDelegate {
   
   init(){
     multipeerController.delegate = self
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+
+    myUserInfo = appDelegate.defaultUser as UserInfo!
+    myUserInfo.userPeerID = multipeerController.peerID.displayName
+    myUserInfo.userImage = UIImage(named: "AtSymbol")!
   }
   
   func handleEvent(newGameInfo: GameSession) {
