@@ -139,9 +139,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   }
     
     func didSaveUser(userToSave: UserInfo) {
-        self.userInfoMyself = userToSave as UserInfo!
-      println("got to set \(self.userInfoMyself?.userName)")
-
+        self.userInfoMyself = userToSave
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
