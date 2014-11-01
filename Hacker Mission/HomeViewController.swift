@@ -160,7 +160,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        var player = game.players[indexPath.row]
+        var player = gameController.game.players[indexPath.row]
         
         if player.isNominated == true
         {
@@ -235,9 +235,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
     //MARK: - Actions and other functions
   
-    func nominatePlayers(game : GameSession)
+    func nominatePlayers()
     {
-      self.game = game
+      let game = gameController.game
       self.playersSelected = 0
       if self.user?.isLeader == true {
         self.incomingMesageLabel.text = "You are leader. Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) people."
@@ -297,7 +297,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       
       
         var nominatedPlayerIDs = [String]()
-        for player in game.players {
+        for player in gameController.game.players {
           if player.isNominated == true {
             nominatedPlayerIDs.append(player.peerID)
           }
@@ -310,14 +310,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     }
   
-  func voteOnProposedTeam(game: GameSession)
+  func voteOnProposedTeam()
   {//Display the nominated team to all users and get a vote of Approve or Reject back
     self.labelsAreBlinking = false
     self.nominationPromptLabel.hidden = true
-    self.game = game
     
     let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
-    vc.game = game
     vc.view.frame = self.playersCollectionView.frame
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
@@ -360,12 +358,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //   self.playersCollectionView.reloadData()
 //  }
 //
-  func startMission(game : GameSession) {
-    self.game = game
+  func startMission() {
+    
     let vc = MissionTextViewController(nibName: "MissionTextViewController", bundle: NSBundle.mainBundle())
     vc.view.frame = self.playersCollectionView.frame
-    vc.game = game
-    
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
       if self.user!.isLeader == true {
@@ -406,8 +402,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
   }
   
-  func voteOnMissionSuccess(game: GameSession) {
-    self.game = game
+  func voteOnMissionSuccess() {
+    let game = gameController.game
     let currentMission = game.missions[game.currentMission] as Mission
     let nominatedPlayers = currentMission.nominatedPlayers
     
@@ -460,12 +456,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
   }
 
-  func revealMissionOutcome(game : GameSession) {
+  func revealMissionOutcome() {
     
     let vc = RevealMissionOutcomeViewController(nibName: "RevealMissionOutcomeViewController", bundle: NSBundle.mainBundle())
-    self.game = game
+    
     vc.view.frame = self.playersCollectionView.frame
-    vc.game = game
     
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
@@ -497,6 +492,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                   vc.view.alpha = 1.0
                 },
                 completion: { (success) -> Void in
+                  let game = self.gameController.game
                   let justCompletedMission = game.missions[game.currentMission-1] as Mission
                   let justCompletedMissionIndex = game.currentMission-1
                   if justCompletedMission.success == true
@@ -561,18 +557,18 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   func processEndMission() {
     
+    let game = gameController.game
     let currentMissionIndex = game.currentMission
     if currentMissionIndex == 5 || game.failedMissionCount == 3 || game.passedMissionCount == 3 {
       self.endGame()
     } else {
-      self.startMission(game)
+      self.startMission()
     }
   }
   
   func endGame(){
     let vc = EndGameViewController(nibName: "EndGameViewController", bundle: NSBundle.mainBundle())
     vc.view.frame = self.playersCollectionView.frame
-    vc.game = game
 
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
       self.addChildViewController(vc)
@@ -603,7 +599,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
 
     //MARK: - One line, because we probably won't use this.
-    override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}
+  override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}
+  
+  func animateIncomingMessageLabelWithCompletionHandler(completionHandler : () -> (Void)) {
+    
+  }
   
 
 

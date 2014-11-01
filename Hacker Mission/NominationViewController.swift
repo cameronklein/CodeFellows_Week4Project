@@ -16,8 +16,8 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
   @IBOutlet weak var rejectButton: UIButton!
 
   var multiPeerController : MultiPeerController = MultiPeerController.sharedInstance
-  var game : GameSession!
-  var nominatedPlayersArray : [Player] = [Player]()
+  var gameController = GameController.sharedInstance
+  var nominatedPlayersArray = [Player]()
   
   var screenWidth : CGFloat!
   var layout : UICollectionViewFlowLayout!
@@ -38,7 +38,7 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    let currentMission = game.missions[game.currentMission] as Mission
+    let currentMission = gameController.game.missions[gameController.game.currentMission] as Mission
     nominatedPlayersArray = currentMission.nominatedPlayers
     collectionView.reloadData()
     self.approveButton.userInteractionEnabled = true

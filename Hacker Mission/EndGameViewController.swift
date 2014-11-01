@@ -12,7 +12,7 @@ class EndGameViewController: UIViewController {
 
   @IBOutlet weak var gameOutcomeLabel: UILabel!
   
-  var game : GameSession!
+  let gameController = GameController.sharedInstance
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,6 +22,8 @@ class EndGameViewController: UIViewController {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    
+    let game = gameController.game
     
     if game.passedMissionCount == 3 {
       gameOutcomeLabel.text = "Hackers win the day!!!11"
@@ -33,18 +35,6 @@ class EndGameViewController: UIViewController {
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
-  
-
-  /*
-  // MARK: - Navigation
-
-  // In a storyboard-based application, you will often want to do a little preparation before navigation
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-      // Get the new view controller using segue.destinationViewController.
-      // Pass the selected object to the new view controller.
-  }
-  */
 
 }

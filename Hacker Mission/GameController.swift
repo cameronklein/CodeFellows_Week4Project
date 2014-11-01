@@ -107,34 +107,34 @@ class GameController : MultiPeerDelegate {
   
   func nominatePlayers() {
     //Leader nominates their team of players
-    self.homeVC.nominatePlayers(game)
+    self.homeVC.nominatePlayers()
 
   }
   
   func revealNominations() {
-    self.homeVC.voteOnProposedTeam(game)
+    self.homeVC.voteOnProposedTeam()
   }
   
   func revealVotes() {
     //reveal everyone's vote on the proposed team
-    self.homeVC.revealVotes(game)
+    self.homeVC.revealVotes()
   }
   
   func startMission() {
     // TODO: Intro Animation?
-    self.homeVC.startMission(game)
+    self.homeVC.startMission()
   }
   
   func beginMissionOutcome() {
     println("GAME CONTROLLER: Begin Mission Outcome call sent to HomeViewController")
     //Nominated players on mission vote to succeed or fail the mission
-    self.homeVC.voteOnMissionSuccess(game)
+    self.homeVC.voteOnMissionSuccess()
 
   }
   
   func revealMissionOutcome() {
     //revealing the success/fail votes
-    self.homeVC.revealMissionOutcome(game)
+    self.homeVC.revealMissionOutcome()
   }
   
   func endGame() {
