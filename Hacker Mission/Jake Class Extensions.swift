@@ -57,6 +57,49 @@ extension UILabel
             self.cursorBlink()
         }
     }
+
+  func typeToNewString(finalText: String, withInterval sleepLength : Double, var startingText : String = "") {
+    if startingText == "" {
+      self.text = startingText
+      for character in finalText{
+        startingText = String(character)
+        break
+      }
+    }
+    if countElements(startingText) < countElements(finalText) {
+      println("Starting Text Does Not Equal Final Text")
+      let rangeOfStartText = finalText.rangeOfString(startingText, options: NSStringCompareOptions.LiteralSearch, range: nil, locale: nil)
+      let lastIndex = rangeOfStartText?.endIndex
+      let nextIndex = lastIndex?.successor()
+      let nextText = finalText.substringToIndex(nextIndex!)
+    
+      println("Next character!!")
+      let view = UIView()
+      self.superview?.addSubview(view)
+    
+      NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        
+        UIView.animateWithDuration(0.05,
+          delay: 0.00,
+          options: UIViewAnimationOptions.AllowUserInteraction,
+          animations: { () -> Void in
+            if view.alpha == 0{
+              view.alpha = 1
+            } else {
+              view.alpha = 0
+            }
+            self.text = "\(nextText)_"
+          },
+          completion: { (success) -> Void in
+            if success == true{
+              self.typeToNewString(finalText, withInterval: sleepLength, startingText: nextText)
+            }
+        })
+      }
+    } else {
+      self.cursorBlink()
+    }
+  }
     
     func cursorBlink ()  //made to be used after typingAnimation
     {
