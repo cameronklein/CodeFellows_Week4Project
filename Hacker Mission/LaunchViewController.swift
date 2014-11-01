@@ -104,7 +104,6 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
     followerController?.startLookingForGame()
     followerController?.launchVC = self
     createCharacterButton.hidden = true
-    followerController?.sendUserInfo()
   }
   
   @IBAction func startGameButtonPressed(sender: AnyObject) {

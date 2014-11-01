@@ -71,10 +71,6 @@ class GameController : MultiPeerDelegate {
     for player in game.players {
       if player.peerID == multipeerController.peerID.displayName {
         self.thisPlayer = player
-        if homeVC != nil {
-          homeVC.user = player
-          println("GAME CONTROLLER: Updated homeVC user!")
-        }
       }
     }
   }
@@ -91,16 +87,7 @@ class GameController : MultiPeerDelegate {
     
     multipeerController.stopAdvertising()
     revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())
-
-    let players = game.players
-    for player in players {
-      println("Comparing \(multipeerController.peerID.displayName) and \(player.peerID)")
-      if multipeerController.peerID.displayName == player.peerID {
-        revealVC.user = player
-      }
-    }
     
-    revealVC.game = self.game
     self.launchVC.gameStart(revealVC)
     
   }
@@ -112,6 +99,7 @@ class GameController : MultiPeerDelegate {
   }
   
   func revealNominations() {
+    
     self.homeVC.voteOnProposedTeam()
   }
   
