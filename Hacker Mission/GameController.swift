@@ -100,7 +100,6 @@ class GameController : MultiPeerDelegate {
       }
     }
     
-    revealVC.game = self.game
     self.launchVC.gameStart(revealVC)
     
   }

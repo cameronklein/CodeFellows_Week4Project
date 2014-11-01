@@ -14,10 +14,10 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var playerRevealCollectionView: UICollectionView!
     @IBOutlet weak var flavorTextLabel: UILabel!
     
-    var game : GameSession!
+  //var game : GameSession!
     var playerArray = [Player]()
     var agentArray = [Player]()
-    var user : Player?
+  //var user : Player?
     var gameController = GameController.sharedInstance
   
     var screenWidth : CGFloat!
@@ -55,7 +55,7 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
             }
         }
         
-        if user!.playerRole == .Agent
+        if gameController.thisPlayer.playerRole == .Agent
         {
             self.flavorTextLabel.text = "You're a secret bad guy. Here is your secret bad guy team."
             self.flavorTextLabel.typingAnimation(0.1)
@@ -76,7 +76,7 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
     //MARK: - Collection View Methods
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        if user!.playerRole == .Agent
+        if gameController.thisPlayer.playerRole == .Agent
         {
             return self.agentArray.count
         }
@@ -92,7 +92,7 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         var player : Player?
         
-        if user!.playerRole == .Agent
+        if gameController.thisPlayer.playerRole == .Agent
         {
             player = agentArray[indexPath.row]
         }
@@ -119,7 +119,6 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
           let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
           let homeVC = storyboard.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
           gameController.homeVC = homeVC
-          homeVC.user = self.user
       
           NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
           self.presentViewController(homeVC, animated: true, completion: { () -> Void in

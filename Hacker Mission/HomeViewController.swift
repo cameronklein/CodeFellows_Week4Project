@@ -34,12 +34,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var confirmNominationButton: UIButton!
     
     var players : [Player] = []
-    var user : Player?
     var playersSelected = 0
-  //var game : GameSession!
     var labelsAreBlinking = false
     var lastRejectedGameCount = 0
-    
+  //var user : Player?        DEPRECATED : refer to gameController.thisPlayer instead
+  //var game : GameSession!   DEPRECATED : refer to gameController.game instead
+  
     var screenWidth : CGFloat!
     var layout : UICollectionViewFlowLayout!
     var multiPeerController = MultiPeerController.sharedInstance
@@ -239,7 +239,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     {
       let game = gameController.game
       self.playersSelected = 0
-      if self.user?.isLeader == true {
+      if self.gameController.thisPlayer.isLeader == true {
         self.incomingMesageLabel.text = "You are leader. Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) people."
       } else {
         self.incomingMesageLabel.text = "\(game.leader!.playerName) is leader and will nominate people."
@@ -263,7 +263,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 self.incomingMesageLabel.alpha = 0.0
               },
               completion: { (success) -> Void in
-                if self.user?.isLeader == true
+                if self.gameController.thisPlayer.isLeader == true
                 {
                   self.nominationPromptLabel.hidden = false
                   self.nominationPromptLabel.text = "Nominate team members."
@@ -364,7 +364,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     vc.view.frame = self.playersCollectionView.frame
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-      if self.user!.isLeader == true {
+      if self.gameController.thisPlayer.isLeader == true {
         vc.leaderSelectingTeam.text = "You are the leader. Select your team wisely"
       }
       self.incomingMesageLabel.text = "New Mission Proposed"
@@ -427,10 +427,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             },
             completion: { (success) -> Void in
               for player in nominatedPlayers {
-                if player.peerID == self.user!.peerID {
+                if player.peerID == self.gameController.thisPlayer.peerID {
                   let vc = MissionOutcomeVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
                   vc.game = game
-                  vc.currentUser = self.user
+                  vc.currentUser = self.gameController.thisPlayer
                   vc.view.frame = self.playersCollectionView.frame
                   self.addChildViewController(vc)
                   vc.view.alpha = 0.0
