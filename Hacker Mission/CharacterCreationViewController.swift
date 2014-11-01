@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 protocol CharacterCreationViewDelegate {
     func didSaveUser(userToSave: UserInfo)
@@ -25,6 +26,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     var userNameFor : NSString?
     var userImageFor : UIImage?
     var delegate : CharacterCreationViewDelegate?
+    var hasLaunched = false
 
     
     //MARK: - View Methods
@@ -57,35 +59,65 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       self.defaultIconsCollectionView.dataSource = self
       self.defaultIconsCollectionView.delegate = self
 
-
-    }
-    
-    override func viewWillAppear(animated: Bool)
-    {
-        super.viewWillAppear(true)
-
       let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
       if let filePath = appDelegate.documentsPath as String! {
-        println("found path")
-
         let fileManager = NSFileManager.defaultManager()
         if fileManager.fileExistsAtPath(filePath) {
-          println("there it is")
           self.loadIt()
-
         }
       }
 
-
-
-        if self.userImageFor != nil && self.userNameFor != nil {
-            self.saveCharacterButton.hidden = false
-        } else {
-            self.saveCharacterButton.hidden = true
-        }
-        
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+
+      self.userImageView.image = self.userImageFor
+      self.checkButtonState()
+      let attibutedString = NSAttributedString(string: "Enter a UserName", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.75)])
+
+      self.usernameTextField.attributedPlaceholder = attibutedString
+
+    }
+
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    if appDelegate.defaultUser == nil {
+      if self.hasLaunched == false {
+        self.hasLaunched = true
+        self.informThePlayer()
+      } else {
+        println("Has launched previously, don't alert the player that they need to save.")
+      }
+    }
+
+    let animationQueue = NSOperationQueue()
+    animationQueue.maxConcurrentOperationCount = 1
+    let attibutedStringBright = NSAttributedString(string: "Enter a UserName", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.75)])
+    let attibutedStringDim = NSAttributedString(string: "Enter a UserName", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.33)])
+
+//    self.usernameTextField.attributedPlaceholder = attibutedStringDim
+
+    let theAnimation = CABasicAnimation(keyPath: "opacity")
+    let theLayer = CALayer(layer: self.usernameTextField.text)
+
+    animationQueue.addOperationWithBlock { () -> Void in
+      theAnimation.duration = 1.0
+      theAnimation.repeatCount = 10000.0
+      theAnimation.autoreverses = true
+      theAnimation.fromValue = NSNumber(float: 1.0)
+      theAnimation.toValue = NSNumber(float: 0.0)
+
+      theLayer.addAnimation(theAnimation, forKey: "hidden")
+    }
+  }
+
+
+
+
+
+
     //MARK: - Collection View Methods
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
@@ -96,42 +128,61 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     {
         let cell = defaultIconsCollectionView.dequeueReusableCellWithReuseIdentifier("DEFAULT_ICON_CELL", forIndexPath: indexPath) as DefaultIconCell
         cell.imageView.image = self.defaultIcons[indexPath.row] as UIImage
-        return cell
+      cell.layer.borderWidth = 1
+      cell.layer.borderColor = UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.15).CGColor
+
+      return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-      if self.usernameTextField.isFirstResponder() {
-        self.usernameTextField.resignFirstResponder()
-      }
-        self.userImageFor = self.defaultIcons[indexPath.row] as UIImage!
-        self.userImageView.image = self.userImageFor
+      self.checkFirstResponder()
+      self.userImageFor = self.defaultIcons[indexPath.row] as UIImage!
+      self.userImageView.image = self.userImageFor
 
-      if self.userImageFor != nil && self.userNameFor != nil {
-        println("true")
-        self.saveCharacterButton.hidden = false
-      } else {
-        println("false")
-        self.saveCharacterButton.hidden = true
-      }
+      checkButtonState()
 
     }
 
 
 
     //MARK: - Actions and Outlets
+  func checkNameLength() -> Bool {
+    if self.userNameFor != nil && countElements(self.usernameTextField.text) > 0 {
+      return true
+    } else {
+      return false
+    }
+  }
+
+
+    func checkButtonState(){
+        println("Checked Button State")
+        if self.userImageFor != nil && self.checkNameLength() == true {
+            self.saveCharacterButton.enabled = true
+            self.saveCharacterButton.setTitle("Save Character", forState: UIControlState.Normal)
+        } else {
+            println("Hit Else")
+            self.saveCharacterButton.setTitle("Enter a Player Name and Choose an Image", forState: UIControlState.Disabled)
+            self.saveCharacterButton.enabled = false
+        }
+    }
+    
+    
     @IBAction func saveButtonPressed(sender: AnyObject)
     {
       let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
       var localUserInfo = UserInfo(userName: self.userNameFor!, userImage: self.userImageFor!)
       self.userForSave = localUserInfo
+      print("delegate is: ")
+      println(self.delegate)
       self.delegate?.didSaveUser(self.userForSave)
-      println("the path is \(appDelegate.documentsPath)")
       if let pathForSave = appDelegate.documentsPath as String! {
       println("Can Save File")
-//      var object = UserInfo.wrapUserInfo(self.userForSave) as NSMutableData
         UserInfo.saveTheObject(localUserInfo)
-self.dismissViewControllerAnimated(true, completion: nil)
+        appDelegate.defaultUser = localUserInfo
+        println("appdelegate user is \(appDelegate.defaultUser?.userName)")
+        self.dismissViewControllerAnimated(true, completion: nil)
       } else {
         println("ERROR: No save path found, this is a fail case.")
       }
@@ -153,7 +204,10 @@ self.dismissViewControllerAnimated(true, completion: nil)
 
   override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
     super.touchesBegan(touches, withEvent: event)
-    self.usernameTextField.resignFirstResponder()
+
+      self.checkFirstResponder()
+
+
   }
 
     @IBAction func photoButtonPressed(sender: AnyObject) {
@@ -196,57 +250,80 @@ self.dismissViewControllerAnimated(true, completion: nil)
       UIGraphicsEndImageContext()
 
       self.userImageView.image = imageResized
-        self.userImageFor = self.userImageView.image as UIImage!
+        self.userImageFor = imageResized as UIImage!
         self.dismissViewControllerAnimated(true, completion: nil)
 
 
-      if self.userImageFor != nil && self.userNameFor != nil {
-        println("true")
-        self.saveCharacterButton.hidden = false
-      } else {
-        println("false")
-        self.saveCharacterButton.hidden = true
-      }
+        checkButtonState()
+
     }
-
-
 
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         if countElements(textField.text) > 0 {
           println("is text")
+          checkButtonState()
             return true
         } else {
             println("no text")
-            return false
+          checkButtonState()
+            return true
         }
     }
 
     func textFieldDidEndEditing(textField: UITextField) {
 
-      println("here")
+        println("didEndEditing")
+      if countElements(textField.text) > 0 {
         self.userNameFor = textField.text!
-
-      if self.userImageFor != nil && self.userNameFor != nil {
-        println("true")
-        self.saveCharacterButton.hidden = false
       } else {
-        println("false")
-        self.saveCharacterButton.hidden = true
+        self.userNameFor = nil
       }
 
+        checkButtonState()
     }
 
   func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-    println("editing in \(textField)")
+    if string == "" && range.location == 0 {
+      self.userNameFor = nil
+      checkButtonState()
+    }
     return true
   }
 
   func textFieldShouldReturn(textField: UITextField) -> Bool {
-            textField.resignFirstResponder()
-    return true
+    if countElements(textField.text) > 0 {
+      textField.resignFirstResponder()
+      return true
+    } else {
+      return false
+    }
+
+  }
+
+  func checkFirstResponder() {
+    if self.usernameTextField.isFirstResponder() {
+      let trueFalse = self.textFieldShouldEndEditing(self.usernameTextField) as Bool!
+      if trueFalse == true {
+        self.userNameFor = nil
+        self.usernameTextField.resignFirstResponder()
+      }
+      self.checkButtonState()
+      self.usernameTextField.resignFirstResponder()
+    }
   }
 
 
+  func informThePlayer() {
+    let alertController = UIAlertController(title: "Identify Yourself", message: "You must choose a name and image to identify you to other players. You can choose a default image or use your device's camera.", preferredStyle: UIAlertControllerStyle.Alert)
+
+    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel) { (action) -> Void in
+      println("Okay I will, thank you may i have another")
+    }
+
+    alertController.addAction(okAction)
+    self.presentViewController(alertController, animated: true, completion: nil)
+
+  }
 
     //MARK: - You probably won't need this stupid thing.
     override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}

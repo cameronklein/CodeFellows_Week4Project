@@ -14,7 +14,6 @@ enum GameEvent : NSString {
   case NominatePlayers      = "GameEventNominatePlayers"
   case RevealNominations    = "GameEventRevealNominations"
   case MissionStart         = "GameEventMissionStart"
-  case Vote                 = "GameEventVote"
   case RevealVote           = "GameEventRevealVote"
   case BeginVote            = "GameEventBeginVote"
   case BeginMissionOutcome  = "GameEventBeginMissionOutcome"

@@ -20,21 +20,33 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
     var user : Player?
     var gameController = GameController.sharedInstance
   
+    var screenWidth : CGFloat!
+    var layout : UICollectionViewFlowLayout!
+  
     //MARK: - View Methods
     
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        self.playerRevealCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
-        self.playerRevealCollectionView.delegate = self
-        self.playerRevealCollectionView.dataSource = self
+    override func viewDidLoad(){
+      
+      gameController.sendUserInfo()
+      
+      super.viewDidLoad()
+      self.playerRevealCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
+      self.playerRevealCollectionView.delegate = self
+      self.playerRevealCollectionView.dataSource = self
+    
+      self.layout = playerRevealCollectionView.collectionViewLayout as UICollectionViewFlowLayout
+      self.screenWidth = self.playerRevealCollectionView.frame.width
+      super.viewWillAppear(true)
+      layout.minimumLineSpacing = screenWidth * 0.02
+      layout.minimumInteritemSpacing = screenWidth * 0.02
+      layout.sectionInset.left = screenWidth * 0.05
+      layout.sectionInset.right = screenWidth * 0.05
+      layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.17)
       
       for player in game.players {
         playerArray.append(player as Player)
       }
-        //self.playerArray = game.players as [Player]
-        
-        //creates array of "agents"
+
         for player in self.playerArray
         {
             if (player.playerRole == .Agent)
@@ -104,11 +116,12 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         })
 //        self.view.removeFromSuperview()
 //        self.removeFromParentViewController()
-      let homeVC = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as HomeViewController
-        gameController.homeVC = homeVC
-        homeVC.user = self.user
-        homeVC.game = self.game
-        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+          let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+          let homeVC = storyboard.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
+          gameController.homeVC = homeVC
+          homeVC.user = self.user
+          homeVC.game = self.game
+          NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
           self.presentViewController(homeVC, animated: true, completion: { () -> Void in
             homeVC.startMission(self.game)
           })

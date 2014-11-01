@@ -11,14 +11,15 @@ import UIKit
 class GameSession: NSObject, NSCoding {
 
     var players : [Player] // Array of Player
-    var missions : NSMutableArray // Array of Mission
+    var missions : [Mission] // Array of Mission
     var leader : Player? // Get from players.objectAtIndex(Int)
     var currentMission : NSInteger = 0 // Get from missions.objectAtIndex(Int)
     var currentGameState  : GameEvent?
     var failedMissionCount : NSInteger = 0
     var passedMissionCount : NSInteger = 0
+    var flavorTextArray = [(String,String)]()
   
-    init (players: [Player], missions: NSMutableArray) {
+    init (players: [Player], missions: [Mission]) {
         self.players = players
         self.missions = missions
 
@@ -27,7 +28,7 @@ class GameSession: NSObject, NSCoding {
     required init(coder aDecoder: NSCoder) {
 
       self.players = aDecoder.decodeObjectForKey("players") as [Player]
-        self.missions = aDecoder.decodeObjectForKey("missions") as NSMutableArray
+        self.missions = aDecoder.decodeObjectForKey("missions") as [Mission]
         self.leader = aDecoder.decodeObjectForKey("leader") as Player?
         self.currentMission = aDecoder.decodeIntegerForKey("currentMission") as NSInteger
         let currentGameStateFor = aDecoder.decodeObjectForKey("currentGameState") as GameEvent.RawValue!
@@ -52,7 +53,7 @@ class GameSession: NSObject, NSCoding {
 
     }
 
-  class func populateMissionList(playerCount: Int) -> NSMutableArray {
+  class func populateMissionList(playerCount: Int) -> [Mission] {
       var mission1 : (Int, Int)
       var mission2 : (Int, Int)
       var mission3 : (Int, Int)
@@ -102,15 +103,15 @@ class GameSession: NSObject, NSCoding {
         mission4 = (3, 1)
         mission5 = (3, 1)
       }
-      var missionList = NSMutableArray()
+      var missionList = [Mission]()
       
-      missionList.addObject(Mission(playersNeeded: mission1.0, failThreshold: mission1.1))
-      missionList.addObject(Mission(playersNeeded: mission2.0, failThreshold: mission2.1))
-      missionList.addObject(Mission(playersNeeded: mission3.0, failThreshold: mission3.1))
-      missionList.addObject(Mission(playersNeeded: mission4.0, failThreshold: mission4.1))
-      missionList.addObject(Mission(playersNeeded: mission5.0, failThreshold: mission5.1))
+      missionList.append(Mission(playersNeeded: mission1.0, failThreshold: mission1.1))
+      missionList.append(Mission(playersNeeded: mission2.0, failThreshold: mission2.1))
+      missionList.append(Mission(playersNeeded: mission3.0, failThreshold: mission3.1))
+      missionList.append(Mission(playersNeeded: mission4.0, failThreshold: mission4.1))
+      missionList.append(Mission(playersNeeded: mission5.0, failThreshold: mission5.1))
       
-      return missionList as NSMutableArray!
+      return missionList
 
     }
 
@@ -137,6 +138,9 @@ class GameSession: NSObject, NSCoding {
         return passedGame as UserInfo
         
     }
+  
+
+  
     
     
 } // End

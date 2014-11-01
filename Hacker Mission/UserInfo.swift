@@ -33,18 +33,16 @@ class UserInfo : NSObject, NSCoding {
 
         self.userName = aDecoder.decodeObjectForKey("userName") as NSString
         self.userID = aDecoder.decodeIntegerForKey("userID") as NSInteger
-      let data = aDecoder.decodeObjectForKey("userImage") as NSData
+        let data = aDecoder.decodeObjectForKey("userImage") as NSData
         self.userImage = UIImage(data: data)!
         self.userPeerID = aDecoder.decodeObjectForKey("userPeerID") as NSString?
 
     }
-
-
-
+  
      func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.userName, forKey: "userName")
         aCoder.encodeInteger(self.userID, forKey: "userID")
-      let data = UIImagePNGRepresentation(self.userImage)
+        let data = UIImagePNGRepresentation(self.userImage)
         aCoder.encodeObject(data, forKey: "userImage")
         if self.userPeerID != nil {
             aCoder.encodeObject(self.userPeerID, forKey: "userPeerID")
@@ -120,16 +118,15 @@ class UserInfo : NSObject, NSCoding {
   class func saveTheObject (object: UserInfo) {
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     let filePath = appDelegate.documentsPath as String!
-    println("filePath = \(filePath)")
     println("Saving to File")
 
     NSKeyedArchiver.archiveRootObject(object, toFile: filePath)
 
     let fileManager = NSFileManager.defaultManager()
     if fileManager.fileExistsAtPath(filePath) {
-      println("there it is")
+      println("save appears to be successful, saved file has been found")
     } else {
-      println("????")
+      println("save apears to have failed, no saved file found")
     }
 
 
@@ -138,16 +135,17 @@ class UserInfo : NSObject, NSCoding {
   class func loadTheObject() -> UserInfo {
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     let filePath = appDelegate.documentsPath as String!
-    println("filePath = \(filePath)")
-    println("load from file")
+    println("attempting to find the default user from the drive")
     let fileManager = NSFileManager.defaultManager()
     if fileManager.fileExistsAtPath(filePath) {
-      println("there it is for load")
+      println("found the file, will attempt to load it")
     } else {
-      println("what the fuck?")
+      println("no file found")
     }
+    let aFile = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as UserInfo!
+    println("the info I loded is for user  \(aFile.userName)")
 
-    return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as UserInfo
+    return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as UserInfo!
 
 
   }

@@ -12,6 +12,7 @@ class RevealMissionOutcomeViewController: UIViewController {
 
   @IBOutlet weak var missionOutcomeLabel: UILabel!
   
+  @IBOutlet weak var missionOutcomeTitleLabel: UILabel!
   var game : GameSession!
   
   override func viewDidLoad() {
@@ -21,12 +22,14 @@ class RevealMissionOutcomeViewController: UIViewController {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    let currentMission = game.missions[game.currentMission] as Mission
-    let result = currentMission.success! as Bool
+    let justCompletedMission = game.missions[game.currentMission - 1] as Mission
+    let result = justCompletedMission.success! as Bool
+    let successVotes = justCompletedMission.successCardsPlayed
+    let failVotes = justCompletedMission.failCardsPlayed
     if result {
-      missionOutcomeLabel.text = "Mission Succeeded!!!"
+      missionOutcomeLabel.text = "Mission Succeeded with a vote of \(successVotes) to \(failVotes)!"
     } else {
-      missionOutcomeLabel.text = "Mission Failed!!!"
+      missionOutcomeLabel.text = "Mission Failed with a vote of \(failVotes) to \(successVotes)"
     }
   }
 
@@ -35,6 +38,13 @@ class RevealMissionOutcomeViewController: UIViewController {
       // Dispose of any resources that can be recreated.
   }
   
+  @IBAction func confirmButtonPressed(sender: AnyObject) {
+    let parentVC = self.parentViewController as HomeViewController
+ 
+    self.view.removeFromSuperview()
+    self.removeFromParentViewController()
+    parentVC.processEndMission()
+  }
 
   /*
   // MARK: - Navigation
