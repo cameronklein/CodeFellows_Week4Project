@@ -32,6 +32,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var votingResultsIndicatorLabel: UILabel!
     @IBOutlet weak var nominationPromptLabel: UILabel!
     @IBOutlet weak var confirmNominationButton: UIButton!
+ 
     
     var players : [Player] = []
     var playersSelected = 0
@@ -54,6 +55,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       super.viewDidLoad()
       self.playersCollectionView.delegate = self
       self.playersCollectionView.dataSource = self
+      
       
       //Set Cell Dimensions
       self.layout = playersCollectionView.collectionViewLayout as UICollectionViewFlowLayout

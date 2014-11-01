@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class GameController : MultiPeerDelegate {
+class GameController {
   
   class var sharedInstance : GameController {
     struct Static {
@@ -30,12 +30,12 @@ class GameController : MultiPeerDelegate {
   var multipeerController = MultiPeerController.sharedInstance
   
   init(){
-    multipeerController.delegate = self
+    
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-
+    multipeerController.gameController = self
     myUserInfo = appDelegate.defaultUser as UserInfo!
     myUserInfo.userPeerID = multipeerController.peerID.displayName
-    myUserInfo.userImage = UIImage(named: "AtSymbol")!
+
   }
   
   func handleEvent(newGameInfo: GameSession) {
@@ -129,16 +129,11 @@ class GameController : MultiPeerDelegate {
     
   }
 
-  func handleEvent(event: NSMutableDictionary) {
-    println("GAME CONTROLLER: Received Dictionary through multipeer. Doing nothing with it.")
-  }
-
   func updatePeerCount(count : Int) {
     self.peerCount = count
     if let root = UIApplication.sharedApplication().keyWindow?.rootViewController as? LaunchViewController {
       NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
         root.updateConnectedPeersLabel(count)
-            //collect userInfo as users join
       })
     }
   }

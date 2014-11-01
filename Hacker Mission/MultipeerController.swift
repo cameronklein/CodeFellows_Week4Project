@@ -8,13 +8,6 @@
 
 import MultipeerConnectivity
 
-protocol MultiPeerDelegate {
-  func handleEvent(event : GameSession)
-  func handleEvent(event : NSMutableDictionary)
-  func updatePeerCount(Int)
-  func sendUserInfo()
-}
-
 class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate {
   
   class var sharedInstance : MultiPeerController {
@@ -28,9 +21,9 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   var session             : MCSession!
   var advertiser          : MCNearbyServiceAdvertiser!
   var browser             : MCNearbyServiceBrowser!
-  var delegate            : MultiPeerDelegate!
-  var mainBrainDelegate   : MultiPeerDelegate?
   var peerWithMainBrain   : MCPeerID!
+  var gameController      : GameController!
+  var mainBrain           : LeadGameController?
   
   let MyServiceType = "cf-hacker"
   
@@ -53,6 +46,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     browser = MCNearbyServiceBrowser(peer: peerID, serviceType: MyServiceType)
     browser.delegate = self
     
+    
   }
   
   // MARK: - MCSessionDelegate Methods
@@ -63,7 +57,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
 
     if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
       println("Recognized data as GameSession.")
-      delegate.handleEvent(gameData)
+      gameController.handleEvent(gameData)
     }
       
     else if let dataReceivedFromSlave = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary{
@@ -72,9 +66,8 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       newDictionary.setObject(dataReceivedFromSlave.objectForKey("action")!, forKey: "action")
       newDictionary.setObject(dataReceivedFromSlave.objectForKey("value")!, forKey: "value")
       newDictionary.setObject(peerID.displayName, forKey: "peerID")
-      println(self.delegate)
-      self.delegate.handleEvent(newDictionary)
-      self.mainBrainDelegate?.handleEvent(newDictionary)
+      
+      self.mainBrain?.handleEvent(newDictionary)
       
     } else if let dataReceivedFromSlave = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSMutableDictionary{
       println("Recognized data as NSMutableDictionary.")
@@ -82,8 +75,8 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       newDictionary.setObject(dataReceivedFromSlave.objectForKey("action")!, forKey: "action")
       newDictionary.setObject(dataReceivedFromSlave.objectForKey("value")!, forKey: "value")
       newDictionary.setObject(peerID.displayName, forKey: "peerID")
-      self.delegate.handleEvent(newDictionary)
-      self.mainBrainDelegate?.handleEvent(newDictionary)
+      
+      self.mainBrain?.handleEvent(newDictionary)
     }
     else {
       println("Unknown Data Received!")
@@ -95,10 +88,12 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     
     if state == MCSessionState.Connected {
       println("\(peerID.displayName) Connected")
-      self.delegate.sendUserInfo()
-      self.delegate.updatePeerCount(session.connectedPeers.count)
+      self.gameController.sendUserInfo()
+      self.gameController.updatePeerCount(session.connectedPeers.count)
+
     } else if state == MCSessionState.NotConnected {
       println("Peer Stopped Connecting")
+
     } else if state == MCSessionState.Connecting {
       println("Peer Connecting")
     }
@@ -176,7 +171,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     if error != nil {
       println("Error encountered when sending game to peers: \(error!.description))")
     }
-    delegate.handleEvent(game)
+    gameController.handleEvent(game)
   }
   
   func sendInfoToMainBrain(dictionary: NSMutableDictionary) {
@@ -190,7 +185,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       println("Error encountered when sending info to main brain: \(error!.description))")
     }
     dictionary.setObject(self.peerID.displayName, forKey: "peerID")
-    self.mainBrainDelegate?.handleEvent(dictionary)
+    self.mainBrain?.handleEvent(dictionary)
     
   }
     

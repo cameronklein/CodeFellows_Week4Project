@@ -14,12 +14,10 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var playerRevealCollectionView: UICollectionView!
     @IBOutlet weak var flavorTextLabel: UILabel!
     
-  //var game : GameSession!
+  
     var playerArray = [Player]()
     var agentArray = [Player]()
-  //var user : Player?
     var gameController = GameController.sharedInstance
-  
     var screenWidth : CGFloat!
     var layout : UICollectionViewFlowLayout!
   
@@ -41,7 +39,10 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
       layout.minimumInteritemSpacing = screenWidth * 0.02
       layout.sectionInset.left = screenWidth * 0.05
       layout.sectionInset.right = screenWidth * 0.05
-      layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.17)
+      layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.23)
+      
+      let homeVC = storyboard.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
+      gameController.homeVC = homeVC
       
       for player in gameController.game.players {
         playerArray.append(player as Player)
@@ -57,13 +58,11 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         if gameController.thisPlayer.playerRole == .Agent
         {
-            self.flavorTextLabel.text = "You're a secret bad guy. Here is your secret bad guy team."
-            self.flavorTextLabel.typingAnimation(0.1)
+          self.flavorTextLabel.typeToNewString("You're a secret bad guy. Here is your secret bad guy team.", withInterval: 0.1)
         }
         else
         {
-            self.flavorTextLabel.text = "You're a good guy. Some of your teammates are secret bad guys."
-            self.flavorTextLabel.typingAnimation(0.1)
+          self.flavorTextLabel.typeToNewString("You're a good guy. Some of your teammates are secret bad guys.", withInterval: 0.1)
         }
     }
     
@@ -117,8 +116,6 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
 //        self.view.removeFromSuperview()
 //        self.removeFromParentViewController()
           let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-          let homeVC = storyboard.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
-          gameController.homeVC = homeVC
       
           NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
           self.presentViewController(homeVC, animated: true, completion: { () -> Void in

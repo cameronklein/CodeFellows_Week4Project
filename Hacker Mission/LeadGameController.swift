@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class LeadGameController : MultiPeerDelegate {
+class LeadGameController {
   
   var multipeerController : MultiPeerController = MultiPeerController.sharedInstance
   var game : GameSession!
@@ -22,7 +22,7 @@ class LeadGameController : MultiPeerDelegate {
   var flavorTextArray = [(String,String)]()
 
   init() {
-    multipeerController.mainBrainDelegate = self
+    multipeerController.mainBrain = self
     self.loadFlavorTextIntoArray()
   }
   
@@ -152,10 +152,14 @@ class LeadGameController : MultiPeerDelegate {
   func revealCharacters() {
     //Sends information on who is on what team (Hackers and Goverment Agents) to devices.  Only Goverment Agents see who the other Goverment Agents are
     println("MAIN BRAIN: Sending *Reveal Characters* event to peers.")
+    for player in game.players {
+      
+      player.currentVote = nil
+      player.isNominated = false
+    }
     game.currentGameState = GameEvent.RevealCharacters
     multipeerController.sendEventToPeers(game)
-//    game.currentGameState = GameEvent.MissionStart
-//    multipeerController.sendEventToPeers(game)
+
   }
 
   func changeLeader() {
