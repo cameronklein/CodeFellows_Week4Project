@@ -55,6 +55,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       super.viewDidLoad()
       self.playersCollectionView.delegate = self
       self.playersCollectionView.dataSource = self
+      gameController.homeVC = self
       
       
       //Set Cell Dimensions
