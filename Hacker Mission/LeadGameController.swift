@@ -60,14 +60,13 @@ class LeadGameController : MultiPeerDelegate {
     
     let revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())
     GameController.sharedInstance.revealVC = revealVC
-    let playerArray = game.players
-    for player in playerArray {
-        if multipeerController.peerID.displayName == player.peerID {
-            revealVC.user = player
-        }
+    
+    for player in game.players {
+      if multipeerController.peerID.displayName == player.peerID {
+        revealVC.user = player
+      }
     }
-//    let revealVC = UIStoryboard(name: "Main", bundle:
-//        NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("HOME") as RevealViewController
+    
     revealVC.game = self.game
     
     self.launchVC.gameStart(revealVC)
@@ -111,10 +110,12 @@ class LeadGameController : MultiPeerDelegate {
   func assignRoles(){
     println("MAIN BRAIN: Beginning to assign player roles for \(game.players.count) players.")
 
-    let players = game.players as NSArray
+    let players = game.players
     let numberOfPlayers = players.count
     var numberOfAgents = 1
     switch numberOfPlayers {
+    case 5, 6:
+      numberOfAgents = 2
     case 7, 8, 9:
       numberOfAgents = 3
     case 10:
@@ -194,6 +195,12 @@ class LeadGameController : MultiPeerDelegate {
   func tellLeaderToNominatePlayers() {
     //Leader nominates the appropriate number of hackers to go on the mission
     println("MAIN BRAIN: Sending *Nominate Players* event to peers.")
+    for player in game.players {
+      
+      player.currentVote = nil
+      player.isNominated = false
+    }
+    
     game.currentGameState = GameEvent.NominatePlayers
     multipeerController.sendEventToPeers(game)
     
@@ -257,6 +264,7 @@ class LeadGameController : MultiPeerDelegate {
   }
   
   func revealVotes(passed: Bool) {
+    
     //Displays all players votes to approve/reject the mission
     println("MAIN BRAIN: Sending *Reveal Vote* event to peers.")
     game.currentGameState = GameEvent.RevealVote
@@ -264,32 +272,29 @@ class LeadGameController : MultiPeerDelegate {
     let currentMission = game.missions[game.currentMission] as Mission
     
     if currentMission.rejectedTeamsCount == 5 {
+      
       currentMission.success = false
       game.failedMissionCount = game.failedMissionCount + 1
       revealMissionOutcome()
+      
     } else if passed == false {
+      
       self.changeLeader()
+      
       self.delay(10.0, closure: { () -> () in
         self.tellLeaderToNominatePlayers()
       })
-      for player in game.players {
-        player.currentVote = nil
-        player.isNominated = false
-      }
+
       currentMission.nominatedPlayers.removeAll(keepCapacity: true)
       
     } else if passed == true {
+      
       println("MAIN BRAIN: Telling nominated players to determine mission outcome! Nominated players: \(currentMission.nominatedPlayers.description)")
+      
       self.delay(10.0, closure: { () -> () in
        self.tellPlayersToDetermineMissionOutcome()
       })
-      
-      for player in game.players{
-        player.currentVote = nil
-        player.isNominated = false
-      }
     }
-    
   }
   
   func tellPlayersToDetermineMissionOutcome() {
@@ -329,6 +334,7 @@ class LeadGameController : MultiPeerDelegate {
         currentMission.success = true
         game.passedMissionCount = game.passedMissionCount + 1
       }
+      
       currentMissionOutcomeVotes.removeAll(keepCapacity: true)
         
       revealMissionOutcome()
@@ -372,7 +378,9 @@ class LeadGameController : MultiPeerDelegate {
     
   }
   
+  //
   // MARK - Multipeer Delegate Methods
+  //
   
   func handleEvent(event: NSMutableDictionary) {
     println(event.description)
@@ -424,9 +432,9 @@ class LeadGameController : MultiPeerDelegate {
     self.revealNominations()
   }
 
-    func handleEvent(event: GameSession) {
-        println("MAIN BRAIN: Something went wrong. This should not be called.")
-    }
+  func handleEvent(event: GameSession) {
+    println("MAIN BRAIN: Something went wrong. This should not be called.")
+  }
   
   func updatePeerCount(count : Int) {
     self.peerCount = count

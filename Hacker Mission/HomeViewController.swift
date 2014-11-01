@@ -36,14 +36,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var players : [Player] = []
     var user : Player?
     var playersSelected = 0
-    var game : GameSession!
+  //var game : GameSession!
     var labelsAreBlinking = false
     var lastRejectedGameCount = 0
     
     var screenWidth : CGFloat!
     var layout : UICollectionViewFlowLayout!
     var multiPeerController = MultiPeerController.sharedInstance
-    //var gameController = GameController.sharedInstance
+    var gameController = GameController.sharedInstance
     
     var selectedIndexPath : NSIndexPath?
     
@@ -65,12 +65,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       layout.sectionInset.right = screenWidth * 0.05
       layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.23)
     
+      //Register PlayerCellNib
       self.playersCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
       
-      //round corners on players collection view
+      //Round corners on players collection view
       self.playersCollectionView.layer.cornerRadius = self.playersCollectionView.frame.size.width / 16
       self.playersCollectionView.layer.masksToBounds = true
-      //round corners on missions view
+      
+      //Round corners on missions view
       self.missionView.layer.cornerRadius = self.missionView.frame.size.width / 32
       self.missionView.layer.masksToBounds = true
         
@@ -80,21 +82,20 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewWillAppear(animated: Bool)
     {
       super.viewWillAppear(true)
-        
     }
     
     //MARK: - Collection view methods
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-      println("CollectionView asking for cells. Returned \(game.players.count).")
-        return self.game.players.count
+      println("CollectionView asking for cells. Returned \(self.gameController.game.players.count).")
+      return self.gameController.game.players.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
       let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PLAYER", forIndexPath: indexPath) as PlayerCell
-      let player = self.game.players[indexPath.row] as Player
+      let player = self.gameController.game.players[indexPath.row] as Player
 
       cell.imageView.image = player.playerImage
       cell.username.text = player.playerName
@@ -110,7 +111,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
           cell.layer.borderWidth = 0
       }
       
-      if self.game.currentGameState == .NominatePlayers
+      if self.gameController.game.currentGameState == .NominatePlayers
       {
         cell.approvesMission.hidden = true
         cell.rejectsMission.hidden = true
@@ -169,7 +170,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         else
         {
-          if self.playersSelected == (game.missions[game.currentMission] as Mission).playersNeeded
+          if self.playersSelected == (self.gameController.game.missions[self.gameController.game.currentMission] as Mission).playersNeeded
           {
             println("You can't select this person until you deselect somebody else.")
           }
@@ -182,7 +183,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         
         
-        if self.playersSelected == (game.missions[game.currentMission] as Mission).playersNeeded
+        if self.playersSelected == (self.gameController.game.missions[self.gameController.game.currentMission] as Mission).playersNeeded
         {
             self.confirmNominationButton.userInteractionEnabled = true
             UIView.animateWithDuration(0.1, animations:
@@ -194,8 +195,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
   
-  func revealVotes(game: GameSession) {
-    self.game = game
+  func revealVotes() {
+    
+    let game = gameController.game
+    
     let currentMission = game.missions[game.currentMission] as Mission
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in

@@ -18,14 +18,16 @@ class GameController : MultiPeerDelegate {
     return Static.instance
   }
   
-  var game : GameSession!
-  var revealVC : RevealViewController!
-  var launchVC : LaunchViewController!
-  var homeVC : HomeViewController!
+  var game        : GameSession!
+  var revealVC    : RevealViewController!
+  var launchVC    : LaunchViewController!
+  var homeVC      : HomeViewController!
+  var userInfo    : UserInfo?
+  var myUserInfo  : UserInfo!
+  var thisPlayer  : Player!
+  var peerCount   : Int = 0
+  
   var multipeerController = MultiPeerController.sharedInstance
-  var peerCount : Int = 0
-  var userInfo : UserInfo?
-  var myUserInfo : UserInfo!
   
   init(){
     multipeerController.delegate = self
@@ -41,16 +43,12 @@ class GameController : MultiPeerDelegate {
     switch event{
     case .Start:
       self.gameStart()
-    case .RevealCharacters:
-      self.revealCharacters()
     case .NominatePlayers:
       self.nominatePlayers()
     case .RevealNominations:
       self.revealNominations()
     case .MissionStart:
       self.startMission()
-    //case .Vote:
-      //self.vote()
     case .RevealVote:
       self.revealVotes()
     case .BeginMissionOutcome:
@@ -67,6 +65,7 @@ class GameController : MultiPeerDelegate {
   func findMe(){
     for player in game.players {
       if player.peerID == multipeerController.peerID.displayName {
+        self.thisPlayer = player
         if homeVC != nil {
           homeVC.user = player
           println("GAME CONTROLLER: Updated homeVC user!")
@@ -84,6 +83,7 @@ class GameController : MultiPeerDelegate {
   func gameStart() {
     
     println("GAME CONTROLLER: Got Game Start Message")
+    
     multipeerController.stopAdvertising()
     revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())
 
@@ -98,13 +98,6 @@ class GameController : MultiPeerDelegate {
     revealVC.game = self.game
     self.launchVC.gameStart(revealVC)
     
-  }
-  
-  func revealCharacters() {
-    //At start of game reveal what role you are in the game
-    
-    //self.homeVC.revealCharacters(game.playerList)
-
   }
   
   func nominatePlayers() {
@@ -146,7 +139,6 @@ class GameController : MultiPeerDelegate {
   func handleEvent(event: NSMutableDictionary) {
     println("GAME CONTROLLER: Received Dictionary through multipeer. Doing nothing with it.")
   }
-
 
   func updatePeerCount(count : Int) {
     self.peerCount = count
