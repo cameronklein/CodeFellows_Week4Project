@@ -20,6 +20,7 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
     var gameController = GameController.sharedInstance
     var screenWidth : CGFloat!
     var layout : UICollectionViewFlowLayout!
+    var homeVC : HomeViewController!
   
     //MARK: - View Methods
     
@@ -41,8 +42,7 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
       layout.sectionInset.right = screenWidth * 0.05
       layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.23)
       
-      let homeVC = storyboard.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
-      gameController.homeVC = homeVC
+      
       
       for player in gameController.game.players {
         playerArray.append(player as Player)
@@ -116,7 +116,8 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
 //        self.view.removeFromSuperview()
 //        self.removeFromParentViewController()
           let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-      
+          let homeVC = storyboard.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
+  
           NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
           self.presentViewController(homeVC, animated: true, completion: { () -> Void in
             homeVC.startMission()
