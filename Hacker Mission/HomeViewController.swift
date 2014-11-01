@@ -160,7 +160,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        var player = game.players[indexPath.row]
+        var player = gameController.game.players[indexPath.row]
         
         if player.isNominated == true
         {
@@ -237,7 +237,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
     func nominatePlayers(game : GameSession)
     {
-      self.game = game
       self.playersSelected = 0
       if self.user?.isLeader == true {
         self.incomingMesageLabel.text = "You are leader. Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) people."
@@ -603,7 +602,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
 
     //MARK: - One line, because we probably won't use this.
-    override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}
+  override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}
+  
+  func animateIncomingMessageLabelWithCompletionHandler(completionHandler : () -> (Void)) {
+    
+  }
   
 
 
