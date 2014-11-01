@@ -45,6 +45,7 @@ class LeadGameController : MultiPeerDelegate {
     let players = self.getPlayersFromCurrentUsersArray()
     
     println("MAIN BRAIN: \(players.count) players created from provided user information.")
+    println("PLAYERS DESC: \(players.description)")
     
     var missions = GameSession.populateMissionList(players.count)
     
@@ -64,7 +65,7 @@ class LeadGameController : MultiPeerDelegate {
     
     for player in game.players {
       if multipeerController.peerID.displayName == player.peerID {
-        revealVC.user = player
+        //revealVC.user = player
       }
     }
     
@@ -335,6 +336,12 @@ class LeadGameController : MultiPeerDelegate {
       }
       
       currentMissionOutcomeVotes.removeAll(keepCapacity: true)
+      
+      for player in game.players {
+        
+        player.currentVote = nil
+        player.isNominated = false
+      }
         
       revealMissionOutcome()
       }

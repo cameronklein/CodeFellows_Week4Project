@@ -92,6 +92,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   }
  
   func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
+    
     if state == MCSessionState.Connected {
       println("\(peerID.displayName) Connected")
       self.delegate.sendUserInfo()
@@ -101,6 +102,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     } else if state == MCSessionState.Connecting {
       println("Peer Connecting")
     }
+    
   }
   
   func session(session: MCSession!, didReceiveStream stream: NSInputStream!, withName streamName: String!, fromPeer peerID: MCPeerID!) {
@@ -181,7 +183,9 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     
     let data = NSKeyedArchiver.archivedDataWithRootObject(dictionary)
     var error : NSError?
-    session.sendData(data, toPeers: [peerWithMainBrain], withMode: MCSessionSendDataMode.Reliable, error: &error)
+    if peerWithMainBrain != nil {
+      session.sendData(data, toPeers: [peerWithMainBrain], withMode: MCSessionSendDataMode.Reliable, error: &error)
+    }
     if error != nil {
       println("Error encountered when sending info to main brain: \(error!.description))")
     }
@@ -196,7 +200,9 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     let dictionaryData = ["action" : "user", "value" : userInfo]
     let data = NSKeyedArchiver.archivedDataWithRootObject(dictionaryData)
     var error : NSError?
-    session.sendData(data, toPeers: [peerWithMainBrain], withMode: MCSessionSendDataMode.Reliable, error: &error)
+    if peerWithMainBrain != nil {
+      session.sendData(data, toPeers: [peerWithMainBrain], withMode: MCSessionSendDataMode.Reliable, error: &error)
+    }
     if error != nil {
       println("Error encountered when sending user info to main brain: \(error!.description))")
     }

@@ -34,15 +34,18 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
     layout.sectionInset.left = screenWidth * 0.05
     layout.sectionInset.right = screenWidth * 0.05
     layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.17)
-  }
-  
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
+    
     let currentMission = gameController.game.missions[gameController.game.currentMission] as Mission
+    println("Nomination View Controller got an array: \(currentMission.nominatedPlayers.description)")
     nominatedPlayersArray = currentMission.nominatedPlayers
     collectionView.reloadData()
     self.approveButton.userInteractionEnabled = true
     self.rejectButton.userInteractionEnabled = true
+    
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
   }
   
   @IBAction func approveNominatedTeam (sender: AnyObject)
@@ -71,6 +74,9 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PLAYER", forIndexPath: indexPath) as PlayerCell
     let player = nominatedPlayersArray[indexPath.row] as Player
     
+    println("NOMINATION VOTE VIEW CONTROLLER: Made cell for player,  \(player.playerName)")
+    
+    
     cell.imageView.image = player.playerImage
     cell.username.text = player.playerName
     
@@ -78,7 +84,9 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
   }
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    println("NOMINATION VOTE VIEW CONTROLLER: Asking for cells, got \(nominatedPlayersArray.count)")
     return nominatedPlayersArray.count
+    
   }
     
     
