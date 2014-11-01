@@ -22,6 +22,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   @IBOutlet weak var joinButton: UIButton!
   @IBOutlet weak var spinningWheel: UIActivityIndicatorView!
   @IBOutlet weak var createCharacterButton: UIButton!
+  @IBOutlet weak var testLabel: UILabel!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -70,6 +71,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
 
     println("the appDelUser is: \(appDelegate.defaultUser?.userName)")
+
   }
 
 

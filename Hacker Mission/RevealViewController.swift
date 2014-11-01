@@ -14,12 +14,10 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var playerRevealCollectionView: UICollectionView!
     @IBOutlet weak var flavorTextLabel: UILabel!
     
-  //var game : GameSession!
+  
     var playerArray = [Player]()
     var agentArray = [Player]()
-  //var user : Player?
     var gameController = GameController.sharedInstance
-  
     var screenWidth : CGFloat!
     var layout : UICollectionViewFlowLayout!
   
@@ -41,7 +39,7 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
       layout.minimumInteritemSpacing = screenWidth * 0.02
       layout.sectionInset.left = screenWidth * 0.05
       layout.sectionInset.right = screenWidth * 0.05
-      layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.17)
+      layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.23)
       
       for player in gameController.game.players {
         playerArray.append(player as Player)
