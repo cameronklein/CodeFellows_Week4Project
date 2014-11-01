@@ -160,19 +160,19 @@
 		16C784AA19FEC2E5008421CC /* Controller Layer */ = {
 			isa = PBXGroup;
 			children = (
-				436546741A00299C0060B865 /* AppDelegate.swift */,
 				7E46DF4019FEBC2A009215E3 /* MultipeerController.swift */,
+				7E423DF71A0027560015CC8D /* LaunchViewController.swift */,
+				164EDA921A01672D005F7452 /* RevealViewController.swift */,
 				70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */,
+				7E46DF4619FF126A009215E3 /* GameController.swift */,
+				705BB11D19FFFB5C00584A5B /* LeadGameController.swift */,
+				436546741A00299C0060B865 /* AppDelegate.swift */,
 				7E86E9BA1A03F234001C81C5 /* EndGameViewController.swift */,
 				7EF0C12D1A02C358002A6219 /* MissionTextViewController.swift */,
-				705BB11D19FFFB5C00584A5B /* LeadGameController.swift */,
 				7EF0C1271A02A519002A6219 /* RevealMissionOutcomeViewController.swift */,
-				7E423DF71A0027560015CC8D /* LaunchViewController.swift */,
-				7E46DF4619FF126A009215E3 /* GameController.swift */,
 				7E9BE66A19FFFF1D00E21794 /* NominationViewController.swift */,
 				7E46DF2219FEB359009215E3 /* ViewController.swift */,
 				164EDA8E1A015008005F7452 /* CharacterCreationViewController.swift */,
-				164EDA921A01672D005F7452 /* RevealViewController.swift */,
 				7EF0C12B1A02AAEC002A6219 /* MissionOutcomeVoteViewController.swift */,
 			);
 			name = "Controller Layer";

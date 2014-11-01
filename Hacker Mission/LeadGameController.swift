@@ -37,51 +37,27 @@ class LeadGameController : MultiPeerDelegate {
 
   func startGame() {
     
-    println("Start Game Called on Master View Controller")
+    println("MAIN BRAIN : Start Game Function Called")
     
     multipeerController.stopBrowsing()
-    //send start game command to all users
-   // multipeerController.sendEventToPeers(game: GameSession)
-    var players : [Player] = []
-
-      for user in usersForGame {
-        
-        var playerFor = Player.makePlayerDictionaryForGameSession(user as UserInfo)
-        var player = Player(playerDictionary: playerFor) as Player
-        var needToAdd : Bool = true
-        for existingPlayer in players {
-            if (existingPlayer.playerID == player.playerID) {
-                needToAdd = false
-            }
-        }
-        if (needToAdd) {
-            players.append(player)
-        }
-      }
+  
+    let players = self.getPlayersFromCurrentUsersArray()
     
-//    var players = usersForGame.map { (UserInfo) -> U in
-//      return Player(Player.makePlayerDictionaryForGameSession(UserInfo))
-//    }
     println("MAIN BRAIN: \(players.count) players created from provided user information.")
-    var missions = GameSession.populateMissionList(players.count) as NSMutableArray
     
-    for i in 0...4 {
-
-      let flavorTextIndex = Int(arc4random_uniform(UInt32(flavorTextArray.count)))
-      let mission = missions[i] as Mission
-      mission.missionName = flavorTextArray[flavorTextIndex].0
-      mission.missionDescription = flavorTextArray[flavorTextIndex].1
-      flavorTextArray.removeAtIndex(flavorTextIndex)
-      
-    }
+    var missions = GameSession.populateMissionList(players.count)
+    
+    self.giveFlavorTextToMissions(&missions)
     
     println("MAIN BRAIN: Created \(missions.count) missions.")
     
     self.game = GameSession(players: players, missions: missions)
+    
     if self.game != nil {
       println("MAIN BRAIN: Game Created. We are ready for launch.")
-      assignRoles()
+      self.assignRoles()
     }
+    
     let revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())
     GameController.sharedInstance.revealVC = revealVC
     let playerArray = game.players
@@ -96,6 +72,41 @@ class LeadGameController : MultiPeerDelegate {
     
     self.launchVC.gameStart(revealVC)
     }
+  
+  func getPlayersFromCurrentUsersArray() -> [Player] {
+    
+    var players = [Player]()
+    println("MAIN BRAIN : Creating players from user array of \(usersForGame.count) users.")
+    for user in usersForGame {
+      
+      var playerFor = Player.makePlayerDictionaryForGameSession(user as UserInfo)
+      var player = Player(playerDictionary: playerFor) as Player
+      var needToAdd : Bool = true
+      for existingPlayer in players {
+        if (existingPlayer.playerID == player.playerID) {
+          needToAdd = false
+        }
+      }
+      if (needToAdd) {
+        players.append(player)
+      }
+    }
+    println("MAIN BRAIN : Created \(players.count) players.")
+    
+    return players
+  }
+  
+  func giveFlavorTextToMissions(inout missions: [Mission]) {
+    
+    for mission in missions {
+      
+      let flavorTextIndex = Int(arc4random_uniform(UInt32(flavorTextArray.count)))
+      mission.missionName = flavorTextArray[flavorTextIndex].0
+      mission.missionDescription = flavorTextArray[flavorTextIndex].1
+      flavorTextArray.removeAtIndex(flavorTextIndex)
+      
+    }
+  }
 
   func assignRoles(){
     println("MAIN BRAIN: Beginning to assign player roles for \(game.players.count) players.")
@@ -368,7 +379,7 @@ class LeadGameController : MultiPeerDelegate {
     let action  = event["action"] as String
     let peerID  = event["peerID"] as String
     
-    switch action{
+    switch action {
       
     case "vote" :
       println("MAIN BRAIN: Received vote information from \(peerID)")
@@ -392,6 +403,7 @@ class LeadGameController : MultiPeerDelegate {
       
     default:
       println("MAIN BRAIN: LeadGameController event handler action not recognized.")
+      
     }
   }
   

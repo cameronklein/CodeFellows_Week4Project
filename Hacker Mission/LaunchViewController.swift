@@ -14,7 +14,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   var followerController  : GameController?
   var userInfoMyself      : UserInfo?
   var truthInAdvertising  : Bool?
-  //var multiPeerController = MultiPeerController.sharedInstance
+  var multiPeerController = MultiPeerController.sharedInstance
 
   @IBOutlet weak var peersLabel: UILabel!
   @IBOutlet weak var startButton: UIButton!
@@ -109,45 +109,47 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
     masterController?.startGame()
   }
     
-    func updateConnectedPeersLabel (number: Int) -> Void
-    {
-        println("updating Peers Label to \(number)")
-        self.peersLabel.text = "[" + number.description + " Peers Connected..]"
-        if (number > 0) {
-            println("Yep, number is greater then 0")
-            println(self.spinningWheel.isAnimating())
-            if (self.spinningWheel.isAnimating()){
-                self.spinningWheel.stopAnimating()
-                self.peersLabel.hidden = false
-            }
-        }
-        if (number > 0) {
-            if (self.masterController != nil) {
-                self.startButton.hidden = false
-            }
-        }
+  func updateConnectedPeersLabel (number: Int) -> Void
+  {
+    println("LAUNCH VIEW CONTROLLER: Updating peers label to \(number)")
+    self.peersLabel.text = "[" + number.description + " Peers Connected..]"
+    if (number > 0) {
+      println(self.spinningWheel.isAnimating())
+      if (self.spinningWheel.isAnimating()){
+        self.spinningWheel.stopAnimating()
+        self.peersLabel.hidden = false
+      }
+      if self.masterController != nil {
+        self.startButton.hidden = false
+      }
     }
-  
+  }
+
   func gameStart(revealVC: RevealViewController) {
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
       self.presentViewController(revealVC, animated: true, completion: nil)
     }
+    
   }
     
     func didSaveUser(userToSave: UserInfo) {
-        self.userInfoMyself = userToSave
+      
+      self.userInfoMyself = userToSave
+      
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "SHOW_CHARCREATE" {
-            let destinationVC = segue.destinationViewController as CharacterCreationViewController
-            destinationVC.delegate = self
-        }
+      
+      if segue.identifier == "SHOW_CHARCREATE" {
+        let destinationVC = segue.destinationViewController as CharacterCreationViewController
+        destinationVC.delegate = self
+      }
+      
     }
     
     
     @IBAction func createCharacter(sender: AnyObject) {
-        self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
+      self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
     }
 }

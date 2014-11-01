@@ -76,12 +76,13 @@ class GameController : MultiPeerDelegate {
   }
   
   func startLookingForGame(){
-    self.userInfo = UserInfo(userName: "Follower", userImage: UIImage(named: "AtSymbol")!)
-    multipeerController.userInfo = self.userInfo
+    
     multipeerController.startAdvertising()
+    
   }
   
   func gameStart() {
+    
     println("GAME CONTROLLER: Got Game Start Message")
     multipeerController.stopAdvertising()
     revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())
