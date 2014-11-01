@@ -27,7 +27,7 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     override func viewDidLoad(){
       
-      gameController.sendUserInfo()
+      //gameController.sendUserInfo()
       
       super.viewDidLoad()
       self.playerRevealCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
@@ -43,7 +43,7 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
       layout.sectionInset.right = screenWidth * 0.05
       layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.17)
       
-      for player in game.players {
+      for player in gameController.game.players {
         playerArray.append(player as Player)
       }
 
@@ -120,10 +120,11 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
           let homeVC = storyboard.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
           gameController.homeVC = homeVC
           homeVC.user = self.user
-          homeVC.game = self.game
+      
           NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
           self.presentViewController(homeVC, animated: true, completion: { () -> Void in
-            homeVC.startMission(self.game)
+            homeVC.startMission()
+            return ()
           })
        //   self.dismissViewControllerAnimated(false, completion: { () -> Void in})
 
