@@ -51,35 +51,35 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidLoad()
     {
-        super.viewDidLoad()
-        self.playersCollectionView.delegate = self
-        self.playersCollectionView.dataSource = self
-        
-        //Set Cell Dimensions
-        self.layout = playersCollectionView.collectionViewLayout as UICollectionViewFlowLayout
-        self.screenWidth = self.playersCollectionView.frame.width
-        super.viewWillAppear(true)
-        layout.minimumLineSpacing = screenWidth * 0.02
-        layout.minimumInteritemSpacing = screenWidth * 0.02
-        layout.sectionInset.left = screenWidth * 0.05
-        layout.sectionInset.right = screenWidth * 0.05
-        layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.17)
+      super.viewDidLoad()
+      self.playersCollectionView.delegate = self
+      self.playersCollectionView.dataSource = self
       
-        self.playersCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
+      //Set Cell Dimensions
+      self.layout = playersCollectionView.collectionViewLayout as UICollectionViewFlowLayout
+      self.screenWidth = self.playersCollectionView.frame.width
+      super.viewWillAppear(true)
+      layout.minimumLineSpacing = screenWidth * 0.02
+      layout.minimumInteritemSpacing = screenWidth * 0.02
+      layout.sectionInset.left = screenWidth * 0.05
+      layout.sectionInset.right = screenWidth * 0.05
+      layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.23)
+    
+      self.playersCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
+      
+      //round corners on players collection view
+      self.playersCollectionView.layer.cornerRadius = self.playersCollectionView.frame.size.width / 16
+      self.playersCollectionView.layer.masksToBounds = true
+      //round corners on missions view
+      self.missionView.layer.cornerRadius = self.missionView.frame.size.width / 32
+      self.missionView.layer.masksToBounds = true
         
-        //round corners on players collection view
-        self.playersCollectionView.layer.cornerRadius = self.playersCollectionView.frame.size.width / 16
-        self.playersCollectionView.layer.masksToBounds = true
-        //round corners on missions view
-        self.missionView.layer.cornerRadius = self.missionView.frame.size.width / 32
-        self.missionView.layer.masksToBounds = true
-        
-       // self.backgroundImageView.animateGif("matrix_code1.gif", startAnimating: true)
+      //self.backgroundImageView.animateGif("matrix_code1.gif", startAnimating: true)
     }
     
     override func viewWillAppear(animated: Bool)
     {
-        super.viewWillAppear(true)
+      super.viewWillAppear(true)
         
     }
     
@@ -235,6 +235,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     func nominatePlayers(game : GameSession)
     {
       self.game = game
+      self.playersSelected = 0
       if self.user?.isLeader == true {
         self.incomingMesageLabel.text = "You are leader. Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) people."
       } else {
@@ -276,8 +277,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                   //self.startBlinking(self.nominationPromptLabel)
                 }
             })
-                
-          
         })
       }
   }
@@ -565,9 +564,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     } else {
       self.startMission(game)
     }
-    
-    
-    
   }
   
   func endGame(){
