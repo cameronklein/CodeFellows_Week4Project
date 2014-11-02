@@ -17,6 +17,7 @@ class MissionOutcomeVoteViewController: UIViewController {
   @IBOutlet weak var loyalLabel: UILabel!
   @IBOutlet weak var failButton: UIButton!
   @IBOutlet weak var succeedButton: UIButton!
+  @IBOutlet weak var succeedOrFailLabel: UILabel!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -24,6 +25,7 @@ class MissionOutcomeVoteViewController: UIViewController {
     failButton.enabled = true
     succeedButton.enabled = true
     loyalLabel.hidden = true
+    failButton.alpha = 1
 
   }
   override func viewWillAppear(animated: Bool) {
@@ -31,10 +33,14 @@ class MissionOutcomeVoteViewController: UIViewController {
     if currentUser.playerRole == .Hacker {
       loyalLabel.hidden = false
       failButton.enabled = false
+      failButton.alpha = 0.5
     } else {
       loyalLabel.hidden = true
       failButton.enabled = true
     }
+    
+    var textToAnimate = self.succeedOrFailLabel.text!
+    self.succeedOrFailLabel.typeToNewString(textToAnimate, withInterval: 0.1)
   }
   
   func disableButtons() {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -20,17 +20,20 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Outcome" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hA-DH-gMI">
-                    <rect key="frame" x="183" y="282" width="234" height="36"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Outcome" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hA-DH-gMI">
+                    <rect key="frame" x="183.5" y="64" width="233.5" height="160"/>
                     <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="32"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="0hA-DH-gMI" secondAttribute="centerY" id="TKS-Zw-NYz"/>
+                <constraint firstItem="0hA-DH-gMI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="128" id="6m2-Pf-ZnM"/>
+                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="0hA-DH-gMI" secondAttribute="bottom" constant="392" id="OUj-8n-mB3"/>
                 <constraint firstAttribute="centerX" secondItem="0hA-DH-gMI" secondAttribute="centerX" id="ihq-bE-eP2"/>
+                <constraint firstItem="0hA-DH-gMI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="rEf-dw-kaH"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0hA-DH-gMI" secondAttribute="trailing" constant="16" id="wye-3G-IcB"/>
             </constraints>
             <point key="canvasLocation" x="287" y="326"/>
         </view>

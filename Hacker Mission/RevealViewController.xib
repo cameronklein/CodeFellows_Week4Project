@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="MKStencilsansBlack.ttf">
@@ -29,7 +29,7 @@
                     <rect key="frame" x="8" y="8" width="584" height="584"/>
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="lQs-Eo-heM">
-                            <rect key="frame" x="8" y="8" width="568" height="284"/>
+                            <rect key="frame" x="8" y="8" width="568" height="292"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Onz-rr-JCp">
                                 <size key="itemSize" width="50" height="50"/>
@@ -39,7 +39,7 @@
                             </collectionViewFlowLayout>
                         </collectionView>
                         <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flavor text will go here and be really interesting and compelling and cool and everyone will be so wowed and excited." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wV-4E-hyu">
-                            <rect key="frame" x="8" y="502" width="568" height="38"/>
+                            <rect key="frame" x="8" y="308" width="568" height="38"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="17"/>
                             <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -60,15 +60,15 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="lQs-Eo-heM" firstAttribute="height" secondItem="Hpf-Wt-0MH" secondAttribute="height" multiplier="0.5" id="5Fl-q8-9Us"/>
                         <constraint firstItem="8wV-4E-hyu" firstAttribute="leading" secondItem="Hpf-Wt-0MH" secondAttribute="leading" constant="8" id="5Iq-4F-JFa"/>
                         <constraint firstItem="lQs-Eo-heM" firstAttribute="leading" secondItem="Hpf-Wt-0MH" secondAttribute="leading" constant="8" id="5pr-QM-oHT"/>
+                        <constraint firstItem="8wV-4E-hyu" firstAttribute="top" secondItem="lQs-Eo-heM" secondAttribute="bottom" constant="8" id="7Go-Dy-snr"/>
                         <constraint firstAttribute="centerX" secondItem="sj1-dh-HIG" secondAttribute="centerX" id="889-Qj-tUd"/>
+                        <constraint firstAttribute="bottom" secondItem="sj1-dh-HIG" secondAttribute="bottom" constant="8" id="Bg5-6y-7te"/>
                         <constraint firstAttribute="centerX" secondItem="8wV-4E-hyu" secondAttribute="centerX" id="IFY-iW-oKx"/>
-                        <constraint firstItem="sj1-dh-HIG" firstAttribute="top" secondItem="8wV-4E-hyu" secondAttribute="bottom" constant="8" id="Y0c-xm-AUy"/>
-                        <constraint firstAttribute="bottom" secondItem="sj1-dh-HIG" secondAttribute="bottom" constant="8" id="hO7-OY-EvU"/>
                         <constraint firstItem="lQs-Eo-heM" firstAttribute="top" secondItem="Hpf-Wt-0MH" secondAttribute="top" constant="8" id="uz6-oK-xAU"/>
                         <constraint firstAttribute="trailing" secondItem="lQs-Eo-heM" secondAttribute="trailing" constant="8" id="wLp-GF-7gP"/>
-                        <constraint firstAttribute="centerY" secondItem="lQs-Eo-heM" secondAttribute="bottom" id="wpB-rh-SjF"/>
                         <constraint firstAttribute="trailing" secondItem="8wV-4E-hyu" secondAttribute="trailing" constant="8" id="xgV-f2-ycU"/>
                     </constraints>
                 </view>
