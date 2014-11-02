@@ -85,6 +85,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewWillAppear(animated: Bool)
     {
       super.viewWillAppear(true)
+      self.backgroundImageView.startAnimating()
     }
     
     //MARK: - Collection view methods

@@ -12,6 +12,9 @@
 		164EDA941A01672D005F7452 /* RevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164EDA921A01672D005F7452 /* RevealViewController.swift */; };
 		164EDA951A01672D005F7452 /* RevealViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164EDA931A01672D005F7452 /* RevealViewController.xib */; };
 		164EDA971A018C5B005F7452 /* HackerMissionTitle.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 164EDA961A018C5B005F7452 /* HackerMissionTitle.pdf */; };
+		167CF9111A05F65D00DA4B15 /* Gifu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167CF90E1A05F65D00DA4B15 /* Gifu.swift */; };
+		167CF9121A05F65D00DA4B15 /* ImageSourceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167CF90F1A05F65D00DA4B15 /* ImageSourceHelpers.swift */; };
+		167CF9131A05F65D00DA4B15 /* UIImageView+Gifu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167CF9101A05F65D00DA4B15 /* UIImageView+Gifu.swift */; };
 		1697EB5D1A03FE72007D8D77 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1697EB5C1A03F0F4007D8D77 /* fontawesome-webfont.ttf */; };
 		16AA3ADC1A00596700646943 /* TYPEWRON.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B419FEE99F008421CC /* TYPEWRON.ttf */; };
 		16AA3ADD1A00596A00646943 /* BOYCOTT_.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B619FEE9DA008421CC /* BOYCOTT_.ttf */; };
@@ -73,6 +76,9 @@
 		164EDA921A01672D005F7452 /* RevealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealViewController.swift; sourceTree = "<group>"; };
 		164EDA931A01672D005F7452 /* RevealViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RevealViewController.xib; sourceTree = "<group>"; };
 		164EDA961A018C5B005F7452 /* HackerMissionTitle.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HackerMissionTitle.pdf; sourceTree = "<group>"; };
+		167CF90E1A05F65D00DA4B15 /* Gifu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gifu.swift; sourceTree = "<group>"; };
+		167CF90F1A05F65D00DA4B15 /* ImageSourceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSourceHelpers.swift; sourceTree = "<group>"; };
+		167CF9101A05F65D00DA4B15 /* UIImageView+Gifu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Gifu.swift"; sourceTree = "<group>"; };
 		1697EB5C1A03F0F4007D8D77 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		16C007341A000C7000231A17 /* infinite_field_bw.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = infinite_field_bw.gif; sourceTree = "<group>"; };
 		16C007351A000C7000231A17 /* infinite_wormhole.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = infinite_wormhole.gif; sourceTree = "<group>"; };
@@ -189,6 +195,9 @@
 				7E46DF4A19FF336E009215E3 /* GameSession.swift */,
 				7E46DF4819FF130A009215E3 /* GameEvent.swift */,
 				1608688C1A02B6E5007D2EE3 /* Jake Class Extensions.swift */,
+				167CF90E1A05F65D00DA4B15 /* Gifu.swift */,
+				167CF90F1A05F65D00DA4B15 /* ImageSourceHelpers.swift */,
+				167CF9101A05F65D00DA4B15 /* UIImageView+Gifu.swift */,
 			);
 			name = "Model Layer";
 			sourceTree = "<group>";
@@ -381,6 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				167CF9111A05F65D00DA4B15 /* Gifu.swift in Sources */,
 				4334C3781A019EDD00CB7AFA /* DefaultIconCell.swift in Sources */,
 				16C784AE19FEC9FF008421CC /* PlayerCell.swift in Sources */,
 				164EDA901A015008005F7452 /* CharacterCreationViewController.swift in Sources */,
@@ -400,12 +410,14 @@
 				7E46DF4919FF130A009215E3 /* GameEvent.swift in Sources */,
 				7E46DF2119FEB359009215E3 /* (null) in Sources */,
 				7E46DF2119FEB359009215E3 /* (null) in Sources */,
+				167CF9131A05F65D00DA4B15 /* UIImageView+Gifu.swift in Sources */,
 				7E46DF4719FF126A009215E3 /* GameController.swift in Sources */,
 				1608688D1A02B6E5007D2EE3 /* Jake Class Extensions.swift in Sources */,
 				7EF0C12C1A02AAEC002A6219 /* MissionOutcomeVoteViewController.swift in Sources */,
 				7E46DF4119FEBC2A009215E3 /* MultipeerController.swift in Sources */,
 				7EF0C12F1A02C358002A6219 /* MissionTextViewController.swift in Sources */,
 				7EF0C1291A02A519002A6219 /* RevealMissionOutcomeViewController.swift in Sources */,
+				167CF9121A05F65D00DA4B15 /* ImageSourceHelpers.swift in Sources */,
 				7E46DF5019FF336E009215E3 /* GameSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

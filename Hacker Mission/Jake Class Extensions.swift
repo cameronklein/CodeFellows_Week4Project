@@ -130,3 +130,19 @@ extension UILabel
         }
     }
 }
+
+extension UIImageView
+{
+  func animateGif()
+  {
+    var testImage = self.image
+    if let imageArray = testImage?.images
+    {
+      self.animationImages = imageArray
+      self.animationDuration = testImage!.duration
+      self.animationRepeatCount = 1
+      self.image = testImage?.images?.last as? UIImage
+      self.startAnimating()
+    }
+  }
+}
