@@ -47,6 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       println("No saved user data found.")
       self.defaultUser = nil
     }
+    
+    self.window?.rootViewController = OnboardViewController(nibName: "OnboardViewController", bundle: NSBundle.mainBundle())
+    
 
 
     return true

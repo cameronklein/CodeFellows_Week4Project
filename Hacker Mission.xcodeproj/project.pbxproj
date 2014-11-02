@@ -43,6 +43,8 @@
 		7E46DF4719FF126A009215E3 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4619FF126A009215E3 /* GameController.swift */; };
 		7E46DF4919FF130A009215E3 /* GameEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4819FF130A009215E3 /* GameEvent.swift */; };
 		7E46DF5019FF336E009215E3 /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4A19FF336E009215E3 /* GameSession.swift */; };
+		7E5E75631A06B058001D49C6 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5E75611A06B058001D49C6 /* OnboardViewController.swift */; };
+		7E5E75641A06B058001D49C6 /* OnboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E5E75621A06B058001D49C6 /* OnboardViewController.xib */; };
 		7E86E9B91A03EF06001C81C5 /* typicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C784B119FECD4F008421CC /* typicons.ttf */; };
 		7E86E9BC1A03F234001C81C5 /* EndGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E86E9BA1A03F234001C81C5 /* EndGameViewController.swift */; };
 		7E86E9BD1A03F234001C81C5 /* EndGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E86E9BB1A03F234001C81C5 /* EndGameViewController.xib */; };
@@ -107,6 +109,8 @@
 		7E46DF4619FF126A009215E3 /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		7E46DF4819FF130A009215E3 /* GameEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEvent.swift; sourceTree = "<group>"; };
 		7E46DF4A19FF336E009215E3 /* GameSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
+		7E5E75611A06B058001D49C6 /* OnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
+		7E5E75621A06B058001D49C6 /* OnboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardViewController.xib; sourceTree = "<group>"; };
 		7E86E9BA1A03F234001C81C5 /* EndGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndGameViewController.swift; sourceTree = "<group>"; };
 		7E86E9BB1A03F234001C81C5 /* EndGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EndGameViewController.xib; sourceTree = "<group>"; };
 		7E9BE66A19FFFF1D00E21794 /* NominationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NominationViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 				7E46DF4619FF126A009215E3 /* GameController.swift */,
 				705BB11D19FFFB5C00584A5B /* LeadGameController.swift */,
 				436546741A00299C0060B865 /* AppDelegate.swift */,
+				7E5E75611A06B058001D49C6 /* OnboardViewController.swift */,
+				7E5E75621A06B058001D49C6 /* OnboardViewController.xib */,
 				7E86E9BA1A03F234001C81C5 /* EndGameViewController.swift */,
 				7EF0C12D1A02C358002A6219 /* MissionTextViewController.swift */,
 				7EF0C1271A02A519002A6219 /* RevealMissionOutcomeViewController.swift */,
@@ -341,6 +347,7 @@
 			files = (
 				16AA3ADC1A00596700646943 /* TYPEWRON.ttf in Resources */,
 				7E9BE6711A00045400E21794 /* MissionOutcomeView.xib in Resources */,
+				7E5E75641A06B058001D49C6 /* OnboardViewController.xib in Resources */,
 				16C784B819FEF5F3008421CC /* mission_connector.pdf in Resources */,
 				16C0073A1A000C7000231A17 /* matrix_code1.gif in Resources */,
 				7E86E9B91A03EF06001C81C5 /* typicons.ttf in Resources */,
@@ -398,6 +405,7 @@
 				43EB50791A05998500AD19F0 /* ImagePacket.swift in Sources */,
 				7E46DF4719FF126A009215E3 /* GameController.swift in Sources */,
 				1608688D1A02B6E5007D2EE3 /* Jake Class Extensions.swift in Sources */,
+				7E5E75631A06B058001D49C6 /* OnboardViewController.swift in Sources */,
 				7EF0C12C1A02AAEC002A6219 /* MissionOutcomeVoteViewController.swift in Sources */,
 				7E46DF4119FEBC2A009215E3 /* MultipeerController.swift in Sources */,
 				7EF0C12F1A02C358002A6219 /* MissionTextViewController.swift in Sources */,
