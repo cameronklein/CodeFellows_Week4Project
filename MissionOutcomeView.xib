@@ -7,6 +7,7 @@
     <customFonts key="customFonts">
         <mutableArray key="MKStencilsansBlack.ttf">
             <string>MKStencilsansBlack</string>
+            <string>MKStencilsansBlack</string>
         </mutableArray>
         <mutableArray key="TYPEWRON.ttf">
             <string>Typewrong</string>
@@ -19,6 +20,7 @@
                 <outlet property="failButton" destination="odu-f8-dsM" id="Ci4-zT-M2H"/>
                 <outlet property="loyalLabel" destination="YhQ-v3-1yo" id="xld-oD-ypB"/>
                 <outlet property="succeedButton" destination="WUG-e6-lk3" id="wSo-Bn-DkD"/>
+                <outlet property="succeedOrFailLabel" destination="07w-Wb-B2L" id="SW7-aS-jbP"/>
                 <outlet property="view" destination="iN0-l3-epB" id="hvB-R5-j2j"/>
             </connections>
         </placeholder>
@@ -76,8 +78,8 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are loyal to the cause" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhQ-v3-1yo">
-                                    <rect key="frame" x="49.5" y="133" width="193.5" height="26.5"/>
-                                    <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
+                                    <rect key="frame" x="43.5" y="137" width="205.5" height="19"/>
+                                    <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="17"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>

@@ -192,7 +192,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         if self.playersSelected == (self.gameController.game.missions[self.gameController.game.currentMission] as Mission).playersNeeded
         {
             self.confirmNominationButton.userInteractionEnabled = true
-            UIView.animateWithDuration(0.1, animations:
+            UIView.animateWithDuration(0.2, animations:
             { () -> Void in
                 self.confirmNominationButton.titleLabel?.textColor = UIColor.greenColor()
                 return ()
