@@ -212,7 +212,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
     @IBAction func photoButtonPressed(sender: AnyObject) {
         let alertViewController = UIAlertController(title: "Image", message: "Use a photo for your player icon", preferredStyle: UIAlertControllerStyle.ActionSheet)
-
+          println("photobuttonpressed 1")
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (action) -> Void in
             println("Cancel")
         }
@@ -236,6 +236,12 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
         }
         alertViewController.addAction(selectPictureAction)
         alertViewController.addAction(cancelAction)
+          println("photobuttonpressed 2")
+
+      if let popoverController = alertViewController.popoverPresentationController {
+        popoverController.sourceView = sender as UIView
+        popoverController.sourceRect = sender.bounds
+      }
 
         self.presentViewController(alertViewController, animated: true, completion: nil)
 

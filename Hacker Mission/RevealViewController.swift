@@ -17,6 +17,7 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
   
     var playerArray = [Player]()
     var agentArray = [Player]()
+    var imagePacketArray = [ImagePacket]()
     var gameController = GameController.sharedInstance
     var screenWidth : CGFloat!
     var layout : UICollectionViewFlowLayout!
@@ -58,11 +59,11 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         if gameController.thisPlayer.playerRole == .Agent
         {
-          self.flavorTextLabel.typeToNewString("You're a secret bad guy. Here is your secret bad guy team.", withInterval: 0.1)
+          self.flavorTextLabel.typeToNewString("You you have successfully infiltrated the Opposition hacker collective. Work with your fellow agents and protect the regime and the status quo.", withInterval: 0.1)
         }
         else
         {
-          self.flavorTextLabel.typeToNewString("You're a good guy. Some of your teammates are secret bad guys.", withInterval: 0.1)
+          self.flavorTextLabel.typeToNewString("You are a hacker for the Opposition, working to end the oppressive Government regime. Be wary of Goivernment agents who have infiltrated the collective.", withInterval: 0.1)
         }
     }
     
@@ -90,7 +91,8 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         let cell = playerRevealCollectionView.dequeueReusableCellWithReuseIdentifier("PLAYER", forIndexPath: indexPath) as PlayerCell
         
         var player : Player?
-        
+        var imagePacket : ImagePacket?
+
         if gameController.thisPlayer.playerRole == .Agent
         {
             player = agentArray[indexPath.row]
@@ -100,11 +102,26 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
             player = playerArray[indexPath.row]
         }
         
-        cell.imageView.image = player?.playerImage
+        cell.imageView.image = imagePacket?.userImage as UIImage!
         cell.username.text = player?.playerName
         
         return cell
     }
+
+  func findMatchingImageForPlayer(playerArray: [Player], imagePacketArray: [ImagePacket]) -> UIImage {
+    var imageFor : UIImage?
+
+    for player in playerArray {
+      let idToTest = player.peerID as NSString
+      for imagePacket in imagePacketArray {
+        if imagePacket.userPeerID == idToTest {
+          imageFor = imagePacket.userImage as UIImage!
+        }
+      }
+    }
+
+    return imageFor!
+  }
     
     //MARK: Actions and other functions
     @IBAction func confirmationButtonPressed(sender: AnyObject)
