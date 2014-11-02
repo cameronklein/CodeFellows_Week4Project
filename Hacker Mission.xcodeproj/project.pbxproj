@@ -311,11 +311,6 @@
 					7E46DF2F19FEB359009215E3 = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = 65PRBW7K5C;
-						DevelopmentTeam = 622WMK9UYQ;
-					};
-					7E46DF2F19FEB359009215E3 = {
-						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 622WMK9UYQ;
 						TestTargetID = 7E46DF1A19FEB359009215E3;
 					};
 				};
