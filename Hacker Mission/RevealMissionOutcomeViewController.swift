@@ -25,10 +25,10 @@ class RevealMissionOutcomeViewController: UIViewController {
     let result = justCompletedMission.success! as Bool
     let successVotes = justCompletedMission.successCardsPlayed
     let failVotes = justCompletedMission.failCardsPlayed
-    let currentMission = gameController.game.missions[gameController.game.currentMission] as Mission
-    missionOutcomeLabel.text = currentMission.missionName
+    
+    missionOutcomeTitleLabel.text = justCompletedMission.missionName
     if result {
-      missionOutcomeLabel.text = "Mission Succeeded with a vote of \(successVotes) to \(failVotes)!"
+      missionOutcomeLabel.text = "Mission succeeded! with a vote of \(successVotes) to \(failVotes)!"
     } else {
       missionOutcomeLabel.text = "Mission Failed with a vote of \(failVotes) to \(successVotes)"
     }

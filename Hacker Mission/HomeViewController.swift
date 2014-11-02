@@ -33,13 +33,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var nominationPromptLabel: UILabel!
     @IBOutlet weak var confirmNominationButton: UIButton!
  
-    
-    var players : [Player] = []
     var playersSelected = 0
     var labelsAreBlinking = false
     var lastRejectedGameCount = 0
   //var user : Player?        DEPRECATED : refer to gameController.thisPlayer instead
   //var game : GameSession!   DEPRECATED : refer to gameController.game instead
+  //var players : [Player] = [] DEPRECATED : refer to gameController.game.players instead
   
     var screenWidth : CGFloat!
     var layout : UICollectionViewFlowLayout!
@@ -114,42 +113,44 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
           cell.layer.borderWidth = 0
       }
       
-      if self.gameController.game.currentGameState == .NominatePlayers
+      if self.gameController.game.currentGameState != .RevealVote
       {
+        println("Collection View Found Game State Other Than Reveal Vote.")
         cell.approvesMission.hidden = true
         cell.rejectsMission.hidden = true
-      }
+      } else {
       
-      if player.currentVote != nil
-      {
-        println("Found a currentVote")
-      
-        if (player.currentVote == true)
+        if player.currentVote != nil
         {
-            cell.approvesMission.alpha = 0
-            cell.approvesMission.hidden = false
-            cell.rejectsMission.hidden = true
-            UIView.animateWithDuration(1, animations:
-            { () -> Void in
-                cell.approvesMission.alpha = 1
-            })
+          println("Found a currentVote")
+        
+          if (player.currentVote == true)
+          {
+              cell.approvesMission.alpha = 0
+              cell.approvesMission.hidden = false
+              cell.rejectsMission.hidden = true
+              UIView.animateWithDuration(1, animations:
+              { () -> Void in
+                  cell.approvesMission.alpha = 1
+              })
+          }
+          else
+          {
+              cell.rejectsMission.alpha = 0
+              cell.rejectsMission.hidden = false
+              cell.approvesMission.hidden = true
+              UIView.animateWithDuration(1, animations:
+              { () -> Void in
+                  cell.rejectsMission.alpha = 1
+              })
+          }
         }
         else
         {
-            cell.rejectsMission.alpha = 0
-            cell.rejectsMission.hidden = false
+          println("Found nil for currentVote")
+            cell.rejectsMission.hidden = true
             cell.approvesMission.hidden = true
-            UIView.animateWithDuration(1, animations:
-            { () -> Void in
-                cell.rejectsMission.alpha = 1
-            })
         }
-      }
-      else
-      {
-        println("Found nil for currentVote")
-          cell.rejectsMission.hidden = true
-          cell.approvesMission.hidden = true
       }
       
       if player.isLeader == true {
@@ -211,7 +212,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       } else {
         self.incomingMesageLabel.text = "Team Approved!"
       }
-      self.lastRejectedGameCount = currentMission.rejectedTeamCount
+      self.lastRejectedGameCount = currentMission.rejectedTeamsCount
       self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
       UIView.animateWithDuration(0.4,
         delay: 0.0,
@@ -367,7 +368,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //  }
 //
   func startMission() {
-    self.lastRejectedTeamCount = 0
+    self.lastRejectedGameCount = 0
     
     let vc = MissionTextViewController(nibName: "MissionTextViewController", bundle: NSBundle.mainBundle())
     vc.view.frame = self.playersCollectionView.frame

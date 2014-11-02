@@ -113,7 +113,6 @@ class GameController {
   }
   
   func beginMissionOutcome() {
-    println("GAME CONTROLLER: Begin Mission Outcome call sent to HomeViewController")
     //Nominated players on mission vote to succeed or fail the mission
     self.homeVC.voteOnMissionSuccess()
 
@@ -143,6 +142,13 @@ class GameController {
       thisUser.userPeerID = multipeerController.peerID.displayName
       multipeerController.sendUserInfoToLeadController(thisUser)
     }
+  }
+  
+  func requestLatestGameDataFromMainBrain() {
+    let dictionary = NSMutableDictionary()
+    dictionary.setValue("gameRequest", forKey: "action")
+    dictionary.setValue("nothing", forKey: "value")
+    multipeerController.sendInfoToMainBrain(dictionary)
   }
 
 }

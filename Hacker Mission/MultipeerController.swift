@@ -82,6 +82,12 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       newDictionary.setObject(dataReceivedFromSlave.objectForKey("value")!, forKey: "value")
       newDictionary.setObject(peerID.displayName, forKey: "peerID")
       
+      if newDictionary.objectForKey("action") == "gameRequest" as String {
+        if mainBrain != nil {
+          self.resendGameInfo(peerID)
+        }
+      }
+      
       NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
         self.mainBrain?.handleEvent(newDictionary)
         return ()
@@ -101,7 +107,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       self.gameController.updatePeerCount(session.connectedPeers.count)
 
     } else if state == MCSessionState.NotConnected {
-      println("Peer Stopped Connecting")
+      println("Peer \(peerID.displayName) Stopped Connecting")
 
     } else if state == MCSessionState.Connecting {
       println("Peer Connecting")
@@ -211,6 +217,16 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       println("Error encountered when sending user info to main brain: \(error!.description))")
     }
     
+  }
+  
+  func resendGameInfoToPeer(peerID : MCPeerID) {
+    let data = NSKeyedArchiver.archivedDataWithRootObject(mainBrain!.game)
+    var error : NSError?
+    session.sendData(data, toPeers: [peerID], withMode: MCSessionSendDataMode.Reliable, error: &error)
+    if error != nil {
+      println("Error encountered when resending game to peer: \(error!.description))")
+    }
+
   }
 
 }

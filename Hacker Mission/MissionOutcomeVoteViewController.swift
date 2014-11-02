@@ -36,6 +36,7 @@ class MissionOutcomeVoteViewController: UIViewController {
       failButton.alpha = 0.5
     } else {
       loyalLabel.hidden = true
+      loyalLabel.transform = CGAffineTransformMakeRotation(340)
       failButton.enabled = true
     }
     
