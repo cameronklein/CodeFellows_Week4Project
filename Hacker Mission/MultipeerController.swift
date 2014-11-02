@@ -57,7 +57,10 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
 
     if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
       println("Recognized data as GameSession.")
-      gameController.handleEvent(gameData)
+      NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        self.gameController.handleEvent(gameData)
+        return ()
+      }
     }
 
     else if let imagePackets = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [ImagePacket] {
@@ -72,7 +75,10 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       newDictionary.setObject(dataReceivedFromSlave.objectForKey("value")!, forKey: "value")
       newDictionary.setObject(peerID.displayName, forKey: "peerID")
       
-      self.mainBrain?.handleEvent(newDictionary)
+      NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        self.mainBrain?.handleEvent(newDictionary)
+        return ()
+      }
       
     } else if let dataReceivedFromSlave = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSMutableDictionary{
       println("Recognized data as NSMutableDictionary.")
@@ -81,7 +87,18 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       newDictionary.setObject(dataReceivedFromSlave.objectForKey("value")!, forKey: "value")
       newDictionary.setObject(peerID.displayName, forKey: "peerID")
       
-      self.mainBrain?.handleEvent(newDictionary)
+      let checkForGameRequestString = newDictionary.objectForKey("action") as String!
+      
+      if checkForGameRequestString == "gameRequest" {
+        if mainBrain != nil {
+          self.resendGameInfoToPeer(peerID)
+        }
+      }
+      
+      NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        self.mainBrain?.handleEvent(newDictionary)
+        return ()
+      }
     }
     else {
       println("Unknown Data Received!")
@@ -100,7 +117,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       self.gameController.sendImagePacket() // This may need an acknowledgement from the server, but I want to chase that later
 
     } else if state == MCSessionState.NotConnected {
-      println("Peer Stopped Connecting")
+      println("Peer \(peerID.displayName) Stopped Connecting")
 
     } else if state == MCSessionState.Connecting {
       println("Peer Connecting")
@@ -226,6 +243,17 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     }
     
   }
+  
+  func resendGameInfoToPeer(peerID : MCPeerID) {
+    let data = NSKeyedArchiver.archivedDataWithRootObject(mainBrain!.game)
+    var error : NSError?
+    session.sendData(data, toPeers: [peerID], withMode: MCSessionSendDataMode.Reliable, error: &error)
+    if error != nil {
+      println("Error encountered when resending game to peer: \(error!.description))")
+    }
+
+  }
+
 
   func sendImagePacketToLeadController(userInfo: UserInfo){
 

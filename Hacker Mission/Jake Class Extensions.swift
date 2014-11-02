@@ -67,13 +67,11 @@ extension UILabel
       }
     }
     if countElements(startingText) < countElements(finalText) {
-      println("Starting Text Does Not Equal Final Text")
       let rangeOfStartText = finalText.rangeOfString(startingText, options: NSStringCompareOptions.LiteralSearch, range: nil, locale: nil)
       let lastIndex = rangeOfStartText?.endIndex
       let nextIndex = lastIndex?.successor()
       let nextText = finalText.substringToIndex(nextIndex!)
     
-      println("Next character!!")
       let view = UIView()
       self.superview?.addSubview(view)
     

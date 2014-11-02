@@ -33,15 +33,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var nominationPromptLabel: UILabel!
     @IBOutlet weak var confirmNominationButton: UIButton!
  
-    
-    var players : [Player] = []
-    var imagePackets = [ImagePacket]()
     var playersSelected = 0
     var labelsAreBlinking = false
     var lastRejectedGameCount = 0
 
   //var user : Player?        DEPRECATED : refer to gameController.thisPlayer instead
   //var game : GameSession!   DEPRECATED : refer to gameController.game instead
+  //var players : [Player] = [] DEPRECATED : refer to gameController.game.players instead
   
     var screenWidth : CGFloat!
     var layout : UICollectionViewFlowLayout!
@@ -117,42 +115,44 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
           cell.layer.borderWidth = 0
       }
       
-      if self.gameController.game.currentGameState == .NominatePlayers
+      if self.gameController.game.currentGameState != .RevealVote
       {
+        println("Collection View Found Game State Other Than Reveal Vote.")
         cell.approvesMission.hidden = true
         cell.rejectsMission.hidden = true
-      }
+      } else {
       
-      if player.currentVote != nil
-      {
-        println("Found a currentVote")
-      
-        if (player.currentVote == true)
+        if player.currentVote != nil
         {
-            cell.approvesMission.alpha = 0
-            cell.approvesMission.hidden = false
-            cell.rejectsMission.hidden = true
-            UIView.animateWithDuration(1, animations:
-            { () -> Void in
-                cell.approvesMission.alpha = 1
-            })
+          println("Found a currentVote")
+        
+          if (player.currentVote == true)
+          {
+              cell.approvesMission.alpha = 0
+              cell.approvesMission.hidden = false
+              cell.rejectsMission.hidden = true
+              UIView.animateWithDuration(1, animations:
+              { () -> Void in
+                  cell.approvesMission.alpha = 1
+              })
+          }
+          else
+          {
+              cell.rejectsMission.alpha = 0
+              cell.rejectsMission.hidden = false
+              cell.approvesMission.hidden = true
+              UIView.animateWithDuration(1, animations:
+              { () -> Void in
+                  cell.rejectsMission.alpha = 1
+              })
+          }
         }
         else
         {
-            cell.rejectsMission.alpha = 0
-            cell.rejectsMission.hidden = false
+          println("Found nil for currentVote")
+            cell.rejectsMission.hidden = true
             cell.approvesMission.hidden = true
-            UIView.animateWithDuration(1, animations:
-            { () -> Void in
-                cell.rejectsMission.alpha = 1
-            })
         }
-      }
-      else
-      {
-        println("Found nil for currentVote")
-          cell.rejectsMission.hidden = true
-          cell.approvesMission.hidden = true
       }
       
       if player.isLeader == true {
@@ -208,11 +208,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let currentMission = game.missions[game.currentMission] as Mission
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.playersCollectionView.reloadData()
       if currentMission.rejectedTeamsCount > self.lastRejectedGameCount {
         self.incomingMesageLabel.text = "Team Rejected!"
       } else {
         self.incomingMesageLabel.text = "Team Approved!"
       }
+      self.lastRejectedGameCount = currentMission.rejectedTeamsCount
       self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
       UIView.animateWithDuration(0.4,
         delay: 0.0,
@@ -258,12 +260,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       let game = gameController.game
       self.playersSelected = 0
       if self.gameController.thisPlayer.isLeader == true {
-        self.incomingMesageLabel.text = "You are leader. Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) people."
+        self.incomingMesageLabel.text = "You are mission leader. Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) people."
       } else {
-        self.incomingMesageLabel.text = "\(game.leader!.playerName) is leader and will nominate people."
+        self.incomingMesageLabel.text = "\(game.leader!.playerName) is mission leader."
       }
       
       NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        self.playersCollectionView.reloadData()
         self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
         UIView.animateWithDuration(0.4,
           delay: 0.0,
@@ -333,10 +336,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     self.labelsAreBlinking = false
     self.nominationPromptLabel.hidden = true
     
+    
     let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
     vc.view.frame = self.playersCollectionView.frame
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.playersCollectionView.reloadData()
       self.incomingMesageLabel.text = "Nominations Are In"
       self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
       UIView.animateWithDuration(0.4,
@@ -377,11 +382,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //  }
 //
   func startMission() {
+    self.lastRejectedGameCount = 0
     
     let vc = MissionTextViewController(nibName: "MissionTextViewController", bundle: NSBundle.mainBundle())
     vc.view.frame = self.playersCollectionView.frame
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.playersCollectionView.reloadData()
       if self.gameController.thisPlayer.isLeader == true {
         vc.leaderSelectingTeam.text = "You are the leader. Select your team wisely"
       }
@@ -426,6 +433,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let nominatedPlayers = currentMission.nominatedPlayers
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.playersCollectionView.reloadData()
       self.incomingMesageLabel.text = "Mission Proceeding"
       self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
       UIView.animateWithDuration(0.4,
@@ -482,6 +490,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.playersCollectionView.reloadData()
       self.incomingMesageLabel.text = "Mission Completed"
       self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
       UIView.animateWithDuration(0.4,
@@ -589,6 +598,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     vc.view.frame = self.playersCollectionView.frame
 
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.playersCollectionView.reloadData()
       self.addChildViewController(vc)
       self.view.addSubview(vc.view)
     }

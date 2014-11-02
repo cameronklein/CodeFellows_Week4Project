@@ -14,7 +14,6 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var playerRevealCollectionView: UICollectionView!
     @IBOutlet weak var flavorTextLabel: UILabel!
     
-  
     var playerArray = [Player]()
     var agentArray = [Player]()
     var imagePacketArray = [ImagePacket]()

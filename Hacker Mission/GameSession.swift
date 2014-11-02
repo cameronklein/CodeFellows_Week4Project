@@ -98,10 +98,10 @@ class GameSession: NSObject, NSCoding {
         mission5 = (4, 1)
       default:
         mission1 = (2, 1)
-        mission2 = (3, 1)
+        mission2 = (2, 1)
         mission3 = (2, 1)
-        mission4 = (3, 1)
-        mission5 = (3, 1)
+        mission4 = (2, 1)
+        mission5 = (2, 1)
       }
       var missionList = [Mission]()
       
