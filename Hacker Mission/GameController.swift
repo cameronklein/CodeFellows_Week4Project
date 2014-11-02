@@ -18,7 +18,7 @@ class GameController {
     return Static.instance
   }
   
-  var game        : GameSession!
+  var game        : GameSession!  //Authoritative list of players is here at all times.
   var revealVC    : RevealViewController!
   var launchVC    : LaunchViewController!
   var homeVC      : HomeViewController!
@@ -28,6 +28,7 @@ class GameController {
   var peerCount   : Int = 0
   
   var multipeerController = MultiPeerController.sharedInstance
+  var imagePackets = [ImagePacket]()
   
   init(){
     
@@ -36,6 +37,10 @@ class GameController {
     myUserInfo = appDelegate.defaultUser as UserInfo!
     myUserInfo.userPeerID = multipeerController.peerID.displayName
 
+  }
+
+  func handleImagePackets(imagePackets: [ImagePacket]) {
+    self.imagePackets = imagePackets as [ImagePacket]
   }
   
   func handleEvent(newGameInfo: GameSession) {
@@ -145,4 +150,12 @@ class GameController {
     }
   }
 
-}
+  func sendImagePacket () {
+    let appDel = UIApplication.sharedApplication().delegate as AppDelegate
+    if let thisUser = appDel.defaultUser as UserInfo! {
+      thisUser.userPeerID = multipeerController.peerID.displayName
+      multipeerController.sendImagePacketToLeadController(thisUser)
+    }
+  }
+
+} //End

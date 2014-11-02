@@ -76,8 +76,9 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
     
     println("NOMINATION VOTE VIEW CONTROLLER: Made cell for player,  \(player.playerName)")
     
-    
-    cell.imageView.image = player.playerImage
+    let imagePacketImage = self.findMatchingImageForPlayer(player, imagePacketArray: self.gameController.imagePackets)
+
+    cell.imageView.image = imagePacketImage as UIImage!
     cell.username.text = player.playerName
     
     return cell
@@ -87,6 +88,18 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
     println("NOMINATION VOTE VIEW CONTROLLER: Asking for cells, got \(nominatedPlayersArray.count)")
     return nominatedPlayersArray.count
     
+  }
+
+  func findMatchingImageForPlayer(player: Player, imagePacketArray: [ImagePacket]) -> UIImage {
+    var imageFor : UIImage?
+    let idToTest = player.peerID as NSString
+    for imagePacket in imagePacketArray {
+      if imagePacket.userPeerID == idToTest {
+        imageFor = imagePacket.userImage as UIImage!
+      }
+    }
+
+    return imageFor!
   }
     
     
