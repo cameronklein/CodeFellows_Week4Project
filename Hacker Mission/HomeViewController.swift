@@ -211,6 +211,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       } else {
         self.incomingMesageLabel.text = "Team Approved!"
       }
+      self.lastRejectedGameCount = currentMission.rejectedTeamCount
       self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
       UIView.animateWithDuration(0.4,
         delay: 0.0,
@@ -244,9 +245,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       let game = gameController.game
       self.playersSelected = 0
       if self.gameController.thisPlayer.isLeader == true {
-        self.incomingMesageLabel.text = "You are leader. Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) people."
+        self.incomingMesageLabel.text = "You are mission leader. Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) people."
       } else {
-        self.incomingMesageLabel.text = "\(game.leader!.playerName) is leader and will nominate people."
+        self.incomingMesageLabel.text = "\(game.leader!.playerName) is mission leader."
       }
       
       NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
@@ -320,6 +321,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     self.labelsAreBlinking = false
     self.nominationPromptLabel.hidden = true
     
+    
     let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
     vc.view.frame = self.playersCollectionView.frame
     
@@ -365,6 +367,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //  }
 //
   func startMission() {
+    self.lastRejectedTeamCount = 0
     
     let vc = MissionTextViewController(nibName: "MissionTextViewController", bundle: NSBundle.mainBundle())
     vc.view.frame = self.playersCollectionView.frame

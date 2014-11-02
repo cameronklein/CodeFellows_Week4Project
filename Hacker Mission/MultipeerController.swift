@@ -57,7 +57,10 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
 
     if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
       println("Recognized data as GameSession.")
-      gameController.handleEvent(gameData)
+      NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        self.gameController.handleEvent(gameData)
+        return ()
+      }
     }
       
     else if let dataReceivedFromSlave = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary{
@@ -67,7 +70,10 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       newDictionary.setObject(dataReceivedFromSlave.objectForKey("value")!, forKey: "value")
       newDictionary.setObject(peerID.displayName, forKey: "peerID")
       
-      self.mainBrain?.handleEvent(newDictionary)
+      NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        self.mainBrain?.handleEvent(newDictionary)
+        return ()
+      }
       
     } else if let dataReceivedFromSlave = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSMutableDictionary{
       println("Recognized data as NSMutableDictionary.")
@@ -76,7 +82,10 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       newDictionary.setObject(dataReceivedFromSlave.objectForKey("value")!, forKey: "value")
       newDictionary.setObject(peerID.displayName, forKey: "peerID")
       
-      self.mainBrain?.handleEvent(newDictionary)
+      NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        self.mainBrain?.handleEvent(newDictionary)
+        return ()
+      }
     }
     else {
       println("Unknown Data Received!")

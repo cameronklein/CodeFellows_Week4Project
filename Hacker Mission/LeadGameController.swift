@@ -63,12 +63,6 @@ class LeadGameController {
     let revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())
     GameController.sharedInstance.revealVC = revealVC
     
-    for player in game.players {
-      if multipeerController.peerID.displayName == player.peerID {
-        //revealVC.user = player
-      }
-    }
-    
     self.launchVC.gameStart(revealVC)
     }
   
