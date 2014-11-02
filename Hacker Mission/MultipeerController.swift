@@ -87,9 +87,11 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       newDictionary.setObject(dataReceivedFromSlave.objectForKey("value")!, forKey: "value")
       newDictionary.setObject(peerID.displayName, forKey: "peerID")
       
-      if newDictionary.objectForKey("action") == "gameRequest" as String {
+      let checkForGameRequestString = newDictionary.objectForKey("action") as String!
+      
+      if checkForGameRequestString == "gameRequest" {
         if mainBrain != nil {
-          self.resendGameInfo(peerID)
+          self.resendGameInfoToPeer(peerID)
         }
       }
       
@@ -251,6 +253,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     }
 
   }
+
 
   func sendImagePacketToLeadController(userInfo: UserInfo){
 
