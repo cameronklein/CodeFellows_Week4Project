@@ -190,8 +190,10 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   }
     
   func sendUserInfoToLeadController(userInfo: UserInfo){
-    
-    userInfo.userPeerID = self.peerID.displayName
+
+    let myPeerID = self.peerID.displayName as NSString
+    userInfo.userPeerID = myPeerID
+
     let dictionaryData = ["action" : "user", "value" : userInfo]
     let data = NSKeyedArchiver.archivedDataWithRootObject(dictionaryData)
     var error : NSError?

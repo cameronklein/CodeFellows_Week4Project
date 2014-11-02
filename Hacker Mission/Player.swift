@@ -19,7 +19,7 @@ class Player : NSObject, NSCoding {
     var playerName : NSString 
     var playerID : NSInteger
     var peerID : NSString
-    var playerImage : UIImage
+//    var playerImage : UIImage
     var playerRole : PlayerType = .Hacker
     var isNominated =  false
     var isLeader = false
@@ -31,7 +31,7 @@ class Player : NSObject, NSCoding {
         self.playerName = playerDictionary["playerName"] as NSString
         self.playerID = playerDictionary["playerID"] as NSInteger
         self.playerDictionary = playerDictionary
-        self.playerImage = playerDictionary["playerImage"] as UIImage
+//        self.playerImage = playerDictionary["playerImage"] as UIImage
         self.peerID = playerDictionary["peerID"] as NSString
       
     }
@@ -41,7 +41,7 @@ class Player : NSObject, NSCoding {
         self.playerName = aDecoder.decodeObjectForKey("playerName") as NSString
         self.playerID = aDecoder.decodeIntegerForKey("playerID") as NSInteger
         let data = aDecoder.decodeObjectForKey("playerImage") as NSData
-        self.playerImage = UIImage(data: data)!
+//        self.playerImage = UIImage(data: data)!
         self.peerID = aDecoder.decodeObjectForKey("peerID") as NSString
         let playerRoleFor = aDecoder.decodeObjectForKey("playerRole") as NSInteger
         var playerRoleIs = PlayerType(rawValue: playerRoleFor)
@@ -56,8 +56,8 @@ class Player : NSObject, NSCoding {
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.playerName, forKey: "playerName")
         aCoder.encodeInteger(self.playerID, forKey: "playerID")
-        let data = UIImagePNGRepresentation(self.playerImage)
-        aCoder.encodeObject(data, forKey: "playerImage")
+//        let data = UIImagePNGRepresentation(self.playerImage)
+//        aCoder.encodeObject(data, forKey: "playerImage")
         aCoder.encodeObject(self.peerID, forKey: "peerID")
         aCoder.encodeObject(self.playerRole.rawValue, forKey: "playerRole")
         aCoder.encodeBool(self.isNominated, forKey: "isNominated")
@@ -76,7 +76,7 @@ class Player : NSObject, NSCoding {
         playerDictionary.setObject(userInfo.userName, forKey: "playerName")
         playerDictionary.setObject(userInfo.userID, forKey: "playerID")
         playerDictionary.setObject(userInfo.userPeerID!, forKey: "peerID")
-        playerDictionary.setObject(userInfo.userImage, forKey: "playerImage")
+//        playerDictionary.setObject(userInfo.userImage, forKey: "playerImage")
         return playerDictionary as NSMutableDictionary
     }
 

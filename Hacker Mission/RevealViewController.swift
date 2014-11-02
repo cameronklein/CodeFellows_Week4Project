@@ -90,6 +90,7 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         let cell = playerRevealCollectionView.dequeueReusableCellWithReuseIdentifier("PLAYER", forIndexPath: indexPath) as PlayerCell
         
         var player : Player?
+      var
         
         if gameController.thisPlayer.playerRole == .Agent
         {

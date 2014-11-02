@@ -13,6 +13,7 @@ class LeadGameController {
   
   var multipeerController : MultiPeerController = MultiPeerController.sharedInstance
   var game : GameSession!
+  var imagePacketsForGame = [ImagePacket]()
   var currentVotes = [String]()
   var currentMissionOutcomeVotes = [String]()
   var usersForGame = [UserInfo]()
@@ -43,8 +44,15 @@ class LeadGameController {
     multipeerController.stopBrowsing()
   
     let players = self.getPlayersFromCurrentUsersArray()
+    let imagePackets = self.getImagePacketsFromCurrentUsersArray()
     
     println("MAIN BRAIN: \(players.count) players created from provided user information.")
+    println("MAIN BRAIN: \(imagePackets.count) image packets created from provided user information.")
+
+    if players.count != imagePackets.count {
+      println("mismatch between players count and image packets count. Seek resolutions.")
+    }
+
     println("PLAYERS DESC: \(players.description)")
     
     var missions = GameSession.populateMissionList(players.count)
@@ -80,6 +88,7 @@ class LeadGameController {
       
       var playerFor = Player.makePlayerDictionaryForGameSession(user as UserInfo)
       var player = Player(playerDictionary: playerFor) as Player
+
       var needToAdd : Bool = true
       for existingPlayer in players {
         if (existingPlayer.playerID == player.playerID) {
@@ -94,7 +103,30 @@ class LeadGameController {
     
     return players
   }
-  
+
+  func getImagePacketsFromCurrentUsersArray() -> [ImagePacket] {
+
+    var imagePackets = [ImagePacket]()
+    println("MAIN BRAIN : Creating imagePackets from user array of \(usersForGame.count) users.")
+    for user in usersForGame {
+
+      let imagePacketFor = ImagePacket(peerID: user.userPeerID!, userImage: user.userImage)
+
+      var needToAdd : Bool = true
+      for existingImagePacket in imagePackets {
+        if (existingImagePacket.userPeerID == imagePacketFor.userPeerID) {
+          needToAdd = false
+        }
+      }
+      if (needToAdd) {
+        imagePackets.append(imagePacketFor)
+      }
+    }
+    println("MAIN BRAIN : Created \(imagePackets.count) image packets.")
+
+    return imagePackets
+  }
+
   func giveFlavorTextToMissions(inout missions: [Mission]) {
     
     for mission in missions {
