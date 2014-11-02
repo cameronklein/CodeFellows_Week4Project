@@ -205,6 +205,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let currentMission = game.missions[game.currentMission] as Mission
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.playersCollectionView.reloadData()
       if currentMission.rejectedTeamsCount > self.lastRejectedGameCount {
         self.incomingMesageLabel.text = "Team Rejected!"
       } else {
@@ -249,6 +250,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       }
       
       NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        self.playersCollectionView.reloadData()
         self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
         UIView.animateWithDuration(0.4,
           delay: 0.0,
@@ -322,6 +324,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     vc.view.frame = self.playersCollectionView.frame
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.playersCollectionView.reloadData()
       self.incomingMesageLabel.text = "Nominations Are In"
       self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
       UIView.animateWithDuration(0.4,
@@ -367,6 +370,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     vc.view.frame = self.playersCollectionView.frame
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.playersCollectionView.reloadData()
       if self.gameController.thisPlayer.isLeader == true {
         vc.leaderSelectingTeam.text = "You are the leader. Select your team wisely"
       }
@@ -411,6 +415,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let nominatedPlayers = currentMission.nominatedPlayers
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.playersCollectionView.reloadData()
       self.incomingMesageLabel.text = "Mission Proceeding"
       self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
       UIView.animateWithDuration(0.4,
@@ -467,6 +472,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.playersCollectionView.reloadData()
       self.incomingMesageLabel.text = "Mission Completed"
       self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
       UIView.animateWithDuration(0.4,
@@ -574,6 +580,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     vc.view.frame = self.playersCollectionView.frame
 
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.playersCollectionView.reloadData()
       self.addChildViewController(vc)
       self.view.addSubview(vc.view)
     }

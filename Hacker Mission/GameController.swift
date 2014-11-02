@@ -39,11 +39,10 @@ class GameController {
   }
   
   func handleEvent(newGameInfo: GameSession) {
+    
     self.game = newGameInfo
     let event = game.currentGameState!
-    if event != .Start || event != .RevealCharacters {
-      findMe()
-    }
+    findMe()
     println("GAME CONTROLLER: Received \(event.rawValue) event from Main Brain. Woot.")
     switch event{
     case .Start:
