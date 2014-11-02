@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MultiPeerController.swift
 //  MultiPeer Experiment
 //
 //  Created by Cameron Klein on 10/23/14.
@@ -62,6 +62,11 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
         return ()
       }
     }
+
+    else if let imagePackets = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [ImagePacket] {
+      println("Recognized data as ImagePacket aray.")
+      gameController.handleImagePackets(imagePackets)
+    }
       
     else if let dataReceivedFromSlave = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary{
       println("Recognized data as NSDictionary.")
@@ -98,6 +103,8 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     }
     
   }
+
+  // MARK: HEREEEEEE!!!!!
  
   func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
     
@@ -105,6 +112,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       println("\(peerID.displayName) Connected")
       self.gameController.sendUserInfo()
       self.gameController.updatePeerCount(session.connectedPeers.count)
+      self.gameController.sendImagePacket() // This may need an acknowledgement from the server, but I want to chase that later
 
     } else if state == MCSessionState.NotConnected {
       println("Peer \(peerID.displayName) Stopped Connecting")
@@ -178,8 +186,10 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     println("Stopped Advertising!")
     advertiser.stopAdvertisingPeer()
   }
-  
-  func sendEventToPeers(game: GameSession) {
+
+  // MARK: HERE
+
+  func sendEventToPeers(game: GameSession) { // copy this!!!!!!!!!!!!!!
     let data = NSKeyedArchiver.archivedDataWithRootObject(game)
     var error : NSError?
     session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
@@ -188,7 +198,18 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     }
     gameController.handleEvent(game)
   }
-  
+
+  func sendImagePacketsToPeers(imagePackets: [ImagePacket]) {
+    println("Sending image packets to peers")
+    let data = NSKeyedArchiver.archivedDataWithRootObject(imagePackets)
+    var error : NSError?
+    session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
+    if error != nil {
+      println("Error encountered when sending game to peers: \(error!.description))")
+    }
+    gameController.handleImagePackets(imagePackets)
+  }
+
   func sendInfoToMainBrain(dictionary: NSMutableDictionary) {
     
     let data = NSKeyedArchiver.archivedDataWithRootObject(dictionary)
@@ -205,8 +226,10 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   }
     
   func sendUserInfoToLeadController(userInfo: UserInfo){
-    
-    userInfo.userPeerID = self.peerID.displayName
+
+    let myPeerID = self.peerID.displayName as NSString
+    userInfo.userPeerID = myPeerID
+
     let dictionaryData = ["action" : "user", "value" : userInfo]
     let data = NSKeyedArchiver.archivedDataWithRootObject(dictionaryData)
     var error : NSError?
@@ -229,7 +252,25 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
 
   }
 
-}
+  func sendImagePacketToLeadController(userInfo: UserInfo){
+
+    let myPeerID = self.peerID.displayName as NSString
+    let imageFor = userInfo.userImage as UIImage!
+    let imagePacket = ImagePacket(peerID: myPeerID, userImage: imageFor)
+
+    let dictionaryData = ["action" : "imagePacket", "value" : imagePacket]
+    let data = NSKeyedArchiver.archivedDataWithRootObject(dictionaryData)
+    var error : NSError?
+    if peerWithMainBrain != nil {
+      session.sendData(data, toPeers: [peerWithMainBrain], withMode: MCSessionSendDataMode.Reliable, error: &error)
+    }
+    if error != nil {
+      println("Error encountered when sending user info to main brain: \(error!.description))")
+    }
+
+  }
+
+} // End
 
 
 

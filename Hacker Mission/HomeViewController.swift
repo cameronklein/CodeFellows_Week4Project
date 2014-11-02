@@ -36,6 +36,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var playersSelected = 0
     var labelsAreBlinking = false
     var lastRejectedGameCount = 0
+
   //var user : Player?        DEPRECATED : refer to gameController.thisPlayer instead
   //var game : GameSession!   DEPRECATED : refer to gameController.game instead
   //var players : [Player] = [] DEPRECATED : refer to gameController.game.players instead
@@ -98,8 +99,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     {
       let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PLAYER", forIndexPath: indexPath) as PlayerCell
       let player = self.gameController.game.players[indexPath.row] as Player
+      let imagePacketImage = self.findMatchingImageForPlayer(player, imagePacketArray: self.gameController.imagePackets)
 
-      cell.imageView.image = player.playerImage
+      cell.imageView.image = imagePacketImage as UIImage!
       cell.username.text = player.playerName
       
       if player.isNominated
@@ -237,6 +239,18 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     })
   }
+  }
+
+  func findMatchingImageForPlayer(player: Player, imagePacketArray: [ImagePacket]) -> UIImage {
+    var imageFor : UIImage?
+    let idToTest = player.peerID as NSString
+    for imagePacket in imagePacketArray {
+      if imagePacket.userPeerID == idToTest {
+        imageFor = imagePacket.userImage as UIImage!
+      }
+    }
+
+    return imageFor!
   }
   
     //MARK: - Actions and other functions
