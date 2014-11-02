@@ -87,14 +87,14 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         let cell = playerRevealCollectionView.dequeueReusableCellWithReuseIdentifier("PLAYER", forIndexPath: indexPath) as PlayerCell
         
         var player : Player?
-        var imageFor = self.findMatchingImageForPlayer(player!, imagePacketArray: self.gameController.imagePackets)
+
 
         if gameController.thisPlayer.playerRole == .Agent {
             player = agentArray[indexPath.row]
         } else {
             player = playerArray[indexPath.row]
         }
-        
+        var imageFor = self.findMatchingImageForPlayer(player!, imagePacketArray: self.gameController.imagePackets)
         cell.imageView.image = imageFor as UIImage
         cell.username.text = player?.playerName
         
