@@ -75,12 +75,9 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
     //MARK: - Collection View Methods
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        if gameController.thisPlayer.playerRole == .Agent
-        {
+        if gameController.thisPlayer.playerRole == .Agent {
             return self.agentArray.count
-        }
-        else
-        {
+        } else {
             return self.playerArray.count
         }
     }
@@ -90,32 +87,27 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         let cell = playerRevealCollectionView.dequeueReusableCellWithReuseIdentifier("PLAYER", forIndexPath: indexPath) as PlayerCell
         
         var player : Player?
-        var imagePacket : ImagePacket?
+        var imageFor = self.findMatchingImageForPlayer(player!, imagePacketArray: self.gameController.imagePackets)
 
-        if gameController.thisPlayer.playerRole == .Agent
-        {
+        if gameController.thisPlayer.playerRole == .Agent {
             player = agentArray[indexPath.row]
-        }
-        else
-        {
+        } else {
             player = playerArray[indexPath.row]
         }
         
-        cell.imageView.image = imagePacket?.userImage as UIImage!
+        cell.imageView.image = imageFor as UIImage
         cell.username.text = player?.playerName
         
         return cell
     }
 
-  func findMatchingImageForPlayer(playerArray: [Player], imagePacketArray: [ImagePacket]) -> UIImage {
-    var imageFor : UIImage?
+  func findMatchingImageForPlayer(player: Player, imagePacketArray: [ImagePacket]) -> UIImage {
 
-    for player in playerArray {
-      let idToTest = player.peerID as NSString
-      for imagePacket in imagePacketArray {
-        if imagePacket.userPeerID == idToTest {
-          imageFor = imagePacket.userImage as UIImage!
-        }
+    var imageFor : UIImage?
+    let idToTest = player.peerID as NSString
+    for imagePacket in imagePacketArray {
+      if imagePacket.userPeerID == idToTest {
+        imageFor = imagePacket.userImage as UIImage!
       }
     }
 
