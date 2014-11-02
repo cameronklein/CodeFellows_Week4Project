@@ -40,7 +40,7 @@ class Player : NSObject, NSCoding {
 
         self.playerName = aDecoder.decodeObjectForKey("playerName") as NSString
         self.playerID = aDecoder.decodeIntegerForKey("playerID") as NSInteger
-        let data = aDecoder.decodeObjectForKey("playerImage") as NSData
+//        let data = aDecoder.decodeObjectForKey("playerImage") as NSData
 //        self.playerImage = UIImage(data: data)!
         self.peerID = aDecoder.decodeObjectForKey("peerID") as NSString
         let playerRoleFor = aDecoder.decodeObjectForKey("playerRole") as NSInteger

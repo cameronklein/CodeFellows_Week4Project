@@ -44,7 +44,7 @@ class LeadGameController {
     multipeerController.stopBrowsing()
   
     let players = self.getPlayersFromCurrentUsersArray()
-    let imagePackets = self.getImagePacketsFromCurrentUsersArray()
+    let imagePackets = self.getImagePacketsFromCurrentUsersArray() // here!!!!!!!!!!!
     
     println("MAIN BRAIN: \(players.count) players created from provided user information.")
     println("MAIN BRAIN: \(imagePackets.count) image packets created from provided user information.")
@@ -54,6 +54,8 @@ class LeadGameController {
     }
 
     println("PLAYERS DESC: \(players.description)")
+
+    multipeerController.sendImagePacketsToPeers(imagePackets)
     
     var missions = GameSession.populateMissionList(players.count)
     
@@ -177,7 +179,7 @@ class LeadGameController {
     println("MAIN BRAIN: Assigned \(player.playerName) as initial leader.")
     println("MAIN BRAIN: Sending *Game Start* event to peers.")
     game.currentGameState = GameEvent.Start
-    multipeerController.sendEventToPeers(game)
+    multipeerController.sendEventToPeers(game) // first send!!!!!!!!!!!!
     self.revealCharacters()
   }
   
@@ -445,7 +447,13 @@ class LeadGameController {
       println("MAIN BRAIN: Received user information from \(peerID)")
       let value = event["value"] as UserInfo
       usersForGame.append(value)
-      
+      // MARK: FInish this with a new event to request the imagePackets
+
+    case "imagePacket" :
+      println("MAIN BRAIN: Received imagePacket from \(peerID)")
+      let value = event["value"] as ImagePacket
+      imagePacketsForGame.append(value)
+
     case "nominations" :
       println("MAIN BRAIN: Received nomination information from \(peerID)")
       let value = event["value"] as [String]
