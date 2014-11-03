@@ -11,7 +11,7 @@ import UIKit
 class UserInfo : NSObject, NSCoding {
     var userName : NSString
     var userID : NSInteger
-    var userImage : UIImage
+    var userImage : UIImage?
     var userPeerID : NSString?
     var userObject = NSMutableData()
     var savePath : String?
@@ -29,8 +29,8 @@ class UserInfo : NSObject, NSCoding {
 
       self.userName = aDecoder.decodeObjectForKey("userName") as NSString
       self.userID = aDecoder.decodeIntegerForKey("userID") as NSInteger
-      let data = aDecoder.decodeObjectForKey("userImage") as NSData
-      self.userImage = UIImage(data: data)!
+      //let data = aDecoder.decodeObjectForKey("userImage") as NSData
+      //self.userImage = UIImage(data: data)!
       self.userPeerID = aDecoder.decodeObjectForKey("userPeerID") as NSString?
 
     }
@@ -38,8 +38,8 @@ class UserInfo : NSObject, NSCoding {
      func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.userName, forKey: "userName")
         aCoder.encodeInteger(self.userID, forKey: "userID")
-        let data = UIImagePNGRepresentation(self.userImage)
-        aCoder.encodeObject(data, forKey: "userImage")
+      //let data = UIImagePNGRepresentation(self.userImage)
+      //aCoder.encodeObject(data, forKey: "userImage")
         if self.userPeerID != nil {
             aCoder.encodeObject(self.userPeerID, forKey: "userPeerID")
         }

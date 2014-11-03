@@ -184,7 +184,16 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
         println("appdelegate user is \(appDelegate.defaultUser?.userName)")
 //        self.dismissViewControllerAnimated(true, completion: nil)
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        self.presentViewController(storyboard.instantiateViewControllerWithIdentifier("LAUNCHVIEW_VC") as LaunchViewController!, animated: true, completion: nil)
+        let launchVC = storyboard.instantiateViewControllerWithIdentifier("LAUNCHVIEW_VC") as LaunchViewController
+        launchVC.view.alpha = 0.0
+        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+          self.presentViewController(launchVC, animated: true, completion: { () -> Void in
+            UIView.animateWithDuration(1.0, animations: { () -> Void in
+              launchVC.view.alpha = 1.0
+            })
+          })
+        })
+        
       } else {
         println("ERROR: No save path found, this is a fail case.")
       }

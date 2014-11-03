@@ -102,12 +102,12 @@ class LeadGameController {
   }
 
   func getImagePacketsFromCurrentUsersArray() -> [ImagePacket] {
-
+    
     var imagePackets = [ImagePacket]()
     println("MAIN BRAIN : Creating imagePackets from user array of \(usersForGame.count) users.")
     for user in usersForGame {
 
-      let imagePacketFor = ImagePacket(peerID: user.userPeerID!, userImage: user.userImage)
+      let imagePacketFor = ImagePacket(peerID: user.userPeerID!, userImage: user.userImage!)
 
       var needToAdd : Bool = true
       for existingImagePacket in imagePackets {

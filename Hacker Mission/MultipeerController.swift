@@ -60,7 +60,6 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
 
   func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
     println("Received data \(data) from \(peerID.displayName)")
-    println(data)
       
     var error : NSError?
 

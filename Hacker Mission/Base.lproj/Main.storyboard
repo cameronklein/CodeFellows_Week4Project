@@ -47,6 +47,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HackerMissionTitle" translatesAutoresizingMaskIntoConstraints="NO" id="VXa-Dh-u7j">
+                                <rect key="frame" x="152" y="175" width="296" height="120"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qma-9f-JgQ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                 <subviews>
@@ -56,17 +59,6 @@
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPf-6S-DwA">
-                                        <rect key="frame" x="235" y="212" width="130" height="29"/>
-                                        <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="15"/>
-                                        <state key="normal" title="&lt;&lt;START GAME&gt;&gt;">
-                                            <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="startGameButtonPressed:" destination="B2m-a2-ZUT" eventType="touchUpInside" id="Wlx-W7-7vM"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJT-k5-bx7">
                                         <rect key="frame" x="176" y="131" width="247" height="38"/>
                                         <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="25"/>
@@ -78,8 +70,19 @@
                                             <action selector="hostGameButtonPressed:" destination="B2m-a2-ZUT" eventType="touchUpInside" id="uVB-ul-vro"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPf-6S-DwA">
+                                        <rect key="frame" x="235" y="212" width="130" height="29"/>
+                                        <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="15"/>
+                                        <state key="normal" title="&lt;&lt;START GAME&gt;&gt;">
+                                            <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="startGameButtonPressed:" destination="B2m-a2-ZUT" eventType="touchUpInside" id="Wlx-W7-7vM"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="centerY" secondItem="gJT-k5-bx7" secondAttribute="centerY" id="0ME-bH-Z8o"/>
                                     <constraint firstItem="P14-56-dqD" firstAttribute="top" secondItem="gJT-k5-bx7" secondAttribute="bottom" constant="8" id="2Ri-3U-Jzi"/>
@@ -114,7 +117,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="1OX-99-S4k" secondAttribute="centerX" id="3P7-Oo-b7y"/>
                                     <constraint firstAttribute="centerX" secondItem="c69-h1-LK6" secondAttribute="centerX" id="6CT-4U-sao"/>
@@ -122,9 +125,6 @@
                                     <constraint firstAttribute="centerY" secondItem="c69-h1-LK6" secondAttribute="centerY" id="fDM-g7-Qpx"/>
                                 </constraints>
                             </view>
-                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HackerMissionTitle" translatesAutoresizingMaskIntoConstraints="NO" id="VXa-Dh-u7j">
-                                <rect key="frame" x="152" y="175" width="296" height="120"/>
-                            </imageView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Nr6-3m-elK">
                                 <rect key="frame" x="281" y="282" width="37" height="37"/>
                             </activityIndicatorView>
@@ -135,7 +135,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="qma-9f-JgQ" secondAttribute="trailing" constant="-16" id="3GX-2g-owK"/>
                             <constraint firstItem="qma-9f-JgQ" firstAttribute="height" secondItem="rwS-3Z-jzj" secondAttribute="height" multiplier="0.5" id="4eo-4w-gqn"/>

@@ -39,8 +39,6 @@ class LaunchViewController: UIViewController {
       self.userInfoMyself = nil
     }
     
-    
-
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -89,7 +87,7 @@ class LaunchViewController: UIViewController {
   }
 
   @IBAction func hostGameButtonPressed(sender: AnyObject) {
-    startButton.hidden = true
+    //startButton.hidden = true
     peersLabel.hidden = false
     peersLabel.text = "Looking for other players..."
     joinButton.hidden = true
@@ -134,6 +132,7 @@ class LaunchViewController: UIViewController {
       if self.masterController != nil {
         println("Showing start button")
         self.startButton.hidden = false
+        self.startButton.alpha = 1.0
       }
     }
   }
@@ -160,8 +159,7 @@ class LaunchViewController: UIViewController {
       }
       
     }
-    
-    
+  
     @IBAction func createCharacter(sender: AnyObject) {
       self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
     }
@@ -188,6 +186,5 @@ class LaunchViewController: UIViewController {
           self.animateTitle(true)
       })
     }
-    
   }
 }
