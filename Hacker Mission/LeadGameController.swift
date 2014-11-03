@@ -441,8 +441,10 @@ class LeadGameController {
       
     case "user" :
       println("MAIN BRAIN: Received user information from \(peerID)")
-      let value = event["value"] as UserInfo
-      usersForGame.append(value)
+      let value = event["value"] as String
+      let user = UserInfo(userName: value)
+      user.userPeerID = peerID
+      usersForGame.append(user)
       // MARK: FInish this with a new event to request the imagePackets
 
     case "imagePacket" :

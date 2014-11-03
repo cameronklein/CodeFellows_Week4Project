@@ -268,7 +268,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     let myPeerID = self.peerID.displayName as NSString
     userInfo.userPeerID = myPeerID
 
-    let dictionaryData = ["action" : "user", "value" : userInfo]
+    let dictionaryData = ["action" : "user", "value" : userInfo.userName]
     let data = NSKeyedArchiver.archivedDataWithRootObject(dictionaryData)
     var error : NSError?
     if peerWithMainBrain != nil {
