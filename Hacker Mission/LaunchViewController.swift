@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
+class LaunchViewController: UIViewController {
   
   var masterController    : LeadGameController?
   var followerController  : GameController?
@@ -59,7 +59,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
         
         let destinationvVC = storyboard.instantiateViewControllerWithIdentifier("CHARCREATE_VC") as CharacterCreationViewController!
         let presentingVC = storyboard.instantiateViewControllerWithIdentifier("LAUNCHVIEW_VC") as LaunchViewController!
-        destinationvVC.delegate = self
+//        destinationvVC.delegate = self
         self.presentViewController(destinationvVC, animated: false, completion: { () -> Void in
           println("yes!")
         })
@@ -145,17 +145,17 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
     
   }
     
-    func didSaveUser(userToSave: UserInfo) {
-      
-      self.userInfoMyself = userToSave
-      
-    }
-    
+//    func didSaveUser(userToSave: UserInfo) {
+//      
+//      self.userInfoMyself = userToSave
+//      
+//    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
       
       if segue.identifier == "SHOW_CHARCREATE" {
         let destinationVC = segue.destinationViewController as CharacterCreationViewController
-        destinationVC.delegate = self
+//        destinationVC.delegate = self
       }
       
     }

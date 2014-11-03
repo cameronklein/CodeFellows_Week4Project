@@ -9,9 +9,9 @@
 import UIKit
 import QuartzCore
 
-protocol CharacterCreationViewDelegate {
-    func didSaveUser(userToSave: UserInfo)
-}
+//protocol CharacterCreationViewDelegate {
+//    func didSaveUser(userToSave: UserInfo)
+//}
 
 class CharacterCreationViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate
 {
@@ -25,7 +25,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     var userForSave : UserInfo!
     var userNameFor : NSString?
     var userImageFor : UIImage?
-    var delegate : CharacterCreationViewDelegate?
+//    var delegate : CharacterCreationViewDelegate?
     var hasLaunched = false
 
     
@@ -175,14 +175,16 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       var localUserInfo = UserInfo(userName: self.userNameFor!, userImage: self.userImageFor!)
       self.userForSave = localUserInfo
       print("delegate is: ")
-      println(self.delegate)
-      self.delegate?.didSaveUser(self.userForSave)
+//      println(self.delegate)
+//      self.delegate?.didSaveUser(self.userForSave)
       if let pathForSave = appDelegate.documentsPath as String! {
       println("Can Save File")
         UserInfo.saveTheObject(localUserInfo)
         appDelegate.defaultUser = localUserInfo
         println("appdelegate user is \(appDelegate.defaultUser?.userName)")
-        self.dismissViewControllerAnimated(true, completion: nil)
+//        self.dismissViewControllerAnimated(true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        self.presentViewController(storyboard.instantiateViewControllerWithIdentifier("LAUNCHVIEW_VC") as LaunchViewController!, animated: true, completion: nil)
       } else {
         println("ERROR: No save path found, this is a fail case.")
       }
