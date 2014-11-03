@@ -33,6 +33,7 @@ class LeadGameController {
       println("thisUser is \(thisUser)")
       thisUser.userPeerID = multipeerController.peerID.displayName
       usersForGame.append(thisUser)
+      imagePacketsForGame.append(ImagePacket(peerID: thisUser.userPeerID!, userImage: thisUser.userImage!))
     }
     multipeerController.startBrowsing()
   }

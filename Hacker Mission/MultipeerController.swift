@@ -59,7 +59,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   // MARK: - MCSessionDelegate Methods
 
   func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
-    println("Received data \(data) from \(peerID.displayName)")
+    println("Received data from \(peerID.displayName)")
       
     var error : NSError?
     
@@ -74,10 +74,10 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       }
     
 
-//    else if let imagePackets = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [ImagePacket] {
-//      println("Recognized data as ImagePacket aray.")
-//      gameController.handleImagePackets(imagePackets)
-//    }
+    }else if let imagePackets = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [ImagePacket] {
+      println("Recognized data as ImagePacket aray.")
+      gameController.handleImagePackets(imagePackets)
+    
       
     } else if let userImage = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? UIImage {
       println("Recognized data as UIImage.")
