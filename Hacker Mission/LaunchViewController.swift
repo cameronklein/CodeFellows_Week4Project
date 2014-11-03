@@ -75,6 +75,8 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
 
     println("the appDelUser is: \(appDelegate.defaultUser?.userName)")
 
+    self.flavorLabel.typeToNewString("The daring hackers of the Opposition have weakened the iron grip of the oppressive Government, just a few more incidents will incite revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...", withInterval: 0.05, startingText: "")
+
   }
 
 
