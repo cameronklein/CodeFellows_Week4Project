@@ -156,6 +156,7 @@
                                 </constraints>
                             </view>
                             <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HackerMissionTitle" translatesAutoresizingMaskIntoConstraints="NO" id="VXa-Dh-u7j">
+                                <rect key="frame" x="152" y="175" width="296" height="120"/>
                                 <rect key="frame" x="152" y="230" width="296" height="120"/>
                             </imageView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Nr6-3m-elK">
@@ -185,11 +186,14 @@
                             <constraint firstAttribute="centerX" secondItem="dtv-ys-BsA" secondAttribute="centerX" id="joi-jb-EWE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QEC-Oj-vsj" secondAttribute="trailing" constant="-16" id="lnT-Tz-boH"/>
                             <constraint firstItem="VXa-Dh-u7j" firstAttribute="width" secondItem="gJT-k5-bx7" secondAttribute="width" multiplier="1.2" id="r5i-KV-IlY"/>
+                            <constraint firstItem="dtv-ys-BsA" firstAttribute="top" secondItem="VXa-Dh-u7j" secondAttribute="bottom" id="yA8-Rx-LmB"/>
+                            <constraint firstAttribute="centerY" secondItem="VXa-Dh-u7j" secondAttribute="centerY" constant="65" id="ycE-gm-hdG"/>
                             <constraint firstAttribute="centerY" secondItem="VXa-Dh-u7j" secondAttribute="centerY" constant="10" id="ycE-gm-hdG"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="createCharacterButton" destination="1OX-99-S4k" id="ASB-nK-gGA"/>
+                        <outlet property="flavorLabel" destination="dtv-ys-BsA" id="4Mx-wD-3QC"/>
                         <outlet property="hackerMissionTitle" destination="VXa-Dh-u7j" id="9Q5-Hx-KKY"/>
                         <outlet property="hostButton" destination="gJT-k5-bx7" id="7em-mQ-L9q"/>
                         <outlet property="joinButton" destination="c69-h1-LK6" id="JMS-y9-KpR"/>

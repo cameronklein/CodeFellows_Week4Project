@@ -25,6 +25,8 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   @IBOutlet weak var testLabel: UILabel!
   @IBOutlet weak var hackerMissionTitle: UIImageView!
   
+  @IBOutlet weak var flavorLabel: UILabel!
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
