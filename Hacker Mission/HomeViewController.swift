@@ -104,15 +104,17 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       cell.imageView.image = imagePacketImage as UIImage!
       cell.username.text = player.playerName
       
-      if player.isNominated
-      {
-          cell.layer.borderColor = UIColor.greenColor().CGColor
-          cell.layer.borderWidth = 1
-      }
-      else
-      {
-          cell.layer.borderColor = UIColor.blackColor().CGColor
-          cell.layer.borderWidth = 0
+      if self.gameController.game.currentGameState == .NominatePlayers{
+        if player.isNominated
+        {
+            cell.layer.borderColor = UIColor.greenColor().CGColor
+            cell.layer.borderWidth = 1
+        }
+        else
+        {
+            cell.layer.borderColor = UIColor.blackColor().CGColor
+            cell.layer.borderWidth = 0
+        }
       }
       
       if self.gameController.game.currentGameState != .RevealVote
@@ -632,8 +634,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   func animateIncomingMessageLabelWithCompletionHandler(completionHandler : () -> (Void)) {
     
   }
-  
-
 
 }
 

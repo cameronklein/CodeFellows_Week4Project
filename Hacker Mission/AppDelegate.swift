@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       self.defaultUser = nil
     }
     
-    self.window?.rootViewController = OnboardViewController(nibName: "OnboardViewController", bundle: NSBundle.mainBundle())
+    //self.window?.rootViewController = OnboardViewController(nibName: "OnboardViewController", bundle: NSBundle.mainBundle())
     
 
 

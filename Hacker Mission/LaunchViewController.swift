@@ -23,7 +23,8 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   @IBOutlet weak var spinningWheel: UIActivityIndicatorView!
   @IBOutlet weak var createCharacterButton: UIButton!
   @IBOutlet weak var testLabel: UILabel!
-
+  @IBOutlet weak var hackerMissionTitle: UIImageView!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -35,6 +36,8 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
     } else {
       self.userInfoMyself = nil
     }
+    
+    animateTitle(true)
 
   }
 
@@ -156,4 +159,29 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
     @IBAction func createCharacter(sender: AnyObject) {
       self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
     }
+  
+  func animateTitle(isAtTop: Bool) {
+    if isAtTop{
+      UIView.animateWithDuration(2.0,
+        delay: 0.0,
+        options: UIViewAnimationOptions.CurveEaseInOut,
+        animations: { () -> Void in
+          self.hackerMissionTitle.center.y = self.hackerMissionTitle.center.y + 20
+        },
+        completion: { (success) -> Void in
+          self.animateTitle(false)
+      })
+    } else {
+      UIView.animateWithDuration(2.0,
+        delay: 0.0,
+        options: UIViewAnimationOptions.CurveEaseInOut,
+        animations: { () -> Void in
+          self.hackerMissionTitle.center.y = self.hackerMissionTitle.center.y - 20
+        },
+        completion: { (success) -> Void in
+          self.animateTitle(true)
+      })
+    }
+    
+  }
 }
