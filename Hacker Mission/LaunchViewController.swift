@@ -24,8 +24,8 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
   @IBOutlet weak var createCharacterButton: UIButton!
   @IBOutlet weak var testLabel: UILabel!
   @IBOutlet weak var hackerMissionTitle: UIImageView!
-  
   @IBOutlet weak var flavorLabel: UILabel!
+  
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -39,7 +39,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
       self.userInfoMyself = nil
     }
     
-    animateTitle(true)
+    
 
   }
 
@@ -79,6 +79,7 @@ class LaunchViewController: UIViewController, CharacterCreationViewDelegate {
 
     self.flavorLabel.typeToNewString("The daring hackers of the Opposition have weakened the iron grip of the oppressive Government, just a few more incidents will incite revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...", withInterval: 0.05, startingText: "")
 
+    animateTitle(true)
   }
 
 
