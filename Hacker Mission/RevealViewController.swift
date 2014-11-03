@@ -58,11 +58,11 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         if gameController.thisPlayer.playerRole == .Agent
         {
-          self.flavorTextLabel.typeToNewString("You you have successfully infiltrated the Opposition hacker collective. Work with your fellow agents and protect the regime and the status quo.", withInterval: 0.1)
+          self.flavorTextLabel.typeToNewString("You have successfully infiltrated an Opposition hacker cell. Work with your fellow agents to protect the regime and the status quo.", withInterval: 0.1)
         }
         else
         {
-          self.flavorTextLabel.typeToNewString("You are a hacker for the Opposition, working to end the oppressive Government regime. Be wary of Goivernment agents who have infiltrated the collective.", withInterval: 0.1)
+          self.flavorTextLabel.typeToNewString("You are a hacker for the Opposition, working to end the oppressive Government regime. Be wary of Government agents who may have infiltrated your cell.", withInterval: 0.1)
         }
     }
     
