@@ -132,6 +132,7 @@ class LaunchViewController: UIViewController {
         self.peersLabel.hidden = false
       }
       if self.masterController != nil {
+        println("Showing start button")
         self.startButton.hidden = false
       }
     }

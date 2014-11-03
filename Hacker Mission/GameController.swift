@@ -135,11 +135,10 @@ class GameController {
 
   func updatePeerCount(count : Int) {
     self.peerCount = count
-    if let root = UIApplication.sharedApplication().keyWindow?.rootViewController as? LaunchViewController {
-      NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-        root.updateConnectedPeersLabel(count)
-      })
-    }
+    if launchVC != nil {
+        launchVC.updateConnectedPeersLabel(count)
+      }
+    
   }
   
   func sendUserInfo () {
