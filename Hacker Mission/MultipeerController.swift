@@ -62,6 +62,9 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     println("Received data \(data) from \(peerID.displayName)")
       
     var error : NSError?
+    
+//    let unarchiver =  NSKeyedUnarchiver(
+//    unarchiver.requiresSecureCoding = true
 
     if let gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameSession {
       println("Recognized data as GameSession.")
@@ -69,11 +72,23 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
         self.gameController.handleEvent(gameData)
         return ()
       }
-    }
+    
 
-    else if let imagePackets = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [ImagePacket] {
-      println("Recognized data as ImagePacket aray.")
-      gameController.handleImagePackets(imagePackets)
+//    else if let imagePackets = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [ImagePacket] {
+//      println("Recognized data as ImagePacket aray.")
+//      gameController.handleImagePackets(imagePackets)
+//    }
+      
+    } else if let userImage = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? UIImage {
+      println("Recognized data as UIImage.")
+      let newDictionary : NSMutableDictionary = NSMutableDictionary()
+      newDictionary.setObject("imagePacket", forKey: "action")
+      newDictionary.setObject(userImage, forKey: "value")
+      newDictionary.setObject(peerID.displayName, forKey: "peerID")
+      NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        self.mainBrain?.handleEvent(newDictionary)
+        return ()
+      }
     }
       
     else if let dataReceivedFromSlave = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? NSDictionary{
@@ -276,14 +291,13 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   }
 
 
-  func sendImagePacketToLeadController(userInfo: UserInfo){
+  func sendImagePacketToLeadController(image: UIImage){
 
-    let myPeerID = self.peerID.displayName as NSString
-    let imageFor = userInfo.userImage as UIImage!
-    let imagePacket = ImagePacket(peerID: myPeerID, userImage: imageFor)
+//    let myPeerID = self.peerID.displayName as NSString
+//    let imageFor = userInfo.userImage as UIImage!
+//    let imagePacket = ImagePacket(peerID: myPeerID, userImage: imageFor)
 
-    let dictionaryData = ["action" : "imagePacket", "value" : imagePacket]
-    let data = NSKeyedArchiver.archivedDataWithRootObject(dictionaryData)
+    let data = NSKeyedArchiver.archivedDataWithRootObject(image)
     var error : NSError?
     if peerWithMainBrain != nil {
       session.sendData(data, toPeers: [peerWithMainBrain], withMode: MCSessionSendDataMode.Reliable, error: &error)

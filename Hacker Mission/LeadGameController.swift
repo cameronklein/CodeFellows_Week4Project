@@ -446,8 +446,8 @@ class LeadGameController {
 
     case "imagePacket" :
       println("MAIN BRAIN: Received imagePacket from \(peerID)")
-      let value = event["value"] as ImagePacket
-      imagePacketsForGame.append(value)
+      let image = event["value"] as UIImage
+      imagePacketsForGame.append(ImagePacket(peerID: peerID, userImage: image))
 
     case "nominations" :
       println("MAIN BRAIN: Received nomination information from \(peerID)")

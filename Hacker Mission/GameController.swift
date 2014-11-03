@@ -160,7 +160,8 @@ class GameController {
     let appDel = UIApplication.sharedApplication().delegate as AppDelegate
     if let thisUser = appDel.defaultUser as UserInfo! {
       thisUser.userPeerID = multipeerController.peerID.displayName
-      multipeerController.sendImagePacketToLeadController(thisUser)
+      let image = thisUser.userImage!
+      multipeerController.sendImagePacketToLeadController(image)
     }
   }
 

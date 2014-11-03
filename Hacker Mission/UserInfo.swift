@@ -74,8 +74,7 @@ class UserInfo : NSObject, NSCoding {
     } else {
       println("save apears to have failed, no saved file found")
     }
-
-
+    
   }
 
   class func loadTheObject() -> UserInfo {
