@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   let multipeerController = MultiPeerController.sharedInstance
   var defaultUser: UserInfo?
   var documentsPath : String?
-
+  
   func checkDefaultsForUser() {
 
   }
@@ -48,8 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       self.defaultUser = nil
     }
     
-    //self.window?.rootViewController = OnboardViewController(nibName: "OnboardViewController", bundle: NSBundle.mainBundle())
-    
+    self.window?.rootViewController = RootOnboardViewController(nibName: "RootOnboardViewController", bundle: NSBundle.mainBundle())
 
 
     return true

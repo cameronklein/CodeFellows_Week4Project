@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="MKStencilsansBlack.ttf">
+            <string>MKStencilsansBlack</string>
+            <string>MKStencilsansBlack</string>
+            <string>MKStencilsansBlack</string>
+            <string>MKStencilsansBlack</string>
+            <string>MKStencilsansBlack</string>
+            <string>MKStencilsansBlack</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardPageViewController" customModule="Hacker_Mission" customModuleProvider="target">
+            <connections>
+                <outlet property="paragraph1" destination="4gg-id-Jro" id="9Vl-Xj-N5d"/>
+                <outlet property="paragraph2" destination="Cdm-kZ-WuC" id="MRH-xu-oCy"/>
+                <outlet property="paragraph3" destination="yc3-dS-vOV" id="4XB-xe-iKn"/>
+                <outlet property="paragraph4" destination="ZNb-2n-kXa" id="cyt-rj-Iw4"/>
+                <outlet property="paragraph5" destination="dwA-eh-tdD" id="sc7-4g-oGu"/>
+                <outlet property="paragraph6" destination="2qE-FZ-nsj" id="Jm7-x6-DHH"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" placeholderIntrinsicWidth="391" placeholderIntrinsicHeight="601" translatesAutoresizingMaskIntoConstraints="NO" id="wMD-q6-H65" userLabel="Page One">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Hacker Missions is a party game." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gg-id-Jro" userLabel="Paragraph One">
+                            <rect key="frame" x="16" y="32" width="568" height="27"/>
+                            <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="18"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Play with at least four of your friends in the same room." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdm-kZ-WuC" userLabel="Paragraph Two">
+                            <rect key="frame" x="16" y="91" width="568" height="53"/>
+                            <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="18"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You will assume the role of a hacker, living in a country with an evil, corrupt, totalitarian government." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yc3-dS-vOV" userLabel="Paragraph Three">
+                            <rect key="frame" x="16" y="176" width="568" height="80"/>
+                            <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="18"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your goal : Take down the government by completing three missions that will embarrass the regime so much they will crumble." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNb-2n-kXa" userLabel="Paragraph Four">
+                            <rect key="frame" x="16" y="288" width="568" height="80"/>
+                            <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="18"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The hitch : Some of your &quot;friends&quot; are spies and will do anything to stop you from succeeding." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwA-eh-tdD" userLabel="Paragraph Five">
+                            <rect key="frame" x="16" y="400" width="568" height="53"/>
+                            <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="18"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The hitch : Some of your &quot;friends&quot; are spies and will do anything to stop you from succeeding." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qE-FZ-nsj" userLabel="Paragraph Six">
+                            <rect key="frame" x="16" y="485" width="568" height="53"/>
+                            <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="18"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Cdm-kZ-WuC" firstAttribute="top" secondItem="4gg-id-Jro" secondAttribute="bottom" constant="32" id="1Vi-NW-Aep"/>
+                        <constraint firstItem="yc3-dS-vOV" firstAttribute="top" secondItem="Cdm-kZ-WuC" secondAttribute="bottom" constant="32" id="2b7-mT-XtF"/>
+                        <constraint firstAttribute="centerX" secondItem="4gg-id-Jro" secondAttribute="centerX" id="3Sk-PD-HRu"/>
+                        <constraint firstItem="ZNb-2n-kXa" firstAttribute="leading" secondItem="wMD-q6-H65" secondAttribute="leading" constant="16" id="BGY-eb-qKY"/>
+                        <constraint firstItem="2qE-FZ-nsj" firstAttribute="top" secondItem="dwA-eh-tdD" secondAttribute="bottom" constant="32" id="F4n-2a-Mrv"/>
+                        <constraint firstAttribute="trailing" secondItem="dwA-eh-tdD" secondAttribute="trailing" constant="16" id="GXK-8c-YsC"/>
+                        <constraint firstItem="dwA-eh-tdD" firstAttribute="leading" secondItem="wMD-q6-H65" secondAttribute="leading" constant="16" id="Pe8-2G-tKp"/>
+                        <constraint firstItem="4gg-id-Jro" firstAttribute="leading" secondItem="wMD-q6-H65" secondAttribute="leading" constant="16" id="RAd-77-mGM"/>
+                        <constraint firstItem="yc3-dS-vOV" firstAttribute="leading" secondItem="wMD-q6-H65" secondAttribute="leading" constant="16" id="RZU-bZ-BUP"/>
+                        <constraint firstAttribute="trailing" secondItem="ZNb-2n-kXa" secondAttribute="trailing" constant="16" id="RaH-gI-Vcu"/>
+                        <constraint firstItem="ZNb-2n-kXa" firstAttribute="top" secondItem="yc3-dS-vOV" secondAttribute="bottom" constant="32" id="WkX-qg-JsB"/>
+                        <constraint firstItem="2qE-FZ-nsj" firstAttribute="leading" secondItem="wMD-q6-H65" secondAttribute="leading" constant="16" id="YoN-q2-CA4"/>
+                        <constraint firstItem="Cdm-kZ-WuC" firstAttribute="leading" secondItem="wMD-q6-H65" secondAttribute="leading" constant="16" id="cro-WB-FZm"/>
+                        <constraint firstItem="4gg-id-Jro" firstAttribute="top" secondItem="wMD-q6-H65" secondAttribute="top" constant="64" id="hBu-pB-AuL"/>
+                        <constraint firstAttribute="trailing" secondItem="2qE-FZ-nsj" secondAttribute="trailing" constant="16" id="jV5-dO-6Hz"/>
+                        <constraint firstItem="dwA-eh-tdD" firstAttribute="top" secondItem="ZNb-2n-kXa" secondAttribute="bottom" constant="32" id="lXP-Ad-Uob"/>
+                        <constraint firstAttribute="trailing" secondItem="Cdm-kZ-WuC" secondAttribute="trailing" constant="16" id="rrb-51-wHc"/>
+                        <constraint firstAttribute="trailing" secondItem="yc3-dS-vOV" secondAttribute="trailing" constant="16" id="tmS-Za-HEQ"/>
+                        <constraint firstAttribute="trailing" secondItem="4gg-id-Jro" secondAttribute="trailing" constant="16" id="ySt-fQ-o5P"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="wMD-q6-H65" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3Wb-vb-iv5"/>
+                <constraint firstAttribute="trailing" secondItem="wMD-q6-H65" secondAttribute="trailing" id="AY3-Rj-ZWK"/>
+                <constraint firstAttribute="bottom" secondItem="wMD-q6-H65" secondAttribute="bottom" id="FK0-48-bvS"/>
+                <constraint firstItem="wMD-q6-H65" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ilY-FK-A8k"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
