@@ -11,7 +11,7 @@ import UIKIT
 class ImagePacket : NSObject, NSCoding {
   var userImage : UIImage
   var userPeerID : NSString?
-  var imagePacketObject = NSMutableData()
+  //var imagePacketObject = NSMutableData()
   var savePath : String?
 
   init(peerID: NSString, userImage: UIImage) {

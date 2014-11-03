@@ -45,18 +45,18 @@ class LeadGameController {
     multipeerController.stopBrowsing()
   
     let players = self.getPlayersFromCurrentUsersArray()
-    let imagePackets = self.getImagePacketsFromCurrentUsersArray() // here!!!!!!!!!!!
+    //let imagePackets = self.getImagePacketsFromCurrentUsersArray() // here!!!!!!!!!!!
     
     println("MAIN BRAIN: \(players.count) players created from provided user information.")
-    println("MAIN BRAIN: \(imagePackets.count) image packets created from provided user information.")
+    //println("MAIN BRAIN: \(imagePackets.count) image packets created from provided user information.")
 
-    if players.count != imagePackets.count {
-      println("mismatch between players count and image packets count. Seek resolutions.")
-    }
+//    if players.count != imagePackets.count {
+//      println("mismatch between players count and image packets count. Seek resolutions.")
+//    }
 
     println("PLAYERS DESC: \(players.description)")
 
-    multipeerController.sendImagePacketsToPeers(imagePackets)
+    multipeerController.sendImagePacketsToPeers(imagePacketsForGame)
     
     var missions = GameSession.populateMissionList(players.count)
     
