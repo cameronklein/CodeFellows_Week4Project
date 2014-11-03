@@ -47,6 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       println("No saved user data found.")
       self.defaultUser = nil
     }
+    
+    //self.window?.rootViewController = OnboardViewController(nibName: "OnboardViewController", bundle: NSBundle.mainBundle())
+    
 
 
     return true
@@ -65,7 +68,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func applicationWillEnterForeground(application: UIApplication) {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    println("APP DELEGATE : Will Enter Foreground")
+    println("APP DELEGATE : Will Enter Foreground. GAME RUNNING == \(multipeerController.gameRunning)")
+    if multipeerController.mainBrain == nil {
+      multipeerController.startAdvertising()
+    }
   }
 
   func applicationDidBecomeActive(application: UIApplication) {

@@ -40,6 +40,7 @@ class LeadGameController {
   func startGame() {
     
     println("MAIN BRAIN : Start Game Function Called")
+    multipeerController.gameRunning = true
     
     multipeerController.stopBrowsing()
   

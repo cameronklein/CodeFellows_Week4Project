@@ -24,6 +24,8 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   var peerWithMainBrain   : MCPeerID!
   var gameController      : GameController!
   var mainBrain           : LeadGameController?
+  var disconnectedPeers   = [MCPeerID]()
+  var gameRunning         = false
   
   let MyServiceType = "cf-hacker"
   
@@ -33,9 +35,14 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     
     println("Multipeer Controller Loaded")
     
-    let randomNumber = Int(arc4random_uniform(UInt32(10000)))
-    
-    peerID  = MCPeerID(displayName: UIDevice.currentDevice().name + randomNumber.description)
+    if let savedName = NSUserDefaults.standardUserDefaults().objectForKey("PeerDisplayName") as? String {
+      peerID  = MCPeerID(displayName: savedName)
+    } else {
+      let randomNumber = Int(arc4random_uniform(UInt32(10000)))
+      peerID  = MCPeerID(displayName: UIDevice.currentDevice().name + randomNumber.description)
+      NSUserDefaults.standardUserDefaults().setObject(NSString(string: peerID.displayName!), forKey: "PeerDisplayName")
+      NSUserDefaults.standardUserDefaults().synchronize()
+    }
     
     session = MCSession(peer: self.peerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.None)
     session.delegate = self
@@ -118,6 +125,11 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
 
     } else if state == MCSessionState.NotConnected {
       println("Peer \(peerID.displayName) Stopped Connecting")
+      if mainBrain != nil {
+        println("MAIN BRAIN: Adding \(peerID.displayName) to disconnected peers list.")
+        self.disconnectedPeers.append(peerID)
+        self.startBrowsing()
+      }
 
     } else if state == MCSessionState.Connecting {
       println("Peer Connecting")
@@ -156,9 +168,17 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   
   func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
     
-    println("Found peer with id \(peerID.displayName). Inviting!")
-    browser.invitePeer(peerID, toSession: session, withContext: nil, timeout: 0)
-    
+    if gameRunning == true {
+      for peer in disconnectedPeers {
+        if peer.displayName == peerID.displayName {
+        println("Found previously connected peer with id \(peerID.displayName). Inviting!")
+         browser.invitePeer(peerID, toSession: session, withContext: nil, timeout: 0)
+        }
+      }
+    } else if gameRunning == false {
+      println("Found new peer with id \(peerID.displayName). Inviting!")
+      browser.invitePeer(peerID, toSession: session, withContext: nil, timeout: 0)
+    }
   }
   
   func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {

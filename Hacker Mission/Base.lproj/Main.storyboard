@@ -122,8 +122,42 @@
                                     <constraint firstItem="P14-56-dqD" firstAttribute="centerX" secondItem="gJT-k5-bx7" secondAttribute="centerX" id="Kg2-wh-oCK"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QEC-Oj-vsj">
+                                <rect key="frame" x="0.0" y="300" width="600" height="300"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c69-h1-LK6">
+                                        <rect key="frame" x="219" y="131" width="162" height="38"/>
+                                        <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="25"/>
+                                        <state key="normal" title="JOIN GAME">
+                                            <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="joinGameButtonPressed:" destination="B2m-a2-ZUT" eventType="touchUpInside" id="reG-18-jVM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1OX-99-S4k">
+                                        <rect key="frame" x="241" y="177" width="119" height="26"/>
+                                        <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="13"/>
+                                        <state key="normal" title="[Change User]">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="createCharacter:" destination="B2m-a2-ZUT" eventType="touchUpInside" id="kU7-gP-GLz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="1OX-99-S4k" secondAttribute="centerX" id="3P7-Oo-b7y"/>
+                                    <constraint firstAttribute="centerX" secondItem="c69-h1-LK6" secondAttribute="centerX" id="6CT-4U-sao"/>
+                                    <constraint firstItem="1OX-99-S4k" firstAttribute="top" secondItem="c69-h1-LK6" secondAttribute="bottom" constant="8" id="RfE-bH-4Hm"/>
+                                    <constraint firstAttribute="centerY" secondItem="c69-h1-LK6" secondAttribute="centerY" id="fDM-g7-Qpx"/>
+                                </constraints>
+                            </view>
                             <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HackerMissionTitle" translatesAutoresizingMaskIntoConstraints="NO" id="VXa-Dh-u7j">
                                 <rect key="frame" x="152" y="175" width="296" height="120"/>
+                                <rect key="frame" x="152" y="230" width="296" height="120"/>
                             </imageView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Nr6-3m-elK">
                                 <rect key="frame" x="281" y="282" width="37" height="37"/>
@@ -154,11 +188,13 @@
                             <constraint firstItem="VXa-Dh-u7j" firstAttribute="width" secondItem="gJT-k5-bx7" secondAttribute="width" multiplier="1.2" id="r5i-KV-IlY"/>
                             <constraint firstItem="dtv-ys-BsA" firstAttribute="top" secondItem="VXa-Dh-u7j" secondAttribute="bottom" id="yA8-Rx-LmB"/>
                             <constraint firstAttribute="centerY" secondItem="VXa-Dh-u7j" secondAttribute="centerY" constant="65" id="ycE-gm-hdG"/>
+                            <constraint firstAttribute="centerY" secondItem="VXa-Dh-u7j" secondAttribute="centerY" constant="10" id="ycE-gm-hdG"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="createCharacterButton" destination="1OX-99-S4k" id="ASB-nK-gGA"/>
                         <outlet property="flavorLabel" destination="dtv-ys-BsA" id="4Mx-wD-3QC"/>
+                        <outlet property="hackerMissionTitle" destination="VXa-Dh-u7j" id="9Q5-Hx-KKY"/>
                         <outlet property="hostButton" destination="gJT-k5-bx7" id="7em-mQ-L9q"/>
                         <outlet property="joinButton" destination="c69-h1-LK6" id="JMS-y9-KpR"/>
                         <outlet property="peersLabel" destination="P14-56-dqD" id="vmh-7Y-zZq"/>

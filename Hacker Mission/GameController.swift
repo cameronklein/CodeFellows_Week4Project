@@ -86,6 +86,7 @@ class GameController {
   }
   
   func gameStart() {
+    multipeerController.gameRunning = true
     
     println("GAME CONTROLLER: Got Game Start Message")
     
