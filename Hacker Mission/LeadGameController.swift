@@ -21,10 +21,14 @@ class LeadGameController {
   var myUserInfo : UserInfo!
   var launchVC : LaunchViewController!
   var flavorTextArray = [(String,String)]()
+  
+  var requestQueue = NSOperationQueue()
+  
 
   init() {
     multipeerController.mainBrain = self
     self.loadFlavorTextIntoArray()
+    requestQueue.maxConcurrentOperationCount = 1
   }
   
   func startLookingForPlayers() {
@@ -37,25 +41,50 @@ class LeadGameController {
     }
     multipeerController.startBrowsing()
   }
-
+  
+  func beginRequestingImagesFromPlayers() {
+    multipeerController.showLoadingScreen()
+    self.requestImagesFromPlayers()
+  }
+  
+  func requestImagesFromPlayers() {
+    requestQueue.addOperationWithBlock { () -> Void in
+      if self.imagePacketsForGame.count == self.usersForGame.count {
+        self.startGame()
+      } else {
+        for user in self.usersForGame {
+          var packetArrayHasImage = false
+          for packet in self.imagePacketsForGame {
+            if packet.userPeerID == user.userPeerID {
+              packetArrayHasImage = true
+            }
+          }
+          if packetArrayHasImage == false {
+            println("Asking for image from \(user.userPeerID!)")
+            self.requestQueue.addOperationWithBlock({ () -> Void in
+              NSThread.sleepForTimeInterval(2.0)
+              self.multipeerController.requestImageFromPeer(user.userPeerID!)
+            })
+            break
+          }
+        }
+        self.requestImagesFromPlayers()
+      }
+    }
+  }
+  
   func startGame() {
     
     println("MAIN BRAIN : Start Game Function Called")
     multipeerController.gameRunning = true
     
-    multipeerController.stopBrowsing()
+    //multipeerController.stopBrowsing()
   
     let players = self.getPlayersFromCurrentUsersArray()
-    //let imagePackets = self.getImagePacketsFromCurrentUsersArray() // here!!!!!!!!!!!
-    
+
     println("MAIN BRAIN: \(players.count) players created from provided user information.")
-    //println("MAIN BRAIN: \(imagePackets.count) image packets created from provided user information.")
-
-//    if players.count != imagePackets.count {
-//      println("mismatch between players count and image packets count. Seek resolutions.")
-//    }
-
-    println("PLAYERS DESC: \(players.description)")
+    
+   
 
     multipeerController.sendImagePacketsToPeers(imagePacketsForGame)
     
