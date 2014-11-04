@@ -27,6 +27,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   var disconnectedPeers   = [MCPeerID]()
   var gameRunning         = false
   var didSendUserData     = false
+  var didSendImagePacket  = false
   
   let MyServiceType = "cf-hacker"
   
@@ -330,8 +331,11 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     println("Sending image packet to Main Brain!")
     let data = NSKeyedArchiver.archivedDataWithRootObject(image)
     var error : NSError?
-    if peerWithMainBrain != nil {
-      session.sendData(data, toPeers: [peerWithMainBrain], withMode: MCSessionSendDataMode.Reliable, error: &error)
+    if didSendImagePacket == false {
+      didSendImagePacket = true
+      if peerWithMainBrain != nil {
+        session.sendData(data, toPeers: [peerWithMainBrain], withMode: MCSessionSendDataMode.Reliable, error: &error)
+      }
     }
     if error != nil {
       println("Error encountered when sending user info to main brain: \(error!.description))")
