@@ -24,7 +24,6 @@ class LeadGameController {
   
   var requestQueue = NSOperationQueue()
   
-
   init() {
     multipeerController.mainBrain = self
     self.loadFlavorTextIntoArray()

@@ -127,7 +127,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       if dataReceived == "RequestImage" {
         self.gameController.sendImagePacket()
       } else if dataReceived == "ShowLoadingScreen" {
-        
+        self.gameController.showLoadingScreen()
       }
     }
       

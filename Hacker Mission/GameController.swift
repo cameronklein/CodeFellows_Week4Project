@@ -85,6 +85,10 @@ class GameController {
     
   }
   
+  func showLoadingScreen(){
+    
+  }
+  
   func gameStart() {
     multipeerController.gameRunning = true
     

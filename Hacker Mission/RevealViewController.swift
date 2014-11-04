@@ -42,8 +42,6 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
       layout.sectionInset.right = screenWidth * 0.05
       layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.23)
       
-      
-      
       for player in gameController.game.players {
         playerArray.append(player as Player)
       }
@@ -58,11 +56,11 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         if gameController.thisPlayer.playerRole == .Agent
         {
-          self.flavorTextLabel.typeToNewString("You have successfully infiltrated an Opposition hacker cell. Work with your fellow agents to protect the regime and the status quo.", withInterval: 0.1)
+          self.flavorTextLabel.typeToNewString("Congratulations on successfully infiltrating the hacker cell, agent. Work with your team to protect the regime and the status quo. Protect your true identity, allow yourself to be sent on missions, and ensure that three missions fail. Good luck.", withInterval: 0.1)
         }
         else
         {
-          self.flavorTextLabel.typeToNewString("You are a hacker for the Opposition, working to end the oppressive Government regime. Be wary of Government agents who may have infiltrated your cell.", withInterval: 0.1)
+          self.flavorTextLabel.typeToNewString("The time has come. Fully loyal to the hacker cause, you will do anything you can to bring down the oppressive government regime. Bad news, though. Trustworthy intel has indicated that the government has \(agentArray.count) spies in the group. Sniff them out and ensure that three missions succeed.", withInterval: 0.1)
         }
     }
     
