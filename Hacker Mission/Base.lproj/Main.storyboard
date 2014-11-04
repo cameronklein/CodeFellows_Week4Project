@@ -15,6 +15,7 @@
             <string>MKStencilsansBlack</string>
             <string>MKStencilsansBlack</string>
             <string>MKStencilsansBlack</string>
+            <string>MKStencilsansBlack</string>
         </mutableArray>
         <mutableArray key="TYPEWRON.ttf">
             <string>Typewrong</string>
@@ -188,7 +189,7 @@
                                 <rect key="frame" x="228" y="481" width="143" height="29"/>
                                 <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="15"/>
                                 <state key="normal" title="[SAVE CHARACTER]">
-                                    <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.44313725490196076" green="0.96078431372549022" blue="0.082352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -196,7 +197,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gX0-Qb-HeF">
-                                <rect key="frame" x="32" y="287" width="536" height="186"/>
+                                <rect key="frame" x="32" y="326" width="536" height="147"/>
                                 <color key="tintColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="O2M-xi-TRV">
                                     <size key="itemSize" width="50" height="50"/>
@@ -243,8 +244,27 @@
                                     <action selector="photoButtonPressed:" destination="Qid-5I-G0n" eventType="touchUpInside" id="RsZ-ni-s9d"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter A Name Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DnX-Sf-lrV">
-                                <rect key="frame" x="217" y="36" width="167" height="30"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WWg-Hl-4eJ">
+                                <rect key="frame" x="217" y="121" width="167" height="167"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="167" id="Mga-gG-Irv"/>
+                                    <constraint firstAttribute="height" constant="167" id="xQM-8b-OsY"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default images:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGl-QH-FAa">
+                                <rect key="frame" x="257" y="304" width="87" height="14"/>
+                                <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="12"/>
+                                <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Identity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeg-Yc-HFt">
+                                <rect key="frame" x="225" y="36" width="151" height="23"/>
+                                <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="20"/>
+                                <color key="textColor" red="0.4431372549" green="0.96078431369999995" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DnX-Sf-lrV">
+                                <rect key="frame" x="217" y="75" width="167" height="30"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="167" id="KOa-nP-bTY"/>
@@ -253,25 +273,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WWg-Hl-4eJ">
-                                <rect key="frame" x="217" y="82" width="167" height="167"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="167" id="Mga-gG-Irv"/>
-                                    <constraint firstAttribute="height" constant="167" id="xQM-8b-OsY"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default images:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGl-QH-FAa">
-                                <rect key="frame" x="257" y="265" width="87" height="14"/>
-                                <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="12"/>
-                                <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="gX0-Qb-HeF" secondAttribute="trailing" constant="16" id="0jp-44-tmC"/>
                             <constraint firstAttribute="centerX" secondItem="OGl-QH-FAa" secondAttribute="centerX" id="2ne-oo-yF4"/>
-                            <constraint firstItem="DnX-Sf-lrV" firstAttribute="top" secondItem="81c-e4-kXY" secondAttribute="bottom" constant="16" id="BOu-5Y-ZhV"/>
+                            <constraint firstItem="DnX-Sf-lrV" firstAttribute="top" secondItem="692-JX-l36" secondAttribute="top" constant="36" id="3B8-F0-1Zh"/>
+                            <constraint firstItem="oeg-Yc-HFt" firstAttribute="top" secondItem="692-JX-l36" secondAttribute="topMargin" constant="36" id="AOT-S3-aVW"/>
                             <constraint firstItem="gX0-Qb-HeF" firstAttribute="leading" secondItem="692-JX-l36" secondAttribute="leadingMargin" constant="16" id="DoK-GP-FxK"/>
                             <constraint firstAttribute="centerX" secondItem="mYg-lI-wCd" secondAttribute="centerX" id="Kyt-Gg-CNA"/>
                             <constraint firstItem="gX0-Qb-HeF" firstAttribute="top" secondItem="OGl-QH-FAa" secondAttribute="bottom" constant="8" id="Kz6-Yv-PUY"/>
@@ -280,10 +288,17 @@
                             <constraint firstAttribute="centerX" secondItem="YfP-7t-JIE" secondAttribute="centerX" id="UFe-sD-RvJ"/>
                             <constraint firstItem="YfP-7t-JIE" firstAttribute="top" secondItem="gX0-Qb-HeF" secondAttribute="bottom" constant="8" id="Yzd-38-DtV"/>
                             <constraint firstItem="mYg-lI-wCd" firstAttribute="top" secondItem="YfP-7t-JIE" secondAttribute="bottom" constant="8" id="ZXL-ge-STx"/>
+                            <constraint firstAttribute="centerX" secondItem="oeg-Yc-HFt" secondAttribute="centerX" id="csT-C6-h9T"/>
                             <constraint firstItem="dJA-2U-H2F" firstAttribute="top" secondItem="mYg-lI-wCd" secondAttribute="bottom" constant="45" id="dac-nr-JDb"/>
                             <constraint firstItem="WWg-Hl-4eJ" firstAttribute="top" secondItem="DnX-Sf-lrV" secondAttribute="bottom" constant="16" id="wTi-0u-aO9"/>
+                            <constraint firstItem="DnX-Sf-lrV" firstAttribute="top" secondItem="oeg-Yc-HFt" secondAttribute="bottom" constant="16" id="x46-4f-ajY"/>
                             <constraint firstItem="OGl-QH-FAa" firstAttribute="top" secondItem="WWg-Hl-4eJ" secondAttribute="bottom" constant="16" id="xgf-9u-txu"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3B8-F0-1Zh"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="defaultIconsCollectionView" destination="gX0-Qb-HeF" id="CYX-cN-AjX"/>

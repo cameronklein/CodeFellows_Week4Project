@@ -45,6 +45,9 @@ class OnboardPageViewController: UIViewController {
     }
     if let text = p6 {
       paragraph6.text = text
+      if text == "Trust no one." {
+        paragraph6.textColor = UIColor.redColor()
+      } 
     }
     
     
