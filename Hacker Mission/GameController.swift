@@ -94,7 +94,7 @@ class GameController {
     
     println("GAME CONTROLLER: Got Game Start Message")
     
-    multipeerController.stopAdvertising()
+    //multipeerController.stopAdvertising()
     revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())
     
     self.launchVC.gameStart(revealVC)
@@ -142,7 +142,6 @@ class GameController {
     if launchVC != nil {
         launchVC.updateConnectedPeersLabel(count)
       }
-    
   }
   
   func sendUserInfo () {

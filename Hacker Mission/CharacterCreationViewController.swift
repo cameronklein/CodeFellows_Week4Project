@@ -27,6 +27,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     var userImageFor : UIImage?
 //    var delegate : CharacterCreationViewDelegate?
     var hasLaunched = false
+    var wasPresented = false
 
     
     //MARK: - View Methods
@@ -182,17 +183,20 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
         UserInfo.saveTheObject(localUserInfo)
         appDelegate.defaultUser = localUserInfo
         println("appdelegate user is \(appDelegate.defaultUser?.userName)")
-//        self.dismissViewControllerAnimated(true, completion: nil)
-        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let launchVC = storyboard.instantiateViewControllerWithIdentifier("LAUNCHVIEW_VC") as LaunchViewController
-        launchVC.view.alpha = 0.0
-        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-          self.presentViewController(launchVC, animated: true, completion: { () -> Void in
-            UIView.animateWithDuration(1.0, animations: { () -> Void in
-              launchVC.view.alpha = 1.0
+        if wasPresented == true {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+          let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+          let launchVC = storyboard.instantiateViewControllerWithIdentifier("LAUNCHVIEW_VC") as LaunchViewController
+          launchVC.view.alpha = 0.0
+          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            self.presentViewController(launchVC, animated: true, completion: { () -> Void in
+              UIView.animateWithDuration(1.0, animations: { () -> Void in
+                launchVC.view.alpha = 1.0
+              })
             })
           })
-        })
+        }
         
       } else {
         println("ERROR: No save path found, this is a fail case.")

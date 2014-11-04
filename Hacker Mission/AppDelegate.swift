@@ -43,12 +43,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       println("Success: Saved user data found.")
       var userForLoad = UserInfo.loadTheObject()
       self.defaultUser = userForLoad as UserInfo!
+      
     } else {
       println("No saved user data found.")
       self.defaultUser = nil
+      self.window?.rootViewController = RootOnboardViewController(nibName: "RootOnboardViewController", bundle: NSBundle.mainBundle())
     }
+  
     
-    self.window?.rootViewController = RootOnboardViewController(nibName: "RootOnboardViewController", bundle: NSBundle.mainBundle())
+
 
 
     return true

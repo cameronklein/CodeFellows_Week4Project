@@ -15,6 +15,7 @@ class LaunchViewController: UIViewController {
   var userInfoMyself      : UserInfo?
   var truthInAdvertising  : Bool?
   var multiPeerController = MultiPeerController.sharedInstance
+  var originalButtonColor : UIColor!
 
   @IBOutlet weak var peersLabel: UILabel!
   @IBOutlet weak var startButton: UIButton!
@@ -22,7 +23,7 @@ class LaunchViewController: UIViewController {
   @IBOutlet weak var joinButton: UIButton!
   @IBOutlet weak var spinningWheel: UIActivityIndicatorView!
   @IBOutlet weak var createCharacterButton: UIButton!
-  @IBOutlet weak var testLabel: UILabel!
+  @IBOutlet weak var privacyPolicyButton: UIButton!
   @IBOutlet weak var hackerMissionTitle: UIImageView!
   @IBOutlet weak var flavorLabel: UILabel!
   
@@ -38,11 +39,19 @@ class LaunchViewController: UIViewController {
     } else {
       self.userInfoMyself = nil
     }
+    startButton.alpha = 0.0
+    startButton.enabled = false
+    peersLabel.alpha = 0.0
+    self.originalButtonColor = self.startButton.titleLabel!.textColor
+    self.peersLabel.text = "Looking for other players..."
+    
+    
     
   }
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(false)
+    animateTitle(true)
 
   }
 
@@ -76,8 +85,6 @@ class LaunchViewController: UIViewController {
     println("the appDelUser is: \(appDelegate.defaultUser?.userName)")
 
     self.flavorLabel.typeToNewString("The daring hackers of the Opposition have weakened the iron grip of the oppressive Government, just a few more incidents will incite revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...", withInterval: 0.05, startingText: "")
-
-    animateTitle(true)
   }
 
 
@@ -87,31 +94,42 @@ class LaunchViewController: UIViewController {
   }
 
   @IBAction func hostGameButtonPressed(sender: AnyObject) {
-    //startButton.hidden = true
-    peersLabel.hidden = false
-    peersLabel.text = "Looking for other players..."
-    joinButton.hidden = true
-    hostButton.hidden = true
+    self.switchUIElements(true)
+    self.hostButton.hidden = true
     self.spinningWheel.startAnimating()
     masterController = LeadGameController()
     followerController = GameController.sharedInstance
     followerController?.launchVC = self
     masterController?.startLookingForPlayers()
     masterController?.launchVC = self
-    createCharacterButton.hidden = true
+    
     
   }
 
   @IBAction func joinGameButtonPressed(sender: AnyObject) {
-    joinButton.hidden = true
-    hostButton.hidden = true
-    peersLabel.hidden = false
-    peersLabel.text = "Looking for other players..."
+    self.switchUIElements(false)
+    self.joinButton.hidden = true
     self.spinningWheel.startAnimating()
     followerController = GameController.sharedInstance
     followerController?.startLookingForGame()
     followerController?.launchVC = self
-    createCharacterButton.hidden = true
+
+  }
+  
+  func switchUIElements(isHost : Bool) {
+    self.peersLabel.hidden = false
+    UIView.animateWithDuration(1.0, animations: { () -> Void in
+      self.createCharacterButton.alpha = 0
+      self.privacyPolicyButton.alpha = 0
+      self.peersLabel.alpha = 1
+      if isHost == true {
+        self.startButton.alpha = 0.7
+        self.startButton.titleLabel?.textColor = UIColor.grayColor()
+        self.joinButton.alpha = 0
+      } else {
+        self.hostButton.alpha = 0
+      }
+    })
   }
   
   @IBAction func startGameButtonPressed(sender: AnyObject) {
@@ -131,8 +149,9 @@ class LaunchViewController: UIViewController {
       }
       if self.masterController != nil {
         println("Showing start button")
-        self.startButton.hidden = false
-        self.startButton.alpha = 1.0
+        self.startButton.enabled = true
+        startButton.alpha = 1.0
+        startButton.titleLabel?.textColor = originalButtonColor
       }
     }
   }
@@ -155,7 +174,7 @@ class LaunchViewController: UIViewController {
       
       if segue.identifier == "SHOW_CHARCREATE" {
         let destinationVC = segue.destinationViewController as CharacterCreationViewController
-//        destinationVC.delegate = self
+        destinationVC.wasPresented = true
       }
       
     }
@@ -170,7 +189,7 @@ class LaunchViewController: UIViewController {
         delay: 0.0,
         options: UIViewAnimationOptions.CurveEaseInOut,
         animations: { () -> Void in
-          self.hackerMissionTitle.center.y = self.hackerMissionTitle.center.y + 20
+          self.hackerMissionTitle.frame.origin.y = self.hackerMissionTitle.frame.origin.y + 20
         },
         completion: { (success) -> Void in
           self.animateTitle(false)
@@ -180,11 +199,17 @@ class LaunchViewController: UIViewController {
         delay: 0.0,
         options: UIViewAnimationOptions.CurveEaseInOut,
         animations: { () -> Void in
-          self.hackerMissionTitle.center.y = self.hackerMissionTitle.center.y - 20
+          self.hackerMissionTitle.frame.origin.y = self.hackerMissionTitle.frame.origin.y - 20
         },
         completion: { (success) -> Void in
           self.animateTitle(true)
       })
     }
   }
+  
+  @IBAction func privacyPolicyButtonPressed(sender: AnyObject) {
+    let PPVC = PrivacyPolicyViewController(nibName: "PrivacyPolicyViewController", bundle: NSBundle.mainBundle())
+    self.presentViewController(PPVC, animated: true, completion: nil)
+  }
+  
 }
