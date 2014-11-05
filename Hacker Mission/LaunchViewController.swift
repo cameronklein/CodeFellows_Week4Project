@@ -28,6 +28,7 @@ class LaunchViewController: UIViewController {
   var startedOnce = false
   var shouldAnimate = false
 
+  @IBOutlet weak var progressBar: UIProgressView!
   @IBOutlet weak var peersLabel: UILabel!
   @IBOutlet weak var startButton: UIButton!
   @IBOutlet weak var hostButton: UIButton!
@@ -84,12 +85,8 @@ class LaunchViewController: UIViewController {
     self.hostButton.layer.cornerRadius = self.cornerRadius
     self.hostButton.layer.borderWidth = 2.0
     self.hostButton.layer.borderColor = self.outlineColor1
-
-
-
-
-
-
+    
+    self.progressBar.alpha = 0
 
   }
 
@@ -149,8 +146,6 @@ class LaunchViewController: UIViewController {
         layer.borderColor = outlineColor2
       }
     }
-
-
   }
 
   func typingAnimation() {
@@ -260,6 +255,7 @@ class LaunchViewController: UIViewController {
   @IBAction func startGameButtonPressed(sender: AnyObject) {
     println("Going to start game!")
     masterController?.beginRequestingImagesFromPlayers()
+    startButton.enabled = false
   }
     
   func updateConnectedPeersLabel (number: Int) -> Void
@@ -307,6 +303,16 @@ class LaunchViewController: UIViewController {
     @IBAction func createCharacter(sender: AnyObject) {
       self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
     }
+  
+  func showLoadingBar(percentage: Float) {
+    println("LAUNCH VC calling showloadingbar")
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      peersLabel.text = "Game started, loading data..."
+      self.progressBar.alpha = 1
+      self.progressBar.setProgress(percentage, animated: true)
+    }
+    
+  }
   
 //  func animateTitle(isAtTop: Bool) {
 //    if isAtTop{
