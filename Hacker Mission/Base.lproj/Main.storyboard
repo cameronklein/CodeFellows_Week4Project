@@ -52,9 +52,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJT-k5-bx7">
-                                <rect key="frame" x="180" y="462" width="240" height="33"/>
+                                <rect key="frame" x="180" y="458" width="240" height="33"/>
                                 <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="20"/>
-                                <inset key="contentEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
+                                <inset key="contentEdgeInsets" minX="6" minY="5" maxX="6" maxY="7"/>
                                 <size key="titleShadowOffset" width="0.0" height="2"/>
                                 <state key="normal" title="&lt;&lt;HOST NEW GAME&gt;&gt;">
                                     <color key="titleColor" red="0.50196081399917603" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -64,8 +64,8 @@
                                     <action selector="hostGameButtonPressed:" destination="B2m-a2-ZUT" eventType="touchUpInside" id="uVB-ul-vro"/>
                                 </connections>
                             </button>
-                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.60000000000000009" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HackerMissionTitle" translatesAutoresizingMaskIntoConstraints="NO" id="VXa-Dh-u7j">
-                                <rect key="frame" x="187" y="52" width="226" height="140"/>
+                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.60000000000000009" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HackerMissionTitle" translatesAutoresizingMaskIntoConstraints="NO" id="VXa-Dh-u7j">
+                                <rect key="frame" x="48" y="52" width="504" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="iNx-j6-HTP"/>
                                 </constraints>
@@ -80,8 +80,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPf-6S-DwA">
-                                <rect key="frame" x="231" y="243" width="138" height="28"/>
+                                <rect key="frame" x="227" y="243" width="146" height="24"/>
                                 <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="15"/>
+                                <inset key="contentEdgeInsets" minX="4" minY="3" maxX="4" maxY="5"/>
                                 <state key="normal" title="&lt;&lt;START GAME&gt;&gt;">
                                     <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -91,9 +92,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c69-h1-LK6">
-                                <rect key="frame" x="217" y="503" width="167" height="29"/>
+                                <rect key="frame" x="215" y="499" width="171" height="33"/>
                                 <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="20"/>
-                                <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                <inset key="contentEdgeInsets" minX="6" minY="5" maxX="6" maxY="7"/>
                                 <size key="titleShadowOffset" width="0.0" height="2"/>
                                 <state key="normal" title="&lt;&lt;JOIN GAME&gt;&gt;">
                                     <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -174,6 +175,7 @@
                             <constraint firstAttribute="centerX" secondItem="P14-56-dqD" secondAttribute="centerX" id="9FF-y3-hna"/>
                             <constraint firstItem="fKb-iI-2cd" firstAttribute="top" secondItem="1OX-99-S4k" secondAttribute="bottom" constant="16" id="9W7-1C-rqA"/>
                             <constraint firstAttribute="centerY" secondItem="Nr6-3m-elK" secondAttribute="centerY" constant="-20" id="AAJ-qR-oT3"/>
+                            <constraint firstItem="VXa-Dh-u7j" firstAttribute="leading" secondItem="rwS-3Z-jzj" secondAttribute="leadingMargin" constant="32" id="BCU-HS-ggj"/>
                             <constraint firstAttribute="centerX" secondItem="Nua-Lj-5i7" secondAttribute="centerX" id="BLG-70-JYl"/>
                             <constraint firstItem="bD7-5o-KfO" firstAttribute="leading" secondItem="rwS-3Z-jzj" secondAttribute="leadingMargin" id="F42-dB-lsl"/>
                             <constraint firstItem="1OX-99-S4k" firstAttribute="trailing" secondItem="rwS-3Z-jzj" secondAttribute="trailingMargin" id="Jfb-hv-PUk"/>
@@ -191,6 +193,7 @@
                             <constraint firstItem="VXa-Dh-u7j" firstAttribute="top" secondItem="mt0-82-dOi" secondAttribute="bottom" constant="32" id="o2B-gg-5AC"/>
                             <constraint firstAttribute="centerX" secondItem="dtv-ys-BsA" secondAttribute="centerX" id="rAn-aE-wET"/>
                             <constraint firstAttribute="centerX" secondItem="gJT-k5-bx7" secondAttribute="centerX" id="sd1-5t-cBh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VXa-Dh-u7j" secondAttribute="trailing" constant="32" id="t2Z-Em-uNg"/>
                         </constraints>
                     </view>
                     <connections>
