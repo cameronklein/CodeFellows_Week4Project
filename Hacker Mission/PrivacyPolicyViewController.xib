@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PrivacyPolicyViewController" customModule="Hacker_Mission" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mm8-5D-H2Q">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="vL7-9o-PTj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vCY-gV-hqQ">
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="vUX-S6-HQr">
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <vibrancyEffect>
+                                    <blurEffect style="light"/>
+                                </vibrancyEffect>
+                            </visualEffectView>
+                        </subviews>
+                    </view>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYH-Ne-j7o">
+                    <rect key="frame" x="16" y="48" width="568" height="95"/>
+                    <string key="text">Hacker Missions has the ability to store and transmit in-app usernames and a single user-selected image. User-selected images and usernames are stored locally for persistance and are kept in memory of devices in the same game session.</string>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                    <color key="textColor" red="0.4431372549" green="0.96078431369999995" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTW-kb-ihP">
+                    <rect key="frame" x="276" y="516" width="48" height="36"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                    <state key="normal" title="Got It">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="confirmButtonPressed:" destination="-1" eventType="touchUpInside" id="vCs-6H-ANn"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFa-F1-9UE">
+                    <rect key="frame" x="16" y="191" width="568" height="71"/>
+                    <string key="text">No data is collected or transmitted to anyone other than the devices connected in the same game session. In other words, it won't leave this room.</string>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                    <color key="textColor" red="0.4431372549" green="0.96078431369999995" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="GTW-kb-ihP" secondAttribute="centerX" id="2bA-Fi-i1D"/>
+                <constraint firstItem="Mm8-5D-H2Q" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4Fy-15-fYf"/>
+                <constraint firstAttribute="trailing" secondItem="Mm8-5D-H2Q" secondAttribute="trailing" id="7fC-i8-YZO"/>
+                <constraint firstAttribute="bottom" secondItem="Mm8-5D-H2Q" secondAttribute="bottom" id="Gaz-JD-xgU"/>
+                <constraint firstAttribute="bottom" secondItem="GTW-kb-ihP" secondAttribute="bottom" constant="48" id="OVc-Be-gJ1"/>
+                <constraint firstAttribute="trailing" secondItem="FYH-Ne-j7o" secondAttribute="trailing" constant="16" id="VcM-lF-YQ2"/>
+                <constraint firstItem="fFa-F1-9UE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="gFA-df-7yo"/>
+                <constraint firstItem="fFa-F1-9UE" firstAttribute="top" secondItem="FYH-Ne-j7o" secondAttribute="bottom" constant="48" id="gY2-0n-lzD"/>
+                <constraint firstItem="FYH-Ne-j7o" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="tXM-1Y-Nho"/>
+                <constraint firstItem="FYH-Ne-j7o" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="48" id="vBZ-PP-eCz"/>
+                <constraint firstAttribute="trailing" secondItem="fFa-F1-9UE" secondAttribute="trailing" constant="16" id="xhk-y6-vCd"/>
+                <constraint firstItem="Mm8-5D-H2Q" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ylp-h6-tpH"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

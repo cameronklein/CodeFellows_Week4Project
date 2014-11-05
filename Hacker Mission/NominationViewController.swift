@@ -48,6 +48,11 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
     super.viewWillAppear(animated)
   }
   
+  override func viewDidAppear(animated: Bool) {
+    self.view.layer.cornerRadius = self.view.frame.size.width / 16
+    self.view.layer.masksToBounds = true
+  }
+  
   @IBAction func approveNominatedTeam (sender: AnyObject)
   {
     multiPeerController.sendInfoToMainBrain(["action" : "vote", "value" : "Approve"])

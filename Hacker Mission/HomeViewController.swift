@@ -628,6 +628,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   func animateIncomingMessageLabelWithCompletionHandler(completionHandler : () -> (Void)) {
     
   }
+  
 
 }
 

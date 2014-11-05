@@ -25,6 +25,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     var userNameFor : NSString?
     var userImageFor : UIImage?
     var hasLaunched = false
+    var wasPresented = false
 
     
     //MARK: - View Methods
@@ -163,7 +164,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
               launchVC.view.alpha = 1.0
             })
           })
-        })
+        }
         
       } else {
         println("ERROR: No save path found, this is a fail case.")

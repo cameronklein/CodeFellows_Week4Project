@@ -38,6 +38,11 @@ class RevealMissionOutcomeViewController: UIViewController {
     super.didReceiveMemoryWarning()
   }
   
+  override func viewDidAppear(animated: Bool) {
+    self.view.layer.cornerRadius = self.view.frame.size.width / 16
+    self.view.layer.masksToBounds = true
+  }
+  
   @IBAction func confirmButtonPressed(sender: AnyObject) {
     let parentVC = self.parentViewController as HomeViewController
     self.view.removeFromSuperview()
