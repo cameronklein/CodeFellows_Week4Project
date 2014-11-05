@@ -32,7 +32,6 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
     pageViewController.delegate = self
     pageViewController.dataSource = self
     
-    
     self.addChildViewController(self.pageViewController!)
     self.view.addSubview(self.pageViewController!.view)
     self.pageViewController.view.frame = self.view.frame
@@ -74,7 +73,6 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
   
   func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {

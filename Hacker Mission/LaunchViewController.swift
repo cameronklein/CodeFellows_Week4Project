@@ -88,6 +88,13 @@ class LaunchViewController: UIViewController {
     
     self.progressBar.alpha = 0
 
+    self.startButton.backgroundColor = self.buttonBackgroundColor
+    self.startButton.layer.masksToBounds = true
+    self.startButton.layer.cornerRadius = self.cornerRadius
+    self.startButton.layer.borderWidth = 2.0
+    self.startButton.layer.borderColor = self.outlineColor1
+
+
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -278,7 +285,7 @@ class LaunchViewController: UIViewController {
         println("Showing start button")
         self.startButton.enabled = true
         startButton.alpha = 1.0
-        startButton.titleLabel?.textColor = originalButtonColor
+        startButton.titleLabel?.textColor = progressBar.tintColor
       }
     }
   }
@@ -308,7 +315,7 @@ class LaunchViewController: UIViewController {
   func showLoadingBar(percentage: Float) {
     println("LAUNCH VC calling showloadingbar")
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-      peersLabel.text = "Game started, loading data..."
+      self.peersLabel.text = "Game started, loading data..."
       self.progressBar.alpha = 1
       self.progressBar.setProgress(percentage, animated: true)
     }
@@ -338,6 +345,7 @@ class LaunchViewController: UIViewController {
 //      })
 //    }
 //  }
+
 
   @IBAction func privacyPolicyButtonPressed(sender: AnyObject) {
     let PPVC = PrivacyPolicyViewController(nibName: "PrivacyPolicyViewController", bundle: NSBundle.mainBundle())

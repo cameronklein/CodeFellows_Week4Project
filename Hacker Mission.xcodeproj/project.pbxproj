@@ -45,7 +45,6 @@
 		7E46DF4719FF126A009215E3 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4619FF126A009215E3 /* GameController.swift */; };
 		7E46DF4919FF130A009215E3 /* GameEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4819FF130A009215E3 /* GameEvent.swift */; };
 		7E46DF5019FF336E009215E3 /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4A19FF336E009215E3 /* GameSession.swift */; };
-		7E5E75631A06B058001D49C6 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5E75611A06B058001D49C6 /* OnboardViewController.swift */; };
 		7E5E75641A06B058001D49C6 /* OnboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E5E75621A06B058001D49C6 /* OnboardViewController.xib */; };
 		7E8415A51A0ABF58006BCAB7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E8415A41A0ABF58006BCAB7 /* AudioToolbox.framework */; };
 		7E85DCFB1A073B9300C9E303 /* RootOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E85DCF91A073B9300C9E303 /* RootOnboardViewController.swift */; };
@@ -118,7 +117,6 @@
 		7E46DF4619FF126A009215E3 /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		7E46DF4819FF130A009215E3 /* GameEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEvent.swift; sourceTree = "<group>"; };
 		7E46DF4A19FF336E009215E3 /* GameSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
-		7E5E75611A06B058001D49C6 /* OnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
 		7E5E75621A06B058001D49C6 /* OnboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardViewController.xib; sourceTree = "<group>"; };
 		7E8415A41A0ABF58006BCAB7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7E85DCF91A073B9300C9E303 /* RootOnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootOnboardViewController.swift; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 				7E46DF4619FF126A009215E3 /* GameController.swift */,
 				705BB11D19FFFB5C00584A5B /* LeadGameController.swift */,
 				436546741A00299C0060B865 /* AppDelegate.swift */,
-				7E5E75611A06B058001D49C6 /* OnboardViewController.swift */,
 				7E85DCF91A073B9300C9E303 /* RootOnboardViewController.swift */,
 				7E85DCFD1A073C9B00C9E303 /* OnboardPageViewController.swift */,
 				7E86E9BA1A03F234001C81C5 /* EndGameViewController.swift */,
@@ -432,7 +429,6 @@
 				7E85DCFB1A073B9300C9E303 /* RootOnboardViewController.swift in Sources */,
 				7E46DF4719FF126A009215E3 /* GameController.swift in Sources */,
 				1608688D1A02B6E5007D2EE3 /* Jake Class Extensions.swift in Sources */,
-				7E5E75631A06B058001D49C6 /* OnboardViewController.swift in Sources */,
 				7EF0C12C1A02AAEC002A6219 /* MissionOutcomeVoteViewController.swift in Sources */,
 				7E85DCFF1A073C9B00C9E303 /* OnboardPageViewController.swift in Sources */,
 				7E46DF4119FEBC2A009215E3 /* MultipeerController.swift in Sources */,

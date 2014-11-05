@@ -49,9 +49,6 @@ class OnboardPageViewController: UIViewController {
         paragraph6.textColor = UIColor.redColor()
       } 
     }
-    
-    
-
   }
 
   override func didReceiveMemoryWarning() {
