@@ -123,7 +123,6 @@ class LaunchViewController: UIViewController {
     layers.append(self.privacyPolicyButton.layer)
     self.doAnim(layers)
 
-
     self.typingAnimation()
     self.titleAnimation()
 
@@ -150,9 +149,9 @@ class LaunchViewController: UIViewController {
         layer.borderColor = outlineColor2
       }
     }
-
-
   }
+
+
 
   func typingAnimation() {
     if self.shouldAnimate {
