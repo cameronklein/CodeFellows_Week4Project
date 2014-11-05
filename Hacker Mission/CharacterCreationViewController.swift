@@ -9,10 +9,6 @@
 import UIKit
 import QuartzCore
 
-//protocol CharacterCreationViewDelegate {
-//    func didSaveUser(userToSave: UserInfo)
-//}
-
 class CharacterCreationViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate
 {
     //MARK: - Outlets and Properties
@@ -21,11 +17,13 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     @IBOutlet weak var saveCharacterButton: UIButton!
     @IBOutlet weak var userImageView : UIImageView!
 
+    let attibutedString1 = NSAttributedString(string: "Enter a UserName", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.75)])
+    let attibutedString2 = NSAttributedString(string: "Enter a UserName For", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.15)])
+
     var defaultIcons = [UIImage]()
     var userForSave : UserInfo!
     var userNameFor : NSString?
     var userImageFor : UIImage?
-//    var delegate : CharacterCreationViewDelegate?
     var hasLaunched = false
     var wasPresented = false
 
@@ -75,9 +73,9 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
       self.userImageView.image = self.userImageFor
       self.checkButtonState()
-      let attibutedString = NSAttributedString(string: "Enter a UserName", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.75)])
 
-      self.usernameTextField.attributedPlaceholder = attibutedString
+
+      self.usernameTextField.attributedPlaceholder = attibutedString1
 
     }
 
@@ -93,31 +91,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       }
     }
 
-    let animationQueue = NSOperationQueue()
-    animationQueue.maxConcurrentOperationCount = 1
-    let attibutedStringBright = NSAttributedString(string: "Enter a UserName", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.75)])
-    let attibutedStringDim = NSAttributedString(string: "Enter a UserName", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.33)])
-
-//    self.usernameTextField.attributedPlaceholder = attibutedStringDim
-
-    let theAnimation = CABasicAnimation(keyPath: "opacity")
-    let theLayer = CALayer(layer: self.usernameTextField.text)
-
-    animationQueue.addOperationWithBlock { () -> Void in
-      theAnimation.duration = 1.0
-      theAnimation.repeatCount = 10000.0
-      theAnimation.autoreverses = true
-      theAnimation.fromValue = NSNumber(float: 1.0)
-      theAnimation.toValue = NSNumber(float: 0.0)
-
-      theLayer.addAnimation(theAnimation, forKey: "hidden")
-    }
   }
-
-
-
-
-
 
     //MARK: - Collection View Methods
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -176,8 +150,6 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       var localUserInfo = UserInfo(userName: self.userNameFor!, userImage: self.userImageFor!)
       self.userForSave = localUserInfo
       print("delegate is: ")
-//      println(self.delegate)
-//      self.delegate?.didSaveUser(self.userForSave)
       if let pathForSave = appDelegate.documentsPath as String! {
       println("Can Save File")
         UserInfo.saveTheObject(localUserInfo)
