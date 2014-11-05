@@ -26,6 +26,7 @@ class LaunchViewController: UIViewController {
   var imageAnchorX = CGFloat()
   var imageAnchorY = CGFloat()
   var startedOnce = false
+  var shouldAnimate = false
 
   @IBOutlet weak var peersLabel: UILabel!
   @IBOutlet weak var startButton: UIButton!
@@ -56,7 +57,7 @@ class LaunchViewController: UIViewController {
     self.peersLabel.text = "Looking for other players..."
 
     self.imageAnchorX = self.hackerMissionTitle.frame.origin.x
-    self.imageAnchorX = self.hackerMissionTitle.frame.origin.y
+    self.imageAnchorY = self.hackerMissionTitle.frame.origin.y
 
     self.createCharacterButton.titleLabel?.textAlignment = NSTextAlignment.Center
     self.createCharacterButton.backgroundColor = self.buttonBackgroundColor
@@ -85,6 +86,11 @@ class LaunchViewController: UIViewController {
     self.hostButton.layer.borderColor = self.outlineColor1
 
 
+
+
+
+
+
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -93,15 +99,16 @@ class LaunchViewController: UIViewController {
 
   }
 
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
-
-
-
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    self.shouldAnimate = false
   }
 
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(false)
+
+    self.shouldAnimate = true
+
     println("viewDidAppear")
     println("user is \(self.userInfoMyself?.userName)")
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -109,44 +116,48 @@ class LaunchViewController: UIViewController {
     println("the appDelUser is: \(appDelegate.defaultUser?.userName)")
 
     var layers = [CALayer]()
-      layers.append(self.hostButton.layer)
-      layers.append(self.createCharacterButton.layer)
-      layers.append(self.joinButton.layer)
-      layers.append(self.privacyPolicyButton.layer)
+    layers.append(self.hostButton.layer)
+    layers.append(self.createCharacterButton.layer)
+    layers.append(self.joinButton.layer)
+    layers.append(self.privacyPolicyButton.layer)
     self.doAnim(layers)
-    self.titleAnimation()
+
+
     self.typingAnimation()
+    self.titleAnimation()
 
   }
 
   func doAnim(layers: [CALayer]) {
-    let theAnimation = CABasicAnimation(keyPath: "borderColor")
-    theAnimation.delegate = self
+    if self.shouldAnimate {
+      let theAnimation = CABasicAnimation(keyPath: "borderColor")
+      theAnimation.delegate = self
 
-    println("here in core animation")
-    theAnimation.repeatCount = 10000.0
-    theAnimation.autoreverses = true
-    theAnimation.fromValue = self.outlineColor1
-    theAnimation.toValue = self.outlineColor2
-    for layer in layers {
-      let rvalue = Float(arc4random_uniform(10) + 1)
-      println("rvalue is \(rvalue)")
-      let rvalueFor = Double(rvalue / 10.0)
-      println(rvalueFor)
+      println("here in core animation")
+      theAnimation.repeatCount = 10000.0
+      theAnimation.autoreverses = true
+      theAnimation.fromValue = self.outlineColor1
+      theAnimation.toValue = self.outlineColor2
+      for layer in layers {
+        let rvalue = Float(arc4random_uniform(10) + 1)
+        println("rvalue is \(rvalue)")
+        let rvalueFor = Double(rvalue / 10.0)
+        println(rvalueFor)
 
-      theAnimation.duration = 1.0 + rvalueFor
-      layer.addAnimation(theAnimation, forKey: "borderColor")
-      layer.borderColor = outlineColor2
+        theAnimation.duration = 1.0 + rvalueFor
+        layer.addAnimation(theAnimation, forKey: "borderColor")
+        layer.borderColor = outlineColor2
+      }
     }
+
 
   }
 
   func typingAnimation() {
-
-
-        self.flavorLabel.typeToNewString("The daring hackers of the Opposition have weakened the iron grip of the oppressive Government. Just a few more incidents will incite a revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...", withInterval: 0.05, startingText: "")
-        self.startedOnce = true
-
+    if self.shouldAnimate {
+      self.flavorLabel.typeToNewString("The daring hackers of the Opposition have weakened the iron grip of the oppressive Government. Just a few more incidents will incite a revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...", withInterval: 0.05, startingText: "")
+      self.startedOnce = true
+    }
   }
 
   func titleAnimation() {
@@ -155,35 +166,39 @@ class LaunchViewController: UIViewController {
     let imageAnchorY = self.imageAnchorY
     var delay = Double(arc4random_uniform(40) + 3) / 10.0
 
-    UIView.animateKeyframesWithDuration(0.1, delay: delay, options: nil, animations: { () -> Void in
+    if shouldAnimate {
+      UIView.animateKeyframesWithDuration(0.1, delay: delay, options: nil, animations: { () -> Void in
 
-      UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.70, animations: { () -> Void in
-        println("first")
-        println("and a half")
-//        imageView.frame.origin.x = imageAnchorX
-//        imageView.frame.origin.y = imageAnchorY
-      })
-      UIView.addKeyframeWithRelativeStartTime(0.70, relativeDuration: 0.05, animations: { () -> Void in
-        println("second")
-        let xSeed = arc4random_uniform(41)
-        let ySeed = arc4random_uniform(41)
-        var intSeedX = Int(xSeed)
-        var intSeedY = Int(ySeed)
-        intSeedX = intSeedX + 20
-        intSeedY = intSeedY + 30
-        let xVar = CGFloat(intSeedX)
-        let yVar = CGFloat(intSeedY)
-        println("xVar is \(xVar) and yVar is \(yVar)")
-        imageView.frame.origin.x = imageAnchorX + xVar
-        imageView.frame.origin.y = imageAnchorY + yVar
-        println("imageAnchorY is \(imageAnchorY)")
-        println("imageview frame origin y is \(imageView.frame.origin.y)")
+        UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.70, animations: { () -> Void in
+          println("first")
+          println("and a half")
+          //        imageView.frame.origin.x = imageAnchorX
+          //        imageView.frame.origin.y = imageAnchorY
         })
-      }) { (Finished) -> Void in
-        println("done")
-        self.pauseTimerFor()
-
+        UIView.addKeyframeWithRelativeStartTime(0.70, relativeDuration: 0.05, animations: { () -> Void in
+          println("second")
+          let xSeed = arc4random_uniform(41)
+          let ySeed = arc4random_uniform(41)
+          var intSeedX = Int(xSeed)
+          var intSeedY = Int(ySeed)
+          intSeedX = intSeedX - 160
+          intSeedY = intSeedY - 20
+          let xVar = CGFloat(intSeedX)
+          let yVar = CGFloat(intSeedY)
+          println("xVar is \(xVar) and yVar is \(yVar)")
+          imageView.frame.origin.x = imageAnchorX + xVar
+          imageView.frame.origin.y = imageAnchorY + yVar
+          println("imageAnchorY is \(imageAnchorY)")
+          println("imageview frame origin y is \(imageView.frame.origin.y)")
+        })
+        }) { (Finished) -> Void in
+          println("done")
+          self.pauseTimerFor()
+          
+      }
     }
+
+
   }
 
   func pauseTimerFor() {

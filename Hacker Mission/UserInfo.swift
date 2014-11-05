@@ -46,7 +46,7 @@ class UserInfo : NSObject, NSCoding {
      func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.userName, forKey: "userName")
         aCoder.encodeInteger(self.userID, forKey: "userID")
-      let data = UIImageJPEGRepresentation(self.userImage, 1.0)
+      let data = UIImagePNGRepresentation(self.userImage)
       aCoder.encodeObject(data, forKey: "userImage")
         if self.userPeerID != nil {
             aCoder.encodeObject(self.userPeerID, forKey: "userPeerID")
