@@ -10,9 +10,12 @@ import UIKit
 
 class RevealViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate
 {
-    //MARK: - Outlets and Properties
+    // MARK: - Outlets
+  
     @IBOutlet weak var playerRevealCollectionView: UICollectionView!
     @IBOutlet weak var flavorTextLabel: UILabel!
+  
+    // MARK: - Properties
     
     var playerArray = [Player]()
     var agentArray = [Player]()
@@ -22,11 +25,9 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
     var layout : UICollectionViewFlowLayout!
     var homeVC : HomeViewController!
   
-    //MARK: - View Methods
+    // MARK: - View Methods
     
     override func viewDidLoad(){
-      
-      //gameController.sendUserInfo()
       
       super.viewDidLoad()
       self.playerRevealCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
@@ -70,7 +71,8 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         
     }
     
-    //MARK: - Collection View Methods
+    // MARK: - Collection View Methods
+  
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         if gameController.thisPlayer.playerRole == .Agent {
@@ -113,6 +115,7 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
   }
     
     //MARK: Actions and other functions
+  
     @IBAction func confirmationButtonPressed(sender: AnyObject)
     {
         UIView.animateWithDuration(0.3, animations:
@@ -133,6 +136,6 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
 
         } }
 
-    //MARK: - You probably won't need this stupid thing.
+  
     override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}
 }

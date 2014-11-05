@@ -28,6 +28,7 @@ class LaunchViewController: UIViewController {
   var startedOnce = false
   var shouldAnimate = false
 
+  @IBOutlet weak var progressBar: UIProgressView!
   @IBOutlet weak var peersLabel: UILabel!
   @IBOutlet weak var startButton: UIButton!
   @IBOutlet weak var hostButton: UIButton!
@@ -84,6 +85,8 @@ class LaunchViewController: UIViewController {
     self.hostButton.layer.cornerRadius = self.cornerRadius
     self.hostButton.layer.borderWidth = 2.0
     self.hostButton.layer.borderColor = self.outlineColor1
+    
+    self.progressBar.alpha = 0
 
     self.startButton.backgroundColor = self.buttonBackgroundColor
     self.startButton.layer.masksToBounds = true
@@ -150,8 +153,6 @@ class LaunchViewController: UIViewController {
         layer.borderColor = outlineColor2
       }
     }
-
-
   }
 
   func typingAnimation() {
@@ -267,6 +268,7 @@ class LaunchViewController: UIViewController {
   @IBAction func startGameButtonPressed(sender: AnyObject) {
     println("Going to start game!")
     masterController?.beginRequestingImagesFromPlayers()
+    startButton.enabled = false
   }
     
   func updateConnectedPeersLabel (number: Int) -> Void
@@ -283,7 +285,7 @@ class LaunchViewController: UIViewController {
         println("Showing start button")
         self.startButton.enabled = true
         startButton.alpha = 1.0
-        startButton.titleLabel?.textColor = originalButtonColor
+        startButton.titleLabel?.textColor = progressBar.tintColor
       }
     }
   }
@@ -310,6 +312,39 @@ class LaunchViewController: UIViewController {
       self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
     }
   
+  func showLoadingBar(percentage: Float) {
+    println("LAUNCH VC calling showloadingbar")
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.peersLabel.text = "Game started, loading data..."
+      self.progressBar.alpha = 1
+      self.progressBar.setProgress(percentage, animated: true)
+    }
+    
+  }
+  
+//  func animateTitle(isAtTop: Bool) {
+//    if isAtTop{
+//      UIView.animateWithDuration(2.0,
+//        delay: 0.0,
+//        options: UIViewAnimationOptions.CurveEaseInOut,
+//        animations: { () -> Void in
+//          self.hackerMissionTitle.frame.origin.y = self.hackerMissionTitle.frame.origin.y + 20
+//        },
+//        completion: { (success) -> Void in
+//          self.animateTitle(false)
+//      })
+//    } else {
+//      UIView.animateWithDuration(2.0,
+//        delay: 0.0,
+//        options: UIViewAnimationOptions.CurveEaseInOut,
+//        animations: { () -> Void in
+//          self.hackerMissionTitle.frame.origin.y = self.hackerMissionTitle.frame.origin.y - 20
+//        },
+//        completion: { (success) -> Void in
+//          self.animateTitle(true)
+//      })
+//    }
+//  }
 
 
   @IBAction func privacyPolicyButtonPressed(sender: AnyObject) {

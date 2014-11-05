@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AudioToolbox.AudioServices
 
 class GameController {
   
@@ -44,6 +45,9 @@ class GameController {
   }
   
   func handleEvent(newGameInfo: GameSession) {
+    
+    AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
     
     self.game = newGameInfo
     let event = game.currentGameState!
@@ -85,8 +89,9 @@ class GameController {
     
   }
   
-  func showLoadingScreen(){
-    
+  func showLoadingScreen(percentage: Float){
+    launchVC.showLoadingBar(percentage)
+    println("GAME CONTROLLER: Calling show loading screen")
   }
   
   func gameStart() {
