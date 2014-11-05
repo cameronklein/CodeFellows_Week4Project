@@ -85,10 +85,11 @@ class LaunchViewController: UIViewController {
     self.hostButton.layer.borderWidth = 2.0
     self.hostButton.layer.borderColor = self.outlineColor1
 
-
-
-
-
+    self.startButton.backgroundColor = self.buttonBackgroundColor
+    self.startButton.layer.masksToBounds = true
+    self.startButton.layer.cornerRadius = self.cornerRadius
+    self.startButton.layer.borderWidth = 2.0
+    self.startButton.layer.borderColor = self.outlineColor1
 
 
   }
@@ -144,7 +145,7 @@ class LaunchViewController: UIViewController {
         let rvalueFor = Double(rvalue / 10.0)
         println(rvalueFor)
 
-        theAnimation.duration = 1.0 + rvalueFor
+        theAnimation.duration = 1.0 // + rvalueFor
         layer.addAnimation(theAnimation, forKey: "borderColor")
         layer.borderColor = outlineColor2
       }
@@ -162,6 +163,7 @@ class LaunchViewController: UIViewController {
 
   func titleAnimation() {
     var imageView = self.hackerMissionTitle
+    imageView.reloadInputViews()
     let imageAnchorX = self.imageAnchorX
     let imageAnchorY = self.imageAnchorY
     var delay = Double(arc4random_uniform(40) + 3) / 10.0
@@ -175,14 +177,14 @@ class LaunchViewController: UIViewController {
           //        imageView.frame.origin.x = imageAnchorX
           //        imageView.frame.origin.y = imageAnchorY
         })
-        UIView.addKeyframeWithRelativeStartTime(0.70, relativeDuration: 0.05, animations: { () -> Void in
+        UIView.addKeyframeWithRelativeStartTime(0.70, relativeDuration: 0.1, animations: { () -> Void in
           println("second")
-          let xSeed = arc4random_uniform(41)
-          let ySeed = arc4random_uniform(41)
+          let xSeed = arc4random_uniform(101)
+          let ySeed = arc4random_uniform(81)
           var intSeedX = Int(xSeed)
           var intSeedY = Int(ySeed)
-          intSeedX = intSeedX - 160
-          intSeedY = intSeedY - 20
+          intSeedX = intSeedX - 50
+          intSeedY = intSeedY - 40
           let xVar = CGFloat(intSeedX)
           let yVar = CGFloat(intSeedY)
           println("xVar is \(xVar) and yVar is \(yVar)")
@@ -190,6 +192,11 @@ class LaunchViewController: UIViewController {
           imageView.frame.origin.y = imageAnchorY + yVar
           println("imageAnchorY is \(imageAnchorY)")
           println("imageview frame origin y is \(imageView.frame.origin.y)")
+        })
+        UIView.addKeyframeWithRelativeStartTime(0.8, relativeDuration: 0.05, animations: { () -> Void in
+          imageView.frame.origin.x = imageAnchorX
+          imageView.frame.origin.y = imageAnchorY
+          println("third step")
         })
         }) { (Finished) -> Void in
           println("done")
@@ -289,11 +296,6 @@ class LaunchViewController: UIViewController {
     
   }
     
-//    func didSaveUser(userToSave: UserInfo) {
-//      
-//      self.userInfoMyself = userToSave
-//      
-//    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
       
@@ -308,29 +310,7 @@ class LaunchViewController: UIViewController {
       self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
     }
   
-//  func animateTitle(isAtTop: Bool) {
-//    if isAtTop{
-//      UIView.animateWithDuration(2.0,
-//        delay: 0.0,
-//        options: UIViewAnimationOptions.CurveEaseInOut,
-//        animations: { () -> Void in
-//          self.hackerMissionTitle.frame.origin.y = self.hackerMissionTitle.frame.origin.y + 20
-//        },
-//        completion: { (success) -> Void in
-//          self.animateTitle(false)
-//      })
-//    } else {
-//      UIView.animateWithDuration(2.0,
-//        delay: 0.0,
-//        options: UIViewAnimationOptions.CurveEaseInOut,
-//        animations: { () -> Void in
-//          self.hackerMissionTitle.frame.origin.y = self.hackerMissionTitle.frame.origin.y - 20
-//        },
-//        completion: { (success) -> Void in
-//          self.animateTitle(true)
-//      })
-//    }
-//  }
+
 
   @IBAction func privacyPolicyButtonPressed(sender: AnyObject) {
     let PPVC = PrivacyPolicyViewController(nibName: "PrivacyPolicyViewController", bundle: NSBundle.mainBundle())
