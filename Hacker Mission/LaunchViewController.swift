@@ -7,15 +7,25 @@
 //
 
 import UIKit
+import QuartzCore
 
 class LaunchViewController: UIViewController {
-  
+
+  let buttonBackgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.15)
+  let cornerRadius = CGFloat(5.0)
+  let outlineColor1 = UIColor(red: 0.443, green: 0.961, blue: 0.082, alpha: 0.2).CGColor
+  let outlineColor2 = UIColor(red: 0.443, green: 0.961, blue: 0.082, alpha: 0.6).CGColor
+
+
   var masterController    : LeadGameController?
   var followerController  : GameController?
   var userInfoMyself      : UserInfo?
   var truthInAdvertising  : Bool?
   var multiPeerController = MultiPeerController.sharedInstance
   var originalButtonColor : UIColor!
+  var imageAnchorX = CGFloat()
+  var imageAnchorY = CGFloat()
+  var startedOnce = false
 
   @IBOutlet weak var peersLabel: UILabel!
   @IBOutlet weak var startButton: UIButton!
@@ -44,36 +54,50 @@ class LaunchViewController: UIViewController {
     peersLabel.alpha = 0.0
     self.originalButtonColor = self.startButton.titleLabel!.textColor
     self.peersLabel.text = "Looking for other players..."
-    
-    
-    
+
+    self.imageAnchorX = self.hackerMissionTitle.frame.origin.x
+    self.imageAnchorX = self.hackerMissionTitle.frame.origin.y
+
+    self.createCharacterButton.titleLabel?.textAlignment = NSTextAlignment.Center
+    self.createCharacterButton.backgroundColor = self.buttonBackgroundColor
+    self.createCharacterButton.layer.masksToBounds = true
+    self.createCharacterButton.layer.cornerRadius = self.cornerRadius
+    self.createCharacterButton.layer.borderWidth = 2.0
+    self.createCharacterButton.layer.borderColor = self.outlineColor1
+
+    self.privacyPolicyButton.titleLabel?.textAlignment = NSTextAlignment.Center
+    self.privacyPolicyButton.backgroundColor = self.buttonBackgroundColor
+    self.privacyPolicyButton.layer.masksToBounds = true
+    self.privacyPolicyButton.layer.cornerRadius = self.cornerRadius
+    self.privacyPolicyButton.layer.borderWidth = 2.0
+    self.privacyPolicyButton.layer.borderColor = self.outlineColor1
+
+    self.joinButton.backgroundColor = self.buttonBackgroundColor
+    self.joinButton.layer.masksToBounds = true
+    self.joinButton.layer.cornerRadius = self.cornerRadius
+    self.joinButton.layer.borderWidth = 2.0
+    self.joinButton.layer.borderColor = self.outlineColor1
+
+    self.hostButton.backgroundColor = self.buttonBackgroundColor
+    self.hostButton.layer.masksToBounds = true
+    self.hostButton.layer.cornerRadius = self.cornerRadius
+    self.hostButton.layer.borderWidth = 2.0
+    self.hostButton.layer.borderColor = self.outlineColor1
+
+
   }
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(false)
-    animateTitle(true)
+//    animateTitle(true)
 
   }
 
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
 
-    if self.userInfoMyself == nil {
-      if self.truthInAdvertising != true {
-        self.truthInAdvertising = true
-        println("no userInfoMyself")
-        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        
-        let destinationvVC = storyboard.instantiateViewControllerWithIdentifier("CHARCREATE_VC") as CharacterCreationViewController!
-        let presentingVC = storyboard.instantiateViewControllerWithIdentifier("LAUNCHVIEW_VC") as LaunchViewController!
-//        destinationvVC.delegate = self
-        self.presentViewController(destinationvVC, animated: false, completion: { () -> Void in
-          println("yes!")
-        })
-      }
 
 
-    }
   }
 
   override func viewDidAppear(animated: Bool) {
@@ -84,8 +108,94 @@ class LaunchViewController: UIViewController {
 
     println("the appDelUser is: \(appDelegate.defaultUser?.userName)")
 
-    self.flavorLabel.typeToNewString("The daring hackers of the Opposition have weakened the iron grip of the oppressive Government, just a few more incidents will incite revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...", withInterval: 0.05, startingText: "")
+    var layers = [CALayer]()
+      layers.append(self.hostButton.layer)
+      layers.append(self.createCharacterButton.layer)
+      layers.append(self.joinButton.layer)
+      layers.append(self.privacyPolicyButton.layer)
+    self.doAnim(layers)
+    self.titleAnimation()
+    self.typingAnimation()
+
   }
+
+  func doAnim(layers: [CALayer]) {
+    let theAnimation = CABasicAnimation(keyPath: "borderColor")
+    theAnimation.delegate = self
+
+    println("here in core animation")
+    theAnimation.repeatCount = 10000.0
+    theAnimation.autoreverses = true
+    theAnimation.fromValue = self.outlineColor1
+    theAnimation.toValue = self.outlineColor2
+    for layer in layers {
+      let rvalue = Float(arc4random_uniform(10) + 1)
+      println("rvalue is \(rvalue)")
+      let rvalueFor = Double(rvalue / 10.0)
+      println(rvalueFor)
+
+      theAnimation.duration = 1.0 + rvalueFor
+      layer.addAnimation(theAnimation, forKey: "borderColor")
+      layer.borderColor = outlineColor2
+    }
+
+  }
+
+  func typingAnimation() {
+
+
+        self.flavorLabel.typeToNewString("The daring hackers of the Opposition have weakened the iron grip of the oppressive Government. Just a few more incidents will incite a revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...", withInterval: 0.05, startingText: "")
+        self.startedOnce = true
+
+  }
+
+  func titleAnimation() {
+    var imageView = self.hackerMissionTitle
+    let imageAnchorX = self.imageAnchorX
+    let imageAnchorY = self.imageAnchorY
+    var delay = Double(arc4random_uniform(40) + 3) / 10.0
+
+    UIView.animateKeyframesWithDuration(0.1, delay: delay, options: nil, animations: { () -> Void in
+
+      UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.70, animations: { () -> Void in
+        println("first")
+        println("and a half")
+//        imageView.frame.origin.x = imageAnchorX
+//        imageView.frame.origin.y = imageAnchorY
+      })
+      UIView.addKeyframeWithRelativeStartTime(0.70, relativeDuration: 0.05, animations: { () -> Void in
+        println("second")
+        let xSeed = arc4random_uniform(41)
+        let ySeed = arc4random_uniform(41)
+        var intSeedX = Int(xSeed)
+        var intSeedY = Int(ySeed)
+        intSeedX = intSeedX + 20
+        intSeedY = intSeedY + 30
+        let xVar = CGFloat(intSeedX)
+        let yVar = CGFloat(intSeedY)
+        println("xVar is \(xVar) and yVar is \(yVar)")
+        imageView.frame.origin.x = imageAnchorX + xVar
+        imageView.frame.origin.y = imageAnchorY + yVar
+        println("imageAnchorY is \(imageAnchorY)")
+        println("imageview frame origin y is \(imageView.frame.origin.y)")
+        })
+      }) { (Finished) -> Void in
+        println("done")
+        self.pauseTimerFor()
+
+    }
+  }
+
+  func pauseTimerFor() {
+    println("pausetimer")
+    var delay = Double(arc4random_uniform(40) + 3) / 10.0
+    var pauseTimer = NSTimer(timeInterval: delay, target: self, selector: "titleAnimation", userInfo: nil, repeats: false)
+    println("got this far")
+    pauseTimer.fire()
+    println("paused")
+    pauseTimer.invalidate()
+  }
+
 
 
   override func didReceiveMemoryWarning() {
@@ -183,30 +293,30 @@ class LaunchViewController: UIViewController {
       self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
     }
   
-  func animateTitle(isAtTop: Bool) {
-    if isAtTop{
-      UIView.animateWithDuration(2.0,
-        delay: 0.0,
-        options: UIViewAnimationOptions.CurveEaseInOut,
-        animations: { () -> Void in
-          self.hackerMissionTitle.frame.origin.y = self.hackerMissionTitle.frame.origin.y + 20
-        },
-        completion: { (success) -> Void in
-          self.animateTitle(false)
-      })
-    } else {
-      UIView.animateWithDuration(2.0,
-        delay: 0.0,
-        options: UIViewAnimationOptions.CurveEaseInOut,
-        animations: { () -> Void in
-          self.hackerMissionTitle.frame.origin.y = self.hackerMissionTitle.frame.origin.y - 20
-        },
-        completion: { (success) -> Void in
-          self.animateTitle(true)
-      })
-    }
-  }
-  
+//  func animateTitle(isAtTop: Bool) {
+//    if isAtTop{
+//      UIView.animateWithDuration(2.0,
+//        delay: 0.0,
+//        options: UIViewAnimationOptions.CurveEaseInOut,
+//        animations: { () -> Void in
+//          self.hackerMissionTitle.frame.origin.y = self.hackerMissionTitle.frame.origin.y + 20
+//        },
+//        completion: { (success) -> Void in
+//          self.animateTitle(false)
+//      })
+//    } else {
+//      UIView.animateWithDuration(2.0,
+//        delay: 0.0,
+//        options: UIViewAnimationOptions.CurveEaseInOut,
+//        animations: { () -> Void in
+//          self.hackerMissionTitle.frame.origin.y = self.hackerMissionTitle.frame.origin.y - 20
+//        },
+//        completion: { (success) -> Void in
+//          self.animateTitle(true)
+//      })
+//    }
+//  }
+
   @IBAction func privacyPolicyButtonPressed(sender: AnyObject) {
     let PPVC = PrivacyPolicyViewController(nibName: "PrivacyPolicyViewController", bundle: NSBundle.mainBundle())
     self.presentViewController(PPVC, animated: true, completion: nil)
