@@ -28,6 +28,11 @@ class MissionTextViewController: UIViewController {
     missionFlavorTextDescriptionLabel.text = currentMission.missionDescription
   }
 
+  override func viewDidAppear(animated: Bool) {
+    self.view.layer.cornerRadius = self.view.frame.size.width / 16
+    self.view.layer.masksToBounds = true
+  }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.

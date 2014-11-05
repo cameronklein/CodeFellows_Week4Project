@@ -11,7 +11,7 @@ import UIKIT
 class ImagePacket : NSObject, NSCoding {
   var userImage : UIImage
   var userPeerID : NSString?
-  var imagePacketObject = NSMutableData()
+  //var imagePacketObject = NSMutableData()
   var savePath : String?
 
   init(peerID: NSString, userImage: UIImage) {
@@ -20,17 +20,18 @@ class ImagePacket : NSObject, NSCoding {
   }
 
   required init(coder aDecoder: NSCoder) {
-    let data = aDecoder.decodeObjectForKey("userImage") as NSData
-    self.userImage = UIImage(data: data)!
+    //let data = aDecoder.decodeObjectForKey("userImage") as NSData
+    self.userImage = aDecoder.decodeObjectForKey("userImage") as UIImage
     self.userPeerID = aDecoder.decodeObjectForKey("userPeerID") as NSString?
 
   }
 
   func encodeWithCoder(aCoder: NSCoder) {
-    let data = UIImagePNGRepresentation(self.userImage)
-    aCoder.encodeObject(data, forKey: "userImage")
+    //let data = UIImagePNGRepresentation(self.userImage)
+    aCoder.encodeObject(userImage, forKey: "userImage")
     aCoder.encodeObject(self.userPeerID, forKey: "userPeerID")
-    }
+    
+  }
 
 
   class func wrapImagePacket(object: ImagePacket) -> NSMutableData {
@@ -43,7 +44,7 @@ class ImagePacket : NSObject, NSCoding {
 
   class func unwrapImagePacket(object: NSMutableData) -> ImagePacket {
     var passedPacket = NSKeyedUnarchiver.unarchiveObjectWithData(object) as ImagePacket
-
+    
     return passedPacket as ImagePacket!
 
   }

@@ -32,6 +32,8 @@
 		43EB50791A05998500AD19F0 /* ImagePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB50781A05998500AD19F0 /* ImagePacket.swift */; };
 		705BB11E19FFFB5C00584A5B /* LeadGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BB11D19FFFB5C00584A5B /* LeadGameController.swift */; };
 		70CAA5D419FFFC7F00D5BDC1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */; };
+		7E3CF15A1A09713F0083C215 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3CF1581A09713F0083C215 /* PrivacyPolicyViewController.swift */; };
+		7E3CF15B1A09713F0083C215 /* PrivacyPolicyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E3CF1591A09713F0083C215 /* PrivacyPolicyViewController.xib */; };
 		7E423DF91A0027560015CC8D /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E423DF71A0027560015CC8D /* LaunchViewController.swift */; };
 		7E46DF2119FEB359009215E3 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		7E46DF2319FEB359009215E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF2219FEB359009215E3 /* ViewController.swift */; };
@@ -99,6 +101,8 @@
 		43EB50781A05998500AD19F0 /* ImagePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePacket.swift; sourceTree = "<group>"; };
 		705BB11D19FFFB5C00584A5B /* LeadGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadGameController.swift; sourceTree = "<group>"; };
 		70CAA5D319FFFC7F00D5BDC1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		7E3CF1581A09713F0083C215 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
+		7E3CF1591A09713F0083C215 /* PrivacyPolicyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivacyPolicyViewController.xib; sourceTree = "<group>"; };
 		7E423DF71A0027560015CC8D /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		7E46DF1B19FEB359009215E3 /* Hacker Mission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hacker Mission.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E46DF1F19FEB359009215E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -158,9 +162,13 @@
 				7E9BE66E1A0001EC00E21794 /* NominationVoteView.xib */,
 				164EDA931A01672D005F7452 /* RevealViewController.xib */,
 				7E86E9BB1A03F234001C81C5 /* EndGameViewController.xib */,
+				7E3CF1591A09713F0083C215 /* PrivacyPolicyViewController.xib */,
 				7E9BE6701A00045400E21794 /* MissionOutcomeView.xib */,
 				7EF0C1281A02A519002A6219 /* RevealMissionOutcomeViewController.xib */,
 				7EF0C12E1A02C358002A6219 /* MissionTextViewController.xib */,
+				7E85DCFE1A073C9B00C9E303 /* OnboardPageViewController.xib */,
+				7E85DCFA1A073B9300C9E303 /* RootOnboardViewController.xib */,
+				7E5E75621A06B058001D49C6 /* OnboardViewController.xib */,
 				16C784AC19FEC9FF008421CC /* PlayerCell.swift */,
 				4334C3771A019EDD00CB7AFA /* DefaultIconCell.swift */,
 			);
@@ -180,9 +188,6 @@
 				7E5E75611A06B058001D49C6 /* OnboardViewController.swift */,
 				7E85DCF91A073B9300C9E303 /* RootOnboardViewController.swift */,
 				7E85DCFD1A073C9B00C9E303 /* OnboardPageViewController.swift */,
-				7E85DCFE1A073C9B00C9E303 /* OnboardPageViewController.xib */,
-				7E85DCFA1A073B9300C9E303 /* RootOnboardViewController.xib */,
-				7E5E75621A06B058001D49C6 /* OnboardViewController.xib */,
 				7E86E9BA1A03F234001C81C5 /* EndGameViewController.swift */,
 				7EF0C12D1A02C358002A6219 /* MissionTextViewController.swift */,
 				7EF0C1271A02A519002A6219 /* RevealMissionOutcomeViewController.swift */,
@@ -190,6 +195,7 @@
 				7E46DF2219FEB359009215E3 /* ViewController.swift */,
 				164EDA8E1A015008005F7452 /* CharacterCreationViewController.swift */,
 				7EF0C12B1A02AAEC002A6219 /* MissionOutcomeVoteViewController.swift */,
+				7E3CF1581A09713F0083C215 /* PrivacyPolicyViewController.swift */,
 			);
 			name = "Controller Layer";
 			sourceTree = "<group>";
@@ -378,6 +384,7 @@
 				7E85DD001A073C9B00C9E303 /* OnboardPageViewController.xib in Resources */,
 				16C007381A000C7000231A17 /* infinite_field_bw.gif in Resources */,
 				16AA3ADD1A00596A00646943 /* BOYCOTT_.ttf in Resources */,
+				7E3CF15B1A09713F0083C215 /* PrivacyPolicyViewController.xib in Resources */,
 				7E86E9BD1A03F234001C81C5 /* EndGameViewController.xib in Resources */,
 				16AA3ADE1A00596F00646943 /* MKStencilsansBlack.ttf in Resources */,
 				7E85DCFC1A073B9300C9E303 /* RootOnboardViewController.xib in Resources */,
@@ -413,6 +420,7 @@
 				4372ECB21A0024A200907EFA /* Mission.swift in Sources */,
 				7E86E9BC1A03F234001C81C5 /* EndGameViewController.swift in Sources */,
 				164EDA941A01672D005F7452 /* RevealViewController.swift in Sources */,
+				7E3CF15A1A09713F0083C215 /* PrivacyPolicyViewController.swift in Sources */,
 				7E46DF4919FF130A009215E3 /* GameEvent.swift in Sources */,
 				7E46DF2119FEB359009215E3 /* (null) in Sources */,
 				7E46DF2119FEB359009215E3 /* (null) in Sources */,

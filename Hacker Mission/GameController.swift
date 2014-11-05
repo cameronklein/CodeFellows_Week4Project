@@ -85,12 +85,16 @@ class GameController {
     
   }
   
+  func showLoadingScreen(){
+    
+  }
+  
   func gameStart() {
     multipeerController.gameRunning = true
     
     println("GAME CONTROLLER: Got Game Start Message")
     
-    multipeerController.stopAdvertising()
+    //multipeerController.stopAdvertising()
     revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())
     
     self.launchVC.gameStart(revealVC)
@@ -135,11 +139,9 @@ class GameController {
 
   func updatePeerCount(count : Int) {
     self.peerCount = count
-    if let root = UIApplication.sharedApplication().keyWindow?.rootViewController as? LaunchViewController {
-      NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-        root.updateConnectedPeersLabel(count)
-      })
-    }
+    if launchVC != nil {
+        launchVC.updateConnectedPeersLabel(count)
+      }
   }
   
   func sendUserInfo () {
@@ -161,7 +163,8 @@ class GameController {
     let appDel = UIApplication.sharedApplication().delegate as AppDelegate
     if let thisUser = appDel.defaultUser as UserInfo! {
       thisUser.userPeerID = multipeerController.peerID.displayName
-      multipeerController.sendImagePacketToLeadController(thisUser)
+      let image = thisUser.userImage!
+      multipeerController.sendImagePacketToLeadController(image)
     }
   }
 

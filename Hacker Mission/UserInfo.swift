@@ -11,7 +11,7 @@ import UIKit
 class UserInfo : NSObject, NSCoding {
     var userName : NSString
     var userID : NSInteger
-    var userImage : UIImage
+    var userImage : UIImage?
     var userPeerID : NSString?
     var userObject = NSMutableData()
     var savePath : String?
@@ -24,6 +24,14 @@ class UserInfo : NSObject, NSCoding {
       let userHash = userForHash.hash as NSInteger!
       self.userID = userHash as NSInteger!
     }
+  
+  init(userName: NSString) {
+    self.userName = userName as NSString
+    let idGen = NSInteger(arc4random_uniform(999999))
+    let userForHash : NSString = userName + String(idGen)
+    let userHash = userForHash.hash as NSInteger!
+    self.userID = userHash as NSInteger!
+  }
 
     required init(coder aDecoder: NSCoder) {
 
@@ -38,8 +46,8 @@ class UserInfo : NSObject, NSCoding {
      func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.userName, forKey: "userName")
         aCoder.encodeInteger(self.userID, forKey: "userID")
-        let data = UIImagePNGRepresentation(self.userImage)
-        aCoder.encodeObject(data, forKey: "userImage")
+      let data = UIImageJPEGRepresentation(self.userImage, 1.0)
+      aCoder.encodeObject(data, forKey: "userImage")
         if self.userPeerID != nil {
             aCoder.encodeObject(self.userPeerID, forKey: "userPeerID")
         }
@@ -74,8 +82,7 @@ class UserInfo : NSObject, NSCoding {
     } else {
       println("save apears to have failed, no saved file found")
     }
-
-
+    
   }
 
   class func loadTheObject() -> UserInfo {

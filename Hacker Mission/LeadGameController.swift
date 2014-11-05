@@ -21,10 +21,13 @@ class LeadGameController {
   var myUserInfo : UserInfo!
   var launchVC : LaunchViewController!
   var flavorTextArray = [(String,String)]()
-
+  
+  var requestQueue = NSOperationQueue()
+  
   init() {
     multipeerController.mainBrain = self
     self.loadFlavorTextIntoArray()
+    requestQueue.maxConcurrentOperationCount = 1
   }
   
   func startLookingForPlayers() {
@@ -33,30 +36,56 @@ class LeadGameController {
       println("thisUser is \(thisUser)")
       thisUser.userPeerID = multipeerController.peerID.displayName
       usersForGame.append(thisUser)
+      imagePacketsForGame.append(ImagePacket(peerID: thisUser.userPeerID!, userImage: thisUser.userImage!))
     }
     multipeerController.startBrowsing()
   }
-
+  
+  func beginRequestingImagesFromPlayers() {
+    multipeerController.showLoadingScreen()
+    self.requestImagesFromPlayers()
+  }
+  
+  func requestImagesFromPlayers() {
+    requestQueue.addOperationWithBlock { () -> Void in
+      if self.imagePacketsForGame.count == self.usersForGame.count {
+        self.startGame()
+      } else {
+        for user in self.usersForGame {
+          var packetArrayHasImage = false
+          for packet in self.imagePacketsForGame {
+            if packet.userPeerID == user.userPeerID {
+              packetArrayHasImage = true
+            }
+          }
+          if packetArrayHasImage == false {
+            println("Asking for image from \(user.userPeerID!)")
+            self.requestQueue.addOperationWithBlock({ () -> Void in
+              NSThread.sleepForTimeInterval(2.0)
+              self.multipeerController.requestImageFromPeer(user.userPeerID!)
+            })
+            break
+          }
+        }
+        self.requestImagesFromPlayers()
+      }
+    }
+  }
+  
   func startGame() {
     
     println("MAIN BRAIN : Start Game Function Called")
     multipeerController.gameRunning = true
     
-    multipeerController.stopBrowsing()
+    //multipeerController.stopBrowsing()
   
     let players = self.getPlayersFromCurrentUsersArray()
-    let imagePackets = self.getImagePacketsFromCurrentUsersArray() // here!!!!!!!!!!!
-    
+
     println("MAIN BRAIN: \(players.count) players created from provided user information.")
-    println("MAIN BRAIN: \(imagePackets.count) image packets created from provided user information.")
+    
+   
 
-    if players.count != imagePackets.count {
-      println("mismatch between players count and image packets count. Seek resolutions.")
-    }
-
-    println("PLAYERS DESC: \(players.description)")
-
-    multipeerController.sendImagePacketsToPeers(imagePackets)
+    multipeerController.sendImagePacketsToPeers(imagePacketsForGame)
     
     var missions = GameSession.populateMissionList(players.count)
     
@@ -102,12 +131,12 @@ class LeadGameController {
   }
 
   func getImagePacketsFromCurrentUsersArray() -> [ImagePacket] {
-
+    
     var imagePackets = [ImagePacket]()
     println("MAIN BRAIN : Creating imagePackets from user array of \(usersForGame.count) users.")
     for user in usersForGame {
 
-      let imagePacketFor = ImagePacket(peerID: user.userPeerID!, userImage: user.userImage)
+      let imagePacketFor = ImagePacket(peerID: user.userPeerID!, userImage: user.userImage!)
 
       var needToAdd : Bool = true
       for existingImagePacket in imagePackets {
@@ -440,14 +469,16 @@ class LeadGameController {
       
     case "user" :
       println("MAIN BRAIN: Received user information from \(peerID)")
-      let value = event["value"] as UserInfo
-      usersForGame.append(value)
+      let value = event["value"] as String
+      let user = UserInfo(userName: value)
+      user.userPeerID = peerID
+      usersForGame.append(user)
       // MARK: FInish this with a new event to request the imagePackets
 
     case "imagePacket" :
       println("MAIN BRAIN: Received imagePacket from \(peerID)")
-      let value = event["value"] as ImagePacket
-      imagePacketsForGame.append(value)
+      let image = event["value"] as UIImage
+      imagePacketsForGame.append(ImagePacket(peerID: peerID, userImage: image))
 
     case "nominations" :
       println("MAIN BRAIN: Received nomination information from \(peerID)")

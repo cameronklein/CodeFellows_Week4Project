@@ -44,6 +44,11 @@ class MissionOutcomeVoteViewController: UIViewController {
     self.succeedOrFailLabel.typeToNewString(textToAnimate, withInterval: 0.1)
   }
   
+  override func viewDidAppear(animated: Bool) {
+    self.view.layer.cornerRadius = self.view.frame.size.width / 16
+    self.view.layer.masksToBounds = true
+  }
+  
   func disableButtons() {
     failButton.enabled = false
     succeedButton.enabled = false

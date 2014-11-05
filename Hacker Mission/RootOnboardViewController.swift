@@ -53,12 +53,12 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
     VC2.p6 = "If a government agent is in the team, however, they can choose to sabotage the mission or not."
     
     let VC3 = OnboardPageViewController(nibName: "OnboardPageViewController", bundle: NSBundle.mainBundle())
-    VC3.p1 = "Choose your teams wisely."
-    VC3.p2 = "Sniff out the spies."
-    VC3.p3 = "Trust no one."
-    VC3.p4 = " "
-    VC3.p5 = " "
-    VC3.p6 = " "
+    VC3.p1 = "Three missions succeed, the hackers win and the government is overthrown."
+    VC3.p2 = "Three missions fail, the hidden agents win and the totalitarian regime lives on."
+    VC3.p3 = " "
+    VC3.p4 = "Choose your teams wisely."
+    VC3.p5 = "Sniff out the spies."
+    VC3.p6 = "Trust no one."
     
     controllers.append(beginningVC)
     controllers.append(VC2)
@@ -78,7 +78,6 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
   }
   
   func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-    println("AFTER CALLED")
       var vcFound = false
       for vc in controllers {
         if vcFound == true {
@@ -93,7 +92,6 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
   }
   
   func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-    println("BEFORE CALLED")
       var i = 0
       for vc in controllers {
         if vc == viewController {

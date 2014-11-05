@@ -91,7 +91,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-      println("CollectionView asking for cells. Returned \(self.gameController.game.players.count).")
       return self.gameController.game.players.count
     }
     
@@ -115,7 +114,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
       if self.gameController.game.currentGameState != .RevealVote
       {
-        println("Collection View Found Game State Other Than Reveal Vote.")
         cell.approvesMission.hidden = true
         cell.rejectsMission.hidden = true
       } else {
@@ -630,6 +628,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   func animateIncomingMessageLabelWithCompletionHandler(completionHandler : () -> (Void)) {
     
   }
+  
 
 }
 
