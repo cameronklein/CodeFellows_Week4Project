@@ -106,6 +106,4 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
 
     return imageFor!
   }
-    
-    
 }

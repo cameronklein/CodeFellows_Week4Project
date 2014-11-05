@@ -42,11 +42,13 @@ class LeadGameController {
   }
   
   func beginRequestingImagesFromPlayers() {
-    multipeerController.showLoadingScreen()
+    multipeerController.showLoadingScreen(0.0)
     self.requestImagesFromPlayers()
   }
   
   func requestImagesFromPlayers() {
+    let percentage : Float = Float(self.imagePacketsForGame.count) / Float(self.usersForGame.count)
+    self.multipeerController.showLoadingScreen(percentage)
     requestQueue.addOperationWithBlock { () -> Void in
       if self.imagePacketsForGame.count == self.usersForGame.count {
         self.startGame()
@@ -61,7 +63,7 @@ class LeadGameController {
           if packetArrayHasImage == false {
             println("Asking for image from \(user.userPeerID!)")
             self.requestQueue.addOperationWithBlock({ () -> Void in
-              NSThread.sleepForTimeInterval(2.0)
+              NSThread.sleepForTimeInterval(3.0)
               self.multipeerController.requestImageFromPeer(user.userPeerID!)
             })
             break
@@ -83,8 +85,6 @@ class LeadGameController {
 
     println("MAIN BRAIN: \(players.count) players created from provided user information.")
     
-   
-
     multipeerController.sendImagePacketsToPeers(imagePacketsForGame)
     
     var missions = GameSession.populateMissionList(players.count)
