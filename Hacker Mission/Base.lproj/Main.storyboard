@@ -51,6 +51,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="uW9-bV-Z8S">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJT-k5-bx7">
                                 <rect key="frame" x="180" y="450" width="240" height="33"/>
                                 <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="20"/>
@@ -171,9 +174,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="uW9-bV-Z8S" firstAttribute="top" secondItem="rwS-3Z-jzj" secondAttribute="top" id="18v-QA-wRL"/>
                             <constraint firstItem="Nua-Lj-5i7" firstAttribute="centerX" secondItem="fvI-NF-nfe" secondAttribute="centerX" id="1nx-Ud-CbO"/>
+                            <constraint firstAttribute="trailing" secondItem="uW9-bV-Z8S" secondAttribute="trailing" id="34E-sy-oCE"/>
                             <constraint firstItem="dtv-ys-BsA" firstAttribute="leading" secondItem="rwS-3Z-jzj" secondAttribute="leadingMargin" constant="32" id="48e-1U-wWP"/>
                             <constraint firstItem="dtv-ys-BsA" firstAttribute="top" secondItem="VXa-Dh-u7j" secondAttribute="bottom" constant="16" id="6N3-Vp-WL6"/>
+                            <constraint firstItem="fKb-iI-2cd" firstAttribute="top" secondItem="uW9-bV-Z8S" secondAttribute="bottom" id="6XG-Wy-gii"/>
                             <constraint firstItem="fvI-NF-nfe" firstAttribute="top" secondItem="c69-h1-LK6" secondAttribute="bottom" constant="8" id="7rS-4E-lPk"/>
                             <constraint firstAttribute="centerX" secondItem="VXa-Dh-u7j" secondAttribute="centerX" id="7z3-rR-BW7"/>
                             <constraint firstAttribute="centerX" secondItem="P14-56-dqD" secondAttribute="centerX" id="9FF-y3-hna"/>
@@ -656,6 +662,7 @@
     <resources>
         <image name="1095222_34734740.jpg" width="1024" height="768"/>
         <image name="HackerMissionTitle" width="226" height="38"/>
+        <image name="Image" width="320" height="480"/>
         <image name="matrix_code1.gif" width="1024" height="756"/>
         <image name="mission_connector" width="229" height="42"/>
         <image name="mission_open" width="151" height="151"/>
