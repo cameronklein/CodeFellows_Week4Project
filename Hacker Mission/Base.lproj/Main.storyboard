@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="B2m-a2-ZUT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="B2m-a2-ZUT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -14,9 +14,9 @@
             <string>MKStencilsansBlack</string>
             <string>MKStencilsansBlack</string>
             <string>MKStencilsansBlack</string>
-            <string>MKStencilsansBlack</string>
         </mutableArray>
         <mutableArray key="TYPEWRON.ttf">
+            <string>Typewrong</string>
             <string>Typewrong</string>
             <string>Typewrong</string>
             <string>Typewrong</string>
@@ -67,8 +67,8 @@
                                     <action selector="hostGameButtonPressed:" destination="B2m-a2-ZUT" eventType="touchUpInside" id="uVB-ul-vro"/>
                                 </connections>
                             </button>
-                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.60000000000000009" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HackerMissionTitle" translatesAutoresizingMaskIntoConstraints="NO" id="VXa-Dh-u7j">
-                                <rect key="frame" x="48" y="52" width="504" height="140"/>
+                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.70000000000000018" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HackerMissionTitle" translatesAutoresizingMaskIntoConstraints="NO" id="VXa-Dh-u7j">
+                                <rect key="frame" x="24" y="52" width="552" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="iNx-j6-HTP"/>
                                 </constraints>
@@ -77,7 +77,7 @@
                                 <rect key="frame" x="281" y="302" width="37" height="37"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="flavorLabel" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtv-ys-BsA">
-                                <rect key="frame" x="48" y="208" width="504" height="14"/>
+                                <rect key="frame" x="48" y="300" width="504" height="14"/>
                                 <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="12"/>
                                 <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -161,8 +161,9 @@
                                 <color key="trackTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </progressView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPf-6S-DwA">
-                                <rect key="frame" x="208" y="479" width="184" height="33"/>
+                                <rect key="frame" x="202" y="479" width="196" height="33"/>
                                 <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="20"/>
+                                <inset key="contentEdgeInsets" minX="6" minY="5" maxX="6" maxY="7"/>
                                 <state key="normal" title="&lt;&lt;START GAME&gt;&gt;">
                                     <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -178,14 +179,14 @@
                             <constraint firstItem="Nua-Lj-5i7" firstAttribute="centerX" secondItem="fvI-NF-nfe" secondAttribute="centerX" id="1nx-Ud-CbO"/>
                             <constraint firstAttribute="trailing" secondItem="uW9-bV-Z8S" secondAttribute="trailing" id="34E-sy-oCE"/>
                             <constraint firstItem="dtv-ys-BsA" firstAttribute="leading" secondItem="rwS-3Z-jzj" secondAttribute="leadingMargin" constant="32" id="48e-1U-wWP"/>
-                            <constraint firstItem="dtv-ys-BsA" firstAttribute="top" secondItem="VXa-Dh-u7j" secondAttribute="bottom" constant="16" id="6N3-Vp-WL6"/>
+                            <constraint firstItem="dtv-ys-BsA" firstAttribute="top" secondItem="VXa-Dh-u7j" secondAttribute="bottom" constant="108" id="6N3-Vp-WL6"/>
                             <constraint firstItem="fKb-iI-2cd" firstAttribute="top" secondItem="uW9-bV-Z8S" secondAttribute="bottom" id="6XG-Wy-gii"/>
                             <constraint firstItem="fvI-NF-nfe" firstAttribute="top" secondItem="c69-h1-LK6" secondAttribute="bottom" constant="8" id="7rS-4E-lPk"/>
                             <constraint firstAttribute="centerX" secondItem="VXa-Dh-u7j" secondAttribute="centerX" id="7z3-rR-BW7"/>
                             <constraint firstAttribute="centerX" secondItem="P14-56-dqD" secondAttribute="centerX" id="9FF-y3-hna"/>
                             <constraint firstItem="fKb-iI-2cd" firstAttribute="top" secondItem="1OX-99-S4k" secondAttribute="bottom" constant="16" id="9W7-1C-rqA"/>
                             <constraint firstAttribute="centerY" secondItem="Nr6-3m-elK" secondAttribute="centerY" constant="-20" id="AAJ-qR-oT3"/>
-                            <constraint firstItem="VXa-Dh-u7j" firstAttribute="leading" secondItem="rwS-3Z-jzj" secondAttribute="leadingMargin" constant="32" id="BCU-HS-ggj"/>
+                            <constraint firstItem="VXa-Dh-u7j" firstAttribute="leading" secondItem="rwS-3Z-jzj" secondAttribute="leadingMargin" constant="8" id="BCU-HS-ggj"/>
                             <constraint firstAttribute="centerX" secondItem="Nua-Lj-5i7" secondAttribute="centerX" id="BLG-70-JYl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Wg4-QE-0tZ" secondAttribute="trailing" constant="32" id="DfN-Nw-KIG"/>
                             <constraint firstItem="bD7-5o-KfO" firstAttribute="leading" secondItem="rwS-3Z-jzj" secondAttribute="leadingMargin" id="F42-dB-lsl"/>
@@ -199,6 +200,7 @@
                             <constraint firstItem="fKb-iI-2cd" firstAttribute="top" secondItem="bD7-5o-KfO" secondAttribute="bottom" constant="16" id="R8A-iO-H8f"/>
                             <constraint firstAttribute="centerX" secondItem="c69-h1-LK6" secondAttribute="centerX" id="SUN-Yp-SPJ"/>
                             <constraint firstItem="c69-h1-LK6" firstAttribute="top" secondItem="gJT-k5-bx7" secondAttribute="bottom" constant="16" id="VA0-Bi-3ht"/>
+                            <constraint firstItem="uW9-bV-Z8S" firstAttribute="leading" secondItem="rwS-3Z-jzj" secondAttribute="leading" id="WeT-t1-itP"/>
                             <constraint firstAttribute="centerX" secondItem="PPf-6S-DwA" secondAttribute="centerX" id="a0E-3z-aPM"/>
                             <constraint firstItem="gJT-k5-bx7" firstAttribute="top" secondItem="Wg4-QE-0tZ" secondAttribute="bottom" constant="32" id="dAz-rZ-NgU"/>
                             <constraint firstItem="P14-56-dqD" firstAttribute="top" secondItem="VXa-Dh-u7j" secondAttribute="bottom" constant="24" id="dkV-In-K4K"/>
@@ -207,7 +209,7 @@
                             <constraint firstItem="VXa-Dh-u7j" firstAttribute="top" secondItem="mt0-82-dOi" secondAttribute="bottom" constant="32" id="o2B-gg-5AC"/>
                             <constraint firstAttribute="centerX" secondItem="dtv-ys-BsA" secondAttribute="centerX" id="rAn-aE-wET"/>
                             <constraint firstAttribute="centerX" secondItem="gJT-k5-bx7" secondAttribute="centerX" id="sd1-5t-cBh"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="VXa-Dh-u7j" secondAttribute="trailing" constant="32" id="t2Z-Em-uNg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VXa-Dh-u7j" secondAttribute="trailing" constant="8" id="t2Z-Em-uNg"/>
                             <constraint firstItem="c69-h1-LK6" firstAttribute="top" secondItem="PPf-6S-DwA" secondAttribute="bottom" constant="-13" id="wFJ-wW-mXD"/>
                         </constraints>
                         <variation key="default">
@@ -248,9 +250,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfP-7t-JIE">
-                                <rect key="frame" x="228" y="481" width="143" height="29"/>
-                                <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="15"/>
-                                <state key="normal" title="[SAVE CHARACTER]">
+                                <rect key="frame" x="157" y="495" width="287" height="19"/>
+                                <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="10"/>
+                                <inset key="contentEdgeInsets" minX="4" minY="3" maxX="4" maxY="5"/>
+                                <state key="normal" title="Enter a Player Name and Choose an Image">
                                     <color key="titleColor" red="0.44313725490196076" green="0.96078431372549022" blue="0.082352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -258,8 +261,49 @@
                                     <action selector="saveButtonPressed:" destination="Qid-5I-G0n" eventType="touchUpInside" id="fwl-JO-7ad"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYg-lI-wCd">
+                                <rect key="frame" x="282" y="522" width="36" height="33"/>
+                                <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="24"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="4" maxX="5" maxY="4"/>
+                                <state key="normal" title="">
+                                    <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="photoButtonPressed:" destination="Qid-5I-G0n" eventType="touchUpInside" id="RsZ-ni-s9d"/>
+                                </connections>
+                            </button>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WWg-Hl-4eJ">
+                                <rect key="frame" x="230" y="121" width="140" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="Mga-gG-Irv"/>
+                                    <constraint firstAttribute="height" constant="140" id="xQM-8b-OsY"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default images:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGl-QH-FAa">
+                                <rect key="frame" x="257" y="277" width="87" height="14"/>
+                                <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="12"/>
+                                <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Identity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeg-Yc-HFt">
+                                <rect key="frame" x="225" y="36" width="151" height="23"/>
+                                <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="20"/>
+                                <color key="textColor" red="0.4431372549" green="0.96078431369999995" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DnX-Sf-lrV">
+                                <rect key="frame" x="217" y="75" width="167" height="30"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="167" id="KOa-nP-bTY"/>
+                                </constraints>
+                                <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gX0-Qb-HeF">
-                                <rect key="frame" x="32" y="326" width="536" height="147"/>
+                                <rect key="frame" x="32" y="299" width="536" height="188"/>
                                 <color key="tintColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="O2M-xi-TRV">
                                     <size key="itemSize" width="50" height="50"/>
@@ -295,46 +339,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYg-lI-wCd">
-                                <rect key="frame" x="285" y="518" width="30" height="37"/>
-                                <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="24"/>
-                                <state key="normal" title="">
-                                    <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="photoButtonPressed:" destination="Qid-5I-G0n" eventType="touchUpInside" id="RsZ-ni-s9d"/>
-                                </connections>
-                            </button>
-                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WWg-Hl-4eJ">
-                                <rect key="frame" x="217" y="121" width="167" height="167"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="167" id="Mga-gG-Irv"/>
-                                    <constraint firstAttribute="height" constant="167" id="xQM-8b-OsY"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default images:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGl-QH-FAa">
-                                <rect key="frame" x="257" y="304" width="87" height="14"/>
-                                <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="12"/>
-                                <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Identity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeg-Yc-HFt">
-                                <rect key="frame" x="225" y="36" width="151" height="23"/>
-                                <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="20"/>
-                                <color key="textColor" red="0.4431372549" green="0.96078431369999995" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DnX-Sf-lrV">
-                                <rect key="frame" x="217" y="75" width="167" height="30"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="167" id="KOa-nP-bTY"/>
-                                </constraints>
-                                <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -363,6 +367,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="cameraButton" destination="mYg-lI-wCd" id="Ge5-NV-PlN"/>
                         <outlet property="defaultIconsCollectionView" destination="gX0-Qb-HeF" id="CYX-cN-AjX"/>
                         <outlet property="saveCharacterButton" destination="YfP-7t-JIE" id="5d7-yS-eyt"/>
                         <outlet property="userImageView" destination="WWg-Hl-4eJ" id="umA-PX-YWp"/>
@@ -385,13 +390,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1095222_34734740.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="izK-87-4nm">
+                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="izK-87-4nm">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="81"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HackerMissionTitle" translatesAutoresizingMaskIntoConstraints="NO" id="rI0-ga-ANe">
                                 <rect key="frame" x="101" y="0.0" width="398" height="73"/>
                             </imageView>
-                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="matrix_code1.gif" translatesAutoresizingMaskIntoConstraints="NO" id="o7P-p7-Sfa">
+                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="o7P-p7-Sfa">
                                 <rect key="frame" x="0.0" y="81" width="600" height="519"/>
                             </imageView>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8CR-C6-ZKL">
@@ -660,10 +666,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1095222_34734740.jpg" width="1024" height="768"/>
         <image name="HackerMissionTitle" width="226" height="38"/>
         <image name="Image" width="320" height="480"/>
-        <image name="matrix_code1.gif" width="1024" height="756"/>
         <image name="mission_connector" width="229" height="42"/>
         <image name="mission_open" width="151" height="151"/>
     </resources>
