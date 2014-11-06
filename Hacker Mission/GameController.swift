@@ -54,7 +54,9 @@ class GameController {
   }
   
   func handleEvent(newGameInfo: GameSession) {
-    if homeVC == nil {
+    self.game = newGameInfo
+    let event = game.currentGameState!
+    if homeVC == nil && event != .Start {
       let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
       let homeVC = storyboard.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
       
@@ -69,8 +71,8 @@ class GameController {
       AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
       AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
       
-      self.game = newGameInfo
-      let event = game.currentGameState!
+      
+      
       findMe()
       println("GAME CONTROLLER: Received \(event.rawValue) event from Main Brain. Woot.")
       switch event{
