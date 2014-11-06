@@ -7,14 +7,6 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="MKStencilsansBlack.ttf">
-            <string>MKStencilsansBlack</string>
-            <string>MKStencilsansBlack</string>
-            <string>MKStencilsansBlack</string>
-            <string>MKStencilsansBlack</string>
-            <string>MKStencilsansBlack</string>
-            <string>MKStencilsansBlack</string>
-        </mutableArray>
         <mutableArray key="TYPEWRON.ttf">
             <string>Typewrong</string>
             <string>Typewrong</string>
@@ -27,6 +19,15 @@
         </mutableArray>
         <mutableArray key="fontawesome-webfont.ttf">
             <string>FontAwesome</string>
+        </mutableArray>
+        <mutableArray key="glass_tty_vt220.ttf">
+            <string>Glass_TTY_VT220</string>
+            <string>Glass_TTY_VT220</string>
+            <string>Glass_TTY_VT220</string>
+            <string>Glass_TTY_VT220</string>
+            <string>Glass_TTY_VT220</string>
+            <string>Glass_TTY_VT220</string>
+            <string>Glass_TTY_VT220</string>
         </mutableArray>
         <mutableArray key="typicons.ttf">
             <string>typicons</string>
@@ -51,7 +52,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="uW9-bV-Z8S">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="uW9-bV-Z8S">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJT-k5-bx7">
@@ -76,12 +77,6 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Nr6-3m-elK">
                                 <rect key="frame" x="281" y="302" width="37" height="37"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="flavorLabel" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtv-ys-BsA">
-                                <rect key="frame" x="48" y="300" width="504" height="14"/>
-                                <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="12"/>
-                                <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c69-h1-LK6">
                                 <rect key="frame" x="215" y="499" width="171" height="33"/>
                                 <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="20"/>
@@ -150,8 +145,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Peers Connected...]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P14-56-dqD">
-                                <rect key="frame" x="221" y="347" width="159" height="19"/>
-                                <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="17"/>
+                                <rect key="frame" x="215" y="347" width="170" height="17"/>
+                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -172,14 +167,21 @@
                                     <action selector="startGameButtonPressed:" destination="B2m-a2-ZUT" eventType="touchUpInside" id="Wlx-W7-7vM"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="flavorLabel" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtv-ys-BsA">
+                                <rect key="frame" x="28" y="264" width="544" height="15"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="15"/>
+                                <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="uW9-bV-Z8S" firstAttribute="top" secondItem="rwS-3Z-jzj" secondAttribute="top" id="18v-QA-wRL"/>
                             <constraint firstItem="Nua-Lj-5i7" firstAttribute="centerX" secondItem="fvI-NF-nfe" secondAttribute="centerX" id="1nx-Ud-CbO"/>
                             <constraint firstAttribute="trailing" secondItem="uW9-bV-Z8S" secondAttribute="trailing" id="34E-sy-oCE"/>
-                            <constraint firstItem="dtv-ys-BsA" firstAttribute="leading" secondItem="rwS-3Z-jzj" secondAttribute="leadingMargin" constant="32" id="48e-1U-wWP"/>
-                            <constraint firstItem="dtv-ys-BsA" firstAttribute="top" secondItem="VXa-Dh-u7j" secondAttribute="bottom" constant="108" id="6N3-Vp-WL6"/>
+                            <constraint firstItem="dtv-ys-BsA" firstAttribute="leading" secondItem="rwS-3Z-jzj" secondAttribute="leadingMargin" constant="12" id="48e-1U-wWP"/>
+                            <constraint firstItem="dtv-ys-BsA" firstAttribute="top" secondItem="VXa-Dh-u7j" secondAttribute="bottom" constant="72" id="6N3-Vp-WL6"/>
                             <constraint firstItem="fKb-iI-2cd" firstAttribute="top" secondItem="uW9-bV-Z8S" secondAttribute="bottom" id="6XG-Wy-gii"/>
                             <constraint firstItem="fvI-NF-nfe" firstAttribute="top" secondItem="c69-h1-LK6" secondAttribute="bottom" constant="8" id="7rS-4E-lPk"/>
                             <constraint firstAttribute="centerX" secondItem="VXa-Dh-u7j" secondAttribute="centerX" id="7z3-rR-BW7"/>
@@ -192,7 +194,7 @@
                             <constraint firstItem="bD7-5o-KfO" firstAttribute="leading" secondItem="rwS-3Z-jzj" secondAttribute="leadingMargin" id="F42-dB-lsl"/>
                             <constraint firstItem="P14-56-dqD" firstAttribute="top" secondItem="Nr6-3m-elK" secondAttribute="bottom" constant="8" id="Fop-XY-zed"/>
                             <constraint firstItem="1OX-99-S4k" firstAttribute="trailing" secondItem="rwS-3Z-jzj" secondAttribute="trailingMargin" id="Jfb-hv-PUk"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="dtv-ys-BsA" secondAttribute="trailing" constant="32" id="KNG-Vy-GIh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dtv-ys-BsA" secondAttribute="trailing" constant="12" id="KNG-Vy-GIh"/>
                             <constraint firstItem="PPf-6S-DwA" firstAttribute="top" secondItem="P14-56-dqD" secondAttribute="bottom" constant="8" id="Mj7-YX-BWl"/>
                             <constraint firstItem="fKb-iI-2cd" firstAttribute="top" secondItem="Nua-Lj-5i7" secondAttribute="bottom" constant="8" id="OBB-Mp-S7s"/>
                             <constraint firstItem="Nua-Lj-5i7" firstAttribute="top" secondItem="fvI-NF-nfe" secondAttribute="bottom" constant="-4" id="QSP-u2-K46"/>
@@ -274,36 +276,36 @@
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WWg-Hl-4eJ">
-                                <rect key="frame" x="230" y="121" width="140" height="140"/>
+                                <rect key="frame" x="230" y="116" width="140" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="Mga-gG-Irv"/>
                                     <constraint firstAttribute="height" constant="140" id="xQM-8b-OsY"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default images:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGl-QH-FAa">
-                                <rect key="frame" x="257" y="277" width="87" height="14"/>
-                                <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="12"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default images:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGl-QH-FAa">
+                                <rect key="frame" x="255" y="272" width="90" height="12"/>
+                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="12"/>
                                 <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Identity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeg-Yc-HFt">
-                                <rect key="frame" x="225" y="36" width="151" height="23"/>
-                                <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Identity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeg-Yc-HFt">
+                                <rect key="frame" x="228" y="36" width="144" height="18"/>
+                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="18"/>
                                 <color key="textColor" red="0.4431372549" green="0.96078431369999995" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DnX-Sf-lrV">
-                                <rect key="frame" x="217" y="75" width="167" height="30"/>
+                                <rect key="frame" x="217" y="70" width="167" height="30"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="167" id="KOa-nP-bTY"/>
                                 </constraints>
                                 <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gX0-Qb-HeF">
-                                <rect key="frame" x="32" y="299" width="536" height="188"/>
+                                <rect key="frame" x="32" y="292" width="536" height="195"/>
                                 <color key="tintColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="O2M-xi-TRV">
                                     <size key="itemSize" width="50" height="50"/>
@@ -554,15 +556,15 @@
                                 </constraints>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt; VOTING RESULTS ARE IN! &gt;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yO-ZI-uxD">
-                                <rect key="frame" x="162" y="389" width="277" height="23"/>
-                                <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="20"/>
+                                <rect key="frame" x="170" y="389" width="260" height="19"/>
+                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="20"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nominate team members" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovz-Ln-f4Q">
-                                <rect key="frame" x="16" y="442" width="568" height="21"/>
+                                <rect key="frame" x="16" y="444" width="568" height="19"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="19"/>
+                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="20"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -578,7 +580,7 @@
                                     <constraint firstAttribute="width" constant="128" id="TKo-3S-BFZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="20"/>
-                                <state key="normal" title="[CONFIRM]">
+                                <state key="normal" title="&lt;&lt;CONFIRM&gt;&gt;">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>

@@ -6,11 +6,13 @@
     <customFonts key="customFonts">
         <mutableArray key="MKStencilsansBlack.ttf">
             <string>MKStencilsansBlack</string>
-            <string>MKStencilsansBlack</string>
-            <string>MKStencilsansBlack</string>
         </mutableArray>
         <mutableArray key="TYPEWRON.ttf">
             <string>Typewrong</string>
+        </mutableArray>
+        <mutableArray key="glass_tty_vt220.ttf">
+            <string>Glass_TTY_VT220</string>
+            <string>Glass_TTY_VT220</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -28,8 +30,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Flavor Text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jz5-at-WoY">
-                    <rect key="frame" x="16" y="48" width="568" height="27"/>
-                    <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="24"/>
+                    <rect key="frame" x="16" y="48" width="568" height="23"/>
+                    <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="24"/>
                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -51,8 +53,8 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Flavor Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Kc-3h-JK6">
-                    <rect key="frame" x="16" y="91" width="568" height="19"/>
-                    <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="17"/>
+                    <rect key="frame" x="16" y="87" width="568" height="17"/>
+                    <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="17"/>
                     <color key="textColor" red="0.0" green="1" blue="0.00068939877130000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>

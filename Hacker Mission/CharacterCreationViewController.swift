@@ -197,7 +197,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
         println("Checked Button State")
         if self.userImageFor != nil && self.checkNameLength() == true {
             self.saveCharacterButton.enabled = true
-            self.saveCharacterButton.setTitle("Save Character", forState: UIControlState.Normal)
+            self.saveCharacterButton.setTitle("<<Save Info>>", forState: UIControlState.Normal)
           self.saveCharacterButton.backgroundColor = self.buttonBackgroundColor
           self.saveCharacterButton.layer.masksToBounds = true
           self.saveCharacterButton.layer.cornerRadius = self.cornerRadius

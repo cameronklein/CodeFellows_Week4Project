@@ -4,12 +4,12 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="MKStencilsansBlack.ttf">
-            <string>MKStencilsansBlack</string>
-            <string>MKStencilsansBlack</string>
-        </mutableArray>
         <mutableArray key="TYPEWRON.ttf">
             <string>Typewrong</string>
+        </mutableArray>
+        <mutableArray key="glass_tty_vt220.ttf">
+            <string>Glass_TTY_VT220</string>
+            <string>Glass_TTY_VT220</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -26,11 +26,11 @@
             <subviews>
                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mm8-5D-H2Q">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="vL7-9o-PTj">
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.59999999999999964" contentMode="center" id="vL7-9o-PTj">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vCY-gV-hqQ">
+                            <visualEffectView opaque="NO" alpha="0.69999999999999973" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vCY-gV-hqQ">
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="vUX-S6-HQr">
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
@@ -43,9 +43,9 @@
                     <blurEffect style="dark"/>
                 </visualEffectView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYH-Ne-j7o">
-                    <rect key="frame" x="16" y="48" width="568" height="71"/>
+                    <rect key="frame" x="16" y="48" width="568" height="69"/>
                     <string key="text">HackerMission has the ability to store and transmit in-app usernames and a single user-selected image. User-selected images and usernames are stored locally for persistance and are kept in memory of devices in the same game session.</string>
-                    <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="18"/>
                     <color key="textColor" red="0.4431372549" green="0.96078431369999995" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -62,9 +62,9 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFa-F1-9UE">
-                    <rect key="frame" x="16" y="167" width="568" height="53"/>
+                    <rect key="frame" x="16" y="165" width="568" height="52"/>
                     <string key="text">No data is collected or transmitted to anyone other than the devices connected in the same game session. In other words, it won't leave this room.</string>
-                    <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="18"/>
                     <color key="textColor" red="0.4431372549" green="0.96078431369999995" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
