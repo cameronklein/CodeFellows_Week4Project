@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="MKStencilsansBlack.ttf">
-            <string>MKStencilsansBlack</string>
-            <string>MKStencilsansBlack</string>
-        </mutableArray>
         <mutableArray key="TYPEWRON.ttf">
             <string>Typewrong</string>
+        </mutableArray>
+        <mutableArray key="glass_tty_vt220.ttf">
+            <string>Glass_TTY_VT220</string>
+            <string>Glass_TTY_VT220</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -26,24 +26,24 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place Holder" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FtA-Ud-3lg">
-                    <rect key="frame" x="211" y="283" width="179" height="34"/>
-                    <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="30"/>
+                    <rect key="frame" x="240" y="291" width="120" height="19"/>
+                    <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="20"/>
                     <color key="textColor" red="0.0" green="1" blue="0.00068939877130000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Title Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5e-Q1-iAz">
-                    <rect key="frame" x="169" y="233" width="263" height="34"/>
-                    <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="30"/>
+                    <rect key="frame" x="177" y="250" width="247" height="25"/>
+                    <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="26"/>
                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                         <rect key="frame" x="69" y="233" width="262.5" height="33.5"/>
                     </variation>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leK-nC-DVq">
-                    <rect key="frame" x="260" y="324" width="79" height="29"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leK-nC-DVq">
+                    <rect key="frame" x="254" y="318" width="92" height="29"/>
                     <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="16"/>
-                    <state key="normal" title="[Got it!]">
+                    <state key="normal" title="&lt;&lt;Got it!&gt;&gt;">
                         <color key="titleColor" red="0.0" green="1" blue="0.00068939877130000003" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

@@ -15,6 +15,9 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="Vo9-oj-uJ2">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2014 Code Fellows. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
                     <rect key="frame" x="20" y="440" width="441" height="20"/>
                     <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="17"/>
@@ -32,13 +35,17 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="Vo9-oj-uJ2" secondAttribute="bottom" id="2G0-p4-2kV"/>
+                <constraint firstItem="Vo9-oj-uJ2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Axe-p2-tYa"/>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
+                <constraint firstAttribute="trailing" secondItem="Vo9-oj-uJ2" secondAttribute="trailing" id="TtB-ep-TqJ"/>
                 <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
                 <constraint firstAttribute="centerX" secondItem="jyS-8p-epn" secondAttribute="centerX" id="dgX-o7-6jL"/>
                 <constraint firstAttribute="centerY" secondItem="jyS-8p-epn" secondAttribute="centerY" id="e2a-Ja-gxz">
                     <variation key="widthClass=compact" constant="32"/>
                 </constraint>
+                <constraint firstItem="Vo9-oj-uJ2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rj3-ZZ-2RE"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -47,5 +54,6 @@
     </objects>
     <resources>
         <image name="HackerMissionTitle" width="226" height="38"/>
+        <image name="Image" width="320" height="480"/>
     </resources>
 </document>
