@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="MKStencilsansBlack.ttf">
-            <string>MKStencilsansBlack</string>
-        </mutableArray>
         <mutableArray key="TYPEWRON.ttf">
             <string>Typewrong</string>
         </mutableArray>
@@ -18,7 +15,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MissionTextViewController" customModule="Hacker_Mission" customModuleProvider="target">
             <connections>
-                <outlet property="leaderSelectingTeam" destination="7sa-49-DRk" id="L45-Db-yVt"/>
                 <outlet property="missionFlavorTextDescriptionLabel" destination="3Kc-3h-JK6" id="TNa-Cr-ggO"/>
                 <outlet property="missionFlavorTextLabel" destination="Jz5-at-WoY" id="kFa-xj-Rjf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -35,14 +31,8 @@
                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leader Selecting Team..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sa-49-DRk">
-                    <rect key="frame" x="205" y="521" width="190" height="19"/>
-                    <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="17"/>
-                    <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pb-Hm-93F">
-                    <rect key="frame" x="255" y="550" width="90" height="28"/>
+                    <rect key="frame" x="255" y="556" width="90" height="28"/>
                     <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="15"/>
                     <state key="normal" title="[CONFIRM]">
                         <color key="titleColor" red="0.0" green="1" blue="0.00068939877130000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -61,7 +51,7 @@
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
             <constraints>
-                <constraint firstItem="7sa-49-DRk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3Kc-3h-JK6" secondAttribute="bottom" constant="16" id="8GM-Wa-2zG"/>
+                <constraint firstAttribute="bottom" secondItem="4pb-Hm-93F" secondAttribute="bottom" constant="16" id="0he-Ye-Ffo"/>
                 <constraint firstItem="3Kc-3h-JK6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="AkT-1g-QKp"/>
                 <constraint firstAttribute="trailing" secondItem="3Kc-3h-JK6" secondAttribute="trailing" constant="16" id="Bap-yY-2TS"/>
                 <constraint firstAttribute="centerX" secondItem="3Kc-3h-JK6" secondAttribute="centerX" id="DHz-We-cXy"/>
@@ -69,11 +59,8 @@
                 <constraint firstAttribute="centerX" secondItem="Jz5-at-WoY" secondAttribute="centerX" id="Lys-No-VWr"/>
                 <constraint firstAttribute="centerX" secondItem="4pb-Hm-93F" secondAttribute="centerX" id="Nkp-At-wiT"/>
                 <constraint firstAttribute="trailing" secondItem="Jz5-at-WoY" secondAttribute="trailing" constant="16" id="Qlt-aQ-uYD"/>
-                <constraint firstAttribute="bottom" secondItem="7sa-49-DRk" secondAttribute="bottom" constant="60" id="RAF-ch-nPt"/>
                 <constraint firstItem="Jz5-at-WoY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="48" id="YpX-Ah-gnN"/>
-                <constraint firstItem="4pb-Hm-93F" firstAttribute="top" secondItem="7sa-49-DRk" secondAttribute="bottom" constant="10" id="fB5-np-Cc2"/>
                 <constraint firstItem="Jz5-at-WoY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="h5D-Qh-Djg"/>
-                <constraint firstAttribute="centerX" secondItem="7sa-49-DRk" secondAttribute="centerX" id="xmn-ey-2Ic"/>
             </constraints>
         </view>
     </objects>

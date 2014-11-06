@@ -65,7 +65,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       layout.minimumInteritemSpacing = screenWidth * 0.02
       layout.sectionInset.left = screenWidth * 0.05
       layout.sectionInset.right = screenWidth * 0.05
-      layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.23)
+      layout.itemSize = CGSize(width: screenWidth * 0.13, height: screenWidth * 0.17)
     
       //Register PlayerCellNib
       self.playersCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
@@ -325,9 +325,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       
       let vc = MissionTextViewController(nibName: "MissionTextViewController", bundle: NSBundle.mainBundle())
       vc.view.frame = self.playersCollectionView.frame
-      if self.gameController.thisPlayer.isLeader == true {
-        vc.leaderSelectingTeam.text = "You are the leader. Select your team wisely"
-      }
       self.incomingMesageLabel.text = "New Mission Proposed"
       self.addChildViewController(vc)
       vc.view.alpha = 0.0

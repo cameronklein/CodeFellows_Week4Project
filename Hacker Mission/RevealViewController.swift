@@ -12,6 +12,7 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
 {
     // MARK: - Outlets
   
+    @IBOutlet weak var roleLabel: UILabel!
     @IBOutlet weak var playerRevealCollectionView: UICollectionView!
     @IBOutlet weak var flavorTextLabel: UILabel!
     @IBOutlet weak var confirmButton: UIButton!
@@ -34,6 +35,10 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
       self.playerRevealCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
       self.playerRevealCollectionView.delegate = self
       self.playerRevealCollectionView.dataSource = self
+      
+      if gameController.thisPlayer.playerRole == .Hacker {
+        roleLabel.text = "You are loyal to the cause."
+      }
     
       self.layout = playerRevealCollectionView.collectionViewLayout as UICollectionViewFlowLayout
       self.screenWidth = self.playerRevealCollectionView.frame.width

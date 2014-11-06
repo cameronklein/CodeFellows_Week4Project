@@ -10,6 +10,7 @@
         </mutableArray>
         <mutableArray key="glass_tty_vt220.ttf">
             <string>Glass_TTY_VT220</string>
+            <string>Glass_TTY_VT220</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -18,6 +19,7 @@
                 <outlet property="confirmButton" destination="sj1-dh-HIG" id="9ey-S9-q0Z"/>
                 <outlet property="flavorTextLabel" destination="8wV-4E-hyu" id="W9Y-2S-F9W"/>
                 <outlet property="playerRevealCollectionView" destination="lQs-Eo-heM" id="XgM-Pn-7iq"/>
+                <outlet property="roleLabel" destination="o4R-Gq-bFm" id="eXO-rS-8Za"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -30,7 +32,7 @@
                     <rect key="frame" x="8" y="8" width="584" height="584"/>
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="lQs-Eo-heM">
-                            <rect key="frame" x="8" y="8" width="568" height="292"/>
+                            <rect key="frame" x="8" y="39" width="568" height="292"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Onz-rr-JCp">
                                 <size key="itemSize" width="50" height="50"/>
@@ -40,7 +42,7 @@
                             </collectionViewFlowLayout>
                         </collectionView>
                         <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flavor text will go here and be really interesting and compelling and cool and everyone will be so wowed and excited." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wV-4E-hyu">
-                            <rect key="frame" x="8" y="308" width="568" height="33"/>
+                            <rect key="frame" x="8" y="339" width="568" height="33"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="17"/>
                             <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -58,6 +60,12 @@
                                 <action selector="confirmationButtonPressed:" destination="-1" eventType="touchUpInside" id="pOa-V1-GNA"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You are a government agent." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4R-Gq-bFm">
+                            <rect key="frame" x="131" y="8" width="324" height="23"/>
+                            <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="24"/>
+                            <color key="textColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -67,11 +75,19 @@
                         <constraint firstItem="8wV-4E-hyu" firstAttribute="top" secondItem="lQs-Eo-heM" secondAttribute="bottom" constant="8" id="7Go-Dy-snr"/>
                         <constraint firstAttribute="centerX" secondItem="sj1-dh-HIG" secondAttribute="centerX" id="889-Qj-tUd"/>
                         <constraint firstAttribute="bottom" secondItem="sj1-dh-HIG" secondAttribute="bottom" constant="8" id="Bg5-6y-7te"/>
+                        <constraint firstAttribute="centerX" secondItem="o4R-Gq-bFm" secondAttribute="centerX" id="EOO-Oj-c3a"/>
                         <constraint firstAttribute="centerX" secondItem="8wV-4E-hyu" secondAttribute="centerX" id="IFY-iW-oKx"/>
+                        <constraint firstItem="lQs-Eo-heM" firstAttribute="top" secondItem="o4R-Gq-bFm" secondAttribute="bottom" constant="8" id="ILK-PO-tJn"/>
+                        <constraint firstItem="o4R-Gq-bFm" firstAttribute="top" secondItem="Hpf-Wt-0MH" secondAttribute="top" constant="8" id="X9M-jY-hdo"/>
                         <constraint firstItem="lQs-Eo-heM" firstAttribute="top" secondItem="Hpf-Wt-0MH" secondAttribute="top" constant="8" id="uz6-oK-xAU"/>
                         <constraint firstAttribute="trailing" secondItem="lQs-Eo-heM" secondAttribute="trailing" constant="8" id="wLp-GF-7gP"/>
                         <constraint firstAttribute="trailing" secondItem="8wV-4E-hyu" secondAttribute="trailing" constant="8" id="xgV-f2-ycU"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="uz6-oK-xAU"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

@@ -124,7 +124,7 @@ class LaunchViewController: UIViewController {
 
   func typingAnimation() {
     if self.shouldAnimate {
-      self.flavorLabel.typeToNewString("The daring hackers of the Opposition have weakened the iron grip of the oppressive government. Just three incidents will incite a revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...", withInterval: 0.05, startingText: "")
+      self.flavorLabel.typeToNewString("The daring hackers of the Opposition have successfully weakened the iron grip of the oppressive government. Just three more incidents will incite a revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...", withInterval: 0.03, startingText: "")
       self.startedOnce = true
     }
   }
@@ -169,8 +169,6 @@ class LaunchViewController: UIViewController {
           
       }
     }
-
-
   }
 
   func pauseTimerFor() {
@@ -182,8 +180,6 @@ class LaunchViewController: UIViewController {
     println("paused")
     pauseTimer.invalidate()
   }
-
-
 
   override func didReceiveMemoryWarning() {
       super.didReceiveMemoryWarning()
