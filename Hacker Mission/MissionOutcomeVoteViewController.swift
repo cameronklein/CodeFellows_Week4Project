@@ -57,7 +57,7 @@ class MissionOutcomeVoteViewController: UIViewController {
   
   @IBAction func successButtonPressed (sender: AnyObject)
   {
-    gameController.missionOutcomesVotedFor[gameController.game.missionIndex] = true
+    gameController.missionOutcomesVotedFor[gameController.game.currentMission] = true
     multiPeerController.sendInfoToMainBrain(["action" : "missionOutcome", "value" : "succeed"])
     disableButtons()
     self.view.removeFromSuperview()
@@ -66,7 +66,7 @@ class MissionOutcomeVoteViewController: UIViewController {
   
   @IBAction func failButtonPressed (sender: AnyObject)
   {
-    gameController.missionOutcomesVotedFor[gameController.game.missionIndex] = true
+    gameController.missionOutcomesVotedFor[gameController.game.currentMission] = true
     multiPeerController.sendInfoToMainBrain(["action" : "missionOutcome", "value" : "fail"])
     disableButtons()
     self.view.removeFromSuperview()

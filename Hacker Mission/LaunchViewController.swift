@@ -94,6 +94,7 @@ class LaunchViewController: UIViewController {
     self.startButton.layer.borderWidth = 2.0
     self.startButton.layer.borderColor = self.outlineColor1
 
+    
 
   }
 
@@ -158,7 +159,7 @@ class LaunchViewController: UIViewController {
 
   func typingAnimation() {
     if self.shouldAnimate {
-      self.flavorLabel.typeToNewString("The daring hackers of the Opposition have weakened the iron grip of the oppressive Government. Just a few more incidents will incite a revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...", withInterval: 0.05, startingText: "")
+      self.flavorLabel.typeToNewString("The daring hackers of the Opposition have weakened the iron grip of the oppressive government. Just three incidents will incite a revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...", withInterval: 0.05, startingText: "")
       self.startedOnce = true
     }
   }
@@ -252,7 +253,7 @@ class LaunchViewController: UIViewController {
   
   func switchUIElements(isHost : Bool) {
     self.peersLabel.hidden = false
-    UIView.animateWithDuration(1.0, animations: { () -> Void in
+    UIView.animateWithDuration(0.4, animations: { () -> Void in
       self.createCharacterButton.alpha = 0
       self.privacyPolicyButton.alpha = 0
       self.peersLabel.alpha = 1

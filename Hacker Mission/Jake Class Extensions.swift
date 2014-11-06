@@ -77,7 +77,7 @@ extension UILabel
     
       NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
         
-        UIView.animateWithDuration(0.05,
+        UIView.animateWithDuration(sleepLength,
           delay: 0.00,
           options: UIViewAnimationOptions.AllowUserInteraction,
           animations: { () -> Void in

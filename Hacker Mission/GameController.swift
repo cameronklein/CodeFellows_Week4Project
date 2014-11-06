@@ -40,10 +40,11 @@ class GameController {
     multipeerController.gameController = self
     myUserInfo = appDelegate.defaultUser as UserInfo!
     myUserInfo.userPeerID = multipeerController.peerID.displayName
-    for i in 0..4 {
-      missionOutcomesVotedFor[i] = false
-      for j in 0..4 {
-        teamsVotedFor[i][j] = false
+    for i in 0...4 {
+      missionOutcomesVotedFor.append(false)
+      teamsVotedFor.append([Bool]())
+      for j in 0...4 {
+        teamsVotedFor[i].append(false)
       }
     }
   }

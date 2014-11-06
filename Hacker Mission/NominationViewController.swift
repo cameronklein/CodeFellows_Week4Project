@@ -18,7 +18,7 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
   var multiPeerController : MultiPeerController = MultiPeerController.sharedInstance
   var gameController = GameController.sharedInstance
   var nominatedPlayersArray = [Player]()
-  var currentMission : Mission
+  var currentMission : Mission!
   
   var screenWidth : CGFloat!
   var layout : UICollectionViewFlowLayout!
@@ -56,7 +56,7 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
   
   @IBAction func approveNominatedTeam (sender: AnyObject)
   {
-    gameController.teamsVotedFor[gameController.game.missionIndex][currentMission.rejectedTeamsCount] = true
+    gameController.teamsVotedFor[gameController.game.currentMission][currentMission.rejectedTeamsCount] = true
     multiPeerController.sendInfoToMainBrain(["action" : "vote", "value" : "Approve"])
     self.approveButton.userInteractionEnabled = false
     self.rejectButton.userInteractionEnabled = false
@@ -68,7 +68,7 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
   
   @IBAction func rejectNominatedTeam (sender: AnyObject)
   {
-    gameController.teamsVotedFor[gameController.game.missionIndex][currentMission.rejectedTeamsCount] = true
+    gameController.teamsVotedFor[gameController.game.currentMission][currentMission.rejectedTeamsCount] = true
     multiPeerController.sendInfoToMainBrain(["action" : "vote", "value" : "Reject"])
     self.approveButton.userInteractionEnabled = false
     self.rejectButton.userInteractionEnabled = false
