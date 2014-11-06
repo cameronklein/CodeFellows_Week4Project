@@ -28,6 +28,9 @@ class GameController {
   var thisPlayer  : Player!
   var peerCount   : Int = 0
   
+  var missionOutcomesVotedFor = [Bool]()
+  var teamsVotedFor = [[Bool]]()
+  
   var multipeerController = MultiPeerController.sharedInstance
   var imagePackets = [ImagePacket]()
   
@@ -37,7 +40,12 @@ class GameController {
     multipeerController.gameController = self
     myUserInfo = appDelegate.defaultUser as UserInfo!
     myUserInfo.userPeerID = multipeerController.peerID.displayName
-
+    for i in 0..4 {
+      missionOutcomesVotedFor[i] = false
+      for j in 0..4 {
+        teamsVotedFor[i][j] = false
+      }
+    }
   }
 
   func handleImagePackets(imagePackets: [ImagePacket]) {

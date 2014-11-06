@@ -331,45 +331,49 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   {//Display the nominated team to all users and get a vote of Approve or Reject back
     self.labelsAreBlinking = false
     self.nominationPromptLabel.hidden = true
+    let currentMissionIndex = gameController.game.missionIndex
+    let currentMission = gameController.game.missions[currentMissionIndex]
+    var didVote = gameController.teamsVotedFor[currentMissionIndex][currentMission.rejectedTeamsCount]
     
-    
-    let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
-    vc.view.frame = self.playersCollectionView.frame
-    
-    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-      self.playersCollectionView.reloadData()
-      self.incomingMesageLabel.text = "Nominations Are In"
-      self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
-      UIView.animateWithDuration(0.4,
-        delay: 0.0,
-        options: UIViewAnimationOptions.CurveEaseInOut,
-        animations: { () -> Void in
-          self.incomingMesageLabel.transform = CGAffineTransformMakeScale(1.0, 1.0)
-          self.incomingMesageLabel.alpha = 1.0
-        },
-        completion: { (success) -> Void in
-          UIView.animateWithDuration(0.4,
-            delay: 0.9,
-            options: UIViewAnimationOptions.CurveEaseInOut,
-            animations: { () -> Void in
-              self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
-              self.incomingMesageLabel.alpha = 0.0
-            },
-            completion: { (success) -> Void in
-              self.addChildViewController(vc)
-              vc.view.alpha = 0.0
-              self.view.addSubview(vc.view)
-              UIView.animateWithDuration(0.4,
-                delay: 0.0,
-                options: UIViewAnimationOptions.CurveEaseInOut,
-                animations: { () -> Void in
-                  vc.view.alpha = 1.0
-                },
-                completion: { (success) -> Void in
-                  return () //Add more animation here if needed.
-              })
-          })
-      })
+    if didVote == false {
+      let vc = NominationVoteViewController(nibName: "NominationVoteView", bundle: NSBundle.mainBundle())
+      vc.view.frame = self.playersCollectionView.frame
+      
+      NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        self.playersCollectionView.reloadData()
+        self.incomingMesageLabel.text = "Nominations Are In"
+        self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+        UIView.animateWithDuration(0.4,
+          delay: 0.0,
+          options: UIViewAnimationOptions.CurveEaseInOut,
+          animations: { () -> Void in
+            self.incomingMesageLabel.transform = CGAffineTransformMakeScale(1.0, 1.0)
+            self.incomingMesageLabel.alpha = 1.0
+          },
+          completion: { (success) -> Void in
+            UIView.animateWithDuration(0.4,
+              delay: 0.9,
+              options: UIViewAnimationOptions.CurveEaseInOut,
+              animations: { () -> Void in
+                self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+                self.incomingMesageLabel.alpha = 0.0
+              },
+              completion: { (success) -> Void in
+                self.addChildViewController(vc)
+                vc.view.alpha = 0.0
+                self.view.addSubview(vc.view)
+                UIView.animateWithDuration(0.4,
+                  delay: 0.0,
+                  options: UIViewAnimationOptions.CurveEaseInOut,
+                  animations: { () -> Void in
+                    vc.view.alpha = 1.0
+                  },
+                  completion: { (success) -> Void in
+                    return () //Add more animation here if needed.
+                })
+            })
+        })
+      }
     }
   }
 //
@@ -428,52 +432,55 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let currentMission = game.missions[game.currentMission] as Mission
     let nominatedPlayers = currentMission.nominatedPlayers
     
-    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-      self.playersCollectionView.reloadData()
-      self.incomingMesageLabel.text = "Mission Proceeding"
-      self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
-      UIView.animateWithDuration(0.4,
-        delay: 0.0,
-        options: UIViewAnimationOptions.CurveEaseInOut,
-        animations: { () -> Void in
-          self.incomingMesageLabel.transform = CGAffineTransformMakeScale(1.0, 1.0)
-          self.incomingMesageLabel.alpha = 1.0
-        },
-        completion: { (success) -> Void in
-          UIView.animateWithDuration(0.4,
-            delay: 1.0,
-            options: UIViewAnimationOptions.CurveEaseInOut,
-            animations: { () -> Void in
-              self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
-              self.incomingMesageLabel.alpha = 0.0
-            },
-            completion: { (success) -> Void in
-              for player in nominatedPlayers {
-                if player.peerID == self.gameController.thisPlayer.peerID {
-                  let vc = MissionOutcomeVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
-                  vc.game = game
-                  vc.currentUser = self.gameController.thisPlayer
-                  vc.view.frame = self.playersCollectionView.frame
-                  self.addChildViewController(vc)
-                  vc.view.alpha = 0.0
-                  self.view.addSubview(vc.view)
-                  UIView.animateWithDuration(0.4,
-                    delay: 0.0,
-                    options: UIViewAnimationOptions.CurveEaseInOut,
-                    animations: { () -> Void in
-                      vc.view.alpha = 1.0
-                    },
-                    completion: { (success) -> Void in
-                      return () //Add more animation here if needed.
-                  })
-                } else {
-                  self.nominationPromptLabel.hidden = false
-                  self.nominationPromptLabel.text = "Mission is taking place..."
+    let didVote = gameController.missionOutcomesVotedFor[gameController.game.missionIndex]
+    if didVote == false {
+      NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        self.playersCollectionView.reloadData()
+        self.incomingMesageLabel.text = "Mission Proceeding"
+        self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+        UIView.animateWithDuration(0.4,
+          delay: 0.0,
+          options: UIViewAnimationOptions.CurveEaseInOut,
+          animations: { () -> Void in
+            self.incomingMesageLabel.transform = CGAffineTransformMakeScale(1.0, 1.0)
+            self.incomingMesageLabel.alpha = 1.0
+          },
+          completion: { (success) -> Void in
+            UIView.animateWithDuration(0.4,
+              delay: 1.0,
+              options: UIViewAnimationOptions.CurveEaseInOut,
+              animations: { () -> Void in
+                self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+                self.incomingMesageLabel.alpha = 0.0
+              },
+              completion: { (success) -> Void in
+                for player in nominatedPlayers {
+                  if player.peerID == self.gameController.thisPlayer.peerID {
+                    let vc = MissionOutcomeVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
+                    vc.game = game
+                    vc.currentUser = self.gameController.thisPlayer
+                    vc.view.frame = self.playersCollectionView.frame
+                    self.addChildViewController(vc)
+                    vc.view.alpha = 0.0
+                    self.view.addSubview(vc.view)
+                    UIView.animateWithDuration(0.4,
+                      delay: 0.0,
+                      options: UIViewAnimationOptions.CurveEaseInOut,
+                      animations: { () -> Void in
+                        vc.view.alpha = 1.0
+                      },
+                      completion: { (success) -> Void in
+                        return () //Add more animation here if needed.
+                    })
+                  } else {
+                    self.nominationPromptLabel.hidden = false
+                    self.nominationPromptLabel.text = "Mission is taking place..."
+                  }
                 }
-              }
-              
-          })
-      })
+                
+            })
+        })
+      }
     }
     
   }
@@ -625,8 +632,55 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     //MARK: - One line, because we probably won't use this.
   override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}
   
-  func animateIncomingMessageLabelWithCompletionHandler(completionHandler : () -> (Void)) {
+  func animateIncomingMessageLabel(messcompletionHandler : () -> (Void)) {
     
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      self.playersCollectionView.reloadData()
+      self.incomingMesageLabel.text = "Mission Proceeding"
+      self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+      UIView.animateWithDuration(0.4,
+        delay: 0.0,
+        options: UIViewAnimationOptions.CurveEaseInOut,
+        animations: { () -> Void in
+          self.incomingMesageLabel.transform = CGAffineTransformMakeScale(1.0, 1.0)
+          self.incomingMesageLabel.alpha = 1.0
+        },
+        completion: { (success) -> Void in
+          UIView.animateWithDuration(0.4,
+            delay: 1.0,
+            options: UIViewAnimationOptions.CurveEaseInOut,
+            animations: { () -> Void in
+              self.incomingMesageLabel.transform = CGAffineTransformMakeScale(0.1, 0.1)
+              self.incomingMesageLabel.alpha = 0.0
+            },
+            completion: { (success) -> Void in
+              for player in nominatedPlayers {
+                if player.peerID == self.gameController.thisPlayer.peerID {
+                  let vc = MissionOutcomeVoteViewController(nibName: "MissionOutcomeView", bundle: NSBundle.mainBundle())
+                  vc.game = game
+                  vc.currentUser = self.gameController.thisPlayer
+                  vc.view.frame = self.playersCollectionView.frame
+                  self.addChildViewController(vc)
+                  vc.view.alpha = 0.0
+                  self.view.addSubview(vc.view)
+                  UIView.animateWithDuration(0.4,
+                    delay: 0.0,
+                    options: UIViewAnimationOptions.CurveEaseInOut,
+                    animations: { () -> Void in
+                      vc.view.alpha = 1.0
+                    },
+                    completion: { (success) -> Void in
+                      return () //Add more animation here if needed.
+                  })
+                } else {
+                  self.nominationPromptLabel.hidden = false
+                  self.nominationPromptLabel.text = "Mission is taking place..."
+                }
+              }
+              
+          })
+      })
+    }
   }
   
 

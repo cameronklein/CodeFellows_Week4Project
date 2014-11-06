@@ -10,6 +10,7 @@ import UIKit
 
 class MissionOutcomeVoteViewController: UIViewController {
   
+  var gameController = GameController.sharedInstance
   var multiPeerController : MultiPeerController = MultiPeerController.sharedInstance
   var game : GameSession?
   var currentUser : Player!
@@ -56,6 +57,7 @@ class MissionOutcomeVoteViewController: UIViewController {
   
   @IBAction func successButtonPressed (sender: AnyObject)
   {
+    gameController.missionOutcomesVotedFor[gameController.game.missionIndex] = true
     multiPeerController.sendInfoToMainBrain(["action" : "missionOutcome", "value" : "succeed"])
     disableButtons()
     self.view.removeFromSuperview()
@@ -64,6 +66,7 @@ class MissionOutcomeVoteViewController: UIViewController {
   
   @IBAction func failButtonPressed (sender: AnyObject)
   {
+    gameController.missionOutcomesVotedFor[gameController.game.missionIndex] = true
     multiPeerController.sendInfoToMainBrain(["action" : "missionOutcome", "value" : "fail"])
     disableButtons()
     self.view.removeFromSuperview()
