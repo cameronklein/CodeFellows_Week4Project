@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="MKStencilsansBlack.ttf">
+            <string>MKStencilsansBlack</string>
+            <string>MKStencilsansBlack</string>
+        </mutableArray>
+        <mutableArray key="TYPEWRON.ttf">
+            <string>Typewrong</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PrivacyPolicyViewController" customModule="Hacker_Mission" customModuleProvider="target">
             <connections>
+                <outlet property="confirmButton" destination="GTW-kb-ihP" id="6qR-1T-K87"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -33,16 +43,18 @@
                     <blurEffect style="dark"/>
                 </visualEffectView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYH-Ne-j7o">
-                    <rect key="frame" x="16" y="48" width="568" height="95"/>
-                    <string key="text">Hacker Missions has the ability to store and transmit in-app usernames and a single user-selected image. User-selected images and usernames are stored locally for persistance and are kept in memory of devices in the same game session.</string>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                    <rect key="frame" x="16" y="48" width="568" height="71"/>
+                    <string key="text">HackerMission has the ability to store and transmit in-app usernames and a single user-selected image. User-selected images and usernames are stored locally for persistance and are kept in memory of devices in the same game session.</string>
+                    <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="16"/>
                     <color key="textColor" red="0.4431372549" green="0.96078431369999995" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTW-kb-ihP">
-                    <rect key="frame" x="276" y="516" width="48" height="36"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                    <state key="normal" title="Got It">
+                    <rect key="frame" x="241" y="523" width="119" height="29"/>
+                    <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="20"/>
+                    <inset key="contentEdgeInsets" minX="4" minY="3" maxX="4" maxY="5"/>
+                    <state key="normal" title="&lt;&lt;Got It&gt;&gt;">
+                        <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -50,9 +62,9 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFa-F1-9UE">
-                    <rect key="frame" x="16" y="191" width="568" height="71"/>
+                    <rect key="frame" x="16" y="167" width="568" height="53"/>
                     <string key="text">No data is collected or transmitted to anyone other than the devices connected in the same game session. In other words, it won't leave this room.</string>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                    <fontDescription key="fontDescription" name="MKStencilsansBlack" family="MKStencilsansBlack" pointSize="16"/>
                     <color key="textColor" red="0.4431372549" green="0.96078431369999995" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>

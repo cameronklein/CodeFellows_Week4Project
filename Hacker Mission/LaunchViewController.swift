@@ -124,14 +124,14 @@ class LaunchViewController: UIViewController {
     layers.append(self.createCharacterButton.layer)
     layers.append(self.joinButton.layer)
     layers.append(self.privacyPolicyButton.layer)
-    self.doAnim(layers)
+    self.doButtonPulseAnim(layers)
 
     self.typingAnimation()
     self.titleAnimation()
 
   }
 
-  func doAnim(layers: [CALayer]) {
+  func doButtonPulseAnim(layers: [CALayer]) {
     if self.shouldAnimate {
       let theAnimation = CABasicAnimation(keyPath: "borderColor")
       theAnimation.delegate = self
@@ -256,6 +256,7 @@ class LaunchViewController: UIViewController {
       self.createCharacterButton.alpha = 0
       self.privacyPolicyButton.alpha = 0
       self.peersLabel.alpha = 1
+      self.flavorLabel.alpha = 0
       if isHost == true {
         self.startButton.alpha = 0.7
         self.startButton.titleLabel?.textColor = UIColor.grayColor()
