@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -15,6 +15,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RevealMissionOutcomeViewController" customModule="Hacker_Mission" customModuleProvider="target">
             <connections>
+                <outlet property="confirmButton" destination="leK-nC-DVq" id="gQx-sE-ibV"/>
                 <outlet property="missionOutcomeLabel" destination="FtA-Ud-3lg" id="OVa-qg-03k"/>
                 <outlet property="missionOutcomeTitleLabel" destination="j5e-Q1-iAz" id="SSU-iu-wu7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

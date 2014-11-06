@@ -9,6 +9,26 @@
 import Foundation
 import UIKit
 
+extension UIButton {
+  
+  func addBorder() {
+    
+    let buttonBackgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.15)
+    let cornerRadius = CGFloat(5.0)
+    let outlineColor1 = UIColor(red: 0.443, green: 0.961, blue: 0.082, alpha: 0.2).CGColor
+    let outlineColor2 = UIColor(red: 0.443, green: 0.961, blue: 0.082, alpha: 0.6).CGColor
+    
+    self.backgroundColor = buttonBackgroundColor
+    self.layer.masksToBounds = true
+    self.layer.cornerRadius = cornerRadius
+    self.layer.borderWidth = 2.0
+    self.layer.borderColor = outlineColor1
+    self.titleLabel?.textAlignment = NSTextAlignment.Center
+  
+  }
+}
+
+
 extension UILabel
 {
     func typingAnimation(durationPerCharacter : Float) -> Void

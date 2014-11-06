@@ -14,7 +14,7 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
   
     @IBOutlet weak var playerRevealCollectionView: UICollectionView!
     @IBOutlet weak var flavorTextLabel: UILabel!
-  
+    @IBOutlet weak var confirmButton: UIButton!
     // MARK: - Properties
     
     var playerArray = [Player]()
@@ -28,8 +28,9 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
     // MARK: - View Methods
     
     override func viewDidLoad(){
-      
       super.viewDidLoad()
+      confirmButton.addBorder()
+      
       self.playerRevealCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
       self.playerRevealCollectionView.delegate = self
       self.playerRevealCollectionView.dataSource = self

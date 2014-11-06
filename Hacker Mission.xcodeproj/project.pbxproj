@@ -316,11 +316,11 @@
 				TargetAttributes = {
 					7E46DF1A19FEB359009215E3 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 65PRBW7K5C;
+						DevelopmentTeam = 6X3539QT5M;
 					};
 					7E46DF2F19FEB359009215E3 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 65PRBW7K5C;
+						DevelopmentTeam = 6X3539QT5M;
 						TestTargetID = 7E46DF1A19FEB359009215E3;
 					};
 				};

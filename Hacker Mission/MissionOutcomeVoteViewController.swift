@@ -24,7 +24,9 @@ class MissionOutcomeVoteViewController: UIViewController {
     super.viewDidLoad()
     
     failButton.enabled = true
+    failButton.addBorder()
     succeedButton.enabled = true
+    succeedButton.addBorder()
     loyalLabel.hidden = true
     failButton.alpha = 1
 

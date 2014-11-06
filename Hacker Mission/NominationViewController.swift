@@ -42,6 +42,8 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
     collectionView.reloadData()
     self.approveButton.userInteractionEnabled = true
     self.rejectButton.userInteractionEnabled = true
+    approveButton.addBorder()
+    rejectButton.addBorder()
     
   }
   

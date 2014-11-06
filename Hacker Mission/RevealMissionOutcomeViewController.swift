@@ -13,6 +13,7 @@ class RevealMissionOutcomeViewController: UIViewController {
   @IBOutlet weak var missionOutcomeLabel: UILabel!
   @IBOutlet weak var missionOutcomeTitleLabel: UILabel!
   
+  @IBOutlet weak var confirmButton: UIButton!
   var gameController = GameController.sharedInstance
   
   override func viewDidLoad() {
@@ -21,6 +22,7 @@ class RevealMissionOutcomeViewController: UIViewController {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    confirmButton.addBorder()
     let justCompletedMission = gameController.game.missions[gameController.game.currentMission - 1] as Mission
     let result = justCompletedMission.success! as Bool
     let successVotes = justCompletedMission.successCardsPlayed

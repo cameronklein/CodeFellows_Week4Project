@@ -54,33 +54,45 @@ class GameController {
   }
   
   func handleEvent(newGameInfo: GameSession) {
+    if homeVC == nil {
+      let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+      let homeVC = storyboard.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
+      
+      NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(homeVC, animated: true, completion: { () -> Void in
+          self.handleEvent(newGameInfo)
+        })
+        return ()
+      }
+    } else {
     
-    AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-    
-    self.game = newGameInfo
-    let event = game.currentGameState!
-    findMe()
-    println("GAME CONTROLLER: Received \(event.rawValue) event from Main Brain. Woot.")
-    switch event{
-    case .Start:
-      self.gameStart()
-    case .NominatePlayers:
-      self.nominatePlayers()
-    case .RevealNominations:
-      self.revealNominations()
-    case .MissionStart:
-      self.startMission()
-    case .RevealVote:
-      self.revealVotes()
-    case .BeginMissionOutcome:
-      self.beginMissionOutcome()
-    case .RevealMissionOutcome:
-      self.revealMissionOutcome()
-    case .End:
-      self.endGame()
-    default:
-        println("Unknown")
+      AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+      AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+      
+      self.game = newGameInfo
+      let event = game.currentGameState!
+      findMe()
+      println("GAME CONTROLLER: Received \(event.rawValue) event from Main Brain. Woot.")
+      switch event{
+      case .Start:
+        self.gameStart()
+      case .NominatePlayers:
+        self.nominatePlayers()
+      case .RevealNominations:
+        self.revealNominations()
+      case .MissionStart:
+        self.startMission()
+      case .RevealVote:
+        self.revealVotes()
+      case .BeginMissionOutcome:
+        self.beginMissionOutcome()
+      case .RevealMissionOutcome:
+        self.revealMissionOutcome()
+      case .End:
+        self.endGame()
+      default:
+          println("Unknown")
+      }
     }
   }
   
@@ -181,5 +193,10 @@ class GameController {
       multipeerController.sendImagePacketToLeadController(image)
     }
   }
+  
+  func reconnectFromDisconnect(GameSession){
+    
+  }
+}
 
-} //End
+

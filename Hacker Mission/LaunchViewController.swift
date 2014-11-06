@@ -22,7 +22,6 @@ class LaunchViewController: UIViewController {
   var userInfoMyself      : UserInfo?
   var truthInAdvertising  : Bool?
   var multiPeerController = MultiPeerController.sharedInstance
-  var originalButtonColor : UIColor!
   var imageAnchorX = CGFloat()
   var imageAnchorY = CGFloat()
   var startedOnce = false
@@ -54,47 +53,18 @@ class LaunchViewController: UIViewController {
     startButton.alpha = 0.0
     startButton.enabled = false
     peersLabel.alpha = 0.0
-    self.originalButtonColor = self.startButton.titleLabel!.textColor
     self.peersLabel.text = "Looking for other players..."
 
     self.imageAnchorX = self.hackerMissionTitle.frame.origin.x
     self.imageAnchorY = self.hackerMissionTitle.frame.origin.y
 
-    self.createCharacterButton.titleLabel?.textAlignment = NSTextAlignment.Center
-    self.createCharacterButton.backgroundColor = self.buttonBackgroundColor
-    self.createCharacterButton.layer.masksToBounds = true
-    self.createCharacterButton.layer.cornerRadius = self.cornerRadius
-    self.createCharacterButton.layer.borderWidth = 2.0
-    self.createCharacterButton.layer.borderColor = self.outlineColor1
-
-    self.privacyPolicyButton.titleLabel?.textAlignment = NSTextAlignment.Center
-    self.privacyPolicyButton.backgroundColor = self.buttonBackgroundColor
-    self.privacyPolicyButton.layer.masksToBounds = true
-    self.privacyPolicyButton.layer.cornerRadius = self.cornerRadius
-    self.privacyPolicyButton.layer.borderWidth = 2.0
-    self.privacyPolicyButton.layer.borderColor = self.outlineColor1
-
-    self.joinButton.backgroundColor = self.buttonBackgroundColor
-    self.joinButton.layer.masksToBounds = true
-    self.joinButton.layer.cornerRadius = self.cornerRadius
-    self.joinButton.layer.borderWidth = 2.0
-    self.joinButton.layer.borderColor = self.outlineColor1
-
-    self.hostButton.backgroundColor = self.buttonBackgroundColor
-    self.hostButton.layer.masksToBounds = true
-    self.hostButton.layer.cornerRadius = self.cornerRadius
-    self.hostButton.layer.borderWidth = 2.0
-    self.hostButton.layer.borderColor = self.outlineColor1
+    self.createCharacterButton.addBorder()
+    self.startButton.addBorder()
+    self.privacyPolicyButton.addBorder()
+    self.joinButton.addBorder()
+    self.hostButton.addBorder()
     
     self.progressBar.alpha = 0
-
-    self.startButton.backgroundColor = self.buttonBackgroundColor
-    self.startButton.layer.masksToBounds = true
-    self.startButton.layer.cornerRadius = self.cornerRadius
-    self.startButton.layer.borderWidth = 2.0
-    self.startButton.layer.borderColor = self.outlineColor1
-
-    
 
   }
 
@@ -137,16 +107,13 @@ class LaunchViewController: UIViewController {
       let theAnimation = CABasicAnimation(keyPath: "borderColor")
       theAnimation.delegate = self
 
-      println("here in core animation")
       theAnimation.repeatCount = 10000.0
       theAnimation.autoreverses = true
       theAnimation.fromValue = self.outlineColor1
       theAnimation.toValue = self.outlineColor2
       for layer in layers {
         let rvalue = Float(arc4random_uniform(10) + 1)
-        println("rvalue is \(rvalue)")
         let rvalueFor = Double(rvalue / 10.0)
-        println(rvalueFor)
 
         theAnimation.duration = 1.0 // + rvalueFor
         layer.addAnimation(theAnimation, forKey: "borderColor")
@@ -154,8 +121,6 @@ class LaunchViewController: UIViewController {
       }
     }
   }
-
-
 
   func typingAnimation() {
     if self.shouldAnimate {
@@ -175,13 +140,11 @@ class LaunchViewController: UIViewController {
       UIView.animateKeyframesWithDuration(0.1, delay: delay, options: nil, animations: { () -> Void in
 
         UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.70, animations: { () -> Void in
-          println("first")
-          println("and a half")
           //        imageView.frame.origin.x = imageAnchorX
           //        imageView.frame.origin.y = imageAnchorY
         })
         UIView.addKeyframeWithRelativeStartTime(0.70, relativeDuration: 0.1, animations: { () -> Void in
-          println("second")
+        
           let xSeed = arc4random_uniform(101)
           let ySeed = arc4random_uniform(81)
           var intSeedX = Int(xSeed)
@@ -190,19 +153,18 @@ class LaunchViewController: UIViewController {
           intSeedY = intSeedY - 40
           let xVar = CGFloat(intSeedX)
           let yVar = CGFloat(intSeedY)
-          println("xVar is \(xVar) and yVar is \(yVar)")
+          
           imageView.frame.origin.x = imageAnchorX + xVar
           imageView.frame.origin.y = imageAnchorY + yVar
-          println("imageAnchorY is \(imageAnchorY)")
-          println("imageview frame origin y is \(imageView.frame.origin.y)")
+          
         })
         UIView.addKeyframeWithRelativeStartTime(0.8, relativeDuration: 0.05, animations: { () -> Void in
           imageView.frame.origin.x = imageAnchorX
           imageView.frame.origin.y = imageAnchorY
-          println("third step")
+          
         })
         }) { (Finished) -> Void in
-          println("done")
+          
           self.pauseTimerFor()
           
       }
@@ -259,8 +221,7 @@ class LaunchViewController: UIViewController {
       self.peersLabel.alpha = 1
       self.flavorLabel.alpha = 0
       if isHost == true {
-        self.startButton.alpha = 0.7
-        self.startButton.titleLabel?.textColor = UIColor.grayColor()
+        self.startButton.alpha = 0.3
         self.joinButton.alpha = 0
       } else {
         self.hostButton.alpha = 0
@@ -288,7 +249,7 @@ class LaunchViewController: UIViewController {
         println("Showing start button")
         self.startButton.enabled = true
         startButton.alpha = 1.0
-        startButton.titleLabel?.textColor = progressBar.tintColor
+        startButton.titleLabel?.textColor = UIColor(CGColor: outlineColor2)
       }
     }
   }
@@ -348,6 +309,10 @@ class LaunchViewController: UIViewController {
 //      })
 //    }
 //  }
+  
+  func gotGameSessionForReconnect() {
+    
+  }
 
 
   @IBAction func privacyPolicyButtonPressed(sender: AnyObject) {

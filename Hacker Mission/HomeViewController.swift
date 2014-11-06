@@ -53,7 +53,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       self.playersCollectionView.dataSource = self
       gameController.homeVC = self
       
-      missionLabelArray = [mission1OutcomeLabel,mission2OutcomeLabel,mission3OutcomeLabel,mission4OutcomeLabel,mission5OutcomeLabel]
+      confirmNominationButton.addBorder()
+      
+      missionLabelArray = [mission1OutcomeLabel, mission2OutcomeLabel, mission3OutcomeLabel, mission4OutcomeLabel, mission5OutcomeLabel]
       
       //Set Cell Dimensions
       self.layout = playersCollectionView.collectionViewLayout as UICollectionViewFlowLayout
