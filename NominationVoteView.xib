@@ -32,7 +32,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
                         <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odu-f8-dsM">
-                            <rect key="frame" x="475" y="548" width="95" height="20"/>
+                            <rect key="frame" x="489" y="540" width="95" height="28"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="15"/>
                             <state key="normal" title="&lt;&lt;Reject&gt;&gt;">
@@ -44,14 +44,14 @@
                             </connections>
                         </button>
                         <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nominated Characters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07w-Wb-B2L">
-                            <rect key="frame" x="210" y="34" width="180" height="18"/>
+                            <rect key="frame" x="210" y="42" width="180" height="18"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="18"/>
                             <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WUG-e6-lk3" userLabel="I">
-                            <rect key="frame" x="30" y="548" width="108" height="20"/>
+                            <rect key="frame" x="16" y="540" width="108" height="28"/>
                             <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="15"/>
                             <size key="titleShadowOffset" width="0.0" height="3"/>
                             <state key="normal" title="&lt;&lt;Approve&gt;&gt;">
@@ -63,7 +63,7 @@
                             </connections>
                         </button>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Nuy-08-Hdu">
-                            <rect key="frame" x="30" y="60" width="540" height="480"/>
+                            <rect key="frame" x="16" y="68" width="568" height="464"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="tintColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ynJ-09-uwf">
@@ -81,14 +81,22 @@
                         <constraint firstAttribute="bottom" secondItem="WUG-e6-lk3" secondAttribute="bottom" constant="32" id="Hrf-c7-OUh"/>
                         <constraint firstItem="Nuy-08-Hdu" firstAttribute="width" secondItem="Q8X-Cx-xWI" secondAttribute="width" multiplier="0.9" id="LaU-eU-pRE"/>
                         <constraint firstItem="odu-f8-dsM" firstAttribute="trailing" secondItem="Nuy-08-Hdu" secondAttribute="trailing" id="Lp7-AY-wOZ"/>
+                        <constraint firstItem="Nuy-08-Hdu" firstAttribute="leading" secondItem="Q8X-Cx-xWI" secondAttribute="leading" constant="16" id="QaK-Al-suQ"/>
                         <constraint firstAttribute="bottom" secondItem="odu-f8-dsM" secondAttribute="bottom" constant="32" id="YuF-z8-BmL"/>
                         <constraint firstItem="odu-f8-dsM" firstAttribute="top" secondItem="Nuy-08-Hdu" secondAttribute="bottom" constant="8" id="dPk-Fc-nM3"/>
                         <constraint firstAttribute="centerY" secondItem="Nuy-08-Hdu" secondAttribute="centerY" id="fqL-wf-SOC"/>
                         <constraint firstItem="Nuy-08-Hdu" firstAttribute="top" secondItem="07w-Wb-B2L" secondAttribute="bottom" constant="8.5" id="k3a-Z8-CLm"/>
                         <constraint firstAttribute="centerX" secondItem="Nuy-08-Hdu" secondAttribute="centerX" id="l2o-gM-qHU"/>
+                        <constraint firstAttribute="trailing" secondItem="Nuy-08-Hdu" secondAttribute="trailing" constant="16" id="rMd-NP-sYb"/>
                         <constraint firstItem="WUG-e6-lk3" firstAttribute="leading" secondItem="Nuy-08-Hdu" secondAttribute="leading" id="suV-Fh-bUi"/>
                         <constraint firstItem="Nuy-08-Hdu" firstAttribute="height" secondItem="Q8X-Cx-xWI" secondAttribute="height" multiplier="0.8" id="wgB-c3-mTc"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="LaU-eU-pRE"/>
+                            <exclude reference="wgB-c3-mTc"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

@@ -62,6 +62,7 @@ class MissionOutcomeVoteViewController: UIViewController {
     gameController.missionOutcomesVotedFor[gameController.game.currentMission] = true
     multiPeerController.sendInfoToMainBrain(["action" : "missionOutcome", "value" : "succeed"])
     disableButtons()
+    let parentVC = self.parentViewController as HomeViewController
     parentVC.nominationPromptLabel.text = "Waiting for other players..."
     self.view.removeFromSuperview()
     self.removeFromParentViewController()
@@ -72,6 +73,7 @@ class MissionOutcomeVoteViewController: UIViewController {
     gameController.missionOutcomesVotedFor[gameController.game.currentMission] = true
     multiPeerController.sendInfoToMainBrain(["action" : "missionOutcome", "value" : "fail"])
     disableButtons()
+    let parentVC = self.parentViewController as HomeViewController
     parentVC.nominationPromptLabel.text = "Waiting for other players..."
     self.view.removeFromSuperview()
     self.removeFromParentViewController()
