@@ -19,12 +19,12 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
   override func viewDidLoad() {
     self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
     beginningVC = OnboardPageViewController(nibName: "OnboardPageViewController", bundle: NSBundle.mainBundle())
-      beginningVC.p1 = "Hacker Missions is a party game."
-      beginningVC.p2 = "Play with at least four of your friends in the same room."
-      beginningVC.p3 = "You will assume the role of a hacker, living in a country with an evil, corrupt, totalitarian government."
+      beginningVC.p1 = "Hacker Missions is a party game for a group of five to ten players."
+      beginningVC.p2 = "Play with your friends in the same room and look them in the eyes while they lie to you."
+      beginningVC.p3 = "You will assume the role of a courageous hacker, living in a country with an evil, corrupt, totalitarian government."
       beginningVC.p4 = "Your goal : Take down the government by completing three missions that will embarrass the regime so much they will crumble."
       beginningVC.p5 = "The hitch : Some of your \"friends\" are spies and will do anything to stop you from succeeding."
-      beginningVC.p6 = " "
+      beginningVC.p6 = "Aren't friends great? You should have more of them."
     
     self.setupArray()
     let VCArray = [beginningVC]
@@ -44,17 +44,17 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
   
   func setupArray() {
     let VC2 = OnboardPageViewController(nibName: "OnboardPageViewController", bundle: NSBundle.mainBundle())
-    VC2.p1 = "A leader will be assigned for each and will nominate a team to carry out the mission."
-    VC2.p2 = "The nominations will be put to a vote."
-    VC2.p3 = "If the team is approved, the mission proceedes."
-    VC2.p4 = "If not, the leadership rotates and a new team is proposed."
-    VC2.p5 = "The brave nominees will then carry out the mission. Planned to a tee, the mission will succeed unless sabotaged."
-    VC2.p6 = "If a government agent is in the team, however, they can choose to sabotage the mission or not."
+    VC2.p1 = "A leader will be assigned for each mission. The leader will nominate a team to carry out the mission."
+    VC2.p2 = "The nominations will be put to a vote. Every layer gets to vote on whether the team is approved. If the team is approved, the mission proceeds. If not, the leadership rotates to the next player and a new team will need to be proposed."
+    VC2.p3 = "If five nominated teams in a  row fail to be approved, the mission will fail. Who dares, wins, after all."
+    VC2.p4 = "The brave nominees will then carry out the mission. Planned to a tee, the mission will succeed unless sabotaged."
+    VC2.p5 = "If a government agent is in the team, however, they can choose to sabotage the mission."
+    VC2.p6 = "Or not. Spies are sneaky. You can't trust them. Some of your friends are spies. You can't trust them, either."
     
     let VC3 = OnboardPageViewController(nibName: "OnboardPageViewController", bundle: NSBundle.mainBundle())
-    VC3.p1 = "Three missions succeed, the hackers win and the government is overthrown."
-    VC3.p2 = "Three missions fail, the hidden agents win and the totalitarian regime lives on."
-    VC3.p3 = " "
+    VC3.p1 = "If three missions succeed, the hackers win and the government is overthrown. There is dancing in the streets and statues topple."
+    VC3.p2 = "But if three missions fail, the hidden agents win and the totalitarian regime lives on. And you, brave hacker, will be..."
+    VC3.p3 = "\"Re-educated.\""
     VC3.p4 = "Choose your teams wisely."
     VC3.p5 = "Sniff out the spies."
     VC3.p6 = "Trust no one."

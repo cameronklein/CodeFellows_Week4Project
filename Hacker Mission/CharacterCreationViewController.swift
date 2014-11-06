@@ -16,9 +16,16 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     @IBOutlet weak var defaultIconsCollectionView: UICollectionView!
     @IBOutlet weak var saveCharacterButton: UIButton!
     @IBOutlet weak var userImageView : UIImageView!
+    @IBOutlet weak var cameraButton: UIButton!
 
-    let attibutedString1 = NSAttributedString(string: "Enter a UserName", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.75)])
-    let attibutedString2 = NSAttributedString(string: "Enter a UserName For", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.15)])
+  let buttonBackgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.15)
+  let cornerRadius = CGFloat(5.0)
+  let outlineColor1 = UIColor(red: 0.443, green: 0.961, blue: 0.082, alpha: 0.2).CGColor
+  let outlineColor2 = UIColor(red: 0.443, green: 0.961, blue: 0.082, alpha: 0.6).CGColor
+  var shouldAnimate = false
+
+    let attibutedString1 = NSAttributedString(string: "Enter a User Name", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.75)])
+    let attibutedString2 = NSAttributedString(string: "Enter a User Name", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.15)])
 
     var defaultIcons = [UIImage]()
     var userForSave : UserInfo!
@@ -52,7 +59,16 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
             self.defaultIcons.append(symbol6!)
             self.defaultIcons.append(symbol7!)
             self.defaultIcons.append(symbol8!)
+
         }
+
+      self.cameraButton.backgroundColor = self.buttonBackgroundColor
+      self.cameraButton.layer.masksToBounds = true
+      self.cameraButton.layer.cornerRadius = self.cornerRadius
+      self.cameraButton.layer.borderWidth = 2.0
+      self.cameraButton.layer.borderColor = self.outlineColor1
+
+
 
       self.usernameTextField.delegate = self
       self.defaultIconsCollectionView.dataSource = self
@@ -81,6 +97,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
+    self.shouldAnimate = true
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     if appDelegate.defaultUser == nil {
       if self.hasLaunched == false {
@@ -91,6 +108,16 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       }
     }
 
+    var layers = [CALayer]()
+    layers.append(self.cameraButton.layer)
+
+    self.doButtonPulseAnim(layers)
+
+  }
+
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    self.shouldAnimate = false
   }
 
     //MARK: - Collection View Methods
@@ -103,8 +130,8 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     {
         let cell = defaultIconsCollectionView.dequeueReusableCellWithReuseIdentifier("DEFAULT_ICON_CELL", forIndexPath: indexPath) as DefaultIconCell
         cell.imageView.image = self.defaultIcons[indexPath.row] as UIImage
-      cell.layer.borderWidth = 1
-      cell.layer.borderColor = UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.15).CGColor
+      cell.layer.borderWidth = 2.0
+      cell.layer.borderColor = outlineColor1
 
       return cell
     }
@@ -130,16 +157,64 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     }
   }
 
+  func doButtonPulseAnim(layers: [CALayer]) {
+    if self.shouldAnimate {
+      let theAnimation = CABasicAnimation(keyPath: "borderColor")
+      theAnimation.delegate = self
+
+      println("here in core animation")
+      theAnimation.repeatCount = 10000.0
+      theAnimation.autoreverses = true
+      theAnimation.fromValue = self.outlineColor1
+      theAnimation.toValue = self.outlineColor2
+      for layer in layers {
+        theAnimation.duration = 1.0
+        layer.addAnimation(theAnimation, forKey: "borderColor")
+        layer.borderColor = outlineColor2
+      }
+    }
+  }
+
+  func doButtonPulseAnimAlso(layers: [CALayer]) {
+    if self.shouldAnimate {
+      let theAnimation = CABasicAnimation(keyPath: "borderColor")
+      theAnimation.delegate = self
+
+      println("here in core animation")
+      theAnimation.repeatCount = 10000.0
+      theAnimation.autoreverses = true
+      theAnimation.fromValue = self.outlineColor1
+      theAnimation.toValue = self.outlineColor2
+      for layer in layers {
+        theAnimation.duration = 1.0
+        layer.addAnimation(theAnimation, forKey: "borderColor")
+        layer.borderColor = outlineColor2
+      }
+    }
+  }
 
     func checkButtonState(){
         println("Checked Button State")
         if self.userImageFor != nil && self.checkNameLength() == true {
             self.saveCharacterButton.enabled = true
             self.saveCharacterButton.setTitle("Save Character", forState: UIControlState.Normal)
+          self.saveCharacterButton.backgroundColor = self.buttonBackgroundColor
+          self.saveCharacterButton.layer.masksToBounds = true
+          self.saveCharacterButton.layer.cornerRadius = self.cornerRadius
+          self.saveCharacterButton.layer.borderWidth = 2.0
+          self.saveCharacterButton.layer.borderColor = self.outlineColor1
+          var layers = [CALayer]()
+          layers.append(self.saveCharacterButton.layer)
+          self.doButtonPulseAnimAlso(layers)
         } else {
             println("Hit Else")
-            self.saveCharacterButton.setTitle("Enter a Player Name and Choose an Image", forState: UIControlState.Disabled)
+            self.saveCharacterButton.setTitle("Enter Name and Choose an Image", forState: UIControlState.Disabled)
             self.saveCharacterButton.enabled = false
+          self.saveCharacterButton.backgroundColor = UIColor.clearColor()
+          self.saveCharacterButton.layer.masksToBounds = false
+          self.saveCharacterButton.layer.cornerRadius = self.cornerRadius
+          self.saveCharacterButton.layer.borderWidth = 0.0
+          self.saveCharacterButton.layer.borderColor = UIColor.clearColor().CGColor
         }
     }
     
