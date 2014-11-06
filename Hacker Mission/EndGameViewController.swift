@@ -10,6 +10,7 @@ import UIKit
 
 class EndGameViewController: UIViewController {
 
+  @IBOutlet weak var gameOutcomeTitle: UILabel!
   @IBOutlet weak var gameOutcomeLabel: UILabel!
   
   let gameController = GameController.sharedInstance
@@ -26,10 +27,18 @@ class EndGameViewController: UIViewController {
     let game = gameController.game
     
     if game.passedMissionCount == 3 {
+      if gameController.thisPlayer.playerRole == .Agent {
+        gameOutcomeTitle.text = "You Lose!"
+      }
       gameOutcomeLabel.text = "Hackers win the day!!!11"
     } else if game.failedMissionCount == 3 {
+      if gameController.thisPlayer.playerRole == .Hacker {
+        gameOutcomeTitle.text = "You Lose!"
+      }
       gameOutcomeLabel.text = "Hackers have been foiled and are rotting away in jail."
     }
+    
+    
     
   }
 

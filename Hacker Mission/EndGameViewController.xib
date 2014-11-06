@@ -6,12 +6,14 @@
     <customFonts key="customFonts">
         <mutableArray key="glass_tty_vt220.ttf">
             <string>Glass_TTY_VT220</string>
+            <string>Glass_TTY_VT220</string>
         </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EndGameViewController" customModule="Hacker_Mission" customModuleProvider="target">
             <connections>
                 <outlet property="gameOutcomeLabel" destination="0hA-DH-gMI" id="NES-yl-Yji"/>
+                <outlet property="gameOutcomeTitle" destination="Tq9-Vb-cKN" id="Y5Y-PQ-Mby"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,20 +23,36 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Outcome" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hA-DH-gMI">
-                    <rect key="frame" x="204" y="128" width="192" height="80"/>
+                    <rect key="frame" x="204" y="133" width="192" height="31"/>
                     <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="32"/>
                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You Win" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tq9-Vb-cKN">
+                    <rect key="frame" x="32" y="32" width="536" height="37"/>
+                    <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="38"/>
+                    <color key="textColor" red="0.4431372549" green="0.96078431369999995" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="0hA-DH-gMI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="128" id="6m2-Pf-ZnM"/>
+                <constraint firstItem="Tq9-Vb-cKN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="MJL-3f-gfA"/>
                 <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="0hA-DH-gMI" secondAttribute="bottom" constant="392" id="OUj-8n-mB3"/>
+                <constraint firstItem="0hA-DH-gMI" firstAttribute="top" secondItem="Tq9-Vb-cKN" secondAttribute="bottom" constant="64" id="ch0-OT-FcI"/>
+                <constraint firstItem="Tq9-Vb-cKN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="32" id="dVw-zv-lzk"/>
                 <constraint firstAttribute="centerX" secondItem="0hA-DH-gMI" secondAttribute="centerX" id="ihq-bE-eP2"/>
+                <constraint firstAttribute="trailing" secondItem="Tq9-Vb-cKN" secondAttribute="trailing" constant="32" id="lLn-3F-Mz2"/>
                 <constraint firstItem="0hA-DH-gMI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="rEf-dw-kaH"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0hA-DH-gMI" secondAttribute="trailing" constant="16" id="wye-3G-IcB"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="6m2-Pf-ZnM"/>
+                    <exclude reference="OUj-8n-mB3"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="287" y="326"/>
         </view>
     </objects>

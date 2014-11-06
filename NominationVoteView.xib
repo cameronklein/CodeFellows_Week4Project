@@ -32,7 +32,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
                         <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odu-f8-dsM">
-                            <rect key="frame" x="475" y="548" width="95" height="28"/>
+                            <rect key="frame" x="475" y="548" width="95" height="20"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="15"/>
                             <state key="normal" title="&lt;&lt;Reject&gt;&gt;">
@@ -51,7 +51,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WUG-e6-lk3" userLabel="I">
-                            <rect key="frame" x="30" y="548" width="108" height="28"/>
+                            <rect key="frame" x="30" y="548" width="108" height="20"/>
                             <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="15"/>
                             <size key="titleShadowOffset" width="0.0" height="3"/>
                             <state key="normal" title="&lt;&lt;Approve&gt;&gt;">
@@ -78,8 +78,10 @@
                     <constraints>
                         <constraint firstItem="WUG-e6-lk3" firstAttribute="top" secondItem="Nuy-08-Hdu" secondAttribute="bottom" constant="8" id="5jI-CS-ZZ2"/>
                         <constraint firstItem="Nuy-08-Hdu" firstAttribute="centerX" secondItem="07w-Wb-B2L" secondAttribute="centerX" constant="-0.5" id="D0Y-CR-a3O"/>
+                        <constraint firstAttribute="bottom" secondItem="WUG-e6-lk3" secondAttribute="bottom" constant="32" id="Hrf-c7-OUh"/>
                         <constraint firstItem="Nuy-08-Hdu" firstAttribute="width" secondItem="Q8X-Cx-xWI" secondAttribute="width" multiplier="0.9" id="LaU-eU-pRE"/>
                         <constraint firstItem="odu-f8-dsM" firstAttribute="trailing" secondItem="Nuy-08-Hdu" secondAttribute="trailing" id="Lp7-AY-wOZ"/>
+                        <constraint firstAttribute="bottom" secondItem="odu-f8-dsM" secondAttribute="bottom" constant="32" id="YuF-z8-BmL"/>
                         <constraint firstItem="odu-f8-dsM" firstAttribute="top" secondItem="Nuy-08-Hdu" secondAttribute="bottom" constant="8" id="dPk-Fc-nM3"/>
                         <constraint firstAttribute="centerY" secondItem="Nuy-08-Hdu" secondAttribute="centerY" id="fqL-wf-SOC"/>
                         <constraint firstItem="Nuy-08-Hdu" firstAttribute="top" secondItem="07w-Wb-B2L" secondAttribute="bottom" constant="8.5" id="k3a-Z8-CLm"/>

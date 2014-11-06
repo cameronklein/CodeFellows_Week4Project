@@ -34,7 +34,7 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
     layout.minimumInteritemSpacing = screenWidth * 0.02
     layout.sectionInset.left = screenWidth * 0.05
     layout.sectionInset.right = screenWidth * 0.05
-    layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.23)
+    layout.itemSize = CGSize(width: screenWidth * 0.13, height: screenWidth * 0.17)
     
     currentMission = gameController.game.missions[gameController.game.currentMission] as Mission
     println("Nomination View Controller got an array: \(currentMission.nominatedPlayers.description)")

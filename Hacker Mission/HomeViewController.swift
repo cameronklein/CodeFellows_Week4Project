@@ -204,7 +204,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     if currentMission.rejectedTeamsCount > self.lastRejectedGameCount {
       incomingMessageLabel = "Team Rejected!"
     }
-    
+    self.lastRejectedGameCount = currentMission.rejectedTeamsCount
     self.animateIncomingMessageLabel(incomingMessageLabel, completionHandler: { () -> (Void) in
       return ()
     })
@@ -413,6 +413,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     let game = gameController.game
     let currentMissionIndex = game.currentMission
+    self.nominationPromptLabel.text = " "
     if currentMissionIndex == 5 || game.failedMissionCount == 3 || game.passedMissionCount == 3 {
       self.endGame()
     } else {
