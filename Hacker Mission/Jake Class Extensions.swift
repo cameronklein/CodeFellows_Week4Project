@@ -94,29 +94,14 @@ extension UILabel
     
       let view = UIView()
       self.superview?.addSubview(view)
-    
+      NSThread.sleepForTimeInterval(sleepLength)
       NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-        
-        UIView.animateWithDuration(sleepLength,
-          delay: 0.00,
-          options: UIViewAnimationOptions.AllowUserInteraction,
-          animations: { () -> Void in
-            if view.alpha == 0{
-              view.alpha = 1
-            } else {
-              view.alpha = 0
-            }
-            self.text = "\(nextText)_"
-          },
-          completion: { (success) -> Void in
-            if success == true{
-              self.typeToNewString(finalText, withInterval: sleepLength, startingText: nextText)
-            }
-        })
+        self.text = "\(nextText)_"
+        self.typeToNewString(finalText, withInterval: sleepLength, startingText: nextText)
       }
-    } else {
-      self.cursorBlink()
-    }
+      } else {
+        self.cursorBlink()
+      }
   }
     
     func cursorBlink ()  //made to be used after typingAnimation

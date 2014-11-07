@@ -144,7 +144,7 @@
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Peers Connected...]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P14-56-dqD">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Peers Connected...]" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P14-56-dqD">
                                 <rect key="frame" x="215" y="347" width="170" height="17"/>
                                 <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -251,6 +251,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mz3-Ff-mUR">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="uDA-Oy-HFb">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YBe-lf-Di1">
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="JMU-5R-EzG">
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <vibrancyEffect>
+                                                <blurEffect style="light"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                    </subviews>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfP-7t-JIE">
                                 <rect key="frame" x="157" y="495" width="287" height="19"/>
                                 <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="10"/>
@@ -348,6 +366,7 @@
                             <constraint firstAttribute="centerX" secondItem="OGl-QH-FAa" secondAttribute="centerX" id="2ne-oo-yF4"/>
                             <constraint firstItem="DnX-Sf-lrV" firstAttribute="top" secondItem="692-JX-l36" secondAttribute="top" constant="36" id="3B8-F0-1Zh"/>
                             <constraint firstItem="oeg-Yc-HFt" firstAttribute="top" secondItem="692-JX-l36" secondAttribute="topMargin" constant="36" id="AOT-S3-aVW"/>
+                            <constraint firstAttribute="trailing" secondItem="mz3-Ff-mUR" secondAttribute="trailing" id="CN8-ze-p5T"/>
                             <constraint firstItem="gX0-Qb-HeF" firstAttribute="leading" secondItem="692-JX-l36" secondAttribute="leadingMargin" constant="16" id="DoK-GP-FxK"/>
                             <constraint firstAttribute="centerX" secondItem="mYg-lI-wCd" secondAttribute="centerX" id="Kyt-Gg-CNA"/>
                             <constraint firstItem="gX0-Qb-HeF" firstAttribute="top" secondItem="OGl-QH-FAa" secondAttribute="bottom" constant="8" id="Kz6-Yv-PUY"/>
@@ -358,6 +377,9 @@
                             <constraint firstItem="mYg-lI-wCd" firstAttribute="top" secondItem="YfP-7t-JIE" secondAttribute="bottom" constant="8" id="ZXL-ge-STx"/>
                             <constraint firstAttribute="centerX" secondItem="oeg-Yc-HFt" secondAttribute="centerX" id="csT-C6-h9T"/>
                             <constraint firstItem="dJA-2U-H2F" firstAttribute="top" secondItem="mYg-lI-wCd" secondAttribute="bottom" constant="45" id="dac-nr-JDb"/>
+                            <constraint firstItem="mz3-Ff-mUR" firstAttribute="top" secondItem="692-JX-l36" secondAttribute="topMargin" id="fJB-sd-2aN"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="mz3-Ff-mUR" secondAttribute="bottom" id="sGt-VY-dAT"/>
+                            <constraint firstItem="mz3-Ff-mUR" firstAttribute="leading" secondItem="692-JX-l36" secondAttribute="leading" id="vrq-Bm-Uwt"/>
                             <constraint firstItem="WWg-Hl-4eJ" firstAttribute="top" secondItem="DnX-Sf-lrV" secondAttribute="bottom" constant="16" id="wTi-0u-aO9"/>
                             <constraint firstItem="DnX-Sf-lrV" firstAttribute="top" secondItem="oeg-Yc-HFt" secondAttribute="bottom" constant="16" id="x46-4f-ajY"/>
                             <constraint firstItem="OGl-QH-FAa" firstAttribute="top" secondItem="WWg-Hl-4eJ" secondAttribute="bottom" constant="16" id="xgf-9u-txu"/>
@@ -369,6 +391,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="blurView" destination="mz3-Ff-mUR" id="EII-dp-Sk2"/>
                         <outlet property="cameraButton" destination="mYg-lI-wCd" id="Ge5-NV-PlN"/>
                         <outlet property="defaultIconsCollectionView" destination="gX0-Qb-HeF" id="CYX-cN-AjX"/>
                         <outlet property="saveCharacterButton" destination="YfP-7t-JIE" id="5d7-yS-eyt"/>
@@ -396,9 +419,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="81"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HackerMissionTitle" translatesAutoresizingMaskIntoConstraints="NO" id="rI0-ga-ANe">
-                                <rect key="frame" x="101" y="0.0" width="398" height="73"/>
-                            </imageView>
                             <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="o7P-p7-Sfa">
                                 <rect key="frame" x="0.0" y="81" width="600" height="519"/>
                             </imageView>
@@ -413,6 +433,9 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HackerMissionTitle" translatesAutoresizingMaskIntoConstraints="NO" id="rI0-ga-ANe">
+                                <rect key="frame" x="101" y="0.0" width="398" height="73"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="juq-1B-11K">
                                 <rect key="frame" x="16" y="471" width="568" height="97"/>
                                 <subviews>

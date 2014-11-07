@@ -4,6 +4,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="TYPEWRON.ttf">
+            <string>Typewrong</string>
+        </mutableArray>
         <mutableArray key="glass_tty_vt220.ttf">
             <string>Glass_TTY_VT220</string>
             <string>Glass_TTY_VT220</string>
@@ -14,6 +17,7 @@
             <connections>
                 <outlet property="gameOutcomeLabel" destination="0hA-DH-gMI" id="NES-yl-Yji"/>
                 <outlet property="gameOutcomeTitle" destination="Tq9-Vb-cKN" id="Y5Y-PQ-Mby"/>
+                <outlet property="restartButton" destination="eWD-0V-7zq" id="1Mp-Yl-AgJ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,14 +38,27 @@
                     <color key="textColor" red="0.4431372549" green="0.96078431369999995" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWD-0V-7zq">
+                    <rect key="frame" x="217" y="212" width="167" height="29"/>
+                    <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="16"/>
+                    <state key="normal" title="&lt;&lt;Back to Home&gt;&gt;">
+                        <color key="titleColor" red="0.0" green="1" blue="0.00068939877130000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="didPressRestart:" destination="-1" eventType="touchUpInside" id="Qv0-hQ-nFK"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="0hA-DH-gMI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="128" id="6m2-Pf-ZnM"/>
                 <constraint firstItem="Tq9-Vb-cKN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="MJL-3f-gfA"/>
                 <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="0hA-DH-gMI" secondAttribute="bottom" constant="392" id="OUj-8n-mB3"/>
+                <constraint firstItem="eWD-0V-7zq" firstAttribute="top" secondItem="0hA-DH-gMI" secondAttribute="bottom" constant="48" id="bmr-mf-snu"/>
                 <constraint firstItem="0hA-DH-gMI" firstAttribute="top" secondItem="Tq9-Vb-cKN" secondAttribute="bottom" constant="64" id="ch0-OT-FcI"/>
                 <constraint firstItem="Tq9-Vb-cKN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="32" id="dVw-zv-lzk"/>
+                <constraint firstAttribute="centerX" secondItem="eWD-0V-7zq" secondAttribute="centerX" id="hPh-vi-Bcj"/>
                 <constraint firstAttribute="centerX" secondItem="0hA-DH-gMI" secondAttribute="centerX" id="ihq-bE-eP2"/>
                 <constraint firstAttribute="trailing" secondItem="Tq9-Vb-cKN" secondAttribute="trailing" constant="32" id="lLn-3F-Mz2"/>
                 <constraint firstItem="0hA-DH-gMI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="rEf-dw-kaH"/>

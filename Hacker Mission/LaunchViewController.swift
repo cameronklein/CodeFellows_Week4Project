@@ -41,6 +41,7 @@ class LaunchViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    progressBar.setProgress(0, animated: false)
 
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     let myUserTest = appDelegate.defaultUser as UserInfo!
@@ -53,7 +54,7 @@ class LaunchViewController: UIViewController {
     startButton.alpha = 0.0
     startButton.enabled = false
     peersLabel.alpha = 0.0
-    self.peersLabel.text = "Looking for other players..."
+    self.peersLabel.text = "Looking for other players...\n Need 4 more to start."
 
     self.imageAnchorX = self.hackerMissionTitle.frame.origin.x
     self.imageAnchorY = self.hackerMissionTitle.frame.origin.y
@@ -124,8 +125,10 @@ class LaunchViewController: UIViewController {
 
   func typingAnimation() {
     if self.shouldAnimate {
-      self.flavorLabel.typeToNewString("The daring hackers of the Opposition have successfully weakened the iron grip of the oppressive government. Just three more incidents will incite a revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...", withInterval: 0.03, startingText: "")
-      self.startedOnce = true
+      if self.startedOnce == false {
+        self.flavorLabel.typeToNewString("The daring hackers of the Opposition have successfully weakened the iron grip of the oppressive government. Just three more incidents will incite a revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...", withInterval: 0.03, startingText: "")
+        self.startedOnce = true
+      }
     }
   }
 
@@ -172,12 +175,12 @@ class LaunchViewController: UIViewController {
   }
 
   func pauseTimerFor() {
-    println("pausetimer")
+    //println("pausetimer")
     var delay = Double(arc4random_uniform(40) + 3) / 10.0
     var pauseTimer = NSTimer(timeInterval: delay, target: self, selector: "titleAnimation", userInfo: nil, repeats: false)
-    println("got this far")
+    //println("got this far")
     pauseTimer.fire()
-    println("paused")
+    //println("paused")
     pauseTimer.invalidate()
   }
 
@@ -234,20 +237,29 @@ class LaunchViewController: UIViewController {
   func updateConnectedPeersLabel (number: Int) -> Void
   {
     println("LAUNCH VIEW CONTROLLER: Updating peers label to \(number)")
-    self.peersLabel.text = "[" + number.description + " Peers Connected..]"
-    if (number > 0) {
-      println(self.spinningWheel.isAnimating())
-      if (self.spinningWheel.isAnimating()){
-        self.spinningWheel.stopAnimating()
-        self.peersLabel.hidden = false
+    let numberNeeded = 4 - number
+    
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      
+    
+      self.peersLabel.text = "[" + number.description + " Peers Connected]"
+      if numberNeeded > 0 {
+        self.peersLabel.text = self.peersLabel.text! + "\n Need \(numberNeeded) more to start."
       }
-      if self.masterController != nil {
-        println("Showing start button")
-        self.startButton.enabled = true
-        startButton.alpha = 1.0
-        startButton.titleLabel?.textColor = UIColor(CGColor: outlineColor2)
+      if (number > 0) {
+        println(self.spinningWheel.isAnimating())
+        if (self.spinningWheel.isAnimating()){
+          self.spinningWheel.stopAnimating()
+          self.peersLabel.hidden = false
+        }
+        if self.masterController != nil {
+          println("Showing start button")
+          self.startButton.enabled = true
+          self.startButton.alpha = 1.0
+        }
       }
     }
+    
   }
 
   func gameStart(revealVC: RevealViewController) {
@@ -264,13 +276,16 @@ class LaunchViewController: UIViewController {
       if segue.identifier == "SHOW_CHARCREATE" {
         let destinationVC = segue.destinationViewController as CharacterCreationViewController
         destinationVC.wasPresented = true
+        let screenshot = self.view.snapshotViewAfterScreenUpdates(false)
+        destinationVC.view.addSubview(screenshot)
+        destinationVC.view.sendSubviewToBack(screenshot)
       }
       
     }
   
-    @IBAction func createCharacter(sender: AnyObject) {
-      self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
-    }
+  @IBAction func createCharacter(sender: AnyObject) {
+    self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
+  }
   
   func showLoadingBar(percentage: Float) {
     println("LAUNCH VC calling showloadingbar")
@@ -282,38 +297,18 @@ class LaunchViewController: UIViewController {
     
   }
   
-//  func animateTitle(isAtTop: Bool) {
-//    if isAtTop{
-//      UIView.animateWithDuration(2.0,
-//        delay: 0.0,
-//        options: UIViewAnimationOptions.CurveEaseInOut,
-//        animations: { () -> Void in
-//          self.hackerMissionTitle.frame.origin.y = self.hackerMissionTitle.frame.origin.y + 20
-//        },
-//        completion: { (success) -> Void in
-//          self.animateTitle(false)
-//      })
-//    } else {
-//      UIView.animateWithDuration(2.0,
-//        delay: 0.0,
-//        options: UIViewAnimationOptions.CurveEaseInOut,
-//        animations: { () -> Void in
-//          self.hackerMissionTitle.frame.origin.y = self.hackerMissionTitle.frame.origin.y - 20
-//        },
-//        completion: { (success) -> Void in
-//          self.animateTitle(true)
-//      })
-//    }
-//  }
-  
   func gotGameSessionForReconnect() {
     
   }
 
 
   @IBAction func privacyPolicyButtonPressed(sender: AnyObject) {
+    let screenshot = self.view.snapshotViewAfterScreenUpdates(false)
     let PPVC = PrivacyPolicyViewController(nibName: "PrivacyPolicyViewController", bundle: NSBundle.mainBundle())
-    self.presentViewController(PPVC, animated: true, completion: nil)
+    self.presentViewController(PPVC, animated: true) { () -> Void in
+      PPVC.view.addSubview(screenshot)
+      PPVC.view.sendSubviewToBack(screenshot)
+    }
   }
   
 }

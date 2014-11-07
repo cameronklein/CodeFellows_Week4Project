@@ -61,17 +61,13 @@ class GameController {
       let homeVC = storyboard.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
       
       NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(homeVC, animated: true, completion: { () -> Void in
+        UIApplication.sharedApplication().keyWindow?.rootViewController = homeVC
           self.handleEvent(newGameInfo)
-        })
-        return ()
-      }
-    } else {
+        }
+      } else {
     
       AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
       AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-      
-      
       
       findMe()
       println("GAME CONTROLLER: Received \(event.rawValue) event from Main Brain. Woot.")
