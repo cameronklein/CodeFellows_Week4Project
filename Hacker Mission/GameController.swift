@@ -28,6 +28,9 @@ class GameController {
   var thisPlayer  : Player!
   var peerCount   : Int = 0
   
+  var missionOutcomesVotedFor = [Bool]()
+  var teamsVotedFor = [[Bool]]()
+  
   var multipeerController = MultiPeerController.sharedInstance
   var imagePackets = [ImagePacket]()
   
@@ -37,7 +40,13 @@ class GameController {
     multipeerController.gameController = self
     myUserInfo = appDelegate.defaultUser as UserInfo!
     myUserInfo.userPeerID = multipeerController.peerID.displayName
-
+    for i in 0...4 {
+      missionOutcomesVotedFor.append(false)
+      teamsVotedFor.append([Bool]())
+      for j in 0...4 {
+        teamsVotedFor[i].append(false)
+      }
+    }
   }
 
   func handleImagePackets(imagePackets: [ImagePacket]) {
@@ -45,33 +54,43 @@ class GameController {
   }
   
   func handleEvent(newGameInfo: GameSession) {
-    
-    AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-    
     self.game = newGameInfo
     let event = game.currentGameState!
-    findMe()
-    println("GAME CONTROLLER: Received \(event.rawValue) event from Main Brain. Woot.")
-    switch event{
-    case .Start:
-      self.gameStart()
-    case .NominatePlayers:
-      self.nominatePlayers()
-    case .RevealNominations:
-      self.revealNominations()
-    case .MissionStart:
-      self.startMission()
-    case .RevealVote:
-      self.revealVotes()
-    case .BeginMissionOutcome:
-      self.beginMissionOutcome()
-    case .RevealMissionOutcome:
-      self.revealMissionOutcome()
-    case .End:
-      self.endGame()
-    default:
-        println("Unknown")
+    if homeVC == nil && event != .Start {
+      let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+      let homeVC = storyboard.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
+      
+      NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        UIApplication.sharedApplication().keyWindow?.rootViewController = homeVC
+          self.handleEvent(newGameInfo)
+        }
+      } else {
+    
+      AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+      AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+      
+      findMe()
+      println("GAME CONTROLLER: Received \(event.rawValue) event from Main Brain. Woot.")
+      switch event{
+      case .Start:
+        self.gameStart()
+      case .NominatePlayers:
+        self.nominatePlayers()
+      case .RevealNominations:
+        self.revealNominations()
+      case .MissionStart:
+        self.startMission()
+      case .RevealVote:
+        self.revealVotes()
+      case .BeginMissionOutcome:
+        self.beginMissionOutcome()
+      case .RevealMissionOutcome:
+        self.revealMissionOutcome()
+      case .End:
+        self.endGame()
+      default:
+          println("Unknown")
+      }
     }
   }
   
@@ -172,5 +191,10 @@ class GameController {
       multipeerController.sendImagePacketToLeadController(image)
     }
   }
+  
+  func reconnectFromDisconnect(GameSession){
+    
+  }
+}
 
-} //End
+

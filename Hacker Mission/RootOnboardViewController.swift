@@ -66,6 +66,7 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
     let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
     let charCreate = storyboard.instantiateViewControllerWithIdentifier("CHARCREATE_VC") as CharacterCreationViewController
     charCreate.view.backgroundColor = UIColor.clearColor()
+    charCreate.blurView.removeFromSuperview()
     controllers.append(charCreate)
     pageControl.numberOfPages = controllers.count
     

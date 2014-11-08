@@ -286,8 +286,11 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   
   func resendGameInfoToPeer(peerID : MCPeerID) {
     let data = NSKeyedArchiver.archivedDataWithRootObject(mainBrain!.game)
+    let imageData = NSKeyedArchiver.archivedDataWithRootObject(mainBrain!.imagePacketsForGame)
     var error : NSError?
     session.sendData(data, toPeers: [peerID], withMode: MCSessionSendDataMode.Reliable, error: &error)
+    NSThread.sleepForTimeInterval(0.2)
+    session.sendData(imageData, toPeers: [peerID], withMode: MCSessionSendDataMode.Reliable, error: &error)
     if error != nil {
       println("Error encountered when resending game to peer: \(error!.description))")
     }

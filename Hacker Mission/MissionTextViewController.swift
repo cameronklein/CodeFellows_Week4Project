@@ -11,7 +11,6 @@ import UIKit
 class MissionTextViewController: UIViewController {
 
   @IBOutlet weak var missionFlavorTextLabel: UILabel!
-  @IBOutlet weak var leaderSelectingTeam: UILabel!
   @IBOutlet weak var missionFlavorTextDescriptionLabel: UILabel!
   
   var gameController = GameController.sharedInstance

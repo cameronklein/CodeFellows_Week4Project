@@ -10,6 +10,7 @@ import UIKit
 
 class MissionOutcomeVoteViewController: UIViewController {
   
+  var gameController = GameController.sharedInstance
   var multiPeerController : MultiPeerController = MultiPeerController.sharedInstance
   var game : GameSession?
   var currentUser : Player!
@@ -23,7 +24,9 @@ class MissionOutcomeVoteViewController: UIViewController {
     super.viewDidLoad()
     
     failButton.enabled = true
+    failButton.addBorder()
     succeedButton.enabled = true
+    succeedButton.addBorder()
     loyalLabel.hidden = true
     failButton.alpha = 1
 
@@ -56,16 +59,22 @@ class MissionOutcomeVoteViewController: UIViewController {
   
   @IBAction func successButtonPressed (sender: AnyObject)
   {
+    gameController.missionOutcomesVotedFor[gameController.game.currentMission] = true
     multiPeerController.sendInfoToMainBrain(["action" : "missionOutcome", "value" : "succeed"])
     disableButtons()
+    let parentVC = self.parentViewController as HomeViewController
+    parentVC.nominationPromptLabel.text = "Waiting for other players..."
     self.view.removeFromSuperview()
     self.removeFromParentViewController()
   }
   
   @IBAction func failButtonPressed (sender: AnyObject)
   {
+    gameController.missionOutcomesVotedFor[gameController.game.currentMission] = true
     multiPeerController.sendInfoToMainBrain(["action" : "missionOutcome", "value" : "fail"])
     disableButtons()
+    let parentVC = self.parentViewController as HomeViewController
+    parentVC.nominationPromptLabel.text = "Waiting for other players..."
     self.view.removeFromSuperview()
     self.removeFromParentViewController()
   }

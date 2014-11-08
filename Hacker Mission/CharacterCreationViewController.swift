@@ -12,12 +12,13 @@ import QuartzCore
 class CharacterCreationViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate
 {
     //MARK: - Outlets and Properties
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var defaultIconsCollectionView: UICollectionView!
-    @IBOutlet weak var saveCharacterButton: UIButton!
-    @IBOutlet weak var userImageView : UIImageView!
-    @IBOutlet weak var cameraButton: UIButton!
-
+  @IBOutlet weak var usernameTextField: UITextField!
+  @IBOutlet weak var defaultIconsCollectionView: UICollectionView!
+  @IBOutlet weak var saveCharacterButton: UIButton!
+  @IBOutlet weak var userImageView : UIImageView!
+  @IBOutlet weak var cameraButton: UIButton!
+  @IBOutlet weak var blurView: UIVisualEffectView!
+  
   let buttonBackgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.15)
   let cornerRadius = CGFloat(5.0)
   let outlineColor1 = UIColor(red: 0.443, green: 0.961, blue: 0.082, alpha: 0.2).CGColor

@@ -22,7 +22,6 @@ class LaunchViewController: UIViewController {
   var userInfoMyself      : UserInfo?
   var truthInAdvertising  : Bool?
   var multiPeerController = MultiPeerController.sharedInstance
-  var originalButtonColor : UIColor!
   var imageAnchorX = CGFloat()
   var imageAnchorY = CGFloat()
   var startedOnce = false
@@ -42,6 +41,7 @@ class LaunchViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    progressBar.setProgress(0, animated: false)
 
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     let myUserTest = appDelegate.defaultUser as UserInfo!
@@ -54,46 +54,18 @@ class LaunchViewController: UIViewController {
     startButton.alpha = 0.0
     startButton.enabled = false
     peersLabel.alpha = 0.0
-    self.originalButtonColor = self.startButton.titleLabel!.textColor
-    self.peersLabel.text = "Looking for other players..."
+    self.peersLabel.text = "Looking for other players...\n Need 4 more to start."
 
     self.imageAnchorX = self.hackerMissionTitle.frame.origin.x
     self.imageAnchorY = self.hackerMissionTitle.frame.origin.y
 
-    self.createCharacterButton.titleLabel?.textAlignment = NSTextAlignment.Center
-    self.createCharacterButton.backgroundColor = self.buttonBackgroundColor
-    self.createCharacterButton.layer.masksToBounds = true
-    self.createCharacterButton.layer.cornerRadius = self.cornerRadius
-    self.createCharacterButton.layer.borderWidth = 2.0
-    self.createCharacterButton.layer.borderColor = self.outlineColor1
-
-    self.privacyPolicyButton.titleLabel?.textAlignment = NSTextAlignment.Center
-    self.privacyPolicyButton.backgroundColor = self.buttonBackgroundColor
-    self.privacyPolicyButton.layer.masksToBounds = true
-    self.privacyPolicyButton.layer.cornerRadius = self.cornerRadius
-    self.privacyPolicyButton.layer.borderWidth = 2.0
-    self.privacyPolicyButton.layer.borderColor = self.outlineColor1
-
-    self.joinButton.backgroundColor = self.buttonBackgroundColor
-    self.joinButton.layer.masksToBounds = true
-    self.joinButton.layer.cornerRadius = self.cornerRadius
-    self.joinButton.layer.borderWidth = 2.0
-    self.joinButton.layer.borderColor = self.outlineColor1
-
-    self.hostButton.backgroundColor = self.buttonBackgroundColor
-    self.hostButton.layer.masksToBounds = true
-    self.hostButton.layer.cornerRadius = self.cornerRadius
-    self.hostButton.layer.borderWidth = 2.0
-    self.hostButton.layer.borderColor = self.outlineColor1
+    self.createCharacterButton.addBorder()
+    self.startButton.addBorder()
+    self.privacyPolicyButton.addBorder()
+    self.joinButton.addBorder()
+    self.hostButton.addBorder()
     
     self.progressBar.alpha = 0
-
-    self.startButton.backgroundColor = self.buttonBackgroundColor
-    self.startButton.layer.masksToBounds = true
-    self.startButton.layer.cornerRadius = self.cornerRadius
-    self.startButton.layer.borderWidth = 2.0
-    self.startButton.layer.borderColor = self.outlineColor1
-
 
   }
 
@@ -136,16 +108,13 @@ class LaunchViewController: UIViewController {
       let theAnimation = CABasicAnimation(keyPath: "borderColor")
       theAnimation.delegate = self
 
-      println("here in core animation")
       theAnimation.repeatCount = 10000.0
       theAnimation.autoreverses = true
       theAnimation.fromValue = self.outlineColor1
       theAnimation.toValue = self.outlineColor2
       for layer in layers {
         let rvalue = Float(arc4random_uniform(10) + 1)
-        println("rvalue is \(rvalue)")
         let rvalueFor = Double(rvalue / 10.0)
-        println(rvalueFor)
 
         theAnimation.duration = 1.0 // + rvalueFor
         layer.addAnimation(theAnimation, forKey: "borderColor")
@@ -154,12 +123,12 @@ class LaunchViewController: UIViewController {
     }
   }
 
-
-
   func typingAnimation() {
     if self.shouldAnimate {
-      self.flavorLabel.typeToNewString("The daring hackers of the Opposition have weakened the iron grip of the oppressive Government. Just a few more incidents will incite a revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...", withInterval: 0.05, startingText: "")
-      self.startedOnce = true
+      if self.startedOnce == false {
+        self.flavorLabel.typeToNewString("The daring hackers of the Opposition have successfully weakened the iron grip of the oppressive government. Just three more incidents will incite a revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...", withInterval: 0.03, startingText: "")
+        self.startedOnce = true
+      }
     }
   }
 
@@ -174,13 +143,11 @@ class LaunchViewController: UIViewController {
       UIView.animateKeyframesWithDuration(0.1, delay: delay, options: nil, animations: { () -> Void in
 
         UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.70, animations: { () -> Void in
-          println("first")
-          println("and a half")
           //        imageView.frame.origin.x = imageAnchorX
           //        imageView.frame.origin.y = imageAnchorY
         })
         UIView.addKeyframeWithRelativeStartTime(0.70, relativeDuration: 0.1, animations: { () -> Void in
-          println("second")
+        
           let xSeed = arc4random_uniform(101)
           let ySeed = arc4random_uniform(81)
           var intSeedX = Int(xSeed)
@@ -189,38 +156,33 @@ class LaunchViewController: UIViewController {
           intSeedY = intSeedY - 40
           let xVar = CGFloat(intSeedX)
           let yVar = CGFloat(intSeedY)
-          println("xVar is \(xVar) and yVar is \(yVar)")
+          
           imageView.frame.origin.x = imageAnchorX + xVar
           imageView.frame.origin.y = imageAnchorY + yVar
-          println("imageAnchorY is \(imageAnchorY)")
-          println("imageview frame origin y is \(imageView.frame.origin.y)")
+          
         })
         UIView.addKeyframeWithRelativeStartTime(0.8, relativeDuration: 0.05, animations: { () -> Void in
           imageView.frame.origin.x = imageAnchorX
           imageView.frame.origin.y = imageAnchorY
-          println("third step")
+          
         })
         }) { (Finished) -> Void in
-          println("done")
+          
           self.pauseTimerFor()
           
       }
     }
-
-
   }
 
   func pauseTimerFor() {
-    println("pausetimer")
+    //println("pausetimer")
     var delay = Double(arc4random_uniform(40) + 3) / 10.0
     var pauseTimer = NSTimer(timeInterval: delay, target: self, selector: "titleAnimation", userInfo: nil, repeats: false)
-    println("got this far")
+    //println("got this far")
     pauseTimer.fire()
-    println("paused")
+    //println("paused")
     pauseTimer.invalidate()
   }
-
-
 
   override func didReceiveMemoryWarning() {
       super.didReceiveMemoryWarning()
@@ -252,14 +214,13 @@ class LaunchViewController: UIViewController {
   
   func switchUIElements(isHost : Bool) {
     self.peersLabel.hidden = false
-    UIView.animateWithDuration(1.0, animations: { () -> Void in
+    UIView.animateWithDuration(0.4, animations: { () -> Void in
       self.createCharacterButton.alpha = 0
       self.privacyPolicyButton.alpha = 0
       self.peersLabel.alpha = 1
       self.flavorLabel.alpha = 0
       if isHost == true {
-        self.startButton.alpha = 0.7
-        self.startButton.titleLabel?.textColor = UIColor.grayColor()
+        self.startButton.alpha = 0.3
         self.joinButton.alpha = 0
       } else {
         self.hostButton.alpha = 0
@@ -276,20 +237,29 @@ class LaunchViewController: UIViewController {
   func updateConnectedPeersLabel (number: Int) -> Void
   {
     println("LAUNCH VIEW CONTROLLER: Updating peers label to \(number)")
-    self.peersLabel.text = "[" + number.description + " Peers Connected..]"
-    if (number > 0) {
-      println(self.spinningWheel.isAnimating())
-      if (self.spinningWheel.isAnimating()){
-        self.spinningWheel.stopAnimating()
-        self.peersLabel.hidden = false
+    let numberNeeded = 4 - number
+    
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      
+    
+      self.peersLabel.text = "[" + number.description + " Peers Connected]"
+      if numberNeeded > 0 {
+        self.peersLabel.text = self.peersLabel.text! + "\n Need \(numberNeeded) more to start."
       }
-      if self.masterController != nil {
-        println("Showing start button")
-        self.startButton.enabled = true
-        startButton.alpha = 1.0
-        startButton.titleLabel?.textColor = progressBar.tintColor
+      if (number > 0) {
+        println(self.spinningWheel.isAnimating())
+        if (self.spinningWheel.isAnimating()){
+          self.spinningWheel.stopAnimating()
+          self.peersLabel.hidden = false
+        }
+        if self.masterController != nil {
+          println("Showing start button")
+          self.startButton.enabled = true
+          self.startButton.alpha = 1.0
+        }
       }
     }
+    
   }
 
   func gameStart(revealVC: RevealViewController) {
@@ -306,13 +276,16 @@ class LaunchViewController: UIViewController {
       if segue.identifier == "SHOW_CHARCREATE" {
         let destinationVC = segue.destinationViewController as CharacterCreationViewController
         destinationVC.wasPresented = true
+        let screenshot = self.view.snapshotViewAfterScreenUpdates(false)
+        destinationVC.view.addSubview(screenshot)
+        destinationVC.view.sendSubviewToBack(screenshot)
       }
       
     }
   
-    @IBAction func createCharacter(sender: AnyObject) {
-      self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
-    }
+  @IBAction func createCharacter(sender: AnyObject) {
+    self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
+  }
   
   func showLoadingBar(percentage: Float) {
     println("LAUNCH VC calling showloadingbar")
@@ -324,34 +297,18 @@ class LaunchViewController: UIViewController {
     
   }
   
-//  func animateTitle(isAtTop: Bool) {
-//    if isAtTop{
-//      UIView.animateWithDuration(2.0,
-//        delay: 0.0,
-//        options: UIViewAnimationOptions.CurveEaseInOut,
-//        animations: { () -> Void in
-//          self.hackerMissionTitle.frame.origin.y = self.hackerMissionTitle.frame.origin.y + 20
-//        },
-//        completion: { (success) -> Void in
-//          self.animateTitle(false)
-//      })
-//    } else {
-//      UIView.animateWithDuration(2.0,
-//        delay: 0.0,
-//        options: UIViewAnimationOptions.CurveEaseInOut,
-//        animations: { () -> Void in
-//          self.hackerMissionTitle.frame.origin.y = self.hackerMissionTitle.frame.origin.y - 20
-//        },
-//        completion: { (success) -> Void in
-//          self.animateTitle(true)
-//      })
-//    }
-//  }
+  func gotGameSessionForReconnect() {
+    
+  }
 
 
   @IBAction func privacyPolicyButtonPressed(sender: AnyObject) {
+    let screenshot = self.view.snapshotViewAfterScreenUpdates(false)
     let PPVC = PrivacyPolicyViewController(nibName: "PrivacyPolicyViewController", bundle: NSBundle.mainBundle())
-    self.presentViewController(PPVC, animated: true, completion: nil)
+    self.presentViewController(PPVC, animated: true) { () -> Void in
+      PPVC.view.addSubview(screenshot)
+      PPVC.view.sendSubviewToBack(screenshot)
+    }
   }
   
 }

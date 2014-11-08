@@ -18,6 +18,7 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
   var multiPeerController : MultiPeerController = MultiPeerController.sharedInstance
   var gameController = GameController.sharedInstance
   var nominatedPlayersArray = [Player]()
+  var currentMission : Mission!
   
   var screenWidth : CGFloat!
   var layout : UICollectionViewFlowLayout!
@@ -33,14 +34,16 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
     layout.minimumInteritemSpacing = screenWidth * 0.02
     layout.sectionInset.left = screenWidth * 0.05
     layout.sectionInset.right = screenWidth * 0.05
-    layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.23)
+    layout.itemSize = CGSize(width: screenWidth * 0.13, height: screenWidth * 0.17)
     
-    let currentMission = gameController.game.missions[gameController.game.currentMission] as Mission
+    currentMission = gameController.game.missions[gameController.game.currentMission] as Mission
     println("Nomination View Controller got an array: \(currentMission.nominatedPlayers.description)")
     nominatedPlayersArray = currentMission.nominatedPlayers
     collectionView.reloadData()
     self.approveButton.userInteractionEnabled = true
     self.rejectButton.userInteractionEnabled = true
+    approveButton.addBorder()
+    rejectButton.addBorder()
     
   }
   
@@ -55,6 +58,7 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
   
   @IBAction func approveNominatedTeam (sender: AnyObject)
   {
+    gameController.teamsVotedFor[gameController.game.currentMission][currentMission.rejectedTeamsCount] = true
     multiPeerController.sendInfoToMainBrain(["action" : "vote", "value" : "Approve"])
     self.approveButton.userInteractionEnabled = false
     self.rejectButton.userInteractionEnabled = false
@@ -66,6 +70,7 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
   
   @IBAction func rejectNominatedTeam (sender: AnyObject)
   {
+    gameController.teamsVotedFor[gameController.game.currentMission][currentMission.rejectedTeamsCount] = true
     multiPeerController.sendInfoToMainBrain(["action" : "vote", "value" : "Reject"])
     self.approveButton.userInteractionEnabled = false
     self.rejectButton.userInteractionEnabled = false

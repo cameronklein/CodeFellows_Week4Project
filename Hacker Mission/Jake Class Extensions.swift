@@ -9,6 +9,26 @@
 import Foundation
 import UIKit
 
+extension UIButton {
+  
+  func addBorder() {
+    
+    let buttonBackgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.15)
+    let cornerRadius = CGFloat(5.0)
+    let outlineColor1 = UIColor(red: 0.443, green: 0.961, blue: 0.082, alpha: 0.2).CGColor
+    let outlineColor2 = UIColor(red: 0.443, green: 0.961, blue: 0.082, alpha: 0.6).CGColor
+    
+    self.backgroundColor = buttonBackgroundColor
+    self.layer.masksToBounds = true
+    self.layer.cornerRadius = cornerRadius
+    self.layer.borderWidth = 2.0
+    self.layer.borderColor = outlineColor1
+    self.titleLabel?.textAlignment = NSTextAlignment.Center
+  
+  }
+}
+
+
 extension UILabel
 {
     func typingAnimation(durationPerCharacter : Float) -> Void
@@ -74,29 +94,14 @@ extension UILabel
     
       let view = UIView()
       self.superview?.addSubview(view)
-    
+      NSThread.sleepForTimeInterval(sleepLength)
       NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-        
-        UIView.animateWithDuration(0.05,
-          delay: 0.00,
-          options: UIViewAnimationOptions.AllowUserInteraction,
-          animations: { () -> Void in
-            if view.alpha == 0{
-              view.alpha = 1
-            } else {
-              view.alpha = 0
-            }
-            self.text = "\(nextText)_"
-          },
-          completion: { (success) -> Void in
-            if success == true{
-              self.typeToNewString(finalText, withInterval: sleepLength, startingText: nextText)
-            }
-        })
+        self.text = "\(nextText)_"
+        self.typeToNewString(finalText, withInterval: sleepLength, startingText: nextText)
       }
-    } else {
-      self.cursorBlink()
-    }
+      } else {
+        self.cursorBlink()
+      }
   }
     
     func cursorBlink ()  //made to be used after typingAnimation
