@@ -126,7 +126,9 @@ class LaunchViewController: UIViewController {
   func typingAnimation() {
     if self.shouldAnimate {
       if self.startedOnce == false {
-        self.flavorLabel.typeToNewString("The daring hackers of the Opposition have successfully weakened the iron grip of the oppressive government. Just three more incidents will incite a revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...", withInterval: 0.03, startingText: "")
+        let flavorTextPath = NSBundle.mainBundle().pathForResource("FlavorText", ofType: "plist")
+        let flavorTextDict = NSDictionary(contentsOfFile: flavorTextPath!)
+        self.flavorLabel.typeToNewString((flavorTextDict!["launch"] as String), withInterval: 0.03, startingText: "")
         self.startedOnce = true
       }
     }

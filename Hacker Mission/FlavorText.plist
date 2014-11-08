@@ -14,10 +14,7 @@
 		<string></string>
 	</dict>
 	<key>Launch</key>
-	<dict>
-		<key>FlavorText</key>
-		<string>The daring hackers of the Opposition have successfully weakened the iron grip of the oppressive government. Just three more incidents will incite a revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...</string>
-	</dict>
+	<string>The daring hackers of the Opposition have successfully weakened the iron grip of the oppressive government. Just three more incidents will incite a revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...</string>
 	<key>Onboarding</key>
 	<dict>
 		<key>PageOne</key>
@@ -31,7 +28,7 @@
 			<key>p4</key>
 			<string>Your goal : Take down the government by completing three missions that will embarrass the regime so much they will crumble.</string>
 			<key>p5</key>
-			<string>The hitch : Some of your \&quot;friends\&quot; are spies and will do anything to stop you from succeeding.</string>
+			<string>The hitch : Some of your &quot;friends&quot; are spies and will do anything to stop you from succeeding.</string>
 			<key>p6</key>
 			<string>Aren&apos;t friends great? You should have more of them.</string>
 		</dict>
@@ -57,7 +54,7 @@
 			<key>p2</key>
 			<string>But if three missions fail, the hidden agents win and the totalitarian regime lives on. And you, brave hacker, will be...</string>
 			<key>p3</key>
-			<string>\&quot;Re-educated.\&quot;</string>
+			<string>&quot;Re-educated.&quot;</string>
 			<key>p4</key>
 			<string>Choose your teams wisely.</string>
 			<key>p5</key>
