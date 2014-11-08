@@ -19,6 +19,7 @@
         </mutableArray>
         <mutableArray key="fontawesome-webfont.ttf">
             <string>FontAwesome</string>
+            <string>FontAwesome</string>
         </mutableArray>
         <mutableArray key="glass_tty_vt220.ttf">
             <string>Glass_TTY_VT220</string>
@@ -324,6 +325,7 @@
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gX0-Qb-HeF">
                                 <rect key="frame" x="32" y="292" width="536" height="195"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="O2M-xi-TRV">
                                     <size key="itemSize" width="50" height="50"/>
@@ -616,6 +618,17 @@
                                     <action selector="confirmNominations:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yuR-xI-zL6"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jyQ-A6-9hc">
+                                <rect key="frame" x="538" y="20" width="46" height="30"/>
+                                <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="15"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="gearButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QC8-9I-2OG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.40791291917308525" green="1" blue="0.44638519466923865" alpha="1" colorSpace="calibratedRGB"/>
@@ -627,6 +640,7 @@
                             <constraint firstItem="gRv-F4-kIG" firstAttribute="top" secondItem="8CR-C6-ZKL" secondAttribute="bottom" constant="8" id="DcN-vJ-gmI"/>
                             <constraint firstItem="8CR-C6-ZKL" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="IXF-NC-jxl"/>
                             <constraint firstAttribute="centerX" secondItem="gRv-F4-kIG" secondAttribute="centerX" id="JFr-xf-8a5"/>
+                            <constraint firstItem="jyQ-A6-9hc" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Jg9-ki-yQK"/>
                             <constraint firstItem="o7P-p7-Sfa" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="OQA-gr-YN0"/>
                             <constraint firstItem="ovz-Ln-f4Q" firstAttribute="trailing" secondItem="8CR-C6-ZKL" secondAttribute="trailing" id="OgY-Hm-6T6"/>
                             <constraint firstItem="82h-Xd-0Am" firstAttribute="top" secondItem="gRv-F4-kIG" secondAttribute="bottom" constant="8" id="PWY-YB-ZJ5"/>
@@ -655,6 +669,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="izK-87-4nm" secondAttribute="trailing" constant="-16" id="tfQ-Td-Adj"/>
                             <constraint firstAttribute="centerX" secondItem="o7P-p7-Sfa" secondAttribute="centerX" id="uPY-Cz-fj8"/>
                             <constraint firstItem="rI0-ga-ANe" firstAttribute="centerX" secondItem="8CR-C6-ZKL" secondAttribute="centerX" id="ubv-uW-9r7"/>
+                            <constraint firstItem="jyQ-A6-9hc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="y5Z-WC-X0w"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -669,6 +684,7 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="o7P-p7-Sfa" id="liG-8r-Yuj"/>
                         <outlet property="confirmNominationButton" destination="gRv-F4-kIG" id="M1j-v1-lM1"/>
+                        <outlet property="gearButton" destination="jyQ-A6-9hc" id="Yps-th-ELr"/>
                         <outlet property="incomingMesageLabel" destination="PYt-Mz-d6u" id="9MS-wE-dOy"/>
                         <outlet property="mission1ImageView" destination="4wM-5k-Cs2" id="wDH-XM-hGb"/>
                         <outlet property="mission1OutcomeLabel" destination="u4c-3W-8pu" id="PUl-bk-o0f"/>

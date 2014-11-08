@@ -57,6 +57,8 @@
 		7EF0C12C1A02AAEC002A6219 /* MissionOutcomeVoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF0C12B1A02AAEC002A6219 /* MissionOutcomeVoteViewController.swift */; };
 		7EF0C12F1A02C358002A6219 /* MissionTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF0C12D1A02C358002A6219 /* MissionTextViewController.swift */; };
 		7EF0C1301A02C358002A6219 /* MissionTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF0C12E1A02C358002A6219 /* MissionTextViewController.xib */; };
+		7EFC17ED1A0D7429009FC489 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFC17EB1A0D7429009FC489 /* HelpViewController.swift */; };
+		7EFC17EE1A0D7429009FC489 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EFC17EC1A0D7429009FC489 /* HelpViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +125,8 @@
 		7EF0C12B1A02AAEC002A6219 /* MissionOutcomeVoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionOutcomeVoteViewController.swift; sourceTree = "<group>"; };
 		7EF0C12D1A02C358002A6219 /* MissionTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionTextViewController.swift; sourceTree = "<group>"; };
 		7EF0C12E1A02C358002A6219 /* MissionTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MissionTextViewController.xib; sourceTree = "<group>"; };
+		7EFC17EB1A0D7429009FC489 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpViewController.swift; path = ../HelpViewController.swift; sourceTree = "<group>"; };
+		7EFC17EC1A0D7429009FC489 /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HelpViewController.xib; path = ../HelpViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,7 @@
 		16C784A919FEC2A7008421CC /* View Layer */ = {
 			isa = PBXGroup;
 			children = (
+				7EFC17EC1A0D7429009FC489 /* HelpViewController.xib */,
 				7E46DF2419FEB359009215E3 /* Main.storyboard */,
 				7E46DF2919FEB359009215E3 /* LaunchScreen.xib */,
 				16C784AD19FEC9FF008421CC /* PlayerCell.xib */,
@@ -185,6 +190,7 @@
 				164EDA8E1A015008005F7452 /* CharacterCreationViewController.swift */,
 				7EF0C12B1A02AAEC002A6219 /* MissionOutcomeVoteViewController.swift */,
 				7E3CF1581A09713F0083C215 /* PrivacyPolicyViewController.swift */,
+				7EFC17EB1A0D7429009FC489 /* HelpViewController.swift */,
 			);
 			name = "Controller Layer";
 			sourceTree = "<group>";
@@ -362,6 +368,7 @@
 				43BED81A1A0BD8460066578F /* glass_tty_vt220.ttf in Resources */,
 				7EF0C12A1A02A519002A6219 /* RevealMissionOutcomeViewController.xib in Resources */,
 				7EF0C1301A02C358002A6219 /* MissionTextViewController.xib in Resources */,
+				7EFC17EE1A0D7429009FC489 /* HelpViewController.xib in Resources */,
 				7E46DF2B19FEB359009215E3 /* LaunchScreen.xib in Resources */,
 				7E46DF2819FEB359009215E3 /* Images.xcassets in Resources */,
 				7E85DD001A073C9B00C9E303 /* OnboardPageViewController.xib in Resources */,
@@ -415,6 +422,7 @@
 				7EF0C12F1A02C358002A6219 /* MissionTextViewController.swift in Sources */,
 				7EF0C1291A02A519002A6219 /* RevealMissionOutcomeViewController.swift in Sources */,
 				7E46DF5019FF336E009215E3 /* GameSession.swift in Sources */,
+				7EFC17ED1A0D7429009FC489 /* HelpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

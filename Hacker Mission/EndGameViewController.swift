@@ -29,8 +29,11 @@ class EndGameViewController: UIViewController {
     if game.passedMissionCount == 3 {
       if gameController.thisPlayer.playerRole == .Agent {
         gameOutcomeTitle.text = "You Lose!"
+        gameOutcomeLabel.text = "You hear the din of the populace coming alive. Storming of government buildings has already begun. It will not be long before the social structure is overthrown. And, more importantly to you, before records of your government involvement are discovered. Better get out of town. And soon."
+      } else {
+        gameOutcomeLabel.text = "The populace has come alive, storming the streets in hopes of storming government buildings. It has begun. When day breaks, the government will be no more. Underground news is rife with tales of your exploits. You are adored. There is a leadership vacuum for the taking. Will you step up?"
       }
-      gameOutcomeLabel.text = "Hackers win the day!!!11"
+      
     } else if game.failedMissionCount == 3 {
       if gameController.thisPlayer.playerRole == .Hacker {
         gameOutcomeTitle.text = "You Lose!"

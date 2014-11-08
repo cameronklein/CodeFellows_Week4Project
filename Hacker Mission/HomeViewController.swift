@@ -32,6 +32,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   @IBOutlet weak var votingResultsIndicatorLabel: UILabel!
   @IBOutlet weak var nominationPromptLabel: UILabel!
   @IBOutlet weak var confirmNominationButton: UIButton!
+  @IBOutlet weak var gearButton: UIButton!
   
   var multiPeerController = MultiPeerController.sharedInstance
   var gameController = GameController.sharedInstance
@@ -52,6 +53,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       self.playersCollectionView.delegate = self
       self.playersCollectionView.dataSource = self
       gameController.homeVC = self
+      gearButton.titleLabel!.text = "\u{f013}"
       
       confirmNominationButton.addBorder()
       
@@ -480,6 +482,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             completion: { (success) -> Void in
               completionHandler()
             })})}
+  }
+  
+  @IBAction func gearButtonPressed(sender: AnyObject) {
+    let settingsVC = HelpViewController()
+    self.presentViewController(settingsVC, animated: true, completion: nil)
+    
   }
 
 }
