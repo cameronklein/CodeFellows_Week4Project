@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EndGame</key>
+	<dict>
+		<key>WinMessageForAgent</key>
+		<string></string>
+		<key>LoseMessageForAgent</key>
+		<string>You hear the din of the populace coming alive. Storming of government buildings has already begun. It will not be long before the social structure is overthrown. And, more importantly to you, before records of your government involvement are discovered. Better get out of town. And soon.</string>
+		<key>WinMessageForHacker</key>
+		<string>The populace has come alive, storming the streets in hopes of storming government buildings. It has begun. When day breaks, the government will be no more. Underground news is rife with tales of your exploits. You are adored. There is a leadership vacuum for the taking. Will you step up?</string>
+		<key>LoseMessageForHacker</key>
+		<string></string>
+	</dict>
+	<key>Launch</key>
+	<dict>
+		<key>FlavorText</key>
+		<string>The daring hackers of the Opposition have successfully weakened the iron grip of the oppressive government. Just three more incidents will incite a revolution. Your battered laptop is the ultimate weapon for the hearts and minds of your fellow citizens...</string>
+	</dict>
+	<key>Onboarding</key>
+	<dict>
+		<key>PageOne</key>
+		<dict>
+			<key>p1</key>
+			<string>Hacker Missions is a party game for a group of five to ten players.</string>
+			<key>p2</key>
+			<string>Play with your friends in the same room and look them in the eyes while they lie to you.</string>
+			<key>p3</key>
+			<string>You will assume the role of a courageous hacker, living in a country with an evil, corrupt, totalitarian government.</string>
+			<key>p4</key>
+			<string>Your goal : Take down the government by completing three missions that will embarrass the regime so much they will crumble.</string>
+			<key>p5</key>
+			<string>The hitch : Some of your \&quot;friends\&quot; are spies and will do anything to stop you from succeeding.</string>
+			<key>p6</key>
+			<string>Aren&apos;t friends great? You should have more of them.</string>
+		</dict>
+		<key>PageTwo</key>
+		<dict>
+			<key>p1</key>
+			<string>A leader will be assigned for each mission. The leader will nominate a team to carry out the mission.</string>
+			<key>p2</key>
+			<string>The nominations will be put to a vote. Every layer gets to vote on whether the team is approved. If the team is approved, the mission proceeds. If not, the leadership rotates to the next player and a new team will need to be proposed.</string>
+			<key>p3</key>
+			<string>If five nominated teams in a  row fail to be approved, the mission will fail. Who dares, wins, after all.</string>
+			<key>p4</key>
+			<string>The brave nominees will then carry out the mission. Planned to a tee, the mission will succeed unless sabotaged.</string>
+			<key>p5</key>
+			<string>If a government agent is in the team, however, they can choose to sabotage the mission.</string>
+			<key>p6</key>
+			<string>Or not. Spies are sneaky. You can&apos;t trust them. Some of your friends are spies. You can&apos;t trust them, either.</string>
+		</dict>
+		<key>PageThree</key>
+		<dict>
+			<key>p1</key>
+			<string>If three missions succeed, the hackers win and the government is overthrown. There is dancing in the streets and statues topple.</string>
+			<key>p2</key>
+			<string>But if three missions fail, the hidden agents win and the totalitarian regime lives on. And you, brave hacker, will be...</string>
+			<key>p3</key>
+			<string>\&quot;Re-educated.\&quot;</string>
+			<key>p4</key>
+			<string>Choose your teams wisely.</string>
+			<key>p5</key>
+			<string>Sniff out the spies.</string>
+			<key>p6</key>
+			<string>Trust no one.</string>
+		</dict>
+	</dict>
+	<key>Mission</key>
+	<array>
+		<dict>
+			<key>Title</key>
+			<string>Pure Water</string>
+			<key>Description</key>
+			<string>The government is seeding the water supply with drugs to control the population. Defeat the grid security to stop the flow of mood alterants.</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>LOLLOLLOL</string>
+			<key>Description</key>
+			<string>The comedy program \&quot;Night Time Live\&quot; broadcasts tonight. Rewrite the teleprompter jokes to become critical of the government as they perform live on air.</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Get Lost</string>
+			<key>Description</key>
+			<string>The Secretary for Culture’s motorcade is on the move. Defeat the satellite uplink to hack their GPS and reroute the motorcade to a waiting capture team.</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Higher Education</string>
+			<key>Description</key>
+			<string>Hijack the internal security camera feed from a secret reeducation camp and reroute the signal to replace the nightly celebrity report.</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>A Percentage</string>
+			<key>Description</key>
+			<string>Opposition sympathizers have opened a port to the Wealth Exchange market systems. Hack in and redistribute assets to the poor.</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Blind Justice</string>
+			<key>Description</key>
+			<string>This week’s mass execution includes key Opposition leaders. Activate prison fire suppression systems to provide cover to an extraction team.</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Musical Chairs</string>
+			<key>Description</key>
+			<string>The music played in all public spaces contains subliminal messages supporting the state. Turn up the volume on the messages to expose the ploy.</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Voting Record</string>
+			<key>Description</key>
+			<string>The nationwide electronic voting system automatically changes votes to maintain the status quo. Change the algorithm to favor the Opposition cause.</string>
+		</dict>
+	</array>
+</dict>
+</plist>

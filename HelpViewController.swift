@@ -10,11 +10,25 @@ import UIKit
 
 class HelpViewController: UIViewController {
   
+  var gameController = GameController.sharedInstance
   
+  @IBOutlet weak var vibrationSwitch: UISwitch!
   @IBOutlet weak var numberOfAgentsLabel: UILabel!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    switch gameController.game.players.count{
+    case 5, 6:
+    numberOfAgentsLabel.text = 2.description
+    case 7, 8, 9:
+    numberOfAgentsLabel.text = 3.description
+    case 10:
+    numberOfAgentsLabel.text = 4.description
+    default:
+    numberOfAgentsLabel.text = 1.description
+    }
+
+    vibrationSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey("vibrationOn")
   }
 
   override func didReceiveMemoryWarning() {
@@ -37,5 +51,13 @@ class HelpViewController: UIViewController {
   func restartGame() {
     UIApplication.sharedApplication().keyWindow?.rootViewController = LaunchViewController()
   }
+  
+  @IBAction func switchSwitched(sender: UISwitch) {
+    
+    NSUserDefaults.standardUserDefaults().setBool(sender.on, forKey: "vibrationOn")
+    NSUserDefaults.standardUserDefaults().synchronize()
+
+  }
+  
 
 }

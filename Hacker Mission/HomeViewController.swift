@@ -79,8 +79,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       //Round corners on missions view
       self.missionView.layer.cornerRadius = self.missionView.frame.size.width / 32
       self.missionView.layer.masksToBounds = true
-        
-      //self.backgroundImageView.animateGif("matrix_code1.gif", startAnimating: true)
+      
     }
     
     override func viewWillAppear(animated: Bool)
@@ -315,11 +314,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       })
     }
   }
-//
-//  func revealVotes(game : GameSession) {
-//   self.playersCollectionView.reloadData()
-//  }
-//
+
   func startMission() {
     self.lastRejectedGameCount = 0
     
@@ -455,8 +450,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         label.alpha = 1
     }
-
-  override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}
   
   func animateIncomingMessageLabel(incomingMessageText: String, completionHandler : () -> (Void)) {
     
@@ -485,8 +478,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   }
   
   @IBAction func gearButtonPressed(sender: AnyObject) {
+    let screenshot = self.view.snapshotViewAfterScreenUpdates(false)
     let settingsVC = HelpViewController()
-    self.presentViewController(settingsVC, animated: true, completion: nil)
+    self.presentViewController(settingsVC, animated: true) { () -> Void in
+      settingsVC.view.addSubview(screenshot)
+      settingsVC.view.sendSubviewToBack(screenshot)
+    }
     
   }
 

@@ -38,6 +38,9 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
     
     self.view.gestureRecognizers = self.pageViewController!.gestureRecognizers
     
+    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "vibrationOn")
+    NSUserDefaults.standardUserDefaults().synchronize()
+    
     UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
     
   }

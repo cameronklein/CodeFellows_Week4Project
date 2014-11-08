@@ -166,7 +166,7 @@ class LaunchViewController: UIViewController {
           imageView.frame.origin.y = imageAnchorY
           
         })
-        }) { (Finished) -> Void in
+        }) { (finished) -> Void in
           
           self.pauseTimerFor()
           
@@ -198,7 +198,6 @@ class LaunchViewController: UIViewController {
     followerController?.launchVC = self
     masterController?.startLookingForPlayers()
     masterController?.launchVC = self
-    
     
   }
 
@@ -271,17 +270,17 @@ class LaunchViewController: UIViewController {
   }
     
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-      
-      if segue.identifier == "SHOW_CHARCREATE" {
-        let destinationVC = segue.destinationViewController as CharacterCreationViewController
-        destinationVC.wasPresented = true
-        let screenshot = self.view.snapshotViewAfterScreenUpdates(false)
-        destinationVC.view.addSubview(screenshot)
-        destinationVC.view.sendSubviewToBack(screenshot)
-      }
-      
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+    if segue.identifier == "SHOW_CHARCREATE" {
+      let destinationVC = segue.destinationViewController as CharacterCreationViewController
+      destinationVC.wasPresented = true
+      let screenshot = self.view.snapshotViewAfterScreenUpdates(false)
+      destinationVC.view.addSubview(screenshot)
+      destinationVC.view.sendSubviewToBack(screenshot)
     }
+    
+  }
   
   @IBAction func createCharacter(sender: AnyObject) {
     self.performSegueWithIdentifier("SHOW_CHARCREATE", sender: self)
