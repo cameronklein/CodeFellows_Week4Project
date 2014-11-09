@@ -13,18 +13,24 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
   var pageViewController : UIPageViewController!
   var beginningVC : OnboardPageViewController!
   var controllers = [UIViewController]()
+  var onboardDict : NSDictionary!
 
   @IBOutlet weak var pageControl: UIPageControl!
   
   override func viewDidLoad() {
+    let flavorTextPath = NSBundle.mainBundle().pathForResource("FlavorText", ofType: "plist")
+    let flavorTextDict = NSDictionary(contentsOfFile: flavorTextPath!)
+    onboardDict = flavorTextDict!["Onboarding"] as NSDictionary
+    let flavorTextOne = onboardDict["PageOne"] as [String : String]
+      
     self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
     beginningVC = OnboardPageViewController(nibName: "OnboardPageViewController", bundle: NSBundle.mainBundle())
-      beginningVC.p1 = "Hacker Missions is a party game for a group of five to ten players."
-      beginningVC.p2 = "Play with your friends in the same room and look them in the eyes while they lie to you."
-      beginningVC.p3 = "You will assume the role of a courageous hacker, living in a country with an evil, corrupt, totalitarian government."
-      beginningVC.p4 = "Your goal : Take down the government by completing three missions that will embarrass the regime so much they will crumble."
-      beginningVC.p5 = "The hitch : Some of your \"friends\" are spies and will do anything to stop you from succeeding."
-      beginningVC.p6 = "Aren't friends great? You should have more of them."
+    beginningVC.p1 = flavorTextOne["p1"]
+    beginningVC.p2 = flavorTextOne["p2"]
+    beginningVC.p3 = flavorTextOne["p3"]
+    beginningVC.p4 = flavorTextOne["p4"]
+    beginningVC.p5 = flavorTextOne["p5"]
+    beginningVC.p6 = flavorTextOne["p6"]
     
     self.setupArray()
     let VCArray = [beginningVC]
@@ -38,26 +44,31 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
     
     self.view.gestureRecognizers = self.pageViewController!.gestureRecognizers
     
+    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "vibrationOn")
+    NSUserDefaults.standardUserDefaults().synchronize()
+    
     UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
     
   }
   
   func setupArray() {
+    let flavorTextTwo = onboardDict["PageTwo"] as [String : String]
     let VC2 = OnboardPageViewController(nibName: "OnboardPageViewController", bundle: NSBundle.mainBundle())
-    VC2.p1 = "A leader will be assigned for each mission. The leader will nominate a team to carry out the mission."
-    VC2.p2 = "The nominations will be put to a vote. Every layer gets to vote on whether the team is approved. If the team is approved, the mission proceeds. If not, the leadership rotates to the next player and a new team will need to be proposed."
-    VC2.p3 = "If five nominated teams in a  row fail to be approved, the mission will fail. Who dares, wins, after all."
-    VC2.p4 = "The brave nominees will then carry out the mission. Planned to a tee, the mission will succeed unless sabotaged."
-    VC2.p5 = "If a government agent is in the team, however, they can choose to sabotage the mission."
-    VC2.p6 = "Or not. Spies are sneaky. You can't trust them. Some of your friends are spies. You can't trust them, either."
+    VC2.p1 = flavorTextTwo["p1"]
+    VC2.p2 = flavorTextTwo["p2"]
+    VC2.p3 = flavorTextTwo["p3"]
+    VC2.p4 = flavorTextTwo["p4"]
+    VC2.p5 = flavorTextTwo["p5"]
+    VC2.p6 = flavorTextTwo["p6"]
     
     let VC3 = OnboardPageViewController(nibName: "OnboardPageViewController", bundle: NSBundle.mainBundle())
-    VC3.p1 = "If three missions succeed, the hackers win and the government is overthrown. There is dancing in the streets and statues topple."
-    VC3.p2 = "But if three missions fail, the hidden agents win and the totalitarian regime lives on. And you, brave hacker, will be..."
-    VC3.p3 = "\"Re-educated.\""
-    VC3.p4 = "Choose your teams wisely."
-    VC3.p5 = "Sniff out the spies."
-    VC3.p6 = "Trust no one."
+    let flavorTextThree = onboardDict["PageThree"] as [String : String]
+    VC3.p1 = flavorTextThree["p1"]
+    VC3.p2 = flavorTextThree["p2"]
+    VC3.p3 = flavorTextThree["p3"]
+    VC3.p4 = flavorTextThree["p4"]
+    VC3.p5 = flavorTextThree["p5"]
+    VC3.p6 = flavorTextThree["p6"]
     
     controllers.append(beginningVC)
     controllers.append(VC2)
