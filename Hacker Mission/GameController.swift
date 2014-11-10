@@ -65,9 +65,11 @@ class GameController {
           self.handleEvent(newGameInfo)
         }
       } else {
-    
-      AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-      AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+      
+      if NSUserDefaults.standardUserDefaults().boolForKey("vibrationOn") {
+        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+      }
       
       findMe()
       println("GAME CONTROLLER: Received \(event.rawValue) event from Main Brain. Woot.")

@@ -43,6 +43,7 @@
 		7E46DF4719FF126A009215E3 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4619FF126A009215E3 /* GameController.swift */; };
 		7E46DF4919FF130A009215E3 /* GameEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4819FF130A009215E3 /* GameEvent.swift */; };
 		7E46DF5019FF336E009215E3 /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46DF4A19FF336E009215E3 /* GameSession.swift */; };
+		7E7225AD1A0E9BD3007D1DF4 /* FlavorText.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E7225AC1A0E9BD3007D1DF4 /* FlavorText.plist */; };
 		7E8415A51A0ABF58006BCAB7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E8415A41A0ABF58006BCAB7 /* AudioToolbox.framework */; };
 		7E85DCFB1A073B9300C9E303 /* RootOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E85DCF91A073B9300C9E303 /* RootOnboardViewController.swift */; };
 		7E85DCFC1A073B9300C9E303 /* RootOnboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E85DCFA1A073B9300C9E303 /* RootOnboardViewController.xib */; };
@@ -114,6 +115,7 @@
 		7E46DF4619FF126A009215E3 /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		7E46DF4819FF130A009215E3 /* GameEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEvent.swift; sourceTree = "<group>"; };
 		7E46DF4A19FF336E009215E3 /* GameSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
+		7E7225AC1A0E9BD3007D1DF4 /* FlavorText.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FlavorText.plist; sourceTree = "<group>"; };
 		7E8415A41A0ABF58006BCAB7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7E85DCF91A073B9300C9E303 /* RootOnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootOnboardViewController.swift; sourceTree = "<group>"; };
 		7E85DCFA1A073B9300C9E303 /* RootOnboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootOnboardViewController.xib; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 		7E46DF1E19FEB359009215E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7E7225AC1A0E9BD3007D1DF4 /* FlavorText.plist */,
 				43BED8191A0BD8460066578F /* glass_tty_vt220.ttf */,
 				7E46DF2719FEB359009215E3 /* Images.xcassets */,
 				164EDA961A018C5B005F7452 /* HackerMissionTitle.pdf */,
@@ -375,6 +378,7 @@
 				43BED81A1A0BD8460066578F /* glass_tty_vt220.ttf in Resources */,
 				7EF0C12A1A02A519002A6219 /* RevealMissionOutcomeViewController.xib in Resources */,
 				7EF0C1301A02C358002A6219 /* MissionTextViewController.xib in Resources */,
+				7E7225AD1A0E9BD3007D1DF4 /* FlavorText.plist in Resources */,
 				7EFC17EE1A0D7429009FC489 /* HelpViewController.xib in Resources */,
 				7E46DF2B19FEB359009215E3 /* LaunchScreen.xib in Resources */,
 				7E46DF2819FEB359009215E3 /* Images.xcassets in Resources */,

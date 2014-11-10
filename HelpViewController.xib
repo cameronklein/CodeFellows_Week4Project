@@ -11,12 +11,14 @@
             <string>Glass_TTY_VT220</string>
             <string>Glass_TTY_VT220</string>
             <string>Glass_TTY_VT220</string>
+            <string>Glass_TTY_VT220</string>
         </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HelpViewController" customModule="Hacker_Mission" customModuleProvider="target">
             <connections>
                 <outlet property="numberOfAgentsLabel" destination="rvw-dl-uEl" id="8fu-ia-YSB"/>
+                <outlet property="vibrationSwitch" destination="1AN-lY-m0L" id="gRv-gZ-TdZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,6 +27,24 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhO-8U-gPH">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="E5t-Zf-VUz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R3V-9O-FaG">
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="VVy-hZ-ktT">
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <vibrancyEffect>
+                                    <blurEffect style="light"/>
+                                </vibrancyEffect>
+                            </visualEffectView>
+                        </subviews>
+                    </view>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help &amp; Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N07-nA-FKf">
                     <rect key="frame" x="233" y="36" width="135" height="18"/>
                     <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="18"/>
@@ -32,7 +52,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bV4-X7-O7a">
-                    <rect key="frame" x="160" y="70" width="280" height="38"/>
+                    <rect key="frame" x="160" y="86" width="280" height="38"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Government Agents:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5s0-Uf-zuN">
                             <rect key="frame" x="0.0" y="10" width="252" height="18"/>
@@ -47,7 +67,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="rvw-dl-uEl" firstAttribute="top" secondItem="bV4-X7-O7a" secondAttribute="top" id="JF3-y7-mah"/>
                         <constraint firstAttribute="trailing" secondItem="rvw-dl-uEl" secondAttribute="trailing" id="KAh-02-JQ1"/>
@@ -68,16 +88,46 @@
                         <action selector="restartButtonPressed:" destination="-1" eventType="touchUpInside" id="RnY-zg-Vem"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vibration Alerts:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozU-Zg-AQD">
+                    <rect key="frame" x="160" y="146" width="153" height="18"/>
+                    <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="18"/>
+                    <color key="textColor" red="1" green="0.052867877950000003" blue="0.14780411399999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1AN-lY-m0L">
+                    <rect key="frame" x="391" y="139" width="51" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="40y-yw-Ytc"/>
+                    </constraints>
+                    <color key="onTintColor" red="1" green="0.052867877950000003" blue="0.14780411399999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="switchSwitched:" destination="-1" eventType="valueChanged" id="VrX-ot-Vs5"/>
+                    </connections>
+                </switch>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="bV4-X7-O7a" firstAttribute="top" secondItem="N07-nA-FKf" secondAttribute="bottom" constant="16" id="7f7-Ex-rLS"/>
+                <constraint firstItem="ozU-Zg-AQD" firstAttribute="centerY" secondItem="1AN-lY-m0L" secondAttribute="centerY" id="21C-Qw-iKm"/>
+                <constraint firstItem="bhO-8U-gPH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="21P-1E-W2m"/>
+                <constraint firstItem="bV4-X7-O7a" firstAttribute="top" secondItem="N07-nA-FKf" secondAttribute="bottom" constant="32" id="7f7-Ex-rLS"/>
+                <constraint firstItem="bhO-8U-gPH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9uW-8h-XSz"/>
+                <constraint firstItem="ozU-Zg-AQD" firstAttribute="leading" secondItem="5s0-Uf-zuN" secondAttribute="leading" id="Gjp-w8-j5h"/>
+                <constraint firstItem="ozU-Zg-AQD" firstAttribute="top" secondItem="5s0-Uf-zuN" secondAttribute="bottom" constant="32" id="Nas-5d-d5d"/>
+                <constraint firstItem="rvw-dl-uEl" firstAttribute="trailing" secondItem="1AN-lY-m0L" secondAttribute="trailing" id="Xap-sf-d60"/>
                 <constraint firstAttribute="centerX" secondItem="N07-nA-FKf" secondAttribute="centerX" id="Yxd-lY-Y6u"/>
+                <constraint firstItem="1AN-lY-m0L" firstAttribute="leading" secondItem="ozU-Zg-AQD" secondAttribute="trailing" constant="24" id="b7u-yB-L5R"/>
+                <constraint firstAttribute="trailing" secondItem="bhO-8U-gPH" secondAttribute="trailing" id="cB8-VM-iwt"/>
                 <constraint firstItem="N07-nA-FKf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="36" id="jAb-eE-xd2"/>
+                <constraint firstAttribute="bottom" secondItem="bhO-8U-gPH" secondAttribute="bottom" id="nJ7-IS-AOI"/>
                 <constraint firstAttribute="centerX" secondItem="bV4-X7-O7a" secondAttribute="centerX" id="o9d-xr-bTp"/>
                 <constraint firstAttribute="bottom" secondItem="QAp-sf-cnf" secondAttribute="bottom" constant="32" id="y1u-5e-d3L"/>
                 <constraint firstAttribute="centerX" secondItem="QAp-sf-cnf" secondAttribute="centerX" id="yBg-mW-I6N"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="b7u-yB-L5R"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="326" y="318"/>
         </view>
     </objects>

@@ -20,7 +20,7 @@ class LeadGameController {
   var peerCount : Int = 0
   var myUserInfo : UserInfo!
   var launchVC : LaunchViewController!
-  var flavorTextArray = [(String,String)]()
+  var flavorTextArray = [[String: String]]()
   
   var requestQueue = NSOperationQueue()
   
@@ -158,8 +158,9 @@ class LeadGameController {
     for mission in missions {
       
       let flavorTextIndex = Int(arc4random_uniform(UInt32(flavorTextArray.count)))
-      mission.missionName = flavorTextArray[flavorTextIndex].0
-      mission.missionDescription = flavorTextArray[flavorTextIndex].1
+      let missionText = flavorTextArray[flavorTextIndex]
+      mission.missionName = missionText["Title"]!
+      mission.missionDescription = missionText["Description"]
       flavorTextArray.removeAtIndex(flavorTextIndex)
       
     }
@@ -523,18 +524,11 @@ class LeadGameController {
   }
   
   func loadFlavorTextIntoArray() {
-    flavorTextArray.append(("Pure Water","The government is seeding the water supply with drugs to control the population. Defeat the grid security to stop the flow of mood alterants."))
-    flavorTextArray.append(("LOLLOLLOL","The comedy program \"Night Time Live\" broadcasts tonight. Rewrite the teleprompter jokes to become critical of the government as they perform live on air."))
-    flavorTextArray.append(("Get Lost","The Secretary for Culture’s motorcade is on the move. Defeat the satellite uplink to hack their GPS and reroute the motorcade to a waiting capture team."))
-    flavorTextArray.append(("Higher Education","Hijack the internal security camera feed from a secret reeducation camp and reroute the signal to replace the nightly celebrity report."))
-    flavorTextArray.append(("A Percentage","Opposition sympathizers have opened a port to the Wealth Exchange market systems. Hack in and redistribute assets to the poor."))
-    flavorTextArray.append(("Blind Justice","This week’s mass execution includes key Opposition leaders. Activate prison fire suppression systems to provide cover to an extraction team."))
-    flavorTextArray.append(("Musical Chairs","The music played in all public spaces contains subliminal messages supporting the state. Turn up the volume on the messages to expose the ploy."))
-    flavorTextArray.append(("Voting Record","The nationwide electronic voting system automatically changes votes to maintain the status quo. Change the algorithm to favor the Opposition cause."))
-//    flavorTextArray.append(("",""))
-//    flavorTextArray.append(("",""))
-//    flavorTextArray.append(("",""))
     
+    let flavorTextPath = NSBundle.mainBundle().pathForResource("FlavorText", ofType: "plist")
+    let flavorTextDict = NSDictionary(contentsOfFile: flavorTextPath!)
+    flavorTextArray = flavorTextDict!["Mission"] as [[String : String]]
+
   }
   
   func delay(delay:Double, closure:()->()) {
