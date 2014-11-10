@@ -202,7 +202,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
             self.saveCharacterButton.enabled = true
           self.saveCharacterButton.hidden = false
           self.disabledButtonText.hidden = true
-            self.saveCharacterButton.setTitle("<<Save Info>>", forState: UIControlState.Normal)
+            self.saveCharacterButton.setTitle("<<Done>>", forState: UIControlState.Normal)
           self.saveCharacterButton.backgroundColor = self.buttonBackgroundColor
           self.saveCharacterButton.layer.masksToBounds = true
           self.saveCharacterButton.layer.cornerRadius = self.cornerRadius

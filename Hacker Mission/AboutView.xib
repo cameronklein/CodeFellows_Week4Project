@@ -29,11 +29,11 @@
             <subviews>
                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1y-CH-odm">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4Lz-Ah-TWV">
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.59999999999999964" contentMode="center" id="4Lz-Ah-TWV">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tlt-97-Bz6">
+                            <visualEffectView opaque="NO" alpha="0.69999999999999973" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tlt-97-Bz6">
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="zVN-gH-CP8">
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
@@ -80,8 +80,8 @@ Nate Birkholz</string>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6CB-OQ-Oxq">
-                    <rect key="frame" x="245" y="535" width="110" height="29"/>
-                    <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="18"/>
+                    <rect key="frame" x="256" y="539" width="88" height="25"/>
+                    <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="14"/>
                     <inset key="contentEdgeInsets" minX="5" minY="4" maxX="5" maxY="6"/>
                     <state key="normal" title="&lt;&lt;Got It&gt;&gt;">
                         <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -92,7 +92,7 @@ Nate Birkholz</string>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="pI9-rD-xJZ" secondAttribute="trailing" constant="32" id="0wY-sS-ZXQ"/>
                 <constraint firstItem="m1y-CH-odm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5eU-5r-ho4"/>
