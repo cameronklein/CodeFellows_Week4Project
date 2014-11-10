@@ -57,8 +57,9 @@ class EndGameViewController: UIViewController {
       parentVC.view.alpha = 0
       return ()
     }) { (success) -> Void in
-      UIApplication.sharedApplication().keyWindow?.rootViewController = LaunchViewController()
-      return ()
+      let launchVC = LaunchViewController()
+      launchVC.resetForNewGame()
+      UIApplication.sharedApplication().keyWindow?.rootViewController = launchVC
     }
     
     
