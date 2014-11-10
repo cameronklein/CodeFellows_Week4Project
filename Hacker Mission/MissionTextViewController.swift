@@ -10,6 +10,7 @@ import UIKit
 
 class MissionTextViewController: UIViewController {
 
+  @IBOutlet weak var button: UIButton!
   @IBOutlet weak var missionFlavorTextLabel: UILabel!
   @IBOutlet weak var missionFlavorTextDescriptionLabel: UILabel!
   
@@ -17,6 +18,7 @@ class MissionTextViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    button.addBorder()
   }
   
   override func viewWillAppear(animated: Bool) {

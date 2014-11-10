@@ -128,7 +128,7 @@ class LaunchViewController: UIViewController {
       if self.startedOnce == false {
         let flavorTextPath = NSBundle.mainBundle().pathForResource("FlavorText", ofType: "plist")
         let flavorTextDict = NSDictionary(contentsOfFile: flavorTextPath!)
-        self.flavorLabel.typeToNewString((flavorTextDict!["launch"] as String), withInterval: 0.03, startingText: "")
+        self.flavorLabel.typeToNewString((flavorTextDict!["Launch"] as String), withInterval: 0.03, startingText: "")
         self.startedOnce = true
       }
     }
@@ -310,6 +310,15 @@ class LaunchViewController: UIViewController {
       PPVC.view.addSubview(screenshot)
       PPVC.view.sendSubviewToBack(screenshot)
     }
+  }
+  
+  func resetForNewGame(){
+    masterController?.resetForNewGame()
+    followerController?.resetForNewGame()
+    multiPeerController.resetForNewGame()
+    masterController = nil
+    followerController = nil
+    userInfoMyself = nil
   }
   
 }

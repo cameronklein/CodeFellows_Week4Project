@@ -544,4 +544,11 @@ class LeadGameController {
     println("Not doing anything!")
   }
   
+  func resetForNewGame() {
+    var peerCount : Int = 0
+    var imagePacketsForGame = [ImagePacket]()
+    var currentVotes = [String]()
+    var currentMissionOutcomeVotes = [String]()
+    var flavorTextArray = [[String: String]]()
+  }
 }

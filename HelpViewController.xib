@@ -6,6 +6,7 @@
     <customFonts key="customFonts">
         <mutableArray key="TYPEWRON.ttf">
             <string>Typewrong</string>
+            <string>Typewrong</string>
         </mutableArray>
         <mutableArray key="glass_tty_vt220.ttf">
             <string>Glass_TTY_VT220</string>
@@ -17,8 +18,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HelpViewController" customModule="Hacker_Mission" customModuleProvider="target">
             <connections>
-                <outlet property="numberOfAgentsLabel" destination="rvw-dl-uEl" id="8fu-ia-YSB"/>
-                <outlet property="vibrationSwitch" destination="1AN-lY-m0L" id="gRv-gZ-TdZ"/>
+                <outlet property="doneButton" destination="C5M-hI-s8m" id="Ny5-3L-QzL"/>
+                <outlet property="numberOfAgentsLabel" destination="rvw-dl-uEl" id="gU9-o4-bW3"/>
+                <outlet property="restartButton" destination="QAp-sf-cnf" id="gAn-3c-6L6"/>
+                <outlet property="vibrationSwitch" destination="1AN-lY-m0L" id="Y3U-Ib-Z4c"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -81,11 +84,22 @@
                     <rect key="frame" x="214" y="539" width="172" height="29"/>
                     <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="16"/>
                     <state key="normal" title="&lt;&lt;Restart Game&gt;&gt;">
+                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="restartButtonPressed:" destination="-1" eventType="touchUpInside" id="ALe-7x-Nnd"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5M-hI-s8m">
+                    <rect key="frame" x="262" y="478" width="76" height="29"/>
+                    <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="16"/>
+                    <state key="normal" title="&lt;&lt;Done&gt;&gt;">
                         <color key="titleColor" red="0.0" green="1" blue="0.00068939877130000003" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="restartButtonPressed:" destination="-1" eventType="touchUpInside" id="RnY-zg-Vem"/>
+                        <action selector="doneButtonPressed:" destination="-1" eventType="touchUpInside" id="6yo-TT-Ipb"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vibration Alerts:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozU-Zg-AQD">
@@ -101,11 +115,11 @@
                     </constraints>
                     <color key="onTintColor" red="1" green="0.052867877950000003" blue="0.14780411399999999" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <action selector="switchSwitched:" destination="-1" eventType="valueChanged" id="VrX-ot-Vs5"/>
+                        <action selector="switchSwitched:" destination="-1" eventType="valueChanged" id="l3b-io-5Ov"/>
                     </connections>
                 </switch>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="ozU-Zg-AQD" firstAttribute="centerY" secondItem="1AN-lY-m0L" secondAttribute="centerY" id="21C-Qw-iKm"/>
                 <constraint firstItem="bhO-8U-gPH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="21P-1E-W2m"/>
@@ -118,8 +132,10 @@
                 <constraint firstItem="1AN-lY-m0L" firstAttribute="leading" secondItem="ozU-Zg-AQD" secondAttribute="trailing" constant="24" id="b7u-yB-L5R"/>
                 <constraint firstAttribute="trailing" secondItem="bhO-8U-gPH" secondAttribute="trailing" id="cB8-VM-iwt"/>
                 <constraint firstItem="N07-nA-FKf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="36" id="jAb-eE-xd2"/>
+                <constraint firstAttribute="centerX" secondItem="C5M-hI-s8m" secondAttribute="centerX" id="lYC-xe-5K8"/>
                 <constraint firstAttribute="bottom" secondItem="bhO-8U-gPH" secondAttribute="bottom" id="nJ7-IS-AOI"/>
                 <constraint firstAttribute="centerX" secondItem="bV4-X7-O7a" secondAttribute="centerX" id="o9d-xr-bTp"/>
+                <constraint firstItem="QAp-sf-cnf" firstAttribute="top" secondItem="C5M-hI-s8m" secondAttribute="bottom" constant="32" id="om4-3z-m94"/>
                 <constraint firstAttribute="bottom" secondItem="QAp-sf-cnf" secondAttribute="bottom" constant="32" id="y1u-5e-d3L"/>
                 <constraint firstAttribute="centerX" secondItem="QAp-sf-cnf" secondAttribute="centerX" id="yBg-mW-I6N"/>
             </constraints>
