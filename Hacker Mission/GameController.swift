@@ -47,7 +47,8 @@ class GameController {
   func handleEvent(newGameInfo: GameSession) {
     self.game = newGameInfo
     let event = game.currentGameState!
-    if homeVC == nil && event != .Start {
+    if homeVC == nil && event != .Start && event != .RevealCharacters {
+      println("BAD FUNCTION CALLED")
       let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
       let homeVC = storyboard.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
       

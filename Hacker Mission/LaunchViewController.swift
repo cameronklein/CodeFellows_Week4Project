@@ -315,10 +315,10 @@ class LaunchViewController: UIViewController {
   func resetForNewGame(){
     masterController?.resetForNewGame()
     followerController?.resetForNewGame()
+    multiPeerController.resetForNewGame()
     masterController = nil
     followerController = nil
     userInfoMyself = nil
-    multiPeerController.mainBrain = nil
   }
   
 }

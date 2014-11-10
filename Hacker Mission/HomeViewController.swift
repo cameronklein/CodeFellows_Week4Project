@@ -53,7 +53,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       self.setupCollectionView()
       
       gameController.homeVC = self
-      gearButton.titleLabel!.text = "\u{f013}"
+      gearButton.titleLabel!.text = "\u{F013}"
       
       confirmNominationButton.addBorder()
       
@@ -140,7 +140,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
       
-      if self.gameController.thisPlayer.isLeader == true && gameController.game.currentGameState == .NominatePlayers {
+      var currentState = gameController.game.currentGameState
+      
+      var isOneOfAcceptedGameStates = (currentState == .NominatePlayers || currentState == .MissionStart || currentState == .RevealCharacters || currentState == .RevealMissionOutcome)
+      
+      if self.gameController.thisPlayer.isLeader == true && isOneOfAcceptedGameStates {
         
         var player = gameController.game.players[indexPath.row]
         
@@ -174,6 +178,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 return ()
             })
             
+        } else if self.confirmNominationButton.userInteractionEnabled == true {
+          self.confirmNominationButton.userInteractionEnabled = false
+          UIView.animateWithDuration(0.2, animations:
+            { () -> Void in
+              self.confirmNominationButton.titleLabel?.textColor = UIColor.lightGrayColor()
+              return ()
+          })
         }
       }
     }
@@ -246,20 +257,33 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     self.animateIncomingMessageLabel(incomingMessageText, completionHandler: { () -> (Void) in
       
       self.playersCollectionView.reloadData()
-      if self.gameController.thisPlayer.isLeader == true
-      {
-        self.nominationPromptLabel.hidden = false
-        self.nominationPromptLabel.text = "Nominate team members."
-        //self.startBlinking(self.nominationPromptLabel)
+      if self.gameController.thisPlayer.isLeader == true {
         self.nominationPromptLabel.text = "Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) hackers to send on this mission."
+        self.nominationPromptLabel.hidden = false
         self.confirmNominationButton.hidden = false
+        self.nominationPromptLabel.alpha = 0
+        self.confirmNominationButton.alpha = 0
+        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+          UIView.animateWithDuration(0.4, animations: { () -> Void in
+            self.nominationPromptLabel.alpha = 1
+            self.confirmNominationButton.alpha = 1
+          })
+        })
+        //self.startBlinking(self.nominationPromptLabel)
         self.confirmNominationButton.userInteractionEnabled = false
         self.playersCollectionView.userInteractionEnabled = true
       }
       else
       {
         self.nominationPromptLabel.hidden = false
+        self.nominationPromptLabel.alpha = 0
         self.nominationPromptLabel.text = "Nominations being selected..."
+        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+          UIView.animateWithDuration(0.4, animations: { () -> Void in
+            self.nominationPromptLabel.alpha = 1
+          })
+        })
+        
         //self.startBlinking(self.nominationPromptLabel)
       }
       
@@ -323,6 +347,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   }
 
   func startMission() {
+    println("GAME CONTROLLER : Start Mission Called")
     self.lastRejectedGameCount = 0
     
     self.animateIncomingMessageLabel("New Mission Proposed", completionHandler: { () -> (Void) in
@@ -459,6 +484,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
   
   func animateIncomingMessageLabel(incomingMessageText: String, completionHandler : () -> (Void)) {
+    println("Animate Label Called!")
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
       self.playersCollectionView.reloadData()
@@ -485,11 +511,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   }
   
   @IBAction func gearButtonPressed(sender: AnyObject) {
-    let screenshot = self.view.snapshotViewAfterScreenUpdates(false)
-    let settingsVC = HelpViewController()
-    self.presentViewController(settingsVC, animated: true) { () -> Void in
-      settingsVC.view.addSubview(screenshot)
-      settingsVC.view.sendSubviewToBack(screenshot)
+    let screenshot = self.view.snapshotViewAfterScreenUpdates(true)
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      let settingsVC = HelpViewController(nibName:"HelpViewController", bundle: NSBundle.mainBundle())
+      self.presentViewController(settingsVC, animated: true) { () -> Void in
+        settingsVC.view.addSubview(screenshot)
+        settingsVC.view.sendSubviewToBack(screenshot)
+      }
     }
   }
   

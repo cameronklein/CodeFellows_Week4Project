@@ -186,7 +186,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   // MARK: - MCNearbyServiceBrowserDelegate Methods
   
   func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
-    
+    println("Found peer!")
     if gameRunning == true {
       for peer in peersForCurrentGame {
         if peer.displayName == peerID.displayName {
