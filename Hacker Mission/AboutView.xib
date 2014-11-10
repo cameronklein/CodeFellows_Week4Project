@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="TYPEWRON.ttf">
+            <string>Typewrong</string>
+        </mutableArray>
+        <mutableArray key="glass_tty_vt220.ttf">
+            <string>Glass_TTY_VT220</string>
+            <string>Glass_TTY_VT220</string>
+            <string>Glass_TTY_VT220</string>
+            <string>Glass_TTY_VT220</string>
+            <string>Glass_TTY_VT220</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutViewController" customModule="Hacker_Mission" customModuleProvider="target">
+            <connections>
+                <outlet property="confirmButton" destination="6CB-OQ-Oxq" id="B64-q3-ghk"/>
+                <outlet property="view" destination="iN0-l3-epB" id="4bQ-18-Dx3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1y-CH-odm">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4Lz-Ah-TWV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tlt-97-Bz6">
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="zVN-gH-CP8">
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <vibrancyEffect>
+                                    <blurEffect style="light"/>
+                                </vibrancyEffect>
+                            </visualEffectView>
+                        </subviews>
+                    </view>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HackerMission was created as a student project at CodeFellows in Seattle, WA, USA, we hope you and your friends enjoy it: " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7c-zq-c11">
+                    <rect key="frame" x="32" y="36" width="536" height="31"/>
+                    <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
+                    <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Glass TTY VT220 font by Viacheslav Slavinsky." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pI9-rD-xJZ">
+                    <rect key="frame" x="32" y="176" width="536" height="16"/>
+                    <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
+                    <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TypeWrong font by Digital Graphic Labs" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFc-YF-nRH">
+                    <rect key="frame" x="32" y="200" width="536" height="16"/>
+                    <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
+                    <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Boycott font by Ryoichi Tsunekawa, Flat-It." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m40-oV-Z9F">
+                    <rect key="frame" x="32" y="224" width="536" height="16"/>
+                    <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
+                    <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQN-gd-Ok8">
+                    <rect key="frame" x="248" y="91" width="104" height="61"/>
+                    <string key="text">Joshua Sacks
+Cameron Klein
+Jake Hawken
+Nate Birkholz</string>
+                    <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
+                    <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6CB-OQ-Oxq">
+                    <rect key="frame" x="245" y="535" width="110" height="29"/>
+                    <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="18"/>
+                    <inset key="contentEdgeInsets" minX="5" minY="4" maxX="5" maxY="6"/>
+                    <state key="normal" title="&lt;&lt;Got It&gt;&gt;">
+                        <color key="titleColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="didPressButton:" destination="-1" eventType="touchUpInside" id="eiD-dw-22v"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="pI9-rD-xJZ" secondAttribute="trailing" constant="32" id="0wY-sS-ZXQ"/>
+                <constraint firstItem="m1y-CH-odm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5eU-5r-ho4"/>
+                <constraint firstAttribute="bottom" secondItem="m1y-CH-odm" secondAttribute="bottom" id="CsN-iB-Kwp"/>
+                <constraint firstAttribute="trailing" secondItem="UFc-YF-nRH" secondAttribute="trailing" constant="32" id="FS0-Rh-yaF"/>
+                <constraint firstItem="m40-oV-Z9F" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="32" id="FTq-oA-UoB"/>
+                <constraint firstItem="UFc-YF-nRH" firstAttribute="top" secondItem="pI9-rD-xJZ" secondAttribute="bottom" constant="8" id="Fci-Tz-UAS"/>
+                <constraint firstItem="m1y-CH-odm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="FgC-Un-fZd"/>
+                <constraint firstAttribute="trailing" secondItem="W7c-zq-c11" secondAttribute="trailing" constant="32" id="LOg-MD-veU"/>
+                <constraint firstItem="W7c-zq-c11" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="36" id="Mqi-7S-TxU"/>
+                <constraint firstAttribute="centerX" secondItem="UFc-YF-nRH" secondAttribute="centerX" id="RW1-jY-csO"/>
+                <constraint firstItem="pI9-rD-xJZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="32" id="W5i-Or-wVv"/>
+                <constraint firstItem="W7c-zq-c11" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="32" id="WSc-mM-Wxs"/>
+                <constraint firstAttribute="bottom" secondItem="6CB-OQ-Oxq" secondAttribute="bottom" constant="36" id="X8V-g2-hCS"/>
+                <constraint firstItem="pI9-rD-xJZ" firstAttribute="top" secondItem="bQN-gd-Ok8" secondAttribute="bottom" constant="24" id="btc-K0-SYC"/>
+                <constraint firstAttribute="centerX" secondItem="6CB-OQ-Oxq" secondAttribute="centerX" id="cKv-tm-yWP"/>
+                <constraint firstAttribute="centerX" secondItem="m40-oV-Z9F" secondAttribute="centerX" id="cfO-A8-NeN"/>
+                <constraint firstAttribute="trailing" secondItem="m1y-CH-odm" secondAttribute="trailing" id="dgl-8M-nla"/>
+                <constraint firstAttribute="trailing" secondItem="m40-oV-Z9F" secondAttribute="trailing" constant="32" id="i8D-mX-580"/>
+                <constraint firstAttribute="centerX" secondItem="pI9-rD-xJZ" secondAttribute="centerX" id="lIu-Ab-ZME"/>
+                <constraint firstItem="bQN-gd-Ok8" firstAttribute="top" secondItem="W7c-zq-c11" secondAttribute="bottom" constant="24" id="mFH-da-1IX"/>
+                <constraint firstAttribute="centerX" secondItem="bQN-gd-Ok8" secondAttribute="centerX" id="nat-1a-sXc"/>
+                <constraint firstItem="UFc-YF-nRH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="32" id="sVT-Dg-h4u"/>
+                <constraint firstItem="m40-oV-Z9F" firstAttribute="top" secondItem="UFc-YF-nRH" secondAttribute="bottom" constant="8" id="uGh-e4-eNi"/>
+            </constraints>
+            <point key="canvasLocation" x="254" y="447"/>
+        </view>
+    </objects>
+</document>

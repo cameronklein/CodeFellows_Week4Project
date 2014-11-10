@@ -17,6 +17,7 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
   @IBOutlet weak var pageControl: UIPageControl!
   
   override func viewDidLoad() {
+    super.viewDidLoad()
     self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
     beginningVC = OnboardPageViewController(nibName: "OnboardPageViewController", bundle: NSBundle.mainBundle())
       beginningVC.p1 = "Hacker Missions is a party game for a group of five to ten players."
@@ -37,9 +38,6 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
     self.pageViewController.view.frame = self.view.frame
     
     self.view.gestureRecognizers = self.pageViewController!.gestureRecognizers
-    
-    UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
-    
   }
   
   func setupArray() {

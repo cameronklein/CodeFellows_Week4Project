@@ -37,6 +37,7 @@ class LaunchViewController: UIViewController {
   @IBOutlet weak var privacyPolicyButton: UIButton!
   @IBOutlet weak var hackerMissionTitle: UIImageView!
   @IBOutlet weak var flavorLabel: UILabel!
+  @IBOutlet weak var aboutButton: UIButton!
   
 
   override func viewDidLoad() {
@@ -64,6 +65,7 @@ class LaunchViewController: UIViewController {
     self.privacyPolicyButton.addBorder()
     self.joinButton.addBorder()
     self.hostButton.addBorder()
+    self.aboutButton.addBorder()
     
     self.progressBar.alpha = 0
 
@@ -96,6 +98,7 @@ class LaunchViewController: UIViewController {
     layers.append(self.createCharacterButton.layer)
     layers.append(self.joinButton.layer)
     layers.append(self.privacyPolicyButton.layer)
+    layers.append(self.aboutButton.layer)
     self.doButtonPulseAnim(layers)
 
     self.typingAnimation()
@@ -301,6 +304,14 @@ class LaunchViewController: UIViewController {
     
   }
 
+  @IBAction func aboutButtonPressed(sender: AnyObject) {
+    let screenshot = self.view.snapshotViewAfterScreenUpdates(false)
+    let aboutVC = AboutViewController(nibName: "AboutView", bundle: NSBundle.mainBundle())
+    self.presentViewController(aboutVC, animated: true) { () -> Void in
+      aboutVC.view.addSubview(screenshot)
+      aboutVC.view.sendSubviewToBack(screenshot)
+    }
+  }
 
   @IBAction func privacyPolicyButtonPressed(sender: AnyObject) {
     let screenshot = self.view.snapshotViewAfterScreenUpdates(false)
