@@ -26,9 +26,9 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Outcome" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hA-DH-gMI">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Game Outcome" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hA-DH-gMI">
                     <rect key="frame" x="204" y="133" width="192" height="31"/>
-                    <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="32"/>
+                    <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="17"/>
                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -38,7 +38,7 @@
                     <color key="textColor" red="0.4431372549" green="0.96078431369999995" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWD-0V-7zq">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWD-0V-7zq">
                     <rect key="frame" x="217" y="212" width="167" height="29"/>
                     <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="16"/>
                     <state key="normal" title="&lt;&lt;Back to Home&gt;&gt;">
@@ -53,6 +53,7 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="0hA-DH-gMI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="128" id="6m2-Pf-ZnM"/>
+                <constraint firstAttribute="bottom" secondItem="eWD-0V-7zq" secondAttribute="bottom" constant="32" id="DgC-f3-EsS"/>
                 <constraint firstItem="Tq9-Vb-cKN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="MJL-3f-gfA"/>
                 <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="0hA-DH-gMI" secondAttribute="bottom" constant="392" id="OUj-8n-mB3"/>
                 <constraint firstItem="eWD-0V-7zq" firstAttribute="top" secondItem="0hA-DH-gMI" secondAttribute="bottom" constant="48" id="bmr-mf-snu"/>
@@ -68,6 +69,7 @@
                 <mask key="constraints">
                     <exclude reference="6m2-Pf-ZnM"/>
                     <exclude reference="OUj-8n-mB3"/>
+                    <exclude reference="bmr-mf-snu"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="287" y="326"/>

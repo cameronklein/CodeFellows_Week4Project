@@ -45,49 +45,27 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   var missionLabelArray : [UILabel]!
   var selectedIndexPath : NSIndexPath?
   
-  //MARK: - View Methods
+  //MARK: - Lifecycle Methods
   
   override func viewDidLoad()
     {
       super.viewDidLoad()
-      self.playersCollectionView.delegate = self
-      self.playersCollectionView.dataSource = self
+      self.setupCollectionView()
+      
       gameController.homeVC = self
-      gearButton.titleLabel!.text = "\u{f013}"
+      gearButton.titleLabel!.text = "\u{F013}"
       
       confirmNominationButton.addBorder()
       
       missionLabelArray = [mission1OutcomeLabel, mission2OutcomeLabel, mission3OutcomeLabel, mission4OutcomeLabel, mission5OutcomeLabel]
-      
-      //Set Cell Dimensions
-      self.layout = playersCollectionView.collectionViewLayout as UICollectionViewFlowLayout
-      self.screenWidth = self.playersCollectionView.frame.width
-      super.viewWillAppear(true)
-      layout.minimumLineSpacing = screenWidth * 0.02
-      layout.minimumInteritemSpacing = screenWidth * 0.02
-      layout.sectionInset.left = screenWidth * 0.05
-      layout.sectionInset.right = screenWidth * 0.05
-      layout.itemSize = CGSize(width: screenWidth * 0.13, height: screenWidth * 0.17)
-    
-      //Register PlayerCellNib
-      self.playersCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
-      
-      //Round corners on players collection view
-      self.playersCollectionView.layer.cornerRadius = self.playersCollectionView.frame.size.width / 16
-      self.playersCollectionView.layer.masksToBounds = true
       
       //Round corners on missions view
       self.missionView.layer.cornerRadius = self.missionView.frame.size.width / 32
       self.missionView.layer.masksToBounds = true
       
     }
-    
-    override func viewWillAppear(animated: Bool)
-    {
-      super.viewWillAppear(true)
-    }
-    
-    //MARK: - Collection view methods
+
+    //MARK: - Collection View Methods
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
@@ -160,8 +138,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
-    {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+      
+      var currentState = gameController.game.currentGameState
+      
+      var isOneOfAcceptedGameStates = (currentState == .NominatePlayers || currentState == .MissionStart || currentState == .RevealCharacters || currentState == .RevealMissionOutcome)
+      
+      if self.gameController.thisPlayer.isLeader == true && isOneOfAcceptedGameStates {
+        
         var player = gameController.game.players[indexPath.row]
         
         if player.isNominated == true
@@ -194,8 +178,41 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 return ()
             })
             
+        } else if self.confirmNominationButton.userInteractionEnabled == true {
+          self.confirmNominationButton.userInteractionEnabled = false
+          UIView.animateWithDuration(0.2, animations:
+            { () -> Void in
+              self.confirmNominationButton.titleLabel?.textColor = UIColor.lightGrayColor()
+              return ()
+          })
         }
+      }
     }
+  
+  func setupCollectionView() {
+    
+    //Set delegate / data source
+    self.playersCollectionView.delegate = self
+    self.playersCollectionView.dataSource = self
+    
+    //Set Cell Dimensions
+    self.layout = playersCollectionView.collectionViewLayout as UICollectionViewFlowLayout
+    self.screenWidth = self.playersCollectionView.frame.width
+    super.viewWillAppear(true)
+    layout.minimumLineSpacing = screenWidth * 0.02
+    layout.minimumInteritemSpacing = screenWidth * 0.02
+    layout.sectionInset.left = screenWidth * 0.05
+    layout.sectionInset.right = screenWidth * 0.05
+    layout.itemSize = CGSize(width: screenWidth * 0.13, height: screenWidth * 0.17)
+    
+    //Register PlayerCellNib
+    self.playersCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
+    
+    //Round corners on players collection view
+    self.playersCollectionView.layer.cornerRadius = self.playersCollectionView.frame.size.width / 16
+    self.playersCollectionView.layer.masksToBounds = true
+    
+  }
   
   func revealVotes() {
     
@@ -205,6 +222,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     if currentMission.rejectedTeamsCount > self.lastRejectedGameCount {
       incomingMessageLabel = "Team Rejected!"
     }
+    nominationPromptLabel.hidden = false
+    self.countdownLabel()
     self.lastRejectedGameCount = currentMission.rejectedTeamsCount
     self.animateIncomingMessageLabel(incomingMessageLabel, completionHandler: { () -> (Void) in
       return ()
@@ -238,20 +257,33 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     self.animateIncomingMessageLabel(incomingMessageText, completionHandler: { () -> (Void) in
       
       self.playersCollectionView.reloadData()
-      if self.gameController.thisPlayer.isLeader == true
-      {
+      if self.gameController.thisPlayer.isLeader == true {
+        self.nominationPromptLabel.text = "Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) hackers to send on this mission."
         self.nominationPromptLabel.hidden = false
-        self.nominationPromptLabel.text = "Nominate team members."
-        //self.startBlinking(self.nominationPromptLabel)
-        self.nominationPromptLabel.text = "Nominate \((game.missions[game.currentMission] as Mission).playersNeeded) agents to send on this mission."
         self.confirmNominationButton.hidden = false
+        self.nominationPromptLabel.alpha = 0
+        self.confirmNominationButton.alpha = 0
+        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+          UIView.animateWithDuration(0.4, animations: { () -> Void in
+            self.nominationPromptLabel.alpha = 1
+            self.confirmNominationButton.alpha = 1
+          })
+        })
+        //self.startBlinking(self.nominationPromptLabel)
         self.confirmNominationButton.userInteractionEnabled = false
         self.playersCollectionView.userInteractionEnabled = true
       }
       else
       {
         self.nominationPromptLabel.hidden = false
+        self.nominationPromptLabel.alpha = 0
         self.nominationPromptLabel.text = "Nominations being selected..."
+        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+          UIView.animateWithDuration(0.4, animations: { () -> Void in
+            self.nominationPromptLabel.alpha = 1
+          })
+        })
+        
         //self.startBlinking(self.nominationPromptLabel)
       }
       
@@ -259,7 +291,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
   }
   
-    
   @IBAction func confirmNominations(sender: AnyObject) {
     
     println("Confirmed Button Pressed")
@@ -316,6 +347,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   }
 
   func startMission() {
+    println("GAME CONTROLLER : Start Mission Called")
     self.lastRejectedGameCount = 0
     
     self.animateIncomingMessageLabel("New Mission Proposed", completionHandler: { () -> (Void) in
@@ -452,6 +484,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
   
   func animateIncomingMessageLabel(incomingMessageText: String, completionHandler : () -> (Void)) {
+    println("Animate Label Called!")
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
       self.playersCollectionView.reloadData()
@@ -478,13 +511,53 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   }
   
   @IBAction func gearButtonPressed(sender: AnyObject) {
-    let screenshot = self.view.snapshotViewAfterScreenUpdates(false)
-    let settingsVC = HelpViewController()
-    self.presentViewController(settingsVC, animated: true) { () -> Void in
-      settingsVC.view.addSubview(screenshot)
-      settingsVC.view.sendSubviewToBack(screenshot)
+    let screenshot = self.view.snapshotViewAfterScreenUpdates(true)
+    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+      let settingsVC = HelpViewController(nibName:"HelpViewController", bundle: NSBundle.mainBundle())
+      self.presentViewController(settingsVC, animated: true) { () -> Void in
+        settingsVC.view.addSubview(screenshot)
+        settingsVC.view.sendSubviewToBack(screenshot)
+      }
     }
-    
+  }
+  
+  func countdownLabel() {
+    nominationPromptLabel.hidden = false
+    nominationPromptLabel.text = "----------"
+    UIView.animateKeyframesWithDuration(10.0, delay: 0.0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+      UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 1.0, animations: { () -> Void in
+        self.nominationPromptLabel.text = "---------"
+      })
+      UIView.addKeyframeWithRelativeStartTime(1.0, relativeDuration: 1.0, animations: { () -> Void in
+        self.nominationPromptLabel.text = "--------"
+      })
+      UIView.addKeyframeWithRelativeStartTime(2.0, relativeDuration: 1.0, animations: { () -> Void in
+        self.nominationPromptLabel.text = "-------"
+      })
+      UIView.addKeyframeWithRelativeStartTime(3.0, relativeDuration: 1.0, animations: { () -> Void in
+        self.nominationPromptLabel.text = "------"
+      })
+      UIView.addKeyframeWithRelativeStartTime(4.0, relativeDuration: 1.0, animations: { () -> Void in
+        self.nominationPromptLabel.text = "-----"
+      })
+      UIView.addKeyframeWithRelativeStartTime(5.0, relativeDuration: 1.0, animations: { () -> Void in
+        self.nominationPromptLabel.text = "----"
+      })
+      UIView.addKeyframeWithRelativeStartTime(6.0, relativeDuration: 1.0, animations: { () -> Void in
+        self.nominationPromptLabel.text = "---"
+      })
+      UIView.addKeyframeWithRelativeStartTime(7.0, relativeDuration: 1.0, animations: { () -> Void in
+        self.nominationPromptLabel.text = "--"
+      })
+      UIView.addKeyframeWithRelativeStartTime(8.0, relativeDuration: 1.0, animations: { () -> Void in
+        self.nominationPromptLabel.text = "-"
+      })
+      UIView.addKeyframeWithRelativeStartTime(9.0, relativeDuration: 1.0, animations: { () -> Void in
+        self.nominationPromptLabel.text = ""
+      })
+    }) { (success) -> Void in
+      println("done")
+    }
   }
 
 }

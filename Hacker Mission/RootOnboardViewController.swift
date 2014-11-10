@@ -79,6 +79,7 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
     let charCreate = storyboard.instantiateViewControllerWithIdentifier("CHARCREATE_VC") as CharacterCreationViewController
     charCreate.view.backgroundColor = UIColor.clearColor()
     charCreate.blurView.removeFromSuperview()
+    charCreate.view.frame = self.view.frame
     controllers.append(charCreate)
     pageControl.numberOfPages = controllers.count
     

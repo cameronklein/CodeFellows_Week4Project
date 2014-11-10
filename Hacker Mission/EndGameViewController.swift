@@ -57,8 +57,13 @@ class EndGameViewController: UIViewController {
       parentVC.view.alpha = 0
       return ()
     }) { (success) -> Void in
-      UIApplication.sharedApplication().keyWindow?.rootViewController = LaunchViewController()
-      return ()
+      NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let appDel = UIApplication.sharedApplication().delegate as AppDelegate
+        let launchVC = storyboard.instantiateViewControllerWithIdentifier("LAUNCHVIEW_VC") as LaunchViewController
+        launchVC.resetForNewGame()
+        appDel.window!.rootViewController = launchVC
+    }
     }
     
     

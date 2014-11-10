@@ -40,23 +40,15 @@ class GameController {
     multipeerController.gameController = self
     myUserInfo = appDelegate.defaultUser as UserInfo!
     myUserInfo.userPeerID = multipeerController.peerID.displayName
-    for i in 0...4 {
-      missionOutcomesVotedFor.append(false)
-      teamsVotedFor.append([Bool]())
-      for j in 0...4 {
-        teamsVotedFor[i].append(false)
-      }
-    }
-  }
+    self.populateVotingRecord()
 
-  func handleImagePackets(imagePackets: [ImagePacket]) {
-    self.imagePackets = imagePackets as [ImagePacket]
   }
   
   func handleEvent(newGameInfo: GameSession) {
     self.game = newGameInfo
     let event = game.currentGameState!
-    if homeVC == nil && event != .Start {
+    if homeVC == nil && event != .Start && event != .RevealCharacters {
+      println("BAD FUNCTION CALLED")
       let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
       let homeVC = storyboard.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
       
@@ -128,9 +120,7 @@ class GameController {
   }
   
   func nominatePlayers() {
-    //Leader nominates their team of players
     self.homeVC.nominatePlayers()
-
   }
   
   func revealNominations() {
@@ -139,23 +129,19 @@ class GameController {
   }
   
   func revealVotes() {
-    //reveal everyone's vote on the proposed team
     self.homeVC.revealVotes()
   }
   
   func startMission() {
-    // TODO: Intro Animation?
     self.homeVC.startMission()
   }
   
   func beginMissionOutcome() {
-    //Nominated players on mission vote to succeed or fail the mission
     self.homeVC.voteOnMissionSuccess()
 
   }
   
   func revealMissionOutcome() {
-    //revealing the success/fail votes
     self.homeVC.revealMissionOutcome()
   }
   
@@ -194,8 +180,29 @@ class GameController {
     }
   }
   
+  func handleImagePackets(imagePackets: [ImagePacket]) {
+    self.imagePackets = imagePackets as [ImagePacket]
+  }
+  
+  func populateVotingRecord() {
+    
+    for i in 0...4 {
+      missionOutcomesVotedFor.append(false)
+      teamsVotedFor.append([Bool]())
+      for j in 0...4 {
+        teamsVotedFor[i].append(false)
+      }
+    }
+  }
+  
   func reconnectFromDisconnect(GameSession){
     
+  }
+  
+  func resetForNewGame() {
+    imagePackets = [ImagePacket]()
+    populateVotingRecord()
+    peerCount = 0
   }
 }
 

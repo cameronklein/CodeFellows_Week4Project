@@ -186,7 +186,7 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   // MARK: - MCNearbyServiceBrowserDelegate Methods
   
   func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
-    
+    println("Found peer!")
     if gameRunning == true {
       for peer in peersForCurrentGame {
         if peer.displayName == peerID.displayName {
@@ -335,7 +335,16 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     if error != nil {
       println("Error encountered when sending user info to main brain: \(error!.description))")
     }
-
+  }
+  
+  func resetForNewGame(){
+    self.mainBrain = nil
+    peersForCurrentGame = [MCPeerID]()
+    gameRunning         = false
+    didSendUserData     = false
+    didSendImagePacket  = false
+    session.disconnect()
+    session = MCSession(peer: self.peerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.None)
   }
 
 } // End
