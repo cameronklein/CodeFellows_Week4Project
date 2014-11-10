@@ -18,6 +18,7 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
   @IBOutlet weak var pageControl: UIPageControl!
   
   override func viewDidLoad() {
+    super.viewDidLoad()
     let flavorTextPath = NSBundle.mainBundle().pathForResource("FlavorText", ofType: "plist")
     let flavorTextDict = NSDictionary(contentsOfFile: flavorTextPath!)
     onboardDict = flavorTextDict!["Onboarding"] as NSDictionary

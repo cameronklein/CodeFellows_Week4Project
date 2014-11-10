@@ -18,6 +18,8 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
   @IBOutlet weak var userImageView : UIImageView!
   @IBOutlet weak var cameraButton: UIButton!
   @IBOutlet weak var blurView: UIVisualEffectView!
+  @IBOutlet weak var disabledButtonText: UILabel!
+  
   
   let buttonBackgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.15)
   let cornerRadius = CGFloat(5.0)
@@ -25,8 +27,8 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
   let outlineColor2 = UIColor(red: 0.443, green: 0.961, blue: 0.082, alpha: 0.6).CGColor
   var shouldAnimate = false
 
-    let attibutedString1 = NSAttributedString(string: "Enter a User Name", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.75)])
-    let attibutedString2 = NSAttributedString(string: "Enter a User Name", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.15)])
+    let attibutedString1 = NSAttributedString(string: "Enter a Name", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.75)])
+    let attibutedString2 = NSAttributedString(string: "Enter a Name", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.15)])
 
     var defaultIcons = [UIImage]()
     var userForSave : UserInfo!
@@ -198,7 +200,9 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
         println("Checked Button State")
         if self.userImageFor != nil && self.checkNameLength() == true {
             self.saveCharacterButton.enabled = true
-            self.saveCharacterButton.setTitle("<<Save Info>>", forState: UIControlState.Normal)
+          self.saveCharacterButton.hidden = false
+          self.disabledButtonText.hidden = true
+            self.saveCharacterButton.setTitle("<<Done>>", forState: UIControlState.Normal)
           self.saveCharacterButton.backgroundColor = self.buttonBackgroundColor
           self.saveCharacterButton.layer.masksToBounds = true
           self.saveCharacterButton.layer.cornerRadius = self.cornerRadius
@@ -209,13 +213,9 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
           self.doButtonPulseAnimAlso(layers)
         } else {
             println("Hit Else")
-            self.saveCharacterButton.setTitle("Enter Name and Choose an Image", forState: UIControlState.Disabled)
-            self.saveCharacterButton.enabled = false
-          self.saveCharacterButton.backgroundColor = UIColor.clearColor()
-          self.saveCharacterButton.layer.masksToBounds = false
-          self.saveCharacterButton.layer.cornerRadius = self.cornerRadius
-          self.saveCharacterButton.layer.borderWidth = 0.0
-          self.saveCharacterButton.layer.borderColor = UIColor.clearColor().CGColor
+            self.saveCharacterButton.hidden = true
+          self.saveCharacterButton.enabled = false
+          self.disabledButtonText.hidden = false
         }
     }
     
@@ -274,7 +274,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
   }
 
     @IBAction func photoButtonPressed(sender: AnyObject) {
-        let alertViewController = UIAlertController(title: "Image", message: "Use a photo for your player icon", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let alertViewController = UIAlertController(title: "Photos", message: "Use a photo for your player icon.", preferredStyle: UIAlertControllerStyle.ActionSheet)
           println("photobuttonpressed 1")
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (action) -> Void in
             println("Cancel")
@@ -383,7 +383,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
 
   func informThePlayer() {
-    let alertController = UIAlertController(title: "Identify Yourself", message: "You must choose a name and image to identify you to other players. You can choose a default image or use your device's camera.", preferredStyle: UIAlertControllerStyle.Alert)
+    let alertController = UIAlertController(title: "Identify Yourself", message: "You must choose a name and image to identify you to other players. You can choose one of the default icons or use your device's camera.", preferredStyle: UIAlertControllerStyle.Alert)
 
     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel) { (action) -> Void in
       println("Okay I will, thank you may i have another")
