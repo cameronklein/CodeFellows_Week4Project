@@ -523,6 +523,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   func countdownLabel() {
     nominationPromptLabel.hidden = false
+    nominationPromptLabel.alpha = 1
     nominationPromptLabel.text = "----------"
     UIView.animateKeyframesWithDuration(10.0, delay: 0.0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: { () -> Void in
       UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 1.0, animations: { () -> Void in

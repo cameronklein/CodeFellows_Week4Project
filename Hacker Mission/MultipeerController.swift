@@ -146,6 +146,16 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
         self.didSendUserData = true
       }
       self.gameController.updatePeerCount(session.connectedPeers.count)
+      if gameRunning == true {
+        for peer in peersForCurrentGame {
+          if peer.displayName == peerID.displayName {
+            if self.mainBrain != nil {
+              self.resendGameInfoToPeer(peerID)
+            }
+          }
+        }
+      }
+      
 
     } else if state == MCSessionState.NotConnected {
       println("Peer \(peerID.displayName) Stopped Connecting")
@@ -285,11 +295,12 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   }
   
   func resendGameInfoToPeer(peerID : MCPeerID) {
+    println("Resending!")
     let data = NSKeyedArchiver.archivedDataWithRootObject(mainBrain!.game)
     let imageData = NSKeyedArchiver.archivedDataWithRootObject(mainBrain!.imagePacketsForGame)
     var error : NSError?
     session.sendData(data, toPeers: [peerID], withMode: MCSessionSendDataMode.Reliable, error: &error)
-    NSThread.sleepForTimeInterval(0.2)
+    NSThread.sleepForTimeInterval(0.4)
     session.sendData(imageData, toPeers: [peerID], withMode: MCSessionSendDataMode.Reliable, error: &error)
     if error != nil {
       println("Error encountered when resending game to peer: \(error!.description))")
@@ -344,7 +355,11 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     didSendUserData     = false
     didSendImagePacket  = false
     session.disconnect()
-    session = MCSession(peer: self.peerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.None)
+    stopAdvertising()
+    stopBrowsing()
+//    session = MCSession(peer: self.peerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.None)
+//    advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: MyServiceType)
+//    browser = MCNearbyServiceBrowser(peer: peerID, serviceType: MyServiceType)
   }
 
 } // End
