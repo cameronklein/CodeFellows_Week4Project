@@ -19,6 +19,11 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    let flavorTextPath = NSBundle.mainBundle().pathForResource("FlavorText", ofType: "plist")
+    let flavorTextDict = NSDictionary(contentsOfFile: flavorTextPath!)
+    onboardDict = flavorTextDict!["Onboarding"] as NSDictionary
+    let flavorTextOne = onboardDict["PageOne"] as [String : String]
+      
     self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
     beginningVC = OnboardPageViewController(nibName: "OnboardPageViewController", bundle: NSBundle.mainBundle())
     beginningVC.p1 = flavorTextOne["p1"]
@@ -39,6 +44,12 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
     self.pageViewController.view.frame = self.view.frame
     
     self.view.gestureRecognizers = self.pageViewController!.gestureRecognizers
+    
+    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "vibrationOn")
+    NSUserDefaults.standardUserDefaults().synchronize()
+    
+    UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+    
   }
   
   func setupArray() {
