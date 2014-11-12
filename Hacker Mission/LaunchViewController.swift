@@ -197,6 +197,7 @@ class LaunchViewController: UIViewController {
   @IBAction func hostGameButtonPressed(sender: AnyObject) {
     self.switchUIElements(true)
     self.hostButton.hidden = true
+    self.aboutButton.hidden = true
     self.spinningWheel.startAnimating()
     masterController = LeadGameController()
     followerController = GameController.sharedInstance
@@ -209,6 +210,7 @@ class LaunchViewController: UIViewController {
   @IBAction func joinGameButtonPressed(sender: AnyObject) {
     self.switchUIElements(false)
     self.joinButton.hidden = true
+    self.aboutButton.hidden = true
     self.spinningWheel.startAnimating()
     followerController = GameController.sharedInstance
     followerController?.startLookingForGame()
