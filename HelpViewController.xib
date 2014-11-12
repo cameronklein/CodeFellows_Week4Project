@@ -108,10 +108,10 @@
                     <color key="textColor" red="1" green="0.052867877950000003" blue="0.14780411399999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1AN-lY-m0L">
-                    <rect key="frame" x="391" y="139" width="51" height="32"/>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1AN-lY-m0L">
+                    <rect key="frame" x="391" y="139" width="51" height="31"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="32" id="40y-yw-Ytc"/>
+                        <constraint firstAttribute="height" constant="31" id="40y-yw-Ytc"/>
                     </constraints>
                     <color key="onTintColor" red="1" green="0.052867877950000003" blue="0.14780411399999999" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
