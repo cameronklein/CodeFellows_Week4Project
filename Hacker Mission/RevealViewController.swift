@@ -128,17 +128,14 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
         { () -> Void in
             self.view.alpha = 0
         })
-//        self.view.removeFromSuperview()
-//        self.removeFromParentViewController()
-          let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-          let homeVC = storyboard.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
-  
-          NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-          self.presentViewController(homeVC, animated: true, completion: { () -> Void in
-            homeVC.startMission()
-            return ()
-          })
-       //   self.dismissViewControllerAnimated(false, completion: { () -> Void in})
+        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let homeVC = storyboard.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
+
+        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        self.presentViewController(homeVC, animated: true, completion: { () -> Void in
+          homeVC.startMission()
+          return ()
+        })
 
         } }
 

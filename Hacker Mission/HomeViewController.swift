@@ -223,10 +223,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       incomingMessageLabel = "Team Rejected!"
     }
     nominationPromptLabel.hidden = false
-    self.countdownLabel()
+    
     self.lastRejectedGameCount = currentMission.rejectedTeamsCount
     self.animateIncomingMessageLabel(incomingMessageLabel, completionHandler: { () -> (Void) in
-      return ()
+      NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        self.countdownLabel()
+      }
     })
   }
 
@@ -286,9 +288,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         //self.startBlinking(self.nominationPromptLabel)
       }
-      
     })
-
   }
   
   @IBAction func confirmNominations(sender: AnyObject) {

@@ -331,11 +331,11 @@
 				TargetAttributes = {
 					7E46DF1A19FEB359009215E3 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 65PRBW7K5C;
+						DevelopmentTeam = 6X3539QT5M;
 					};
 					7E46DF2F19FEB359009215E3 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 65PRBW7K5C;
+						DevelopmentTeam = 6X3539QT5M;
 						TestTargetID = 7E46DF1A19FEB359009215E3;
 					};
 				};
@@ -563,7 +563,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Hacker Mission/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -578,7 +578,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Hacker Mission/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
