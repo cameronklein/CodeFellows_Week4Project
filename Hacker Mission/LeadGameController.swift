@@ -555,10 +555,11 @@ class LeadGameController {
   }
   
   func resetForNewGame() {
-    var peerCount : Int = 0
-    var imagePacketsForGame = [ImagePacket]()
-    var currentVotes = [String]()
-    var currentMissionOutcomeVotes = [String]()
-    var flavorTextArray = [[String: String]]()
+    peerCount = 0
+    imagePacketsForGame = [ImagePacket]()
+    currentVotes = [String]()
+    currentMissionOutcomeVotes = [String]()
+    flavorTextArray = [[String: String]]()
+    usersForGame = [UserInfo]()
   }
 }

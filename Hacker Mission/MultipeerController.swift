@@ -107,12 +107,6 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       
       let checkForGameRequestString = newDictionary.objectForKey("action") as String!
       
-      if checkForGameRequestString == "gameRequest" {
-        if mainBrain != nil {
-          self.resendGameInfoToPeer(peerID)
-        }
-      }
-      
       NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
         self.mainBrain?.handleEvent(newDictionary)
         return ()
@@ -123,6 +117,10 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       
       if dataReceived == "RequestImage" {
         self.gameController.sendImagePacket()
+      } else if dataReceived == "gameRequest" {
+        if mainBrain != nil {
+          self.resendGameInfoToPeer(peerID)
+        }
       }
     } else if let dataReceived = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Float {
       println("Recognized data as Float: \(dataReceived)")
