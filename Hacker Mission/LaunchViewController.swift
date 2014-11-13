@@ -16,7 +16,6 @@ class LaunchViewController: UIViewController {
   let outlineColor1 = UIColor(red: 0.443, green: 0.961, blue: 0.082, alpha: 0.2).CGColor
   let outlineColor2 = UIColor(red: 0.443, green: 0.961, blue: 0.082, alpha: 0.6).CGColor
 
-
   var masterController    : LeadGameController?
   var followerController  : GameController?
   var userInfoMyself      : UserInfo?

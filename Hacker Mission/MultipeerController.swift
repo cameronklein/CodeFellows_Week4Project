@@ -357,9 +357,6 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     session.disconnect()
     stopAdvertising()
     stopBrowsing()
-//    session = MCSession(peer: self.peerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.None)
-//    advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: MyServiceType)
-//    browser = MCNearbyServiceBrowser(peer: peerID, serviceType: MyServiceType)
   }
 
 } // End
