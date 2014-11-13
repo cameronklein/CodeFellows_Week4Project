@@ -14,7 +14,9 @@ class MissionOutcomeVoteViewController: UIViewController {
   var multiPeerController : MultiPeerController = MultiPeerController.sharedInstance
   var game : GameSession?
   var currentUser : Player!
-  
+  var logFor = LogClass()
+
+
   @IBOutlet weak var loyalLabel: UILabel!
   @IBOutlet weak var failButton: UIButton!
   @IBOutlet weak var succeedButton: UIButton!

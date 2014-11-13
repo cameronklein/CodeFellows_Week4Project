@@ -26,6 +26,8 @@ class LaunchViewController: UIViewController {
   var imageAnchorY = CGFloat()
   var startedOnce = false
   var shouldAnimate = false
+  var logFor = LogClass()
+
 
   @IBOutlet weak var progressBar: UIProgressView!
   @IBOutlet weak var peersLabel: UILabel!
@@ -47,7 +49,7 @@ class LaunchViewController: UIViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     let myUserTest = appDelegate.defaultUser as UserInfo!
     if myUserTest != nil {
-      println("existing defaultUser is \(appDelegate.defaultUser?.userName)")
+      logFor.DLog("existing defaultUser is \(appDelegate.defaultUser?.userName)")
       self.userInfoMyself = appDelegate.defaultUser
     } else {
       self.userInfoMyself = nil
@@ -87,11 +89,11 @@ class LaunchViewController: UIViewController {
 
     self.shouldAnimate = true
 
-    println("viewDidAppear")
-    println("user is \(self.userInfoMyself?.userName)")
+    logFor.DLog("viewDidAppear")
+    logFor.DLog("user is \(self.userInfoMyself?.userName)")
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
 
-    println("the appDelUser is: \(appDelegate.defaultUser?.userName)")
+    logFor.DLog("the appDelUser is: \(appDelegate.defaultUser?.userName)")
 
     var layers = [CALayer]()
     layers.append(self.hostButton.layer)
@@ -180,12 +182,12 @@ class LaunchViewController: UIViewController {
   }
 
   func pauseTimerFor() {
-    //println("pausetimer")
+    //logFor.DLog("pausetimer")
     var delay = Double(arc4random_uniform(40) + 3) / 10.0
     var pauseTimer = NSTimer(timeInterval: delay, target: self, selector: "titleAnimation", userInfo: nil, repeats: false)
-    //println("got this far")
+    //logFor.DLog("got this far")
     pauseTimer.fire()
-    //println("paused")
+    //logFor.DLog("paused")
     pauseTimer.invalidate()
   }
 
@@ -235,14 +237,14 @@ class LaunchViewController: UIViewController {
   }
   
   @IBAction func startGameButtonPressed(sender: AnyObject) {
-    println("Going to start game!")
+    logFor.DLog("Going to start game!")
     masterController?.beginRequestingImagesFromPlayers()
     startButton.enabled = false
   }
     
   func updateConnectedPeersLabel (number: Int) -> Void
   {
-    println("LAUNCH VIEW CONTROLLER: Updating peers label to \(number)")
+    logFor.DLog("LAUNCH VIEW CONTROLLER: Updating peers label to \(number)")
     let numberNeeded = 4 - number
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
@@ -253,13 +255,13 @@ class LaunchViewController: UIViewController {
         self.peersLabel.text = self.peersLabel.text! + "\n Need \(numberNeeded) more to start."
       }
       if (number > 0) {
-        println(self.spinningWheel.isAnimating())
+//        logFor.DLog(self.spinningWheel.isAnimating())
         if (self.spinningWheel.isAnimating()){
           self.spinningWheel.stopAnimating()
           self.peersLabel.hidden = false
         }
         if self.masterController != nil {
-          println("Showing start button")
+          self.logFor.DLog("Showing start button")
           self.startButton.enabled = true
           self.startButton.alpha = 1.0
         }
@@ -294,7 +296,7 @@ class LaunchViewController: UIViewController {
   }
   
   func showLoadingBar(percentage: Float) {
-    println("LAUNCH VC calling showloadingbar")
+    logFor.DLog("LAUNCH VC calling showloadingbar")
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
       self.peersLabel.text = "Game started, loading data..."
       self.progressBar.alpha = 1

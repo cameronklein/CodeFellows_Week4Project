@@ -14,6 +14,8 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
   var beginningVC : OnboardPageViewController!
   var controllers = [UIViewController]()
   var onboardDict : NSDictionary!
+  var logFor = LogClass()
+
 
   @IBOutlet weak var pageControl: UIPageControl!
   
@@ -118,7 +120,7 @@ class RootOnboardViewController: UIViewController, UIPageViewControllerDelegate,
   }
 
   func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [AnyObject]) {
-    println(pendingViewControllers)
+//    logFor.DLog(String(pendingViewControllers))
     let middleVC = pendingViewControllers[0] as UIViewController
     var i = 0
     for vc in controllers {

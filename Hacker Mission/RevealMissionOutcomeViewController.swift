@@ -15,7 +15,9 @@ class RevealMissionOutcomeViewController: UIViewController {
   
   @IBOutlet weak var confirmButton: UIButton!
   var gameController = GameController.sharedInstance
-  
+  var logFor = LogClass()
+
+
   override func viewDidLoad() {
     super.viewDidLoad()
   }

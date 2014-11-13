@@ -22,6 +22,7 @@
 		4306C22B1A104A8E0066FC3E /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4306C22A1A104A8E0066FC3E /* AboutView.xib */; };
 		4306C22D1A1059850066FC3E /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306C22C1A1059850066FC3E /* AboutViewController.swift */; };
 		4334C3781A019EDD00CB7AFA /* DefaultIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334C3771A019EDD00CB7AFA /* DefaultIconCell.swift */; };
+		4339F2DB1A156597009E4EBA /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4339F2DA1A156597009E4EBA /* Log.swift */; };
 		436546751A00299C0060B865 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436546741A00299C0060B865 /* AppDelegate.swift */; };
 		4372ECB21A0024A200907EFA /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4372ECB11A0024A200907EFA /* Mission.swift */; };
 		43BED81A1A0BD8460066578F /* glass_tty_vt220.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43BED8191A0BD8460066578F /* glass_tty_vt220.ttf */; };
@@ -76,7 +77,7 @@
 
 /* Begin PBXFileReference section */
 		1608688C1A02B6E5007D2EE3 /* Jake Class Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Jake Class Extensions.swift"; sourceTree = "<group>"; };
-		164EDA8E1A015008005F7452 /* CharacterCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterCreationViewController.swift; sourceTree = "<group>"; };
+		164EDA8E1A015008005F7452 /* CharacterCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CharacterCreationViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		164EDA921A01672D005F7452 /* RevealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealViewController.swift; sourceTree = "<group>"; };
 		164EDA931A01672D005F7452 /* RevealViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RevealViewController.xib; sourceTree = "<group>"; };
 		164EDA961A018C5B005F7452 /* HackerMissionTitle.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HackerMissionTitle.pdf; sourceTree = "<group>"; };
@@ -89,9 +90,10 @@
 		16C784B619FEE9DA008421CC /* BOYCOTT_.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BOYCOTT_.ttf; sourceTree = "<group>"; };
 		16C784B719FEF5F3008421CC /* mission_connector.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = mission_connector.pdf; sourceTree = "<group>"; };
 		4306C22A1A104A8E0066FC3E /* AboutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutView.xib; sourceTree = "<group>"; };
-		4306C22C1A1059850066FC3E /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		4306C22C1A1059850066FC3E /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AboutViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4334C3771A019EDD00CB7AFA /* DefaultIconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultIconCell.swift; sourceTree = "<group>"; };
-		436546741A00299C0060B865 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4339F2DA1A156597009E4EBA /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		436546741A00299C0060B865 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4372ECB11A0024A200907EFA /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		43BED8191A0BD8460066578F /* glass_tty_vt220.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = glass_tty_vt220.ttf; sourceTree = "<group>"; };
 		43CEB92A19FF41BE007CF4A5 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -112,7 +114,7 @@
 		7E46DF3519FEB359009215E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E46DF3619FEB359009215E3 /* Hacker_MissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hacker_MissionTests.swift; sourceTree = "<group>"; };
 		7E46DF4019FEBC2A009215E3 /* MultipeerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerController.swift; sourceTree = "<group>"; };
-		7E46DF4619FF126A009215E3 /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
+		7E46DF4619FF126A009215E3 /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GameController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7E46DF4819FF130A009215E3 /* GameEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEvent.swift; sourceTree = "<group>"; };
 		7E46DF4A19FF336E009215E3 /* GameSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
 		7E7225AC1A0E9BD3007D1DF4 /* FlavorText.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FlavorText.plist; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				7E3CF1581A09713F0083C215 /* PrivacyPolicyViewController.swift */,
 				7EFC17EB1A0D7429009FC489 /* HelpViewController.swift */,
 				4306C22C1A1059850066FC3E /* AboutViewController.swift */,
+				4339F2DA1A156597009E4EBA /* Log.swift */,
 			);
 			name = "Controller Layer";
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				7E85DCFF1A073C9B00C9E303 /* OnboardPageViewController.swift in Sources */,
 				7E46DF4119FEBC2A009215E3 /* MultipeerController.swift in Sources */,
 				7EF0C12F1A02C358002A6219 /* MissionTextViewController.swift in Sources */,
+				4339F2DB1A156597009E4EBA /* Log.swift in Sources */,
 				7EF0C1291A02A519002A6219 /* RevealMissionOutcomeViewController.swift in Sources */,
 				7E46DF5019FF336E009215E3 /* GameSession.swift in Sources */,
 				7EFC17ED1A0D7429009FC489 /* HelpViewController.swift in Sources */,
@@ -565,6 +569,7 @@
 				INFOPLIST_FILE = "Hacker Mission/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

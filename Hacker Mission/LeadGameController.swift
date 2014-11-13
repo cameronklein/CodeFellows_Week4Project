@@ -21,7 +21,9 @@ class LeadGameController {
   var myUserInfo : UserInfo!
   var launchVC : LaunchViewController!
   var flavorTextArray = [[String: String]]()
-  
+  var logFor = LogClass()
+
+
   var requestQueue = NSOperationQueue()
   
   init() {
@@ -33,7 +35,7 @@ class LeadGameController {
   func startLookingForPlayers() {
     let appDel = UIApplication.sharedApplication().delegate as AppDelegate
     if let thisUser = appDel.defaultUser as UserInfo! {
-      println("thisUser is \(thisUser)")
+      logFor.DLog("thisUser is \(thisUser)")
       thisUser.userPeerID = multipeerController.peerID.displayName
       usersForGame.append(thisUser)
       imagePacketsForGame.append(ImagePacket(peerID: thisUser.userPeerID!, userImage: thisUser.userImage!))
@@ -61,7 +63,7 @@ class LeadGameController {
             }
           }
           if packetArrayHasImage == false {
-            println("Asking for image from \(user.userPeerID!)")
+            self.logFor.DLog("Asking for image from \(user.userPeerID!)")
             self.requestQueue.addOperationWithBlock({ () -> Void in
               NSThread.sleepForTimeInterval(3.0)
               self.multipeerController.requestImageFromPeer(user.userPeerID!)
@@ -76,14 +78,14 @@ class LeadGameController {
   
   func startGame() {
     
-    println("MAIN BRAIN : Start Game Function Called")
+    logFor.DLog("MAIN BRAIN : Start Game Function Called")
     multipeerController.gameRunning = true
     
     //multipeerController.stopBrowsing()
   
     let players = self.getPlayersFromCurrentUsersArray()
 
-    println("MAIN BRAIN: \(players.count) players created from provided user information.")
+    logFor.DLog("MAIN BRAIN: \(players.count) players created from provided user information.")
     
     multipeerController.sendImagePacketsToPeers(imagePacketsForGame)
     
@@ -91,12 +93,12 @@ class LeadGameController {
     
     self.giveFlavorTextToMissions(&missions)
     
-    println("MAIN BRAIN: Created \(missions.count) missions.")
+    logFor.DLog("MAIN BRAIN: Created \(missions.count) missions.")
     
     self.game = GameSession(players: players, missions: missions)
     
     if self.game != nil {
-      println("MAIN BRAIN: Game Created. We are ready for launch.")
+      logFor.DLog("MAIN BRAIN: Game Created. We are ready for launch.")
       self.assignRoles()
     }
     
@@ -109,7 +111,7 @@ class LeadGameController {
   func getPlayersFromCurrentUsersArray() -> [Player] {
     
     var players = [Player]()
-    println("MAIN BRAIN : Creating players from user array of \(usersForGame.count) users.")
+    logFor.DLog("MAIN BRAIN : Creating players from user array of \(usersForGame.count) users.")
     for user in usersForGame {
       
       var playerFor = Player.makePlayerDictionaryForGameSession(user as UserInfo)
@@ -125,7 +127,7 @@ class LeadGameController {
         players.append(player)
       }
     }
-    println("MAIN BRAIN : Created \(players.count) players.")
+    logFor.DLog("MAIN BRAIN : Created \(players.count) players.")
     
     return players
   }
@@ -133,7 +135,7 @@ class LeadGameController {
   func getImagePacketsFromCurrentUsersArray() -> [ImagePacket] {
     
     var imagePackets = [ImagePacket]()
-    println("MAIN BRAIN : Creating imagePackets from user array of \(usersForGame.count) users.")
+    logFor.DLog("MAIN BRAIN : Creating imagePackets from user array of \(usersForGame.count) users.")
     for user in usersForGame {
 
       let imagePacketFor = ImagePacket(peerID: user.userPeerID!, userImage: user.userImage!)
@@ -148,7 +150,7 @@ class LeadGameController {
         imagePackets.append(imagePacketFor)
       }
     }
-    println("MAIN BRAIN : Created \(imagePackets.count) image packets.")
+    logFor.DLog("MAIN BRAIN : Created \(imagePackets.count) image packets.")
 
     return imagePackets
   }
@@ -167,7 +169,7 @@ class LeadGameController {
   }
 
   func assignRoles(){
-    println("MAIN BRAIN: Beginning to assign player roles for \(game.players.count) players.")
+    logFor.DLog("MAIN BRAIN: Beginning to assign player roles for \(game.players.count) players.")
 
     let players = game.players
     let numberOfPlayers = players.count
@@ -188,21 +190,21 @@ class LeadGameController {
       let i = Int(arc4random_uniform(UInt32(numberOfPlayers)))
         let player = players[i] as Player
       if player.playerRole != PlayerType.Agent {
-        println("MAIN BRAIN: Assigned \(player.playerName) as Agent.")
+        logFor.DLog("MAIN BRAIN: Assigned \(player.playerName) as Agent.")
         player.playerRole = PlayerType.Agent
         currentAgents++
       }
     }
     
-    println("MAIN BRAIN: Assigned \(currentAgents) agents at random.")
+    logFor.DLog("MAIN BRAIN: Assigned \(currentAgents) agents at random.")
     
     let j = Int(arc4random_uniform(UInt32(numberOfPlayers)))
     var player = players[j] as Player
     player.isLeader = true
     game.leader = player
     
-    println("MAIN BRAIN: Assigned \(player.playerName) as initial leader.")
-    println("MAIN BRAIN: Sending *Game Start* event to peers.")
+    logFor.DLog("MAIN BRAIN: Assigned \(player.playerName) as initial leader.")
+    logFor.DLog("MAIN BRAIN: Sending *Game Start* event to peers.")
     game.currentGameState = GameEvent.Start
     multipeerController.sendEventToPeers(game) // first send!!!!!!!!!!!!
     self.revealCharacters()
@@ -210,7 +212,7 @@ class LeadGameController {
   
   func revealCharacters() {
     //Sends information on who is on what team (Hackers and Goverment Agents) to devices.  Only Goverment Agents see who the other Goverment Agents are
-    println("MAIN BRAIN: Sending *Reveal Characters* event to peers.")
+    logFor.DLog("MAIN BRAIN: Sending *Reveal Characters* event to peers.")
     for player in game.players {
       
       player.currentVote = nil
@@ -224,7 +226,7 @@ class LeadGameController {
   func changeLeader() {
     //Assigns a leader for current mission and itterates through all players, per games rules, and gives them a chance to be leader.
 //    var leaderIndex = game.players.indexOfObject(game.leader!)
-    println("MAIN BRAIN: Changing leader. Was \(game.leader!.playerName)")
+    logFor.DLog("MAIN BRAIN: Changing leader. Was \(game.leader!.playerName)")
     var foundLeader = false
     var assignedLeader = false
     
@@ -244,12 +246,12 @@ class LeadGameController {
         }
       }
     }
-    println("MAIN BRAIN: New leader is \(game.leader!.playerName)")
+    logFor.DLog("MAIN BRAIN: New leader is \(game.leader!.playerName)")
   }
 
   func startMission() {
     //Calculates how many hackers will go on a mission, and how many failures it requires for the mission to fail
-    println("MAIN BRAIN: Sending *Mission Start* event to peers.")
+    logFor.DLog("MAIN BRAIN: Sending *Mission Start* event to peers.")
     game.currentGameState = GameEvent.MissionStart
     multipeerController.sendEventToPeers(game)
     
@@ -257,7 +259,7 @@ class LeadGameController {
   
   func tellLeaderToNominatePlayers() {
     //Leader nominates the appropriate number of hackers to go on the mission
-    println("MAIN BRAIN: Sending *Nominate Players* event to peers.")
+    logFor.DLog("MAIN BRAIN: Sending *Nominate Players* event to peers.")
     for player in game.players {
       
       player.currentVote = nil
@@ -271,7 +273,7 @@ class LeadGameController {
   
   func revealNominations() {
     //Leader locks in their nominated team for the mission
-    println("MAIN BRAIN: Sending *Reveal Nominations* event to peers.")
+    logFor.DLog("MAIN BRAIN: Sending *Reveal Nominations* event to peers.")
     game.currentGameState = GameEvent.RevealNominations
     multipeerController.sendEventToPeers(game)
     
@@ -279,7 +281,7 @@ class LeadGameController {
   
   func tellPlayersToVote() {
     //All players vote to approve or reject the nominated team for the mission
-    println("MAIN BRAIN: Sending *Begin Vote* event to peers.")
+    logFor.DLog("MAIN BRAIN: Sending *Begin Vote* event to peers.")
     game.currentGameState = GameEvent.BeginVote
     multipeerController.sendEventToPeers(game)
     
@@ -288,7 +290,7 @@ class LeadGameController {
   func tabulateVotes(forPlayer playerID : String, andVote voteResult : String) {
     
     //Calculates if the mission is approved or rejected
-    println("MAIN BRAIN: Vote receieved from \(playerID).")
+    logFor.DLog("MAIN BRAIN: Vote receieved from \(playerID).")
     currentVotes.append(voteResult)
     for player in game.players {
       if player.peerID == playerID {
@@ -301,8 +303,8 @@ class LeadGameController {
     }
     
     if currentVotes.count == game.players.count {
-      println("MAIN BRAIN: Last vote received. Deciding winner...")
-      println(currentVotes.description)
+      logFor.DLog("MAIN BRAIN: Last vote received. Deciding winner...")
+      logFor.DLog(currentVotes.description)
       var approved = 0
       var rejected = 0
       for vote in currentVotes {
@@ -314,11 +316,11 @@ class LeadGameController {
       }
       var didPass = false
       if rejected > approved {
-        println("MAIN BRAIN: Team REJECTED by players. (Approved: \(approved). Rejected: \(rejected).")
+        logFor.DLog("MAIN BRAIN: Team REJECTED by players. (Approved: \(approved). Rejected: \(rejected).")
         let mission = game.missions[game.currentMission] as Mission
         mission.rejectedTeamsCount =  mission.rejectedTeamsCount + 1
       } else {
-        println("MAIN BRAIN: Team APPROVED by players. (Approved: \(approved). Rejected: \(rejected).")
+        logFor.DLog("MAIN BRAIN: Team APPROVED by players. (Approved: \(approved). Rejected: \(rejected).")
         didPass = true
       }
       currentVotes.removeAll(keepCapacity: true)      //Reset currentVotes
@@ -329,7 +331,7 @@ class LeadGameController {
   func revealVotes(passed: Bool) {
     
     //Displays all players votes to approve/reject the mission
-    println("MAIN BRAIN: Sending *Reveal Vote* event to peers.")
+    logFor.DLog("MAIN BRAIN: Sending *Reveal Vote* event to peers.")
     game.currentGameState = GameEvent.RevealVote
     multipeerController.sendEventToPeers(game)
     let currentMission = game.missions[game.currentMission] as Mission
@@ -352,7 +354,7 @@ class LeadGameController {
       
     } else if passed == true {
       
-      println("MAIN BRAIN: Telling nominated players to determine mission outcome! Nominated players: \(currentMission.nominatedPlayers.description)")
+      logFor.DLog("MAIN BRAIN: Telling nominated players to determine mission outcome! Nominated players: \(currentMission.nominatedPlayers.description)")
       
       self.delay(10.0, closure: { () -> () in
        self.tellPlayersToDetermineMissionOutcome()
@@ -362,7 +364,7 @@ class LeadGameController {
   
   func tellPlayersToDetermineMissionOutcome() {
     //Nominated hackers vote if the mission will Succeed or Fail
-    println("MAIN BRAIN: Sending *Begin Mission Outcome* event to peers.")
+    logFor.DLog("MAIN BRAIN: Sending *Begin Mission Outcome* event to peers.")
     game.currentGameState = GameEvent.BeginMissionOutcome
     multipeerController.sendEventToPeers(game)
     
@@ -371,7 +373,7 @@ class LeadGameController {
   func tabulateMissionOutcome(forPlayer playerID : String, andOutcome outcome: String) {
     //Calculate if the mission will succeed or fail, based on mission criteria
     
-    println("MAIN BRAIN: Mission outcome vote received from \(playerID)")
+    logFor.DLog("MAIN BRAIN: Mission outcome vote received from \(playerID)")
     currentMissionOutcomeVotes.append(outcome)
     
     let currentMission = game.missions[game.currentMission] as Mission
@@ -389,11 +391,11 @@ class LeadGameController {
         }
       }
       if fail >= currentMission.failThreshold {
-        println("MAIN BRAIN: Mission Failed!!!")
+        logFor.DLog("MAIN BRAIN: Mission Failed!!!")
         currentMission.success = false
         game.failedMissionCount = game.failedMissionCount + 1
       } else {
-        println("MAIN BRAIN: Mission Succeeded!!!")
+        logFor.DLog("MAIN BRAIN: Mission Succeeded!!!")
         currentMission.success = true
         game.passedMissionCount = game.passedMissionCount + 1
       }
@@ -413,10 +415,10 @@ class LeadGameController {
     
   func revealMissionOutcome() {
     //Reveals if the mission is successful or fails
-    println("MAIN BRAIN: Sending *Reveal Mission Outcome* event to peers.")
+    logFor.DLog("MAIN BRAIN: Sending *Reveal Mission Outcome* event to peers.")
     
     var currentMission = game.missions[game.currentMission] as Mission
-    println("MAIN BRAIN: Updating mission number index.")
+    logFor.DLog("MAIN BRAIN: Updating mission number index.")
     
     self.changeLeader()
     game.currentMission = game.currentMission + 1
@@ -452,24 +454,24 @@ class LeadGameController {
   //
   
   func handleEvent(event: NSMutableDictionary) {
-    println(event.description)
+    logFor.DLog(event.description)
     let action  = event["action"] as String
     let peerID  = event["peerID"] as String
     
     switch action {
       
     case "vote" :
-      println("MAIN BRAIN: Received vote information from \(peerID)")
+      logFor.DLog("MAIN BRAIN: Received vote information from \(peerID)")
       let value = event["value"] as String
       self.tabulateVotes(forPlayer: peerID, andVote: value)
       
     case "missionOutcome" :
-      println("MAIN BRAIN: Received mission outcome information from \(peerID)")
+      logFor.DLog("MAIN BRAIN: Received mission outcome information from \(peerID)")
       let value = event["value"] as String
       self.tabulateMissionOutcome(forPlayer: peerID, andOutcome: value)
       
     case "user" :
-      println("MAIN BRAIN: Received user information from \(peerID)")
+      logFor.DLog("MAIN BRAIN: Received user information from \(peerID)")
       let value = event["value"] as String
       let user = UserInfo(userName: value)
       user.userPeerID = peerID
@@ -477,31 +479,31 @@ class LeadGameController {
       // MARK: FInish this with a new event to request the imagePackets
 
     case "imagePacket" :
-      println("MAIN BRAIN: Received imagePacket from \(peerID)")
+      logFor.DLog("MAIN BRAIN: Received imagePacket from \(peerID)")
       let image = event["value"] as UIImage
       imagePacketsForGame.append(ImagePacket(peerID: peerID, userImage: image))
 
     case "nominations" :
-      println("MAIN BRAIN: Received nomination information from \(peerID)")
+      logFor.DLog("MAIN BRAIN: Received nomination information from \(peerID)")
       let value = event["value"] as [String]
       self.assignNominations(value)
       
     default:
-      println("MAIN BRAIN: LeadGameController event handler action not recognized.")
+      logFor.DLog("MAIN BRAIN: LeadGameController event handler action not recognized.")
       
     }
   }
   
   func assignNominations(arrayOfNominatedPlayerIDs : [String]) {
     
-    println("MAIN BRAIN: Got nomination info with these players nominated: \(arrayOfNominatedPlayerIDs.description)")
+    logFor.DLog("MAIN BRAIN: Got nomination info with these players nominated: \(arrayOfNominatedPlayerIDs.description)")
     
     let currentMission = game.missions[game.currentMission] as Mission
     for player in game.players {
       for nominationID in arrayOfNominatedPlayerIDs {
-        println("MAIN BRAIN: Comparing \(nominationID) to \(player.peerID)")
+        logFor.DLog("MAIN BRAIN: Comparing \(nominationID) to \(player.peerID)")
         if nominationID == player.peerID {
-          println("MAIN BRAIN: Added \(player.playerName) to mission # \(game.currentMission)'s nominatedPlayer array.")
+          logFor.DLog("MAIN BRAIN: Added \(player.playerName) to mission # \(game.currentMission)'s nominatedPlayer array.")
           currentMission.nominatedPlayers.append(player)
         }
       }
@@ -510,7 +512,7 @@ class LeadGameController {
   }
 
   func handleEvent(event: GameSession) {
-    println("MAIN BRAIN: Something went wrong. This should not be called.")
+    logFor.DLog("MAIN BRAIN: Something went wrong. This should not be called.")
   }
   
   func updatePeerCount(count : Int) {
@@ -541,7 +543,7 @@ class LeadGameController {
   }
   
   func sendUserInfo() {
-    println("Not doing anything!")
+    logFor.DLog("Not doing anything!")
   }
   
   func resetForNewGame() {
