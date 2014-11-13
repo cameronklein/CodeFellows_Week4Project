@@ -25,7 +25,9 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
     var screenWidth : CGFloat!
     var layout : UICollectionViewFlowLayout!
     var homeVC : HomeViewController!
-  
+    var logFor = LogClass()
+
+
     // MARK: - View Methods
     
     override func viewDidLoad(){

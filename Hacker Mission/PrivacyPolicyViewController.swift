@@ -18,6 +18,8 @@ class PrivacyPolicyViewController: UIViewController {
   let outlineColor1 = UIColor(red: 0.443, green: 0.961, blue: 0.082, alpha: 0.2).CGColor
   let outlineColor2 = UIColor(red: 0.443, green: 0.961, blue: 0.082, alpha: 0.6).CGColor
   var shouldAnimate = false
+  var logFor = LogClass()
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -58,7 +60,7 @@ class PrivacyPolicyViewController: UIViewController {
       let theAnimation = CABasicAnimation(keyPath: "borderColor")
       theAnimation.delegate = self
 
-      println("here in core animation")
+      logFor.DLog("here in core animation")
       theAnimation.repeatCount = 10000.0
       theAnimation.autoreverses = true
       theAnimation.fromValue = self.outlineColor1

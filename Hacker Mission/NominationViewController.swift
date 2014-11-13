@@ -19,7 +19,9 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
   var gameController = GameController.sharedInstance
   var nominatedPlayersArray = [Player]()
   var currentMission : Mission!
-  
+  var logFor = LogClass()
+
+
   var screenWidth : CGFloat!
   var layout : UICollectionViewFlowLayout!
   
@@ -37,7 +39,7 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
     layout.itemSize = CGSize(width: screenWidth * 0.13, height: screenWidth * 0.17)
     
     currentMission = gameController.game.missions[gameController.game.currentMission] as Mission
-    println("Nomination View Controller got an array: \(currentMission.nominatedPlayers.description)")
+    logFor.DLog("Nomination View Controller got an array: \(currentMission.nominatedPlayers.description)")
     nominatedPlayersArray = currentMission.nominatedPlayers
     collectionView.reloadData()
     self.approveButton.userInteractionEnabled = true
@@ -84,7 +86,7 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PLAYER", forIndexPath: indexPath) as PlayerCell
     let player = nominatedPlayersArray[indexPath.row] as Player
     
-    println("NOMINATION VOTE VIEW CONTROLLER: Made cell for player,  \(player.playerName)")
+    logFor.DLog("NOMINATION VOTE VIEW CONTROLLER: Made cell for player,  \(player.playerName)")
     
     let imagePacketImage = self.findMatchingImageForPlayer(player, imagePacketArray: self.gameController.imagePackets)
 
@@ -95,7 +97,7 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
   }
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    println("NOMINATION VOTE VIEW CONTROLLER: Asking for cells, got \(nominatedPlayersArray.count)")
+    logFor.DLog("NOMINATION VOTE VIEW CONTROLLER: Asking for cells, got \(nominatedPlayersArray.count)")
     return nominatedPlayersArray.count
     
   }
