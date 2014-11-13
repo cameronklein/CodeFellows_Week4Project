@@ -45,12 +45,12 @@ class RevealViewController: UIViewController, UICollectionViewDataSource, UIColl
       self.layout = playerRevealCollectionView.collectionViewLayout as UICollectionViewFlowLayout
       self.screenWidth = self.playerRevealCollectionView.frame.width
       super.viewWillAppear(true)
-      layout.minimumLineSpacing = screenWidth * 0.02
-      layout.minimumInteritemSpacing = screenWidth * 0.02
-      layout.sectionInset.left = screenWidth * 0.05
-      layout.sectionInset.right = screenWidth * 0.05
-      layout.itemSize = CGSize(width: screenWidth * 0.17, height: screenWidth * 0.23)
-      
+//      layout.minimumLineSpacing = screenWidth * 0.02
+      layout.minimumInteritemSpacing = screenWidth * 0.01
+//      layout.sectionInset.left = screenWidth * 0.05
+//      layout.sectionInset.right = screenWidth * 0.05
+    layout.itemSize = CGSize(width: screenWidth * 0.16, height: screenWidth * 0.186)
+
       for player in gameController.game.players {
         playerArray.append(player as Player)
       }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -18,42 +18,42 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PLAYER" id="gTV-IL-0wX" customClass="PlayerCell" customModule="Hacker_Mission" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="200" height="226"/>
+            <rect key="frame" x="0.0" y="0.0" width="120" height="140"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="200" height="226"/>
+                <rect key="frame" x="0.0" y="0.0" width="120" height="140"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VcC-QV-NIB">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="226"/>
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="140"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QiA-8f-dm1">
-                                <rect key="frame" x="16" y="8" width="168" height="168"/>
+                                <rect key="frame" x="16" y="8" width="88" height="88"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="QiA-8f-dm1" secondAttribute="height" multiplier="1:1" id="jsp-n8-AfO"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USERNAME" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bKf-c0-krF">
-                                <rect key="frame" x="8" y="184" width="184" height="34"/>
-                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="17"/>
+                                <rect key="frame" x="8" y="104" width="104" height="28"/>
+                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="12"/>
                                 <color key="textColor" red="0.4079129192" green="1" blue="0.44638519469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwa-mX-vL7" userLabel="APPROVE">
-                                <rect key="frame" x="169" y="191" width="15" height="21"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwa-mX-vL7" userLabel="APPROVE">
+                                <rect key="frame" x="87" y="105" width="17" height="26"/>
                                 <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="24"/>
                                 <color key="textColor" red="0.4079129192" green="1" blue="0.44638519469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHa-QG-R9R" userLabel="REJECT">
-                                <rect key="frame" x="169" y="191" width="15" height="21"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHa-QG-R9R" userLabel="REJECT">
+                                <rect key="frame" x="87" y="105" width="17" height="26"/>
                                 <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="24"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEADER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="e6z-MK-GXE" userLabel="LEADER">
-                                <rect key="frame" x="8" y="144" width="184" height="32"/>
+                                <rect key="frame" x="8" y="79" width="104" height="17"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="32"/>
+                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>

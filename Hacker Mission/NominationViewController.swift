@@ -32,12 +32,12 @@ class NominationVoteViewController: UIViewController, UICollectionViewDataSource
     self.layout = nominatedPlayerViewContoller.collectionViewLayout as UICollectionViewFlowLayout
     self.screenWidth = self.nominatedPlayerViewContoller.frame.width
     super.viewWillAppear(true)
-    layout.minimumLineSpacing = screenWidth * 0.02
-    layout.minimumInteritemSpacing = screenWidth * 0.02
-    layout.sectionInset.left = screenWidth * 0.05
-    layout.sectionInset.right = screenWidth * 0.05
-    layout.itemSize = CGSize(width: screenWidth * 0.13, height: screenWidth * 0.17)
-    
+//    layout.minimumLineSpacing = screenWidth * 0.02
+    layout.minimumInteritemSpacing = screenWidth * 0.01
+//    layout.sectionInset.left = screenWidth * 0.05
+//    layout.sectionInset.right = screenWidth * 0.05
+    layout.itemSize = CGSize(width: screenWidth * 0.16, height: screenWidth * 0.186)
+
     currentMission = gameController.game.missions[gameController.game.currentMission] as Mission
     logFor.DLog("Nomination View Controller got an array: \(currentMission.nominatedPlayers.description)")
     nominatedPlayersArray = currentMission.nominatedPlayers

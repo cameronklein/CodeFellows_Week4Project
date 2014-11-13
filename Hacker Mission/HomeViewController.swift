@@ -201,12 +201,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     self.layout = playersCollectionView.collectionViewLayout as UICollectionViewFlowLayout
     self.screenWidth = self.playersCollectionView.frame.width
     super.viewWillAppear(true)
-    layout.minimumLineSpacing = screenWidth * 0.02
-    layout.minimumInteritemSpacing = screenWidth * 0.02
-    layout.sectionInset.left = screenWidth * 0.05
-    layout.sectionInset.right = screenWidth * 0.05
-    layout.itemSize = CGSize(width: screenWidth * 0.13, height: screenWidth * 0.17)
-    
+//    layout.minimumLineSpacing = screenWidth * 0.02
+    layout.minimumInteritemSpacing = screenWidth * 0.01
+//    layout.sectionInset.left = screenWidth * 0.05
+//    layout.sectionInset.right = screenWidth * 0.05
+    layout.itemSize = CGSize(width: screenWidth * 0.14, height: screenWidth * 0.163)
+
     //Register PlayerCellNib
     self.playersCollectionView.registerNib(UINib(nibName: "PlayerCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "PLAYER")
     
