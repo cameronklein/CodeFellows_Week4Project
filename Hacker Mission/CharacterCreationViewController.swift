@@ -381,6 +381,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       self.checkButtonState()
       self.usernameTextField.resignFirstResponder()
     }
+    // Placeholder
   }
 
 
