@@ -48,22 +48,22 @@
                     </view>
                     <blurEffect style="dark"/>
                 </visualEffectView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Help &amp; Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N07-nA-FKf">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help &amp; Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N07-nA-FKf">
                     <rect key="frame" x="233" y="36" width="135" height="18"/>
                     <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="18"/>
                     <color key="textColor" red="0.4431372549" green="0.96078431369999995" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bV4-X7-O7a">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bV4-X7-O7a">
                     <rect key="frame" x="160" y="86" width="280" height="38"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Number of Government Agents:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5s0-Uf-zuN">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Government Agents:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5s0-Uf-zuN">
                             <rect key="frame" x="0.0" y="10" width="252" height="18"/>
                             <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="18"/>
                             <color key="textColor" red="1" green="0.052867877950000003" blue="0.14780411399999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvw-dl-uEl">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvw-dl-uEl">
                             <rect key="frame" x="260" y="0.0" width="20" height="38"/>
                             <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="40"/>
                             <color key="textColor" red="1" green="0.052867877950000003" blue="0.14780411399999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -80,7 +80,7 @@
                         <constraint firstAttribute="bottom" secondItem="rvw-dl-uEl" secondAttribute="bottom" id="yqd-XK-BvP"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAp-sf-cnf">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAp-sf-cnf">
                     <rect key="frame" x="214" y="539" width="172" height="29"/>
                     <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="16"/>
                     <state key="normal" title="&lt;&lt;Restart Game&gt;&gt;">
@@ -91,7 +91,7 @@
                         <action selector="restartButtonPressed:" destination="-1" eventType="touchUpInside" id="ALe-7x-Nnd"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5M-hI-s8m">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5M-hI-s8m">
                     <rect key="frame" x="262" y="478" width="76" height="29"/>
                     <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="16"/>
                     <state key="normal" title="&lt;&lt;Done&gt;&gt;">
@@ -102,13 +102,13 @@
                         <action selector="doneButtonPressed:" destination="-1" eventType="touchUpInside" id="6yo-TT-Ipb"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Vibration Alerts:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozU-Zg-AQD">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vibration Alerts:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozU-Zg-AQD">
                     <rect key="frame" x="160" y="146" width="153" height="18"/>
                     <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="18"/>
                     <color key="textColor" red="1" green="0.052867877950000003" blue="0.14780411399999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1AN-lY-m0L">
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1AN-lY-m0L">
                     <rect key="frame" x="391" y="139" width="51" height="31"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="31" id="40y-yw-Ytc"/>

@@ -30,10 +30,10 @@ class RevealMissionOutcomeViewController: UIViewController {
     
     missionOutcomeTitleLabel.text = justCompletedMission.missionName
     if result == true {
-      missionOutcomeTitleLabel.text = "Mission Success!"
-      missionOutcomeLabel.text = "Great job. No sabotage detected."
+      missionOutcomeTitleLabel.text = "Mission Success"
+      missionOutcomeLabel.text = "All \(successVotes) teammates stuck to the plan. No sabotage detected."
     } else {
-      missionOutcomeTitleLabel.text = "Mission Fail!"
+      missionOutcomeTitleLabel.text = "Mission Failed!"
       var term : String
       if failVotes == 1 {
         term = "1 teammate"

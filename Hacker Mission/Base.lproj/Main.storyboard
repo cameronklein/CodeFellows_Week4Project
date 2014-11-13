@@ -154,7 +154,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Wg4-QE-0tZ">
-                                <rect key="frame" x="48" y="416" width="504" height="2"/>
+                                <rect key="frame" x="48" y="432" width="504" height="2"/>
                                 <color key="progressTintColor" red="0.4431372549" green="0.96078431369999995" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="trackTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </progressView>
@@ -218,7 +218,7 @@
                             <constraint firstItem="c69-h1-LK6" firstAttribute="top" secondItem="gJT-k5-bx7" secondAttribute="bottom" constant="16" id="VA0-Bi-3ht"/>
                             <constraint firstItem="uW9-bV-Z8S" firstAttribute="leading" secondItem="rwS-3Z-jzj" secondAttribute="leading" id="WeT-t1-itP"/>
                             <constraint firstAttribute="centerX" secondItem="PPf-6S-DwA" secondAttribute="centerX" id="a0E-3z-aPM"/>
-                            <constraint firstItem="gJT-k5-bx7" firstAttribute="top" secondItem="Wg4-QE-0tZ" secondAttribute="bottom" constant="32" id="dAz-rZ-NgU"/>
+                            <constraint firstItem="gJT-k5-bx7" firstAttribute="top" secondItem="Wg4-QE-0tZ" secondAttribute="bottom" constant="16" id="dAz-rZ-NgU"/>
                             <constraint firstItem="P14-56-dqD" firstAttribute="top" secondItem="VXa-Dh-u7j" secondAttribute="bottom" constant="24" id="dkV-In-K4K"/>
                             <constraint firstItem="Wg4-QE-0tZ" firstAttribute="leading" secondItem="rwS-3Z-jzj" secondAttribute="leadingMargin" constant="32" id="iVS-9E-nfu"/>
                             <constraint firstAttribute="centerX" secondItem="Nr6-3m-elK" secondAttribute="centerX" id="mDi-HG-iBe"/>
@@ -648,9 +648,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jyQ-A6-9hc">
-                                <rect key="frame" x="553" y="20" width="31" height="28"/>
-                                <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="15"/>
-                                <state key="normal" title="Help">
+                                <rect key="frame" x="554" y="20" width="30" height="40"/>
+                                <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="27"/>
+                                <size key="titleShadowOffset" width="0.0" height="2"/>
+                                <state key="normal" title="">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
