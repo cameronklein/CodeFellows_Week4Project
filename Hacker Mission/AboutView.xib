@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -8,6 +8,7 @@
             <string>Typewrong</string>
         </mutableArray>
         <mutableArray key="glass_tty_vt220.ttf">
+            <string>Glass_TTY_VT220</string>
             <string>Glass_TTY_VT220</string>
             <string>Glass_TTY_VT220</string>
             <string>Glass_TTY_VT220</string>
@@ -41,35 +42,45 @@
                                     <blurEffect style="light"/>
                                 </vibrancyEffect>
                             </visualEffectView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logo designed by Greg Hopper." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kiT-hN-BTg">
+                                <rect key="frame" x="32" y="248" width="536" height="16"/>
+                                <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
+                                <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="kiT-hN-BTg" firstAttribute="leading" secondItem="4Lz-Ah-TWV" secondAttribute="leading" constant="32" id="Ak0-Jw-x2a"/>
+                            <constraint firstAttribute="trailing" secondItem="kiT-hN-BTg" secondAttribute="trailing" constant="32" id="gFh-GF-nTf"/>
+                        </constraints>
                     </view>
                     <blurEffect style="dark"/>
                 </visualEffectView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="HackerMission was created as a student project at CodeFellows in Seattle, WA, USA, we hope you and your friends enjoy it: " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7c-zq-c11">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HackerMission was created as a student project at CodeFellows in Seattle, WA, USA" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7c-zq-c11">
                     <rect key="frame" x="32" y="36" width="536" height="31"/>
                     <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
                     <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Glass TTY VT220 font by Viacheslav Slavinsky." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pI9-rD-xJZ">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Glass TTY VT220 font by Viacheslav Slavinsky." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pI9-rD-xJZ">
                     <rect key="frame" x="32" y="176" width="536" height="16"/>
                     <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
                     <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TypeWrong font by Digital Graphic Labs" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFc-YF-nRH">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TypeWrong font by Digital Graphic Labs" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFc-YF-nRH">
                     <rect key="frame" x="32" y="200" width="536" height="16"/>
                     <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
                     <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Boycott font by Ryoichi Tsunekawa, Flat-It." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m40-oV-Z9F">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Boycott font by Ryoichi Tsunekawa, Flat-It." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m40-oV-Z9F">
                     <rect key="frame" x="32" y="224" width="536" height="16"/>
                     <fontDescription key="fontDescription" name="Glass_TTY_VT220" family="Glass TTY VT220" pointSize="16"/>
                     <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQN-gd-Ok8">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQN-gd-Ok8">
                     <rect key="frame" x="248" y="91" width="104" height="61"/>
                     <string key="text">Joshua Sacks
 Cameron Klein
@@ -79,7 +90,7 @@ Nate Birkholz</string>
                     <color key="textColor" red="0.38263559749999998" green="1" blue="0.066124523579999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6CB-OQ-Oxq">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6CB-OQ-Oxq">
                     <rect key="frame" x="256" y="539" width="88" height="25"/>
                     <fontDescription key="fontDescription" name="Typewrong" family="Typewrong" pointSize="14"/>
                     <inset key="contentEdgeInsets" minX="5" minY="4" maxX="5" maxY="6"/>
@@ -115,6 +126,7 @@ Nate Birkholz</string>
                 <constraint firstAttribute="centerX" secondItem="pI9-rD-xJZ" secondAttribute="centerX" id="lIu-Ab-ZME"/>
                 <constraint firstItem="bQN-gd-Ok8" firstAttribute="top" secondItem="W7c-zq-c11" secondAttribute="bottom" constant="24" id="mFH-da-1IX"/>
                 <constraint firstAttribute="centerX" secondItem="bQN-gd-Ok8" secondAttribute="centerX" id="nat-1a-sXc"/>
+                <constraint firstItem="kiT-hN-BTg" firstAttribute="top" secondItem="m40-oV-Z9F" secondAttribute="bottom" constant="8" id="raa-DC-z08"/>
                 <constraint firstItem="UFc-YF-nRH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="32" id="sVT-Dg-h4u"/>
                 <constraint firstItem="m40-oV-Z9F" firstAttribute="top" secondItem="UFc-YF-nRH" secondAttribute="bottom" constant="8" id="uGh-e4-eNi"/>
             </constraints>
