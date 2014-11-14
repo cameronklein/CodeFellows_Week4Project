@@ -109,12 +109,6 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       
       let checkForGameRequestString = newDictionary.objectForKey("action") as String!
       
-      if checkForGameRequestString == "gameRequest" {
-        if mainBrain != nil {
-          self.resendGameInfoToPeer(peerID)
-        }
-      }
-      
       NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
         self.mainBrain?.handleEvent(newDictionary)
         return ()
@@ -125,6 +119,10 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
       
       if dataReceived == "RequestImage" {
         self.gameController.sendImagePacket()
+      } else if dataReceived == "gameRequest" {
+        if mainBrain != nil {
+          self.resendGameInfoToPeer(peerID)
+        }
       }
     } else if let dataReceived = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Float {
       logFor.DLog("Recognized data as Float: \(dataReceived)")
@@ -148,6 +146,16 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
         self.didSendUserData = true
       }
       self.gameController.updatePeerCount(session.connectedPeers.count)
+      if gameRunning == true {
+        for peer in peersForCurrentGame {
+          if peer.displayName == peerID.displayName {
+            if self.mainBrain != nil {
+              self.resendGameInfoToPeer(peerID)
+            }
+          }
+        }
+      }
+      
 
     } else if state == MCSessionState.NotConnected {
       logFor.DLog("Peer \(peerID.displayName) Stopped Connecting")
@@ -287,11 +295,12 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
   }
   
   func resendGameInfoToPeer(peerID : MCPeerID) {
+    println("Resending!")
     let data = NSKeyedArchiver.archivedDataWithRootObject(mainBrain!.game)
     let imageData = NSKeyedArchiver.archivedDataWithRootObject(mainBrain!.imagePacketsForGame)
     var error : NSError?
     session.sendData(data, toPeers: [peerID], withMode: MCSessionSendDataMode.Reliable, error: &error)
-    NSThread.sleepForTimeInterval(0.2)
+    NSThread.sleepForTimeInterval(0.4)
     session.sendData(imageData, toPeers: [peerID], withMode: MCSessionSendDataMode.Reliable, error: &error)
     if error != nil {
       logFor.DLog("Error encountered when resending game to peer: \(error!.description))")
@@ -346,7 +355,8 @@ class MultiPeerController: NSObject, MCSessionDelegate, MCNearbyServiceAdvertise
     didSendUserData     = false
     didSendImagePacket  = false
     session.disconnect()
-    session = MCSession(peer: self.peerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.None)
+    stopAdvertising()
+    stopBrowsing()
   }
 
 } // End

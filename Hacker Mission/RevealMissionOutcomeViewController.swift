@@ -31,10 +31,18 @@ class RevealMissionOutcomeViewController: UIViewController {
     let failVotes = justCompletedMission.failCardsPlayed
     
     missionOutcomeTitleLabel.text = justCompletedMission.missionName
-    if result {
-      missionOutcomeLabel.text = "Mission succeeded! with a vote of \(successVotes) to \(failVotes)!"
+    if result == true {
+      missionOutcomeTitleLabel.text = "Mission Success"
+      missionOutcomeLabel.text = "All \(successVotes) teammates stuck to the plan. No sabotage detected."
     } else {
-      missionOutcomeLabel.text = "Mission Failed with a vote of \(failVotes) to \(successVotes)"
+      missionOutcomeTitleLabel.text = "Mission Failed!"
+      var term : String
+      if failVotes == 1 {
+        term = "1 teammate"
+      } else {
+        term = "\(failVotes) teammates"
+      }
+      missionOutcomeLabel.text = "Evidence suggests that \(term) sabotaged the mission."
     }
   }
 

@@ -475,8 +475,7 @@ class LeadGameController {
       let value = event["value"] as String
       let user = UserInfo(userName: value)
       user.userPeerID = peerID
-      usersForGame.append(user)
-      // MARK: FInish this with a new event to request the imagePackets
+      addUserToUserList(user)
 
     case "imagePacket" :
       logFor.DLog("MAIN BRAIN: Received imagePacket from \(peerID)")
@@ -491,6 +490,18 @@ class LeadGameController {
     default:
       logFor.DLog("MAIN BRAIN: LeadGameController event handler action not recognized.")
       
+    }
+  }
+  
+  func addUserToUserList(userInfo: UserInfo) {
+    var userFound = false
+    for user in self.usersForGame {
+      if user.userPeerID == userInfo.userPeerID {
+        userFound = true
+      }
+    }
+    if userFound == false {
+      usersForGame.append(userInfo)
     }
   }
   
@@ -520,7 +531,6 @@ class LeadGameController {
     if let root = UIApplication.sharedApplication().keyWindow?.rootViewController as? LaunchViewController {
       NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
         root.updateConnectedPeersLabel(count)
-        //collect userInfo as users join
       })
     }
   }
@@ -547,10 +557,11 @@ class LeadGameController {
   }
   
   func resetForNewGame() {
-    var peerCount : Int = 0
-    var imagePacketsForGame = [ImagePacket]()
-    var currentVotes = [String]()
-    var currentMissionOutcomeVotes = [String]()
-    var flavorTextArray = [[String: String]]()
+    peerCount = 0
+    imagePacketsForGame = [ImagePacket]()
+    currentVotes = [String]()
+    currentMissionOutcomeVotes = [String]()
+    flavorTextArray = [[String: String]]()
+    usersForGame = [UserInfo]()
   }
 }
