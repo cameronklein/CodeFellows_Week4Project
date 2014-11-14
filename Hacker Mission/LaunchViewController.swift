@@ -253,7 +253,7 @@ class LaunchViewController: UIViewController {
       if numberNeeded > 0 {
         self.peersLabel.text = self.peersLabel.text! + "\n Need \(numberNeeded) more to start."
       }
-      if (number > 0) {
+      if (number > 3) {
 //        logFor.DLog(self.spinningWheel.isAnimating())
         if (self.spinningWheel.isAnimating()){
           self.spinningWheel.stopAnimating()
