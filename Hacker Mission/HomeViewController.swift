@@ -44,7 +44,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   var layout : UICollectionViewFlowLayout!
   var missionLabelArray : [UILabel]!
   var selectedIndexPath : NSIndexPath?
-  
+  var logFor = LogClass()
+
+
   //MARK: - Lifecycle Methods
   
   override func viewDidLoad()
@@ -98,7 +100,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       
         if player.currentVote != nil
         {
-          println("Found a currentVote")
+          logFor.DLog("Found a currentVote")
         
           if (player.currentVote == true)
           {
@@ -123,7 +125,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         else
         {
-          println("Found nil for currentVote")
+          logFor.DLog("Found nil for currentVote")
             cell.rejectsMission.hidden = true
             cell.approvesMission.hidden = true
         }
@@ -158,7 +160,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         {
           if self.playersSelected == (self.gameController.game.missions[self.gameController.game.currentMission] as Mission).playersNeeded
           {
-            println("You can't select this person until you deselect somebody else.")
+            logFor.DLog("You can't select this person until you deselect somebody else.")
           }
           else
           {
@@ -293,7 +295,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   @IBAction func confirmNominations(sender: AnyObject) {
     
-    println("Confirmed Button Pressed")
+    logFor.DLog("Confirmed Button Pressed")
       self.playersCollectionView.userInteractionEnabled = false
       self.confirmNominationButton.userInteractionEnabled = false
       self.confirmNominationButton.titleLabel?.textColor = UIColor.grayColor()
@@ -311,7 +313,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let dict = NSMutableDictionary()
     dict.setObject("nominations", forKey: "action")
     dict.setObject(nominatedPlayerIDs, forKey: "value")
-    println("Sending nomination information with players: \(nominatedPlayerIDs.description)")
+    logFor.DLog("Sending nomination information with players: \(nominatedPlayerIDs.description)")
     self.multiPeerController.sendInfoToMainBrain(dict)
 
   }
@@ -347,7 +349,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   }
 
   func startMission() {
-    println("GAME CONTROLLER : Start Mission Called")
+    logFor.DLog("GAME CONTROLLER : Start Mission Called")
     self.lastRejectedGameCount = 0
     
     self.animateIncomingMessageLabel("New Mission Proposed", completionHandler: { () -> (Void) in
@@ -484,7 +486,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
   
   func animateIncomingMessageLabel(incomingMessageText: String, completionHandler : () -> (Void)) {
-    println("Animate Label Called!")
+    logFor.DLog("Animate Label Called!")
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
       self.playersCollectionView.reloadData()
@@ -557,7 +559,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.nominationPromptLabel.text = ""
       })
     }) { (success) -> Void in
-      println("done")
+      self.logFor.DLog("done")
     }
   }
 

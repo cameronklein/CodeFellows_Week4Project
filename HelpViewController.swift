@@ -16,7 +16,10 @@ class HelpViewController: UIViewController {
   @IBOutlet weak var restartButton: UIButton!
   @IBOutlet weak var vibrationSwitch: UISwitch!
   @IBOutlet weak var numberOfAgentsLabel: UILabel!
-  
+
+  var logFor = LogClass()
+
+
   override func viewDidLoad() {
     super.viewDidLoad()
     restartButton.addBorder()
@@ -62,7 +65,7 @@ class HelpViewController: UIViewController {
   }
   
   func restartGame() {
-    println("RESTART PRESSED!")
+    logFor.DLog("RESTART PRESSED!")
     
     let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
     let appDel = UIApplication.sharedApplication().delegate as AppDelegate

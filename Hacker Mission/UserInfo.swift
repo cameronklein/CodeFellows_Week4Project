@@ -16,6 +16,7 @@ class UserInfo : NSObject, NSCoding {
     var userObject = NSMutableData()
     var savePath : String?
 
+
   init(userName: NSString, userImage: UIImage) {
       self.userImage = userImage
       self.userName = userName as NSString
@@ -72,15 +73,15 @@ class UserInfo : NSObject, NSCoding {
   class func saveTheObject (object: UserInfo) {
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     let filePath = appDelegate.documentsPath as String!
-    println("Saving to File")
+    UserInfo.DLog("Saving to File")
 
     NSKeyedArchiver.archiveRootObject(object, toFile: filePath)
 
     let fileManager = NSFileManager.defaultManager()
     if fileManager.fileExistsAtPath(filePath) {
-      println("save appears to be successful, saved file has been found")
+      UserInfo.DLog("save appears to be successful, saved file has been found")
     } else {
-      println("save apears to have failed, no saved file found")
+      UserInfo.DLog("save apears to have failed, no saved file found")
     }
     
   }
@@ -88,19 +89,25 @@ class UserInfo : NSObject, NSCoding {
   class func loadTheObject() -> UserInfo {
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     let filePath = appDelegate.documentsPath as String!
-    println("attempting to find the default user from the drive")
+    UserInfo.DLog("attempting to find the default user from the drive")
     let fileManager = NSFileManager.defaultManager()
     if fileManager.fileExistsAtPath(filePath) {
-      println("found the file, will attempt to load it")
+      UserInfo.DLog("found the file, will attempt to load it")
     } else {
-      println("no file found")
+      UserInfo.DLog("no file found")
     }
     let aFile = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as UserInfo!
-    println("the info I loded is for user  \(aFile.userName)")
+    UserInfo.DLog("the info I loded is for user  \(aFile.userName)")
 
     return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as UserInfo!
 
 
+  }
+
+  class func DLog(message: String, function: String = __FUNCTION__) {
+    #if DEBUG
+      println("\(function): \(message)")
+    #endif
   }
 
 

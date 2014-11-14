@@ -13,7 +13,9 @@ class EndGameViewController: UIViewController {
   @IBOutlet weak var gameOutcomeTitle: UILabel!
   @IBOutlet weak var gameOutcomeLabel: UILabel!
   @IBOutlet weak var restartButton: UIButton!
-  
+
+  var logFor = LogClass()
+
   let gameController = GameController.sharedInstance
   
   override func viewDidLoad() {

@@ -38,7 +38,7 @@ extension UILabel
         characterArray = textToAnimate?.pathComponents
         if characterArray == nil
         {
-            println("Empty string. Nothing to animate.")
+//            logFor.DLog("Empty string. Nothing to animate.")
         }
         else
         {

@@ -30,7 +30,9 @@ class GameController {
   
   var missionOutcomesVotedFor = [Bool]()
   var teamsVotedFor = [[Bool]]()
-  
+  var logFor = LogClass()
+
+
   var multipeerController = MultiPeerController.sharedInstance
   var imagePackets = [ImagePacket]()
   
@@ -48,7 +50,7 @@ class GameController {
     self.game = newGameInfo
     let event = game.currentGameState!
     if homeVC == nil && event != .Start && event != .RevealCharacters {
-      println("BAD FUNCTION CALLED")
+      logFor.DLog("BAD FUNCTION CALLED")
       let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
       let homeVC = storyboard.instantiateViewControllerWithIdentifier("HOME") as HomeViewController
       
@@ -64,7 +66,7 @@ class GameController {
       }
       
       findMe()
-      println("GAME CONTROLLER: Received \(event.rawValue) event from Main Brain. Woot.")
+      logFor.DLog("GAME CONTROLLER: Received \(event.rawValue) event from Main Brain. Woot.")
       switch event{
       case .Start:
         self.gameStart()
@@ -83,7 +85,7 @@ class GameController {
       case .End:
         self.endGame()
       default:
-          println("Unknown")
+          logFor.DLog("Unknown")
       }
     }
   }
@@ -104,13 +106,13 @@ class GameController {
   
   func showLoadingScreen(percentage: Float){
     launchVC.showLoadingBar(percentage)
-    println("GAME CONTROLLER: Calling show loading screen")
+    logFor.DLog("GAME CONTROLLER: Calling show loading screen")
   }
   
   func gameStart() {
     multipeerController.gameRunning = true
     
-    println("GAME CONTROLLER: Got Game Start Message")
+    logFor.DLog("GAME CONTROLLER: Got Game Start Message")
     
     //multipeerController.stopAdvertising()
     revealVC = RevealViewController(nibName: "RevealViewController", bundle: NSBundle.mainBundle())

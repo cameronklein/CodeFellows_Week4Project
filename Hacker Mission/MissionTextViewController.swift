@@ -15,7 +15,9 @@ class MissionTextViewController: UIViewController {
   @IBOutlet weak var missionFlavorTextDescriptionLabel: UILabel!
   
   var gameController = GameController.sharedInstance
-  
+  var logFor = LogClass()
+
+
   override func viewDidLoad() {
     super.viewDidLoad()
     button.addBorder()

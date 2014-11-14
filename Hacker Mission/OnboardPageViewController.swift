@@ -25,7 +25,9 @@ class OnboardPageViewController: UIViewController {
   var p4 : String?
   var p5 : String?
   var p6 : String?
-  
+  var logFor = LogClass()
+
+
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.backgroundColor = UIColor.clearColor()
@@ -73,7 +75,7 @@ class OnboardPageViewController: UIViewController {
     let theAnimation = CABasicAnimation(keyPath: "opacity")
     theAnimation.delegate = self
 
-    println("here in core animation")
+    logFor.DLog("here in core animation")
     theAnimation.repeatCount = 10000.0
     theAnimation.autoreverses = true
     theAnimation.fromValue = 0.5

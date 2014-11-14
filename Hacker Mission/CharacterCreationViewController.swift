@@ -26,6 +26,8 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
   let outlineColor1 = UIColor(red: 0.443, green: 0.961, blue: 0.082, alpha: 0.2).CGColor
   let outlineColor2 = UIColor(red: 0.443, green: 0.961, blue: 0.082, alpha: 0.6).CGColor
   var shouldAnimate = false
+  var logFor = LogClass()
+
 
     let attibutedString1 = NSAttributedString(string: "Enter a Name", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.75)])
     let attibutedString2 = NSAttributedString(string: "Enter a Name", attributes: [NSForegroundColorAttributeName : UIColor(red: 0.486, green: 0.988, blue: 0.000, alpha: 0.15)])
@@ -107,7 +109,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
         self.hasLaunched = true
         self.informThePlayer()
       } else {
-        println("Has launched previously, don't alert the player that they need to save.")
+        logFor.DLog("Has launched previously, don't alert the player that they need to save.")
       }
     }
 
@@ -165,7 +167,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       let theAnimation = CABasicAnimation(keyPath: "borderColor")
       theAnimation.delegate = self
 
-      println("here in core animation")
+      logFor.DLog("here in core animation")
       theAnimation.repeatCount = 10000.0
       theAnimation.autoreverses = true
       theAnimation.fromValue = self.outlineColor1
@@ -183,7 +185,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       let theAnimation = CABasicAnimation(keyPath: "borderColor")
       theAnimation.delegate = self
 
-      println("here in core animation")
+      logFor.DLog("here in core animation")
       theAnimation.repeatCount = 10000.0
       theAnimation.autoreverses = true
       theAnimation.fromValue = self.outlineColor1
@@ -197,7 +199,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
   }
 
     func checkButtonState(){
-        println("Checked Button State")
+        logFor.DLog("Checked Button State")
         if self.userImageFor != nil && self.checkNameLength() == true {
             self.saveCharacterButton.enabled = true
           self.saveCharacterButton.hidden = false
@@ -212,7 +214,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
           layers.append(self.saveCharacterButton.layer)
           self.doButtonPulseAnimAlso(layers)
         } else {
-            println("Hit Else")
+            logFor.DLog("Hit Else")
             self.saveCharacterButton.hidden = true
           self.saveCharacterButton.enabled = false
           self.disabledButtonText.hidden = false
@@ -227,10 +229,10 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       self.userForSave = localUserInfo
       print("delegate is: ")
       if let pathForSave = appDelegate.documentsPath as String! {
-      println("Can Save File")
+      logFor.DLog("Can Save File")
         UserInfo.saveTheObject(localUserInfo)
         appDelegate.defaultUser = localUserInfo
-        println("appdelegate user is \(appDelegate.defaultUser?.userName)")
+        logFor.DLog("appdelegate user is \(appDelegate.defaultUser?.userName)")
         if wasPresented == true {
         self.dismissViewControllerAnimated(true, completion: nil)
         } else {
@@ -247,7 +249,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
         }
         
       } else {
-        println("ERROR: No save path found, this is a fail case.")
+        logFor.DLog("ERROR: No save path found, this is a fail case.")
       }
 
     }
@@ -255,12 +257,12 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
   func loadIt() {
     var object = UserInfo.loadTheObject()
     let userForLoad = object
-    println("userName is \(userForLoad.userName)")
+    logFor.DLog("userName is \(userForLoad.userName)")
     self.userImageView.image = userForLoad.userImage as UIImage!
     self.usernameTextField.text = userForLoad.userName
     self.userNameFor = userForLoad.userName
     self.userImageFor = userForLoad.userImage
-    println("is the \(userForLoad.userImage)")
+    logFor.DLog("is the \(userForLoad.userImage)")
 
   }
 
@@ -275,9 +277,9 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
     @IBAction func photoButtonPressed(sender: AnyObject) {
         let alertViewController = UIAlertController(title: "Photos", message: "Use a photo for your player icon.", preferredStyle: UIAlertControllerStyle.ActionSheet)
-          println("photobuttonpressed 1")
+          logFor.DLog("photobuttonpressed 1")
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (action) -> Void in
-            println("Cancel")
+            self.logFor.DLog("Cancel")
         }
         let takePictureAction = UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.Default) { (action) -> Void in
             let imageTaker = UIImagePickerController()
@@ -299,7 +301,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
         }
         alertViewController.addAction(selectPictureAction)
         alertViewController.addAction(cancelAction)
-          println("photobuttonpressed 2")
+          logFor.DLog("photobuttonpressed 2")
 
       if let popoverController = alertViewController.popoverPresentationController {
         popoverController.sourceView = sender as UIView
@@ -329,11 +331,11 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         if countElements(textField.text) > 0 {
-          println("is text")
+          logFor.DLog("is text")
           checkButtonState()
             return true
         } else {
-            println("no text")
+            logFor.DLog("no text")
           checkButtonState()
             return true
         }
@@ -341,7 +343,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
 
     func textFieldDidEndEditing(textField: UITextField) {
 
-        println("didEndEditing")
+        logFor.DLog("didEndEditing")
       if countElements(textField.text) > 0 {
         self.userNameFor = textField.text!
       } else {
@@ -379,6 +381,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
       self.checkButtonState()
       self.usernameTextField.resignFirstResponder()
     }
+    // Placeholder
   }
 
 
@@ -386,7 +389,7 @@ class CharacterCreationViewController: UIViewController, UICollectionViewDelegat
     let alertController = UIAlertController(title: "Identify Yourself", message: "You must choose a name and image to identify you to other players. You can choose one of the default icons or use your device's camera.", preferredStyle: UIAlertControllerStyle.Alert)
 
     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel) { (action) -> Void in
-      println("Okay I will, thank you may i have another")
+      self.logFor.DLog("Okay I will, thank you may i have another")
     }
 
     alertController.addAction(okAction)
