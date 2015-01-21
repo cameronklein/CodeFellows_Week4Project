@@ -239,6 +239,7 @@ class LaunchViewController: UIViewController {
     logFor.DLog("Going to start game!")
     masterController?.beginRequestingImagesFromPlayers()
     startButton.enabled = false
+    self.startButton.alpha = 0.3
   }
     
   func updateConnectedPeersLabel (number: Int) -> Void
@@ -248,8 +249,8 @@ class LaunchViewController: UIViewController {
     
     NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
       
-    
-      self.peersLabel.text = "[" + number.description + " Peers Connected]"
+      let newNumber = number + 1
+      self.peersLabel.text = "[" + newNumber.description + " Total Players Connected]"
       if numberNeeded > 0 {
         self.peersLabel.text = self.peersLabel.text! + "\n Need \(numberNeeded) more to start."
       }
